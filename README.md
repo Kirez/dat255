@@ -5,6 +5,7 @@
 | Name | Handle | Email |
 | ---- | ------ | ----- |
 | Erik Källberg | [kirez](https://github.com/kirez) | [kalerik@student.chalmers.se](mailto:kalerik@student.chalmers.se) |
+| Arvid Wiklund | [BaDaam](https://github.com/BaDaam) | [arvidwi@student.chalmers.se](mailto:arvidwi@student.chalmers.se) |
 
 ## Useful links
 
