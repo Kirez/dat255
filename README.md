@@ -5,6 +5,7 @@
 | Name | Handle | Email |
 | ---- | ------ | ----- |
 | Erik Källberg | [kirez](https://github.com/kirez) | [kalerik@student.chalmers.se](mailto:kalerik@student.chalmers.se) |
+| Johannes Edenholm | [Johede3](https://github.com/johede3) | [edenholm@student.chalmers.se](mailto:edenholm@student.chalmers.se) |
 
 ## Useful links
 
