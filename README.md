@@ -5,6 +5,7 @@
 | Name | Handle | Email |
 | ---- | ------ | ----- |
 | Erik Källberg | [kirez](https://github.com/kirez) | [kalerik@student.chalmers.se](mailto:kalerik@student.chalmers.se) |
+| Timmy Truong |[tagonice](https://github.com/tagonice) | [timmyt@student.chalmers.se](mailto:timmyt@student.chalmers.se) | 
 
 ## Useful links
 
