@@ -1,13 +1,14 @@
 # DAT255 - Software Engineering Project
 
-## Group Members (Add yourself and make a pull request)
+## Group Members
 
 | Name | Handle | Email |
 | ---- | ------ | ----- |
+| Arvid Wiklund | [BaDaam](https://github.com/BaDaam) | [arvidwi@student.chalmers.se](mailto:arvidwi@student.chalmers.se) |
 | Erik Källberg | [kirez](https://github.com/kirez) | [kalerik@student.chalmers.se](mailto:kalerik@student.chalmers.se) |
-| Timmy Truong |[tagonice](https://github.com/tagonice) | [timmyt@student.chalmers.se](mailto:timmyt@student.chalmers.se) | 
-| Johan Svennungsson | [knya](https://github.com/knya) | [johsvenn@student.chalmers.se](mailto:johsvenn@student.chalmers.se) | 
-| Johannes Edenholm | [johede3](https://github.com/johede3) | [edenholm@student.chalmers.se](mailto:edenholm@student.chalmers.se) | 
+| Johannes Edenholm | [johede3](https://github.com/johede3) | [edenholm@student.chalmers.se](mailto:edenholm@student.chalmers.se) |
+| Johan Svennungsson | [knya](https://github.com/knya) | [johsvenn@student.chalmers.se](mailto:johsvenn@student.chalmers.se) |
+| Timmy Truong |[tagonice](https://github.com/tagonice) | [timmyt@student.chalmers.se](mailto:timmyt@student.chalmers.se) |
 
 ## Useful links
 
