@@ -10,6 +10,7 @@
 | Johan Svennungsson | [knya](https://github.com/knya) | [johsvenn@student.chalmers.se](mailto:johsvenn@student.chalmers.se) |
 | Rikard Teodorsson | [hej2010](https://github.com/hej2010) | [rikardt@student.chalmers.se](mailto:rikardt@student.chalmers.se) |
 | Timmy Truong |[tagonice](https://github.com/tagonice) | [timmyt@student.chalmers.se](mailto:timmyt@student.chalmers.se) |
+| Karl Ängermark |[KarlAngermark](https://github.com/KarlAngermark) | [karlang@student.chalmers.se](mailto:karlang@student.chalmers.se) |
 
 ## Useful links
 
