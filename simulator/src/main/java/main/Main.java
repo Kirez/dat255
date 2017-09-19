@@ -6,6 +6,7 @@ import gui.CarModel;
 import gui.CarSimulatorView;
 import gui.SimulatorControl;
 import gui.WallModel;
+import plugins.DriveFWSimulator;
 
 public class Main {
 
@@ -45,6 +46,7 @@ public class Main {
 
  		//simulatorCar = CarFactory.getCarFactory().generateCar("configs/system2.xml");
  		//simulatorCar.init();
+		DriveFWSimulator.main(args);
 	}
 
 }

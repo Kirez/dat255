@@ -101,8 +101,8 @@ public class CarModel extends SimulatorModel implements PhysicalObjectModel {
 		lamp[0] = false;
 		lamp[1] = false;
 		lamp[2] = false;
-		steeringAngle = -50.0;
-		motorPower = 0.001;
+//		steeringAngle = -50.0;
+//		motorPower = 0.001;
 	}
 	
 	/*
