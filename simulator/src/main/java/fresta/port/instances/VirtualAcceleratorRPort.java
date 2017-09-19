@@ -11,6 +11,11 @@ public class VirtualAcceleratorRPort extends EcuVirtualRPort {
 
 	@Override
 	public void deliver(Object data) {
-		CarModel.motorPower = ((int) data) / 100.0;
+		CarModel.motorPower = ((double) data) / 100.0;
 	}
+
+//	@Override
+//	public void deliver(Object data) {
+//		CarModel.motorPower = ((int) data) / 100.0;
+//	}
 }
