@@ -22,7 +22,7 @@
 
 ## How to setup a local virtual CAN interface
 
-make install will install to system and require root permissions
+make install will install to system and require root permissions.
 Only tested on linux will not work on windows but might work on mac
 
 
