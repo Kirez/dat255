@@ -54,7 +54,7 @@ candump vcan0
 
 1. Start WIFI hot spot
 2. Power on Moped
-3. Write down IP lease given to Moped
+3. Edit REMOTE variable in getdump.sh so that it is equal to ip leased to Moped
 4. Connect to WIFI hot spot
 5. Make sure that current directory is src
 6. ./getdump.sh
