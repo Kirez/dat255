@@ -1,6 +1,8 @@
 /**
  * This interface is supposed create basic methods to get data from the MOPED using the CarAPI.
- * @author Timmy Truong, Arvid Wiklund, Hamza Kadric
+ * @author Hamza Kadric
+ * @author Timmy Truong
+ * @author Arvid Wiklund
  */
 public interface KeepDistance {
 
