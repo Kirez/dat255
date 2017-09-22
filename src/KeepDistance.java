@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * This interface is supposed create basic methods to get data from the MOPED using the CarAPI.
  * @author Timmy Truong, Arvid Wiklund, Hamza Kadric
@@ -5,23 +7,29 @@
 public interface KeepDistance {
 
   /**
-   * Reads data from the sensor to get current distance to object in front.
+   * This method reads from sensor and returns data in form of a double
+   * containing the distance to the object in front in metres.
    *
-   * @return Double value of the distance read from sensor in mm.
+   * The return value shall be in metres as we do not want variables to have
+   * different units to complicate the calculations.
+   *
+   * @return a double containing the value of the distance to the object in front read from the sensor
    */
-  double readSensor();
+  public double readSensor();
 
   /**
-   * Writes a double to the MOPEDs engine in order to change the speed.
+   * Set speed
+   * Write a double to the MOPEDs engine in order to change the speed.
    *
-   * @param speed corresponding to the new speed in m/s.
+   * @param speed corresponding to the new speed
    */
-  void setSpeed(double speed);
+  public void setSpeed(double speed);
 
   /**
-   * Reads data from the odometer to get the current speed of the MOPED.
-   * 
+   * Read speed
+   * Read data from the odometer to get the current speed of the MOPED.
+   *
    * @return Speed of the car in m/s
    */
-  double getSpeed();
+  public double readSpeed();
 }
