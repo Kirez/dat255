@@ -6,19 +6,23 @@ import java.io.InputStreamReader;
 public class CAN {
 
   private static CAN instance;
+  private static Process cdProcess;
   private static InputStream cdInStream;
+
   private static String CAN_INPUT = "vcan0";
   private static String CAN_OUTPUT = "vcan1";
   private static String DUMP_COMMAND = "candump";
   private static String SEND_COMMAND = "cansend";
+
   private static byte VCU_CAN_ID = 102;
   private static byte SCU_CAN_ID = -1;
-  private static Process cdProcess;
+  private static byte motorValue = 0;
+  private static byte steerValue = 0;
 
   /**
-   * Singleton constructor for CAN class
-   * Starts 'candump' process to listen to interface specified by CAN_INPUT
-   * The 'candump' process standard output is setup to be read using InputStream cdInStream
+   * Singleton constructor for CAN class Starts 'candump' process to listen to interface specified
+   * by CAN_INPUT The 'candump' process standard output is setup to be read using InputStream
+   * cdInStream
    *
    * @throws IOException when raised by Runtime::exec
    */
@@ -88,6 +92,7 @@ public class CAN {
 
   /**
    * Automates sending of motor and steer packets to VCU
+   *
    * @param motor value to be sent to VCU
    * @param steer value to be sent to VCU
    * @throws IOException from sendCANFrame
@@ -100,6 +105,33 @@ public class CAN {
     motorAndSteerBytes[1] = steer;
 
     sendCANFrame(VCU_CAN_ID, motorAndSteerBytes);
+
+    motorValue = motor;
+    steerValue = steer;
+  }
+
+  /**
+   * Motor and Steer value must be sent at the same time this method sends the old steer value along
+   * with the new motor value
+   *
+   * @param motor value to be sent to VCU
+   * @throws IOException from sendMotorAndSteerValue
+   * @throws InterruptedException from sendMotorAndSteerValue
+   */
+  public void sendMotorValue(byte motor) throws IOException, InterruptedException {
+    sendMotorAndSteerValue(motor, steerValue);
+  }
+
+  /**
+   * Motor and Steer value must be sent at the same time this method sends the old motor value along
+   * with the new steer value
+   *
+   * @param steer value to be sent to VCU
+   * @throws IOException from sendMotorAndSteerValue
+   * @throws InterruptedException from sendMotorAndSteerValue
+   */
+  public void sendSteerValue(byte steer) throws IOException, InterruptedException {
+    sendMotorAndSteerValue(motorValue, steer);
   }
 
   public static void main(String[] args) throws IOException, InterruptedException {
