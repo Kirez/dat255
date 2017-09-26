@@ -31,5 +31,5 @@ public interface KeepDistance {
    *
    * @return Speed of the car in m/s
    */
-  double readSpeed();
+  double getSpeed();
 }
