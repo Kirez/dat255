@@ -9,12 +9,11 @@ public class CAN {
   private static Process cdProcess;
   private static InputStream cdInStream;
 
-  private static String CAN_INPUT = "vcan0";
-  private static String CAN_OUTPUT = "vcan1";
+  private static String CAN_INTERFACE = "can0";
   private static String DUMP_COMMAND = "candump";
   private static String SEND_COMMAND = "cansend";
 
-  private static byte VCU_CAN_ID = 102;
+  private static byte VCU_CAN_ID = 101;
   private static byte SCU_CAN_ID = -1;
   private static byte motorValue = 0;
   private static byte steerValue = 0;
@@ -29,7 +28,7 @@ public class CAN {
   private CAN() throws IOException {
     String[] argv = new String[2];
     argv[0] = DUMP_COMMAND;
-    argv[1] = CAN_INPUT;
+    argv[1] = CAN_INTERFACE;
     cdProcess = Runtime.getRuntime().exec(argv);
     cdInStream = cdProcess.getInputStream();
   }
@@ -84,7 +83,7 @@ public class CAN {
   public void sendCANFrame(byte canID, byte[] data) throws IOException, InterruptedException {
     String[] argv = new String[3];
     argv[0] = SEND_COMMAND;
-    argv[1] = CAN_OUTPUT;
+    argv[1] = CAN_INTERFACE;
     argv[2] = String.format("%d#%s", canID, byteToHexString(data));
     Process csProcess = Runtime.getRuntime().exec(argv);
     csProcess.waitFor();
