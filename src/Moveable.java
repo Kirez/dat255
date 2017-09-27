@@ -12,7 +12,7 @@ public interface Moveable {
    *
    * @param speed corresponding to the new speed
    */
-  void setSpeed(double speed);
+  void setSpeed(byte speed);
 
   /**
    * Read speed
