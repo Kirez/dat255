@@ -10,6 +10,11 @@ import java.util.concurrent.Semaphore;
  * @author Hugo Frost
  */
 
+
+/**
+ * Singleton class CAN for interfacing with can-utils's candump and cansend, mimicking MOPED python
+ * code
+ */
 public final class CAN {
 
   private static CAN instance;
@@ -35,11 +40,9 @@ public final class CAN {
   private ArrayList<Short> OrdometerData = new ArrayList<Short>(); //TODO
 
   /**
-   * Singleton constructor for CAN class Starts 'candump' process to listen to interface specified
-   * by CAN_INPUT The 'candump' process standard output is setup to be read using InputStream
-   * cdInStream
+   * CAN singleton constructor starts CAN input and output worker threads
    *
-   * @throws IOException when raised by Runtime::exec
+   * @throws IOException when raised by either input or output worker constructors
    */
   private CAN() throws IOException {
     String[] argv = new String[2];
