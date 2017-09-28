@@ -19,8 +19,8 @@ public class CAN {
   private static byte motorValue = 0;
   private static byte steerValue = 0;
 
-	private ArrayList<Short> UltraSonicSensorData = new ArrayList<Short>();
-	private ArrayList<Short> OrdometerData = new ArrayList<Short>();
+  private ArrayList<Short> UltraSonicSensorData = new ArrayList<Short>();
+  private ArrayList<Short> OrdometerData = new ArrayList<Short>();
 
   /**
    * Singleton constructor for CAN class Starts 'candump' process to listen to interface specified
@@ -59,7 +59,6 @@ public class CAN {
     BufferedReader reader = new BufferedReader(new InputStreamReader(cdInStream));
     return reader.readLine();
   }
-
 
 
   /**
@@ -145,41 +144,38 @@ public class CAN {
     for (byte i = 0; i < 100; i++) {
       instance.sendMotorAndSteerValue(i, (byte) 0);
     }
-		new CanParser();
+    new CanParser();
   }
 
-	private static class CanParser extends Thread {
+  private static class CanParser extends Thread {
+
     BufferedReader reader;
     byte[] bytes;
-		byte CanID;
-		public CanParser(){
-    	reader = new BufferedReader(new InputStreamReader(cdInStream));
+    byte CanID;
+
+    public CanParser() {
+      reader = new BufferedReader(new InputStreamReader(cdInStream));
     }
 
-    public void run(){
+    public void run() {
 
-		try
-		{
-			bytes = reader.readLine().getBytes();
-			CanID = bytes[0];
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+      try {
+        bytes = reader.readLine().getBytes();
+        CanID = bytes[0];
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
 		/* VCU can id */
-		if(CanID == VCU_CAN_ID)
-		{
-			/* read and store data */
-		}
+      if (CanID == VCU_CAN_ID) {
+      /* read and store data */
+      }
 
 		/* VCU can id */
-		if(CanID == SCU_CAN_ID)
-		{
+      if (CanID == SCU_CAN_ID) {
 			/* read and store sensor data */
-		}							
-   }
+      }
+    }
   }
 }
 
