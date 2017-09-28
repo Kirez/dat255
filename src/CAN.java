@@ -203,9 +203,19 @@ public final class CAN {
       BufferedReader reader = new BufferedReader(new InputStreamReader(canDumpStandardOutput));
       String canDataString = reader.readLine().trim();
 
+      //For example canDataString = "vcan0  40D   [8]  B0 D6 45 75 A2 72 E3 36"
+
       canDataString = canDataString.replace("   ", " ");
+
+      //now canDataString = "vcan0  40D [8]  B0 D6 45 75 A2 72 E3 36"
+
       canDataString = canDataString.replace("  ", " ");
+
+      //now canDataString = "vcan0 40D [8] B0 D6 45 75 A2 72 E3 36"
+
       String[] tokens = canDataString.split(" ");
+
+      //now tokens = {"vcan0", "[8]", "B0" ...}
 
       String canInterfaceString = tokens[0];
       String canIdString = tokens[1];
