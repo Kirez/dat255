@@ -1,13 +1,13 @@
 public interface IMotorVoltage {
 
     /**
-     * @return the current motor voltage
+     * @return the current motor value
      */
-    double getMotorVoltage();
+    byte getMotorVoltage();
 
     /**
-     * Calling setMotorVoltage(3.0) should make getMotorVoltage() return 3.0.
-     * @param voltage 0.0 should make the motor stop running.
+     * Calling setMotorValue(25) should make getMotorVoltage() return 25.
+     * @param voltage 0 should make the motor stop running.
      */
-    void setMotorVoltage(double voltage);
+    void setMotorValue(byte voltage);
 }
