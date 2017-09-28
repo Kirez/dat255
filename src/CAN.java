@@ -156,29 +156,30 @@ public class CAN {
     	reader = new BufferedReader(new InputStreamReader(cdInStream));
     }
 
-     public void run(){
+    public void run(){
 
-				try
-				{
-        	bytes = reader.readLine().getBytes();
-					CanID = bytes[0];
-				}
-				catch(IOException e)
-				{
-					e.printStackTrace();
-				}
-				/* VCU can id */
-				if(CanID == VCU_CAN_ID)
-				{
-						/* read and store data */
-				}
-				/* VCU can id */
-				if(CanID == SCU_CAN_ID)
-				{
-						/* read and store sensor data */
-				}							
-     }
+		try
+		{
+			bytes = reader.readLine().getBytes();
+			CanID = bytes[0];
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		/* VCU can id */
+		if(CanID == VCU_CAN_ID)
+		{
+			/* read and store data */
+		}
+
+		/* VCU can id */
+		if(CanID == SCU_CAN_ID)
+		{
+			/* read and store sensor data */
+		}							
+   }
   }
-
 }
 
