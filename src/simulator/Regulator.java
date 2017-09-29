@@ -10,23 +10,22 @@ import static java.lang.Thread.sleep;
 /**
  * Created by Macken on 2017-09-25.
  */
-public class REGULATOR implements Observer {
+class Regulator implements Observer {
+    private double v1;
+    private double vDes;
+    private double accFactor;
+    private double a0;
+    private double k;
+    private double i;
+    private double i_acc;
+    private double dist1;
+    private double dist2;
+    private double deltaDist;
+    private double d;
+    private double lastEr;
+    private int s;
 
-    double v1;
-    double vDes;
-    double accFactor;
-    double a0;
-    double k;
-    double i;
-    double i_acc;
-    double dist1;
-    double dist2;
-    double deltaDist;
-    double d;
-    double lastEr;
-    int s;
-
-    public REGULATOR() {
+    Regulator() {
 
         v1 = 0;
         a0 = 0.40;
@@ -82,17 +81,15 @@ public class REGULATOR implements Observer {
         double speed2;
         Random r;
 
-        public Sim(Observer o) {
-
+        Sim(Observer o) {
             speed2 = 5;
             r = new Random();
             this.addObserver(o);
 
-
         }
 
+        @Override
         public void run() {
-
             while (!interrupted())
                 try {
                     speed2 = 5;
