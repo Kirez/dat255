@@ -40,9 +40,9 @@ class Regulator implements Observer {
 
         dist1 = a0;
         dist2 = 0;
-        Sim sim = new Sim(this);
+//        Sim sim = new Sim(this);
 
-        new Thread(sim).start();
+//        new Thread(sim).start();
 
     }
 
@@ -68,13 +68,14 @@ class Regulator implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         s++;
-        double s2 = (double) arg;
+        double s2 = new Double(arg.toString());
         calcNewSpeed(s2);
         if (s % 40 == 0) {
             System.out.println("Car 1 has traveled: " + dist1 + ". Car 2 has traveled: " + dist2 + ". The sensors reads: " + deltaDist);
             System.out.println("Car 2 now travel at: " + v1);
         }
     }
+
 
     private class Sim extends Observable implements Runnable {
 
@@ -103,4 +104,5 @@ class Regulator implements Observer {
                 }
         }
     }
+
 }
