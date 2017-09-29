@@ -1,3 +1,5 @@
+package simulator;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -24,7 +26,7 @@ public class REGULATOR implements Observer {
     double lastEr;
     int s;
 
-    public REGULATOR () {
+    public REGULATOR() {
 
         v1 = 0;
         a0 = 0.40;
@@ -44,14 +46,15 @@ public class REGULATOR implements Observer {
         new Thread(sim).start();
 
     }
-    private double readSensor(double s){
-        dist1 += (s/(3.6*40));
-        dist2 += (v1/(3.6*40));
+
+    private double readSensor(double s) {
+        dist1 += (s / (3.6 * 40));
+        dist2 += (v1 / (3.6 * 40));
 
         return dist1 - dist2;
     }
 
-    private void calcNewSpeed (double speed2) {
+    private void calcNewSpeed(double speed2) {
 
         deltaDist = readSensor(speed2);
         double error = -0.40 + deltaDist;
@@ -66,7 +69,7 @@ public class REGULATOR implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         s++;
-        double s2 = (double)arg;
+        double s2 = (double) arg;
         calcNewSpeed(s2);
         if (s % 40 == 0) {
             System.out.println("Car 1 has traveled: " + dist1 + ". Car 2 has traveled: " + dist2 + ". The sensors reads: " + deltaDist);
@@ -76,31 +79,31 @@ public class REGULATOR implements Observer {
 
     private class Sim extends Observable implements Runnable {
 
-       double speed2;
-       Random r;
+        double speed2;
+        Random r;
 
-        public Sim(Observer o){
+        public Sim(Observer o) {
 
             speed2 = 5;
             r = new Random();
             this.addObserver(o);
 
 
-       }
+        }
 
-        public void run(){
+        public void run() {
 
-            while(!interrupted())
-            try {
-                speed2 = 5;
-                setChanged();
-                notifyObservers(speed2);
+            while (!interrupted())
+                try {
+                    speed2 = 5;
+                    setChanged();
+                    notifyObservers(speed2);
 
-                sleep(2, 500);
+                    sleep(2, 500);
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
         }
     }
 }

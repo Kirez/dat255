@@ -1,3 +1,5 @@
+import simulator.Simulator;
+
 import java.io.IOException;
 
 public final class Platooning {
