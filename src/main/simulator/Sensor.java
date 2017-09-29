@@ -1,4 +1,4 @@
-package simulator;
+package main.simulator;
 
 public class Sensor {
 

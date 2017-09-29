@@ -1,4 +1,4 @@
-package simulator;
+package main.simulator;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -77,7 +77,7 @@ class Regulator implements Observer {
     }
 
 
-    private class Sim extends Observable implements Runnable {
+    /*private class Sim extends Observable implements Runnable {
 
         double speed2;
         Random r;
@@ -103,6 +103,6 @@ class Regulator implements Observer {
                     e.printStackTrace();
                 }
         }
-    }
+    }*/
 
 }

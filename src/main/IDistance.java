@@ -1,3 +1,5 @@
+package main;
+
 /**
  * @author Hamza Kadric
  * @author Timmy Truong

@@ -1,4 +1,4 @@
-import simulator.Simulator;
+package main;
 
 import java.io.IOException;
 

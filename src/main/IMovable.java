@@ -1,10 +1,12 @@
+package main;
+
 /**
  * This interface is supposed create basic methods to get data from the MOPED using the CarAPI.
  * @author Hamza Kadric
  * @author Timmy Truong
  * @author Arvid Wiklund
  */
-public interface Moveable {
+public interface IMovable {
 
   /**
    * Set speed
@@ -12,7 +14,7 @@ public interface Moveable {
    *
    * @param speed corresponding to the new speed
    */
-  void setSpeed(byte speed);
+  void setSpeed(double speed);
 
   /**
    * Read speed

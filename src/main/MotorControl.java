@@ -1,14 +1,16 @@
+package main;
+
 import java.io.IOException;
 
 
-public class MotorControl implements Moveable{
+public class MotorControl implements IMovable {
 
 	
 	public MotorControl(){
 		
 	}
 
-	public void setSpeed(byte speed){
+	public void setSpeed(double speed){
 		/* send CAN */
 	}
 
