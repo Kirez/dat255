@@ -8,10 +8,6 @@ import java.util.concurrent.Semaphore;
 /**
  * @author Erik Källberg (kalerik@student.chalmers.se)
  * @author Hugo Frost
- */
-
-
-/**
  * Singleton class CAN for interfacing with can-utils's candump and cansend, mimicking MOPED python
  * code
  */
