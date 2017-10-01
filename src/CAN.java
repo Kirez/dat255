@@ -41,9 +41,6 @@ public final class CAN {
    * @throws IOException when raised by either input or output worker constructors
    */
   private CAN() throws IOException {
-    String[] argv = new String[2];
-    argv[0] = DUMP_COMMAND;
-    argv[1] = CAN_INTERFACE;
     outputWorker = new OutputWorker(VCU_COOL_DOWN);
     outputWorkerThread = new Thread(outputWorker);
     inputWorkerThread = new Thread(new InputWorker());
@@ -142,11 +139,17 @@ public final class CAN {
   private class CANFrame {
 
     private String identity;
+    private double time;
     private byte[] data;
 
-    public CANFrame(String identity, byte[] data) {
+    public CANFrame(String identity, double time, byte[] data) {
       this.identity = identity;
+      this.time = time;
       this.data = data;
+    }
+
+    public CANFrame(String identity, byte[] data) {
+      this(identity, -1, data);
     }
 
     public String getID() {
@@ -155,6 +158,10 @@ public final class CAN {
 
     public byte[] getData() {
       return data;
+    }
+
+    public double getTime() {
+      return time;
     }
   }
 
@@ -182,9 +189,11 @@ public final class CAN {
       usSensorQueueLock = new Semaphore(1);
       usSensorQueue = new ArrayDeque<>();
 
-      String[] argv = new String[2];
+      String[] argv = new String[4];
       argv[0] = CAN.DUMP_COMMAND;
-      argv[1] = CAN.CAN_INTERFACE;
+      argv[1] = "-t";
+      argv[2] = "z";
+      argv[3] = CAN.CAN_INTERFACE;
 
       canDumpProcess = Runtime.getRuntime().exec(argv);
       canDumpStandardOutput = canDumpProcess.getInputStream();
@@ -199,24 +208,26 @@ public final class CAN {
       BufferedReader reader = new BufferedReader(new InputStreamReader(canDumpStandardOutput));
       String canDataString = reader.readLine().trim();
 
-      //For example canDataString = "vcan0  40D   [8]  B0 D6 45 75 A2 72 E3 36"
+      //For example canDataString = "(003.602137)  vcan0  535   [8]  04 14 C7 30 3C 96 C5 4B"
 
       canDataString = canDataString.replace("   ", " ");
 
-      //now canDataString = "vcan0  40D [8]  B0 D6 45 75 A2 72 E3 36"
+      //now canDataString = "(003.602137)  vcan0  535 [8]  04 14 C7 30 3C 96 C5 4B"
 
       canDataString = canDataString.replace("  ", " ");
 
-      //now canDataString = "vcan0 40D [8] B0 D6 45 75 A2 72 E3 36"
+      //now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B"
 
       String[] tokens = canDataString.split(" ");
 
-      //now tokens = {"vcan0", "[8]", "B0" ...}
+      //now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"}
 
-      String canInterfaceString = tokens[0];
-      String canIdString = tokens[1];
-      String dataLengthString = tokens[2].replace("[", "").replace("]", "");
+      String canTimeString = tokens[0].replace("(", "").replace(")", "");
+      String canInterfaceString = tokens[1];
+      String canIdString = tokens[2];
+      String dataLengthString = tokens[3].replace("[", "").replace("]", "");
 
+      double time = Double.parseDouble(canTimeString);
       int dataLength = Integer.parseInt(dataLengthString);
 
       byte[] data = new byte[dataLength];
@@ -229,7 +240,7 @@ public final class CAN {
 
       }
 
-      return new CANFrame(canIdString, data);
+      return new CANFrame(canIdString, time, data);
     }
 
     @Override
