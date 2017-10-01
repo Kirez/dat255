@@ -200,7 +200,7 @@ public final class CAN {
     }
 
     /**
-     * Beware super lazy parsing. Hardcoded for candump run with no flags
+     * Beware super lazy parsing. Hardcoded for candump run with flag '-t' option 'z'
      *
      * @return can frame from parsed candump standard output
      */
