@@ -1,5 +1,3 @@
-package simulator;
-
 import static java.lang.Thread.interrupted;
 import static java.lang.Thread.sleep;
 
@@ -17,8 +15,8 @@ public class Simulator implements Runnable {
     public void run() {
         while (!interrupted())
             try {
-                followingCar.move(2);
-                leadingCar.move(1.5);
+                followingCar.move();
+                leadingCar.move();
                 System.out.println("followingCar " + followingCar.getX());
                 System.out.println("leadingCar " + leadingCar.getX());
                 System.out.println(followingCar.getDistanceTo(leadingCar));
@@ -27,7 +25,7 @@ public class Simulator implements Runnable {
 //                notifyObservers(speed2);
 
 //                sleep(2, 500);
-                sleep(1000);
+                sleep(25);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

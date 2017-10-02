@@ -4,7 +4,7 @@
  * @author Timmy Truong
  * @author Arvid Wiklund
  */
-public interface Moveable {
+public interface IMovable {
 
   /**
    * Set speed
@@ -12,7 +12,7 @@ public interface Moveable {
    *
    * @param speed corresponding to the new speed
    */
-  void setSpeed(byte speed);
+  void setSpeed(double speed);
 
   /**
    * Read speed

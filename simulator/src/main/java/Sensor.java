@@ -1,5 +1,3 @@
-package simulator;
-
 public class Sensor {
 
     public double getDistanceTo(Car car1, Car car2) {
