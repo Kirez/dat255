@@ -7,9 +7,10 @@ public class ACC extends Thread{
   private Regulator regulator;
 
   public ACC(MotorControl mc, UltraSonicSensor sensor){
-    this.sensor = sensor;
-    this.mc = mc;
-    start();
+      this.sensor = sensor;
+      this.mc = mc;
+      regulator = new Regulator();
+      start();
   }
 
   /* public double getDistance(){
@@ -24,12 +25,11 @@ public class ACC extends Thread{
 
    }*/
   public void run() {
-    /*läs sensor*/
-    double distance = sensor.getDistance();
-    /*reglera*/
-    mc.setSpeed(regulator());
-    /*skicka ny hastighet*/
+      double distance = sensor.getDistance();
+
+      mc.setSpeed(regulator.initNewCalc(distance));
 
   }
+
 
 }
