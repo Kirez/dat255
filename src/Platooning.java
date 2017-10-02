@@ -28,8 +28,10 @@ public final class Platooning {
       can.sendMotorValue(randomMotorBytes[i]);
     }
 
-    Thread.sleep(1000*60);
-    System.exit(0);
+    while (true) {
+      Thread.sleep(5000);
+      can.testSensor();
+    }
   }
 
 }

@@ -7,9 +7,8 @@ import java.util.concurrent.Semaphore;
 
 /**
  * @author Erik Källberg (kalerik@student.chalmers.se)
- * @author Hugo Frost
- * Singleton class CAN for interfacing with can-utils's candump and cansend, mimicking MOPED python
- * code
+ * @author Hugo Frost Singleton class CAN for interfacing with can-utils's candump and cansend,
+ * mimicking MOPED python code
  */
 public final class CAN {
 
@@ -21,7 +20,7 @@ public final class CAN {
 
   private static String VCU_COMMAND_CAN_ID = "101";
   private static String VCU_ODOMETER_CAN_ID = "Not known at this time";
-  private static String SCU_ULTRASONIC_CAN_ID = "Not known at this time";
+  private static String SCU_ULTRASONIC_CAN_ID = "46C";
   private static byte motorValue = 0;
   private static byte steerValue = 0;
 
@@ -31,6 +30,7 @@ public final class CAN {
   private Thread inputWorkerThread;
 
   private OutputWorker outputWorker;
+  private InputWorker inputWorker;
 
   private ArrayList<Short> UltraSonicSensorData = new ArrayList<Short>(); //TODO
   private ArrayList<Short> OrdometerData = new ArrayList<Short>(); //TODO
@@ -43,7 +43,8 @@ public final class CAN {
   private CAN() throws IOException {
     outputWorker = new OutputWorker(VCU_COOL_DOWN);
     outputWorkerThread = new Thread(outputWorker);
-    inputWorkerThread = new Thread(new InputWorker());
+    inputWorker = new InputWorker();
+    inputWorkerThread = new Thread(inputWorker);
     inputWorkerThread.start();
     outputWorkerThread.start();
   }
@@ -165,6 +166,34 @@ public final class CAN {
     }
   }
 
+  public void testSensor() throws InterruptedException {
+    for (short data : readSensor()) {
+      System.out.println(String.format("Sensor data: %d", data));
+    }
+  }
+
+  /**
+   * Disgusting DistPub-line to sensor reading short-array
+   *
+   * @return sensor readings
+   */
+  public short[] readSensor() throws InterruptedException {
+    String sensorLine = inputWorker.readSensorLine();
+    if (sensorLine == null) {
+      return new short[0];
+    } else {
+      sensorLine = sensorLine.split("\\)")[1];
+      sensorLine = sensorLine.trim();
+      String[] tokens = sensorLine.split(" ");
+      short[] out = new short[tokens.length];
+
+      for (int i = 0; i < tokens.length; i++) {
+        out[i] = Short.parseShort(tokens[i]);
+      }
+      return out;
+    }
+  }
+
   /**
    * Runnable, launched by parent (CAN), that reads CAN packets into can frames by launching candump
    * and continuously parsing it's standard output into sensor frames that are put into queues
@@ -205,6 +234,8 @@ public final class CAN {
      * @return can frame from parsed candump standard output
      */
     private CANFrame readFrame() throws IOException {
+      int DATA_OFFSET = 4;
+
       BufferedReader reader = new BufferedReader(new InputStreamReader(canDumpStandardOutput));
       String canDataString = reader.readLine().trim();
 
@@ -233,15 +264,67 @@ public final class CAN {
       byte[] data = new byte[dataLength];
 
       for (int i = 0; i < dataLength; i++) {
-        byte token = (byte) (16 * Character.digit(tokens[i + 3].charAt(0), 16));
+        byte token = (byte) (16 * Character.digit(tokens[i + DATA_OFFSET].charAt(0), 16));
         data[i] = token;
-        token = (byte) Character.digit(tokens[i + 3].charAt(1), 16);
+        token = (byte) Character.digit(tokens[i + DATA_OFFSET].charAt(1), 16);
         data[i] += token;
 
       }
 
       return new CANFrame(canIdString, time, data);
     }
+
+    /**
+     * Super-hacky oh-so-ugly DistPub data line re-constructor //TODO comment code
+     *
+     * @return DistPub data line if available else null
+     * @throws InterruptedException if interrupted when waiting for usSensorQueueLock
+     */
+    private String readSensorLine() throws InterruptedException {
+      String line = null;
+      usSensorQueueLock.acquire();
+
+      CANFrame frame;
+      ArrayList<CANFrame> readFrames = new ArrayList<>();
+
+      //Fast forward to start of next DistPub message
+      while (!usSensorQueue.isEmpty()) {
+        frame = usSensorQueue.poll();
+        if (frame.data[0] == 0x10) {
+          readFrames.add(frame);
+          break;
+        } else {
+          System.out
+              .println(String.format("Scrapping frame data: %s", byteToHexString(frame.data)));
+        }
+      }
+
+      StringBuilder sb = new StringBuilder();
+
+      boolean messageIsComplete = false;
+
+      while (!usSensorQueue.isEmpty()) {
+        frame = usSensorQueue.peek();
+        if (frame.data[0] == 0x10) {
+          messageIsComplete = true;
+          break;
+        }
+        for (int i = 1; i < frame.data.length; i++) {
+          sb.append((char) frame.data[i]);
+        }
+        readFrames.add(usSensorQueue.poll());
+      }
+
+      if (!messageIsComplete) {
+        usSensorQueue.addAll(readFrames);
+      } else {
+        line = sb.toString();
+      }
+
+      usSensorQueueLock.release();
+      return line;
+    }
+
 
     @Override
     public void run() {
@@ -250,23 +333,18 @@ public final class CAN {
           CANFrame frame = readFrame();
 
           if (frame.identity.equals(CAN.VCU_ODOMETER_CAN_ID)) {
-            System.out.println("Received Odometer frame");
             odometerQueueLock.acquire();
 
             odometerQueue.add(frame);
 
             odometerQueueLock.release();
           } else if (frame.identity.equals(CAN.SCU_ULTRASONIC_CAN_ID)) {
-            System.out.println("Received ultrasonic sensor frame");
             usSensorQueueLock.acquire();
 
             usSensorQueue.add(frame);
 
             usSensorQueueLock.release();
           } else if (frame.identity.equals(CAN.VCU_COMMAND_CAN_ID)) {
-            System.out.println(String
-                .format("Detected VCU command: motor: %d, steer: %d", frame.data[0],
-                    frame.data[1]));
           } else {
             System.out.println(String.format("Unknown CAN frame: id=%s; data=%s", frame.identity,
                 byteToHexString(frame.data)));
