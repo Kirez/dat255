@@ -1,6 +1,8 @@
 
 import org.opencv.core.*;
 
+import java.util.ArrayList;
+
 import static org.opencv.core.Core.addWeighted;
 import static org.opencv.core.Core.inRange;
 import static org.opencv.imgcodecs.Imgcodecs.imread;
@@ -33,9 +35,9 @@ public class ImageProcessing {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    public static void main(String[] args) { // Source: https://github.com/sol-prog/OpenCV-red-circle-detection/blob/master/circle_detect.cpp
+    public ArrayList<ProcessedImage> findCircles(String pathToImage) {
         // Read the image file
-        Mat src = imread("images/circles.jpg");
+        Mat src = imread(pathToImage);
 
         // Blur to reduce noise
         medianBlur(src, src, 3);
@@ -60,10 +62,12 @@ public class ImageProcessing {
         HoughCircles(red_hue_image, circles, CV_HOUGH_GRADIENT, 1, red_hue_image.rows() / 8, 100, 20, 0, 0);
 
         if (circles.size().width == 0) {
-            return;
+            return null;
         }
 
         System.out.println("Number of circles found: " + (int) circles.size().width);
+
+        ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
 
         // Draw all found circles
         for (int current_circle = 0; current_circle < circles.size().width; current_circle++) {
@@ -75,17 +79,34 @@ public class ImageProcessing {
                 continue;
             }
 
-            int radius = (int) circle[2];
+            double radius = circle[2];
 
-            // draw circle center
-            circle(src, center, 3, new Scalar(0, 255, 0), -1, 8, 0);
-            // draw circle outline
-            circle(src, center, radius, new Scalar(255, 0, 0), 3, 8, 0);
+            circleList.add(new ProcessedImage(center.x, center.y, radius));
         }
 
-        // Write the new image to a file
-        imwrite("images/circles2.jpg", src);
+        return circleList;
+    }
 
+    private class ProcessedImage {
+        private final double centerX, centerY, radius;
+
+        ProcessedImage(double centerX, double centerY, double radius) {
+            this.centerX = centerX;
+            this.centerY = centerY;
+            this.radius = radius;
+        }
+
+        public double getCenterX() {
+            return centerX;
+        }
+
+        public double getCenterY() {
+            return centerY;
+        }
+
+        public double getRadius() {
+            return radius;
+        }
     }
 
 }
