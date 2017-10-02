@@ -11,23 +11,23 @@ import static org.opencv.imgproc.Imgproc.*;
 
 public class ImageProcessing {
 
-    /*
+    /**
      - Add the following lines to platooning.iml before </component> to load OpenCV libraries
 
      <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../opencv/opencv-330.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <NATIVE>
-          <root url="file://$MODULE_DIR$/../opencv/x64" />
-        </NATIVE>
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../opencv/opencv-330.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
+     <library>
+     <CLASSES>
+     <root url="jar://$MODULE_DIR$/../opencv/opencv-330.jar!/" />
+     </CLASSES>
+     <JAVADOC />
+     <NATIVE>
+     <root url="file://$MODULE_DIR$/../opencv/x64" />
+     </NATIVE>
+     <SOURCES>
+     <root url="jar://$MODULE_DIR$/../opencv/opencv-330.jar!/" />
+     </SOURCES>
+     </library>
+     </orderEntry>
 
      */
 
@@ -35,10 +35,81 @@ public class ImageProcessing {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
+    /**
+     * Example, delete later
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        ImageProcessing i = new ImageProcessing();
+
+        i.findCirclesAndDraw("images/circles.jpg", "images/circles2.jpg");
+
+        // i.findCircles("images/circles.jpg");
+    }
+
+    /**
+     * Finds all the red circles in an image and returns them in a list
+     *
+     * @param pathToImage the image to check
+     * @return a list with the found circles
+     */
     public ArrayList<ProcessedImage> findCircles(String pathToImage) {
         // Read the image file
         Mat src = imread(pathToImage);
 
+        MatOfPoint3f circles = findAllCircles(src);
+
+        if (circles.size().width == 0) {
+            return null;
+        }
+
+        System.out.println("Number of circles found: " + (int) circles.size().width);
+
+        return matrixToList(circles);
+    }
+
+    /**
+     * Finds all the red circles in an image and draws the center point and the circle outline and saves it as an image file
+     *
+     * @param pathToImage  the image to check
+     * @param pathToOutput the output image (include .jpg/.png etc)
+     */
+    public void findCirclesAndDraw(String pathToImage, String pathToOutput) {
+        // Read the image file
+        Mat src = imread(pathToImage);
+
+        MatOfPoint3f circles = findAllCircles(src);
+
+        if (circles.size().width == 0) {
+            return;
+        }
+
+        System.out.println("Number of circles found: " + (int) circles.size().width);
+
+        ArrayList<ProcessedImage> circleList = matrixToList(circles);
+
+        for (ProcessedImage p : circleList) {
+
+            // draw circle center
+            circle(src, new Point(p.getCenterX(), p.getCenterY()), 3, new Scalar(0, 255, 0), -1, 8, 0);
+            // draw circle outline
+            circle(src, new Point(p.getCenterX(), p.getCenterY()), (int) p.getRadius(), new Scalar(255, 0, 0), 3, 8, 0);
+        }
+
+        // Write image to file
+        imwrite(pathToOutput, src);
+
+        System.out.println("\nThe output image was created at " + pathToOutput + "\n");
+    }
+
+    /**
+     * Finds all the red circles
+     *
+     * @param src the source image
+     * @return a matrix of the found circles
+     */
+    private MatOfPoint3f findAllCircles(Mat src) {
         // Blur to reduce noise
         medianBlur(src, src, 3);
 
@@ -61,12 +132,16 @@ public class ImageProcessing {
         // Find all the red circles
         HoughCircles(red_hue_image, circles, CV_HOUGH_GRADIENT, 1, red_hue_image.rows() / 8, 100, 20, 0, 0);
 
-        if (circles.size().width == 0) {
-            return null;
-        }
+        return circles;
+    }
 
-        System.out.println("Number of circles found: " + (int) circles.size().width);
-
+    /**
+     * Converts a matrix to a list of circles
+     *
+     * @param circles the matrix to convert
+     * @return an arraylist with the circles
+     */
+    private ArrayList<ProcessedImage> matrixToList(MatOfPoint3f circles) {
         ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
 
         // Draw all found circles
@@ -83,30 +158,7 @@ public class ImageProcessing {
 
             circleList.add(new ProcessedImage(center.x, center.y, radius));
         }
-
         return circleList;
-    }
-
-    private class ProcessedImage {
-        private final double centerX, centerY, radius;
-
-        ProcessedImage(double centerX, double centerY, double radius) {
-            this.centerX = centerX;
-            this.centerY = centerY;
-            this.radius = radius;
-        }
-
-        public double getCenterX() {
-            return centerX;
-        }
-
-        public double getCenterY() {
-            return centerY;
-        }
-
-        public double getRadius() {
-            return radius;
-        }
     }
 
 }
