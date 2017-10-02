@@ -49,14 +49,3 @@ like so:
 cangen vcan0 &
 candump vcan0
 ```
-
-## Running CAN dump extracting script
-
-1. Start WIFI hot spot
-2. Power on Moped
-3. Edit REMOTE variable in getdump.sh so that it is equal to ip leased to Moped
-4. Connect to WIFI hot spot
-5. Make sure that current directory is src
-6. ./getdump.sh
-7. Pray
-8. Profit!? (can0.dump + can1.dump in src if success)

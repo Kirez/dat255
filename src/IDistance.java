@@ -12,5 +12,5 @@ public interface IDistance {
      *
      * @return a double containing the value of the distance to the object in front read from the sensor
      */
-    double getDistance();
+    int getDistance();
 }
