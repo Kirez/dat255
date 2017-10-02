@@ -1,5 +1,3 @@
-package main.simulator;
-
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;

@@ -1,6 +1,3 @@
-package main.simulator;
-
-import main.IMovable;
 
 public class Car implements IMovable {
     private double speed;
