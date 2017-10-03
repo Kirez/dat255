@@ -2,6 +2,7 @@
 import org.opencv.core.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.opencv.core.Core.addWeighted;
 import static org.opencv.core.Core.inRange;
@@ -12,8 +13,20 @@ import static org.opencv.imgproc.Imgproc.*;
 public class ImageProcessing {
 
     /**
-     - Add the following lines to platooning.iml before </component> to load OpenCV libraries
+     - Create platooning.iml in the platooning folder and add the following lines to load OpenCV libraries:
+     - Or follow: https://medium.com/@aadimator/how-to-set-up-opencv-in-intellij-idea-6eb103c1d45c
 
+     <?xml version="1.0" encoding="UTF-8"?>
+     <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+     <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+     <output url="file://$MODULE_DIR$/target/classes" />
+     <output-test url="file://$MODULE_DIR$/target/test-classes" />
+     <content url="file://$MODULE_DIR$">
+     <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+     <excludeFolder url="file://$MODULE_DIR$/target" />
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
      <orderEntry type="module-library">
      <library>
      <CLASSES>
@@ -28,6 +41,8 @@ public class ImageProcessing {
      </SOURCES>
      </library>
      </orderEntry>
+     </component>
+     </module>
 
      */
 
@@ -43,7 +58,7 @@ public class ImageProcessing {
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
 
-        i.findCirclesAndDraw("images/circles.jpg", "images/circles2.jpg");
+        i.findCirclesAndDraw("images/lind.jpg", "images/lind2.jpg");
 
         // i.findCircles("images/circles.jpg");
     }
@@ -58,13 +73,11 @@ public class ImageProcessing {
         // Read the image file
         Mat src = imread(pathToImage);
 
-        MatOfPoint3f circles = findAllCircles(src);
+        List<MatOfPoint> circles = findAllCircles(src);
 
-        if (circles.size().width == 0) {
+        if (circles.size() == 0) {
             return null;
         }
-
-        System.out.println("Number of circles found: " + (int) circles.size().width);
 
         return matrixToList(circles, src);
     }
@@ -79,36 +92,29 @@ public class ImageProcessing {
         // Read the image file
         Mat src = imread(pathToImage);
 
-        MatOfPoint3f circles = findAllCircles(src);
+        List<MatOfPoint> circles = findAllCircles(src);
 
-        if (circles.size().width == 0) {
-            return;
-        }
+        for (final MatOfPoint circle : circles) {
+            // Create an ellipse and draw it
+            RotatedRect rotatedRect = fitEllipse(new MatOfPoint2f(circle.toArray()));
+            ellipse(src, rotatedRect, new Scalar(255, 0, 0), 4);
 
-        System.out.println("Number of circles found: " + (int) circles.size().width);
-
-        ArrayList<ProcessedImage> circleList = matrixToList(circles, src);
-
-        for (ProcessedImage p : circleList) {
             // draw circle center
-            circle(src, new Point(p.getCenterX(), p.getCenterY()), 3, new Scalar(0, 255, 0), -1, 8, 0);
-            // draw circle outline
-            circle(src, new Point(p.getCenterX(), p.getCenterY()), (int) p.getRadius(), new Scalar(255, 0, 0), 3, 8, 0);
+            circle(src, rotatedRect.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
         }
 
-        // Write image to file
         imwrite(pathToOutput, src);
 
-        System.out.println("\nThe output image was created at " + pathToOutput + "\n");
+        System.out.println("\nThe output image was created at " + pathToOutput);
     }
 
     /**
-     * Finds all the red circles
+     * Finds all the red circles & ellipses
      *
      * @param src the source image
      * @return a matrix of the found circles
      */
-    private MatOfPoint3f findAllCircles(Mat src) {
+    private List<MatOfPoint> findAllCircles(Mat src) {
         // Blur to reduce noise
         medianBlur(src, src, 3);
 
@@ -126,42 +132,35 @@ public class ImageProcessing {
 
         GaussianBlur(red_hue_image, red_hue_image, new Size(9, 9), 2, 2);
 
-        MatOfPoint3f circles = new MatOfPoint3f();
+        List<MatOfPoint> circles = new ArrayList<MatOfPoint>();
+        findContours(red_hue_image, circles, new Mat(), RETR_CCOMP, CHAIN_APPROX_SIMPLE, new Point(0, 0));
 
-        // Find all the red circles
-        HoughCircles(red_hue_image, circles, CV_HOUGH_GRADIENT, 1, red_hue_image.rows() / 8, 100, 20, 0, 0);
+        System.out.println("Number of circles & ellipses found: " + circles.size());
 
         return circles;
     }
 
     /**
-     * Converts a matrix to a list of circles
+     * Converts a list of matrices to a list of circles
      *
-     * @param circles the matrix to convert
+     * @param circles the list of matrices to convert
      * @return an arraylist with the circles
      */
-    private ArrayList<ProcessedImage> matrixToList(MatOfPoint3f circles, Mat src) {
+    private ArrayList<ProcessedImage> matrixToList(List<MatOfPoint> circles, Mat src) {
         ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
 
-        // Draw all found circles
-        for (int current_circle = 0; current_circle < circles.size().width; current_circle++) {
-            Point center = new Point(circles.get(0, current_circle));
+        for (final MatOfPoint circle : circles) {
+            Point center = new Point(circle.get(0, 0));
 
-            double[] circle = circles.get(0, current_circle);
-            if (circle == null) {
-                System.out.println("NULL");
-                continue;
-            }
-
-            // The radius of the circle
-            double radius = circle[2];
+            RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
 
             double imageWidth = src.cols();
             // Calculate the center offset of each circle
             double offset = (center.x / imageWidth) * 200.0 - 100;
 
-            circleList.add(new ProcessedImage(center.x, center.y, radius, offset));
+            circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset));
         }
+
         return circleList;
     }
 

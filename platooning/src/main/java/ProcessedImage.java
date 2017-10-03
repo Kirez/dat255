@@ -1,10 +1,9 @@
 public class ProcessedImage {
-    private final double centerX, centerY, radius, xOffset;
+    private final double centerX, centerY, xOffset;
 
-    ProcessedImage(double centerX, double centerY, double radius, double xOffset) {
+    ProcessedImage(double centerX, double centerY, double xOffset) {
         this.centerX = centerX;
         this.centerY = centerY;
-        this.radius = radius;
         if (xOffset > 100) {
             xOffset = 100;
         } else if (xOffset < -100) {
@@ -29,15 +28,6 @@ public class ProcessedImage {
      */
     public double getCenterY() {
         return centerY;
-    }
-
-    /**
-     * The radius of the circle
-     *
-     * @return the radius
-     */
-    public double getRadius() {
-        return radius;
     }
 
     /**
