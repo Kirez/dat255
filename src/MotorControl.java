@@ -9,8 +9,14 @@ public class MotorControl implements Moveable{
 		this.can = can;
 	}
 
-	public void setSpeed(byte speed){
+	public void setSpeed(int speed){
+		if(speed > 127)
+			speed = 127;
+		else if (speed < -127)
+			speed = -127;
+
 		/* send CAN */
+
 		/*try
 		{
 			can.sendMotorValue(speed);
@@ -19,6 +25,7 @@ public class MotorControl implements Moveable{
 		{
 			e.printStackTrace();
 		}*/
+
 	}
 
 
