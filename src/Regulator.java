@@ -102,8 +102,8 @@ class Regulator {
         double error = sensorValue -  dDes;
         i_acc += error * i;
 
-        vDes = error * k; //+ i_acc + (-error +lastEr) * d;
-        v1 += accFactor * (vDes - v1);
+        v1 = error * k; //+ i_acc + (-error + lastEr) * d;
+        //v1 +=  (vDes - v1);
 
         lastEr = error;
     }
