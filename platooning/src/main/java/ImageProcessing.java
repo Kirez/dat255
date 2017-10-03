@@ -66,7 +66,7 @@ public class ImageProcessing {
 
         System.out.println("Number of circles found: " + (int) circles.size().width);
 
-        return matrixToList(circles);
+        return matrixToList(circles, src);
     }
 
     /**
@@ -87,10 +87,9 @@ public class ImageProcessing {
 
         System.out.println("Number of circles found: " + (int) circles.size().width);
 
-        ArrayList<ProcessedImage> circleList = matrixToList(circles);
+        ArrayList<ProcessedImage> circleList = matrixToList(circles, src);
 
         for (ProcessedImage p : circleList) {
-
             // draw circle center
             circle(src, new Point(p.getCenterX(), p.getCenterY()), 3, new Scalar(0, 255, 0), -1, 8, 0);
             // draw circle outline
@@ -141,7 +140,7 @@ public class ImageProcessing {
      * @param circles the matrix to convert
      * @return an arraylist with the circles
      */
-    private ArrayList<ProcessedImage> matrixToList(MatOfPoint3f circles) {
+    private ArrayList<ProcessedImage> matrixToList(MatOfPoint3f circles, Mat src) {
         ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
 
         // Draw all found circles
@@ -154,9 +153,14 @@ public class ImageProcessing {
                 continue;
             }
 
+            // The radius of the circle
             double radius = circle[2];
 
-            circleList.add(new ProcessedImage(center.x, center.y, radius));
+            double imageWidth = src.cols();
+            // Calculate the center offset of each circle
+            double offset = (center.x / imageWidth) * 200.0 - 100;
+
+            circleList.add(new ProcessedImage(center.x, center.y, radius, offset));
         }
         return circleList;
     }
