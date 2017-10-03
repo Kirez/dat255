@@ -18,8 +18,6 @@ public class ServoControl implements Steering{
             steering = -100;
         try {
             can.sendSteerValue((byte)steering);
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

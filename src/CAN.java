@@ -55,7 +55,7 @@ public final class CAN {
    * Initiates an instance if one does not exist
    *
    * @return the one and only instance
-   * @throws IOException when raised by Runtime::exec
+   * @throws IOException when raised by constructor
    */
   public static CAN getInstance() throws IOException {
     if (instance == null) {
@@ -95,11 +95,9 @@ public final class CAN {
    *
    * @param motor value to be sent to VCU
    * @param steer value to be sent to VCU
-   * @throws IOException from sendCANFrame
    * @throws InterruptedException fromSendCANFrame
    */
-  public void sendMotorAndSteerValue(byte motor, byte steer)
-      throws IOException, InterruptedException {
+  public void sendMotorAndSteerValue(byte motor, byte steer) throws InterruptedException {
     byte[] motorAndSteerBytes = new byte[2];
     motorAndSteerBytes[0] = motor;
     motorAndSteerBytes[1] = steer;
@@ -120,7 +118,7 @@ public final class CAN {
    * @throws IOException from sendMotorAndSteerValue
    * @throws InterruptedException from sendMotorAndSteerValue
    */
-  public void sendMotorValue(byte motor) throws IOException, InterruptedException {
+  public void sendMotorValue(byte motor) throws InterruptedException {
     sendMotorAndSteerValue(motor, steerValue);
   }
 
@@ -132,7 +130,7 @@ public final class CAN {
    * @throws IOException from sendMotorAndSteerValue
    * @throws InterruptedException from sendMotorAndSteerValue
    */
-  public void sendSteerValue(byte steer) throws IOException, InterruptedException {
+  public void sendSteerValue(byte steer) throws InterruptedException {
     sendMotorAndSteerValue(motorValue, steer);
   }
 

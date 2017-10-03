@@ -21,7 +21,7 @@ public class MotorControl implements Moveable{
 		{
 			can.sendMotorValue((byte)speed);
 		}
-		catch(IOException | InterruptedException e)
+		catch(InterruptedException e)
 		{
 			e.printStackTrace();
 		}
