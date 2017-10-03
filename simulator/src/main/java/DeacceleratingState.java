@@ -3,7 +3,7 @@
  */
 public class DeacceleratingState implements MovingState {
 
-    private double deacceleratingFactor;
+    private double deacceleratingFactor = 0.9;
     private double timeStep = 0.1;
 
     public DeacceleratingState() {
@@ -16,7 +16,11 @@ public class DeacceleratingState implements MovingState {
     }
 
     public void move(Car c, double wantedSpeed) {
-        //TODO: implement deacceleration
+        if (c.getSpeed() > wantedSpeed) {
+            c.moveX(c.getSpeed() - deacceleratingFactor * timeStep);
+        } else {
+            c.moveX(c.getSpeed());
+        }
     }
 
     public double getFactor() {
