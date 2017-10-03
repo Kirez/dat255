@@ -93,15 +93,24 @@ public class ImageProcessing {
         Mat src = imread(pathToImage);
 
         List<MatOfPoint> circles = findAllCircles(src);
+        int counter = 0;
 
         for (final MatOfPoint circle : circles) {
             // Create an ellipse and draw it
-            RotatedRect rotatedRect = fitEllipse(new MatOfPoint2f(circle.toArray()));
-            ellipse(src, rotatedRect, new Scalar(255, 0, 0), 4);
+            RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
+
+            if ((ellipse.angle >= 80 && ellipse.angle <= 110) || ellipse.size.area() <= 5) {
+                continue;
+            }
+
+            ellipse(src, ellipse, new Scalar(255, 0, 0), 4);
 
             // draw circle center
-            circle(src, rotatedRect.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
+            circle(src, ellipse.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
+            counter++;
         }
+
+        System.out.println("Number of circles & ellipses found: " + counter);
 
         imwrite(pathToOutput, src);
 
@@ -135,8 +144,6 @@ public class ImageProcessing {
         List<MatOfPoint> circles = new ArrayList<MatOfPoint>();
         findContours(red_hue_image, circles, new Mat(), RETR_CCOMP, CHAIN_APPROX_SIMPLE, new Point(0, 0));
 
-        System.out.println("Number of circles & ellipses found: " + circles.size());
-
         return circles;
     }
 
@@ -154,12 +161,18 @@ public class ImageProcessing {
 
             RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
 
+            if ((ellipse.angle >= 80 && ellipse.angle <= 110) || ellipse.size.area() <= 5) {
+                continue;
+            }
+
             double imageWidth = src.cols();
             // Calculate the center offset of each circle
             double offset = (center.x / imageWidth) * 200.0 - 100;
 
             circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset));
         }
+
+        System.out.println("Number of circles & ellipses found: " + circleList.size());
 
         return circleList;
     }
