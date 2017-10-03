@@ -17,14 +17,14 @@ public class MotorControl implements Moveable{
 
 		/* send CAN */
 
-		/*try
+		try
 		{
-			can.sendMotorValue(speed);
+			can.sendMotorValue((byte)speed);
 		}
 		catch(IOException | InterruptedException e)
 		{
 			e.printStackTrace();
-		}*/
+		}
 
 	}
 
