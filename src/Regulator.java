@@ -1,7 +1,3 @@
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Random;
-
 import static java.lang.Thread.interrupted;
 import static java.lang.Thread.sleep;
 
@@ -11,36 +7,49 @@ import static java.lang.Thread.sleep;
 class Regulator {
     //Speed given by regulator calculations
     private double v1;
+
     //Desired speed
     private double vDes;
+
     //Desired distance
     private double dDes;
+
     //Acceleration
     private double accFactor;
-    private double a0;
+
+    //??
+    //private double a0;
+
     //Multiplier
     private double k;
+
     //Integrating factor
     private double i;
+
     //Acceleration
     private double i_acc;
+
     //dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2
-    private double dist1;
-    private double dist2;
-    private double deltaDist;
+    //private double dist1;
+    //private double dist2;
+    //private double deltaDist;
 
     //Derivating factor
     private double d;
+
     //Last error
     private double lastEr;
+
     //Ticks
-    private int s;
+    //private int s;
 
     public Regulator() {
+
         v1 = 0;
-        a0 = 0.40;
+        dDes = 0.40;
+        //a0 = 0.40;
         k = 236;
-        s = 0;
+        //s = 0;
         i = 0.05;
         i_acc = 0;
         d = 0.2;
@@ -73,12 +82,12 @@ class Regulator {
      * @param speed2 Speed of the car.
      * @return  Distance between the cars.
      */
-    private double readSensor(double speed2) {
+    /*private double readSensor(double speed2) {
         dist1 += (speed2 / (3.6 * 40));
         dist2 += (v1 / (3.6 * 40));
 
         return dist1 - dist2;
-    }
+    }*/
 
     /**
      * The simulator version, some changes needed to use in with the MOPED data.
@@ -89,7 +98,8 @@ class Regulator {
      */
     private void calcNewSpeed(double sensorValue) {
         //deltaDist = readSensor(speed2);
-        double error = -0.40 + sensorValue;
+
+        double error = sensorValue -  dDes;
         i_acc += error * i;
 
         vDes = error * k; //+ i_acc + (-error +lastEr) * d;
