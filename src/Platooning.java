@@ -27,15 +27,10 @@ public final class Platooning {
     //platooning.start() //TODO entry point for platooning logic
     //TODO user interface (command-line)
 
-    byte[] randomMotorBytes = new byte[100];
-    new Random().nextBytes(randomMotorBytes);
 
-    for (int i = 0; i < 100; i++) {
-      can.sendMotorValue(randomMotorBytes[i]);
+    while (true) {
+      can.testSensor();
     }
-
-    Thread.sleep(1000*60);
-    System.exit(0);
   }
 
 }
