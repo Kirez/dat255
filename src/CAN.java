@@ -16,7 +16,7 @@ public final class CAN {
 
   private static CAN instance;
 
-  private static String CAN_INTERFACE = "vcan0";
+  private static String CAN_INTERFACE = "can0";
   private static String DUMP_COMMAND = "candump";
   private static String SEND_COMMAND = "cansend";
 
@@ -184,13 +184,22 @@ public final class CAN {
     if (sensorLine == null) {
       return new short[0];
     } else {
-      sensorLine = sensorLine.split("\\)")[1];
+      try {
+        sensorLine = sensorLine.split("\\)")[1];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return new short[0];
+      }
       sensorLine = sensorLine.trim();
       String[] tokens = sensorLine.split(" ");
       short[] out = new short[tokens.length];
 
       for (int i = 0; i < tokens.length; i++) {
-        out[i] = Short.parseShort(tokens[i]);
+        try {
+          out[i] = Short.parseShort(tokens[i]);
+        } catch (NumberFormatException e) {
+          System.out.println("Bad sensor data: " + tokens[i]);
+          out[i] = -1;
+        }
       }
       return out;
     }
