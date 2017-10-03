@@ -24,6 +24,7 @@ public class ACC extends Thread{
    public double getSpeed(){
 
    }*/
+
   public void run() {
       double distance = sensor.getDistance();
 
