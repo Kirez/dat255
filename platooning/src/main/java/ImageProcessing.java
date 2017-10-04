@@ -1,4 +1,6 @@
 
+import com.sun.javafx.geom.Line2D;
+import com.sun.javafx.geom.Point2D;
 import nu.pattern.OpenCV;
 import org.opencv.core.*;
 
@@ -24,18 +26,29 @@ public class ImageProcessing {
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
 
-        i.findCirclesAndDraw("images/circles1.jpg", "images/circles1-2.jpg");
+        long start = System.currentTimeMillis();
 
-        // i.findCircles("images/circles.jpg");
+        //i.findCirclesAndDraw("images/opencv-dots.jpg", "images/opencv-dots2.jpg");
+
+        ProcessedImage circle = i.findCircles("images/opencv-dots.jpg", "images/opencv-dots.jpg", true);
+        if (circle == null) {
+            System.out.println("NULL");
+        } else {
+            System.out.println("x, y: "+ (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
+        }
+        long time = System.currentTimeMillis() - start;
+        System.out.println("Time taken: " + time + "ms");
     }
 
     /**
-     * Finds all the red circles in an image and returns them in a list
+     * Finds the center circle of the three
      *
      * @param pathToImage the image to check
-     * @return a list with the found circles
+     * @param pathToOutput where the image will be saved
+     * @param drawCenterCircle if an image with the result should be saved
+     * @return the center circle
      */
-    public ArrayList<ProcessedImage> findCircles(String pathToImage) {
+    public ProcessedImage findCircles(String pathToImage, String pathToOutput, boolean drawCenterCircle) {
         // Read the image file
         Mat src = imread(pathToImage);
 
@@ -45,7 +58,30 @@ public class ImageProcessing {
             return null;
         }
 
-        return matrixToList(circles, src);
+        ProcessedImage centerCircle = matrixToList(circles, src);
+
+        if (drawCenterCircle) {
+            for (final MatOfPoint circle : circles) {
+                // Create an ellipse and draw it
+                RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
+
+                if ((centerCircle.getCenterX() != ellipse.center.x || ellipse.angle >= 80 && ellipse.angle <= 110) ||
+                        ellipse.size.area() <= 5) {
+                    continue;
+                }
+
+                System.out.println(ellipse.center.x);
+
+                ellipse(src, ellipse, new Scalar(255, 0, 0), 4);
+
+                // draw circle center
+                circle(src, ellipse.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
+            }
+
+            imwrite(pathToOutput, src);
+        }
+
+        return centerCircle;
     }
 
     /**
@@ -119,7 +155,7 @@ public class ImageProcessing {
      * @param circles the list of matrices to convert
      * @return an arraylist with the circles
      */
-    private ArrayList<ProcessedImage> matrixToList(List<MatOfPoint> circles, Mat src) {
+    private ProcessedImage matrixToList(List<MatOfPoint> circles, Mat src) {
         ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
 
         for (final MatOfPoint circle : circles) {
@@ -134,13 +170,63 @@ public class ImageProcessing {
             double imageWidth = src.cols();
             // Calculate the center offset of each circle
             double offset = (center.x / imageWidth) * 200.0 - 100;
+            RotatedRect copy = new RotatedRect(ellipse.center, ellipse.size, 0);
 
-            circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset));
+            double height;
+            if (copy.size.height >= copy.size.width) {
+                height = copy.size.height;
+            } else {
+                height = copy.size.width;
+            }
+
+            circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset, height));
         }
 
         System.out.println("Number of circles & ellipses found: " + circleList.size());
 
-        return circleList;
+        return findCorrectCircle(circleList);
+    }
+
+    /**
+     * Loops through all circles and checks if 3 of them are in a line
+     *
+     * @param circleList the list of circles to check
+     * @return the center circle
+     */
+    private ProcessedImage findCorrectCircle(ArrayList<ProcessedImage> circleList) {
+        for (int i = 0; i < circleList.size(); i++) {
+            for (int j = i + 1; j < circleList.size(); j++) {
+                for (int k = j + 1; k < circleList.size(); k++) {
+                    ProcessedImage c1 = circleList.get(i);
+                    ProcessedImage c2 = circleList.get(j);
+                    ProcessedImage c3 = circleList.get(k);
+
+                    if (lineIntersectsCircle(c1, c2, c3)) {
+                        return c2;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Checks if the center circle intersects the line from c1 to c3
+     *
+     * @param c1     the first circle
+     * @param center the center circle
+     * @param c3     the 3rd circle
+     * @return true if the center circle is intersecting the line between c1 and c3
+     */
+    private boolean lineIntersectsCircle(ProcessedImage c1, ProcessedImage center, ProcessedImage c3) {
+        final double circleRadius = center.getHeight() / 2;
+
+        Line2D line = new Line2D((float) c1.getCenterX(), (float) c1.getCenterY(), (float) c3.getCenterX(), (float) c3.getCenterY());
+        Point2D point = new Point2D((float) center.getCenterX(), (float) center.getCenterY());
+
+        double distanceFromCircleToLine = line.ptSegDist(point);
+
+        return distanceFromCircleToLine <= circleRadius;
     }
 
 }
