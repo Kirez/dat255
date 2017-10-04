@@ -15,16 +15,14 @@ public class Simulator implements Runnable {
     public void run() {
         while (!interrupted())
             try {
+                followingCar.setNewSpeed(leadingCar);
+                followingCar.setSpeed(followingCar.getNewSpeed());
                 followingCar.move();
                 leadingCar.move();
-                System.out.println("followingCar " + followingCar.getX());
-                System.out.println("leadingCar " + leadingCar.getX());
-                System.out.println(followingCar.getDistanceTo(leadingCar));
-//                speed2 = 5;
-//                setChanged();
-//                notifyObservers(speed2);
 
-//                sleep(2, 500);
+                System.out.println("followingCar currentSpeed :" + followingCar.getSpeed());
+                System.out.println("leadingCar currentSpeed :" + leadingCar.getSpeed());
+                System.out.println("followingCar distanceTo " + followingCar.getDistanceTo(leadingCar));
                 sleep(25);
 
             } catch (InterruptedException e) {
