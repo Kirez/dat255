@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Random;
 
 public final class Platooning {
   private CAN can;
@@ -12,13 +13,18 @@ public final class Platooning {
     this.alc = alc;
   }
 
-  private void main(String args[]) throws IOException {
+  public static void main(String args[]) throws IOException, InterruptedException {
     CAN can = CAN.getInstance();
     ACC acc = new ACC(); //TODO update when constructor of ACC is done
     ALC alc = new ALC(); //TODO update when constructor of ALC is done
     Platooning platooning = new Platooning(can, acc, alc);
     //platooning.start() //TODO entry point for platooning logic
     //TODO user interface (command-line)
+
+
+    while (true) {
+      can.testSensor();
+    }
   }
 
 }

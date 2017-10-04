@@ -12,7 +12,8 @@ public interface IMovable {
    *
    * @param speed corresponding to the new speed
    */
-  void setSpeed(double speed);
+
+  void setSpeed(int speed);
 
   /**
    * Read speed

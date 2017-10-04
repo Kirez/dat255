@@ -344,3 +344,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/bluej,eclipse,emacs,intellij+iml,java,jetbrains,linux,macos,notepadpp,sublimetext,vim,windows
+src/META-INF
