@@ -12,42 +12,7 @@ import static org.opencv.imgproc.Imgproc.*;
 
 public class ImageProcessing {
 
-    /**
-     - Create platooning.iml in the platooning folder and add the following lines to load OpenCV libraries:
-     - Or follow: https://medium.com/@aadimator/how-to-set-up-opencv-in-intellij-idea-6eb103c1d45c
-
-     <?xml version="1.0" encoding="UTF-8"?>
-     <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-     <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
-     <output url="file://$MODULE_DIR$/target/classes" />
-     <output-test url="file://$MODULE_DIR$/target/test-classes" />
-     <content url="file://$MODULE_DIR$">
-     <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-     <excludeFolder url="file://$MODULE_DIR$/target" />
-     </content>
-     <orderEntry type="inheritedJdk" />
-     <orderEntry type="sourceFolder" forTests="false" />
-     <orderEntry type="module-library">
-     <library>
-     <CLASSES>
-     <root url="jar://$MODULE_DIR$/../opencv/opencv-330.jar!/" />
-     </CLASSES>
-     <JAVADOC />
-     <NATIVE>
-     <root url="file://$MODULE_DIR$/../opencv/x64" />
-     </NATIVE>
-     <SOURCES>
-     <root url="jar://$MODULE_DIR$/../opencv/opencv-330.jar!/" />
-     </SOURCES>
-     </library>
-     </orderEntry>
-     </component>
-     </module>
-
-     */
-
     static {
-        //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         OpenCV.loadShared();
     }
 
