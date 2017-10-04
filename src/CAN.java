@@ -16,7 +16,7 @@ public final class CAN {
 
   private static CAN instance;
 
-  private static String CAN_INTERFACE = "can0";
+  private static String CAN_INTERFACE = "vcan0";
   private static String DUMP_COMMAND = "candump";
   private static String SEND_COMMAND = "cansend";
 
