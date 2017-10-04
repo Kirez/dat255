@@ -19,7 +19,7 @@ public class CarTest {
     @Test
     public void setSpeed() {
         car.setSpeed(5);
-        assertEquals(car.getSpeed(), 5, 0);
+        assertEquals(car.getWantedSpeed(), 5, 0);
     }
 
     @Test
@@ -41,16 +41,16 @@ public class CarTest {
     @Test
     public void setAcceleratingState() {
         assertEquals(car.getSpeed(), 0, 0);
-        car.setSpeed(5);
+        car.setInstantSpeed(5);
         assertEquals(car.getSpeed(), 5, 0);
         assertEquals(car.getAcceleratingState(), car.getMovingState());
     }
 
     @Test
     public void setDeacceleratingState() {
-        car.setSpeed(5);
+        car.setInstantSpeed(5);
         assertEquals(car.getSpeed(), 5, 0);
-        car.setSpeed(3);
+        car.setInstantSpeed(3);
         assertEquals(car.getSpeed(), 3, 0);
         assertEquals(car.getMovingState(), car.getDeacceleratingState());
     }
@@ -73,7 +73,7 @@ public class CarTest {
 
     @Test
     public void isCarAccelerating() {
-        car.setSpeed(5);
+        car.setInstantSpeed(5);
         assertEquals(car.isCarAccelerating(4), false);
         assertEquals(car.isCarAccelerating(6), true);
     }
@@ -84,5 +84,13 @@ public class CarTest {
         assertEquals(leadingCar.getSensor(), null);
         Car followingCar = new Car(false);
         assertNotEquals(followingCar.getSensor(), null);
+    }
+
+    @Test
+    public void isCarWithinRange() {
+        Car nearbyCar = new Car(0,40,false);
+        assertEquals(car.isCarWithinRangeOf(nearbyCar), true);
+        Car farawayCar = new Car(0,41,false);
+        assertEquals(car.isCarWithinRangeOf(farawayCar), false);
     }
 }
