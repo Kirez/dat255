@@ -13,17 +13,33 @@ import static java.lang.Thread.sleep;
 
 public class Steering implements Observer{
 
-   double course;
-   double frontCourse;
-   double error;
-   double k;
-   int s;
 
+   //Lateral Field of View of the Camera
+   int carFov = 49;
+
+   //Course of the following car
+   double course;
+   //Course of the leading car
+   double frontCourse;
+   //Error in camera units
+   double error;
+   //Error in degrees
+   double degError;
+   //Amplification
+   double k;
+   //Number of invocations
+   int s;
+   //Steering
+   double steer;
+
+   /*
+    *Starts the thread running the leading car
+    */
     public Steering() {
 
     s = 0;
     course = 0;
-    k = 0.5;
+    k = 1.1;
 
     FrontCar fc = new FrontCar(this);
 
@@ -32,23 +48,34 @@ public class Steering implements Observer{
     }
 
 
+    /*
+     * On update, receives the course on which the leading car is traveling, calculates the error and sets the steering
+     * accordingly.
+     */
+
     @Override
     public void update(Observable o, Object arg) {
         s++;
         frontCourse = new Double(arg.toString());
-        error = course - frontCourse;
+        degError = frontCourse - course;
 
-        course = error * k;
+        error = degError/carFov;
+
+
+
 
         if (s % 5 == 0){
+            steer += error * k;
 
-            if (course > 180)
-                course -= 360;
-            else if (course < -180)
-                course += 360;
 
-            System.out.println("The front car's course is: " + frontCourse + ". The second car's course is: " + course  + " and is off course by: " + error);
+            System.out.println("The front car's course is: " + frontCourse + " degrees. The second car's course is: " + course  + " degrees and is off course by: " + degError + " degrees.");
         }
+        course = steer * carFov;
+
+        if (course > 180)
+            course -= 360;
+        else if (course < -180)
+            course += 360;
 
     }
 
@@ -57,12 +84,14 @@ public class Steering implements Observer{
 
     double course;
     Random r;
+    int s;
 
-    public FrontCar(Steering s) {
+    public FrontCar(Steering st) {
 
-        this.addObserver(s);
+        this.addObserver(st);
         course = 0;
         r = new Random();
+        s = 0;
 
     }
 
@@ -72,15 +101,23 @@ public class Steering implements Observer{
             try {
                 while (!interrupted()) {
 
-                    course += r.nextInt(80) - 40 ;
+                    if (s==0) {
+                        course = 40;
+                    } else if (s % 50 == 0) {
+                        course += 40;
+                    }/* else {
+                        course += r.nextInt(4) - 2;
+                    }*/
 
                     if (course > 180)
                         course -= 360;
-                    else if (course < -180)
+                    else if (course < -179)
                         course += 360;
 
                     setChanged();
                     notifyObservers(course);
+
+                    s++;
 
                     sleep(200);
 
