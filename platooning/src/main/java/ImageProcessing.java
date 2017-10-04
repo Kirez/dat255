@@ -30,7 +30,7 @@ public class ImageProcessing {
 
         //i.findCirclesAndDraw("images/opencv-dots.jpg", "images/opencv-dots2.jpg");
 
-        ProcessedImage circle = i.findCircles("images/opencv-dots.jpg", "images/opencv-dots.jpg", true);
+        ProcessedImage circle = i.findCircles("images/opencv-dots.jpg", "images/opencv-dots2.jpg", true);
         if (circle == null) {
             System.out.println("NULL");
         } else {
@@ -69,8 +69,6 @@ public class ImageProcessing {
                         ellipse.size.area() <= 5) {
                     continue;
                 }
-
-                System.out.println(ellipse.center.x);
 
                 ellipse(src, ellipse, new Scalar(255, 0, 0), 4);
 
