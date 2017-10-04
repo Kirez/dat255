@@ -14,6 +14,8 @@ public class UltraSonicSensor implements IDistance{
     public int getDistance(){
         try {
             short[] a = can.readSensor();
+            if(a.length != 20)
+                return -1;
             Arrays.sort(a);
             return (a[9] + a[8])/2;
         } catch (InterruptedException e) {

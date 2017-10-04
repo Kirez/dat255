@@ -34,9 +34,7 @@ public class ACC extends Thread{
               distance = sensor.getDistance();
               if(distance != -1)
               {
-                  System.out.println("Distance: " + distance);
                   mc.setSpeed(regulator.initNewCalc(distance));
-
               }
               sleep(500);
           } catch (InterruptedException e) {

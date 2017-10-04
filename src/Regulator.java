@@ -8,6 +8,9 @@ class Regulator {
     //Speed given by regulator calculations
     private double v1;
 
+    //Last speed given to MOPED
+    private double lastSpeed;
+
     //Desired speed
     private double vDes;
 
@@ -48,7 +51,7 @@ class Regulator {
         v1 = 0;
         dDes = 40;
         //a0 = 0.40;
-        k = 236;
+        k = 0.1;
         //s = 0;
         i = 0;
         i_acc = 0;
@@ -99,12 +102,11 @@ class Regulator {
      */
     private void calcNewSpeed(double sensorValue) {
         double error = 0;
-        if(sensorValue > 40)
-            error = sensorValue - dDes;
+        error = sensorValue - dDes;
 
         i_acc += error * i;
 
-        v1 = error * k; //+ i_acc + (-error + lastEr) * d;
+        v1 += error * k; //+ i_acc + (-error + lastEr) * d;
 
         lastEr = error;
     }
