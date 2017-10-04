@@ -4,6 +4,8 @@ import java.io.IOException;
 public class MotorControl implements Moveable{
 
 	private int i = 0;
+	private int lastSpeed = 0;
+
 	private CAN can;
 	public MotorControl(CAN can){
 		this.can = can;
@@ -20,6 +22,7 @@ public class MotorControl implements Moveable{
 		try
 		{
 			can.sendMotorValue((byte)speed);
+			lastSpeed = speed;
 		}
 		catch(InterruptedException e)
 		{
@@ -30,14 +33,14 @@ public class MotorControl implements Moveable{
 
 
  	public double getSpeed(){
-		double speed = 0;
+		return lastSpeed;
 		/* Read ordometer */
-		i++;
+		/*i++;
 		double[] dummy = {2.1, 2.5, 2.3, 2.9, 3.5, 1.9, 3.1};
-		/* Convert to cm/s */
+		Convert to cm/s
 		if(i == 6)
 			i = 0;
-		return dummy[i];
+		return dummy[i];*/
 	}
 
 }

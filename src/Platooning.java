@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Random;
 
 public final class Platooning implements Runnable {
   private CAN can;
@@ -68,11 +67,13 @@ public final class Platooning implements Runnable {
 
   public static void main(String args[]) throws IOException, InterruptedException {
     CAN can = CAN.getInstance();
-    ACC acc = new ACC(); //TODO update when constructor of ACC is done
     ALC alc = new ALC(); //TODO update when constructor of ALC is done
+    MotorControl mc = new MotorControl(can);
+    UltraSonicSensor sensor = new UltraSonicSensor(can);
+    ACC acc = new ACC(mc, sensor);
+
     Platooning platooning = new Platooning(can, acc, alc);
     Thread platoonThread = new Thread(platooning);
-
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 
     try {
