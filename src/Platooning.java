@@ -21,16 +21,17 @@ public final class Platooning {
     CAN can = CAN.getInstance();
     MotorControl mc = new MotorControl(can);
     UltraSonicSensor sensor = new UltraSonicSensor(can);
-    ACC acc = new ACC(mc, sensor); //TODO update when constructor of ACC is done
-    ALC alc = new ALC(); //TODO update when constructor of ALC is done
-    Platooning platooning = new Platooning(can, acc, alc, mc, sensor);
+    /*ACC acc = */new ACC(mc, sensor); //TODO update when constructor of ACC is done
+    //ALC alc = new ALC(); //TODO update when constructor of ALC is done
+    /*Platooning platooning = new Platooning(can, acc, alc, mc, sensor);
     //platooning.start() //TODO entry point for platooning logic
     //TODO user interface (command-line)
 
 
     while (true) {
       can.testSensor();
-    }
+    }*/
+    Thread.sleep(100000);
   }
 
 }

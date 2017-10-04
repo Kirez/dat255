@@ -46,13 +46,13 @@ class Regulator {
     public Regulator() {
 
         v1 = 0;
-        dDes = 0.40;
+        dDes = 40;
         //a0 = 0.40;
         k = 236;
         //s = 0;
-        i = 0.05;
+        i = 0;
         i_acc = 0;
-        d = 0.2;
+        d = 0;
         lastEr = 0;
 
         /*deltaDist = 0.40;
@@ -68,8 +68,9 @@ class Regulator {
      * @return New speed to work towards (regulated/desired speed).
      */
     public int initNewCalc(double distance){
+        System.out.println("Distance: " + distance);
         calcNewSpeed(distance);
-
+        System.out.println("New Speed: " + v1);
         return (int)v1;
     }
 
@@ -97,13 +98,13 @@ class Regulator {
      * @param sensorValue Sensor reading in meter.
      */
     private void calcNewSpeed(double sensorValue) {
-        //deltaDist = readSensor(speed2);
+        double error = 0;
+        if(sensorValue > 40)
+            error = sensorValue - dDes;
 
-        double error = sensorValue -  dDes;
         i_acc += error * i;
 
         v1 = error * k; //+ i_acc + (-error + lastEr) * d;
-        //v1 +=  (vDes - v1);
 
         lastEr = error;
     }

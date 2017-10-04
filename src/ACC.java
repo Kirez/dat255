@@ -12,6 +12,7 @@ public class ACC extends Thread{
       this.mc = mc;
       distance = 0;
       regulator = new Regulator();
+      System.out.println("Starting ACC");
       start();
   }
 
@@ -28,17 +29,19 @@ public class ACC extends Thread{
    }*/
 
   public void run() {
-      if(sensor.getDistance() != -1)
-          distance = sensor.getDistance();
+      while(true) {
+          try {
+              distance = sensor.getDistance();
+              if(distance != -1)
+              {
+                  System.out.println("Distance: " + distance);
+                  mc.setSpeed(regulator.initNewCalc(distance));
 
-      mc.setSpeed(regulator.initNewCalc(distance));
-
-      try {
-          sleep(1000);
-      } catch (InterruptedException e) {
-          e.printStackTrace();
+              }
+              sleep(500);
+          } catch (InterruptedException e) {
+              e.printStackTrace();
+          }
       }
   }
-
-
 }
