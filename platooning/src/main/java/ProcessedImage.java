@@ -48,4 +48,16 @@ public class ProcessedImage {
     public double getHeight() {
         return height;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProcessedImage) {
+            if (centerX == ((ProcessedImage) obj).centerX && centerY == ((ProcessedImage) obj).centerY &&
+                    height == ((ProcessedImage) obj).height && xOffset == ((ProcessedImage) obj).xOffset) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

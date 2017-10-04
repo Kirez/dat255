@@ -60,13 +60,16 @@ public class ImageProcessing {
 
         ProcessedImage centerCircle = matrixToList(circles, src);
 
+        if (centerCircle == null) {
+            return null;
+        }
+
         if (drawCenterCircle) {
             for (final MatOfPoint circle : circles) {
                 // Create an ellipse and draw it
                 RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
 
-                if ((centerCircle.getCenterX() != ellipse.center.x || ellipse.angle >= 80 && ellipse.angle <= 110) ||
-                        ellipse.size.area() <= 5) {
+                if (centerCircle.getCenterX() != ellipse.center.x) {
                     continue;
                 }
 
@@ -193,11 +196,15 @@ public class ImageProcessing {
      */
     private ProcessedImage findCorrectCircle(ArrayList<ProcessedImage> circleList) {
         for (int i = 0; i < circleList.size(); i++) {
-            for (int j = i + 1; j < circleList.size(); j++) {
-                for (int k = j + 1; k < circleList.size(); k++) {
+            for (int j = 0; j < circleList.size(); j++) {
+                for (int k = 0; k < circleList.size(); k++) {
                     ProcessedImage c1 = circleList.get(i);
                     ProcessedImage c2 = circleList.get(j);
                     ProcessedImage c3 = circleList.get(k);
+
+                    if (c1.equals(c2) || c2.equals(c3) || c1.equals(c3)) {
+                        continue;
+                    }
 
                     if (lineIntersectsCircle(c1, c2, c3)) {
                         return c2;
