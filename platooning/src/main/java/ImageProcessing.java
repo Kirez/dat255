@@ -34,7 +34,7 @@ public class ImageProcessing {
         if (circle == null) {
             System.out.println("NULL");
         } else {
-            System.out.println("x, y: "+ (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
+            System.out.println("x, y: " + (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
         }
         long time = System.currentTimeMillis() - start;
         System.out.println("Time taken: " + time + "ms");
@@ -43,8 +43,8 @@ public class ImageProcessing {
     /**
      * Finds the center circle of the three
      *
-     * @param pathToImage the image to check
-     * @param pathToOutput where the image will be saved
+     * @param pathToImage      the image to check
+     * @param pathToOutput     where the image will be saved
      * @param drawCenterCircle if an image with the result should be saved
      * @return the center circle
      */
@@ -198,13 +198,14 @@ public class ImageProcessing {
         for (int i = 0; i < circleList.size(); i++) {
             for (int j = 0; j < circleList.size(); j++) {
                 for (int k = 0; k < circleList.size(); k++) {
+
+                    if (i == j || j == k || i == k) {
+                        continue;
+                    }
+
                     ProcessedImage c1 = circleList.get(i);
                     ProcessedImage c2 = circleList.get(j);
                     ProcessedImage c3 = circleList.get(k);
-
-                    if (c1.equals(c2) || c2.equals(c3) || c1.equals(c3)) {
-                        continue;
-                    }
 
                     if (lineIntersectsCircle(c1, c2, c3)) {
                         return c2;
