@@ -31,13 +31,17 @@ public class ImageProcessing {
         //i.findCirclesAndDraw("images/opencv-dots.jpg", "images/opencv-dots2.jpg");
 
         ProcessedImage circle = i.findCircles("images/opencv-dots.jpg", "images/opencv-dots2.jpg", true);
+
         if (circle == null) {
             System.out.println("NULL");
         } else {
             System.out.println("x, y: " + (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
         }
+
         long time = System.currentTimeMillis() - start;
-        System.out.println("Time taken: " + time + "ms");
+
+        System.out.println("Time taken: " + time + "ms\n");
+
     }
 
     /**
@@ -66,6 +70,10 @@ public class ImageProcessing {
 
         if (drawCenterCircle) {
             for (final MatOfPoint circle : circles) {
+                if (circle.toArray().length < 5) { // Crashes when trying to create an ellipse with less than 5 points
+                    continue;
+                }
+
                 // Create an ellipse and draw it
                 RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
 
@@ -135,14 +143,14 @@ public class ImageProcessing {
 
         Mat lower_red_hue_range = new Mat();
         Mat upper_red_hue_range = new Mat();
-        inRange(hsv_image, new Scalar(0, 100, 100), new Scalar(10, 255, 255), lower_red_hue_range);
+        inRange(hsv_image, new Scalar(0, 100, 100), new Scalar(10, 255, 255), lower_red_hue_range);// new Scalar(blue, green, red)
         inRange(hsv_image, new Scalar(160, 100, 100), new Scalar(179, 255, 255), upper_red_hue_range);
 
         Mat red_hue_image = new Mat();
         // Combine the two matrices
         addWeighted(lower_red_hue_range, 1.0, upper_red_hue_range, 1.0, 0.0, red_hue_image);
 
-        GaussianBlur(red_hue_image, red_hue_image, new Size(9, 9), 2, 2);
+        GaussianBlur(red_hue_image, red_hue_image, new Size(3, 3), 2, 2);
 
         List<MatOfPoint> circles = new ArrayList<MatOfPoint>();
         findContours(red_hue_image, circles, new Mat(), RETR_CCOMP, CHAIN_APPROX_SIMPLE, new Point(0, 0));
@@ -161,6 +169,10 @@ public class ImageProcessing {
 
         for (final MatOfPoint circle : circles) {
             Point center = new Point(circle.get(0, 0));
+
+            if (circle.toArray().length < 5) {
+                continue;
+            }
 
             RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
 
