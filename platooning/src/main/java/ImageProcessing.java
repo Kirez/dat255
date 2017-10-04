@@ -1,11 +1,11 @@
 
+import nu.pattern.OpenCV;
 import org.opencv.core.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.opencv.core.Core.addWeighted;
-import static org.opencv.core.Core.inRange;
+import static org.opencv.core.Core.*;
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 import static org.opencv.imgproc.Imgproc.*;
@@ -47,7 +47,8 @@ public class ImageProcessing {
      */
 
     static {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        OpenCV.loadShared();
     }
 
     /**
@@ -58,7 +59,7 @@ public class ImageProcessing {
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
 
-        i.findCirclesAndDraw("images/lind.jpg", "images/lind2.jpg");
+        i.findCirclesAndDraw("images/circles1.jpg", "images/circles1-2.jpg");
 
         // i.findCircles("images/circles.jpg");
     }
