@@ -35,7 +35,7 @@ public class Steering implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         s++;
-        frontCourse = (double)arg;
+        frontCourse = new Double(arg.toString());
         error = course - frontCourse;
 
         course = error * k;
