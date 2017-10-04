@@ -2,6 +2,7 @@
 public class Car implements IMovable {
     private double speed;
     private double wantedSpeed;
+    private double newSpeed;
     private boolean isLeadingCar;
 
     private Regulator regulator;
@@ -114,6 +115,35 @@ public class Car implements IMovable {
 
     public Sensor getSensor() {
         return sensor;
+    }
+
+    public double getNewSpeed() {
+        return newSpeed;
+    }
+
+    public boolean isCarWithinRangeOf(Car c) {
+        return sensor.isCarWithinRangeOf(this, c);
+    }
+
+    /**
+     * Only used in test methods
+     * @param speed
+     */
+    public void setInstantSpeed(double speed) {
+        setMovingState(speed);
+        this.speed = speed;
+    }
+
+    public double getWantedSpeed() {
+        return wantedSpeed;
+    }
+
+    public void setNewSpeed(Car c) {
+        if (this.getMovingState().equals(acceleratingState)) {
+            newSpeed = regulator.getNewSpeed(acceleratingState.getFactor(), getDistanceTo(c));
+        } else {
+            newSpeed = regulator.getNewSpeed(deacceleratingState.getFactor(), getDistanceTo(c));
+        }
     }
 
 }
