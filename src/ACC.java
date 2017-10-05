@@ -18,10 +18,17 @@ public class ACC implements Runnable {
     while (!stopFlagged) {
       try {
         distance = sensor.getDistance();
-        if (distance != -1) {
-          mc.setSpeed(regulator.initNewCalc(distance));
+        while(distance == -1)
+        {
+            distance = sensor.getDistance();
+            Thread.sleep(10);
         }
-        Thread.sleep(500);
+        regulator.initNewCalc(distance);
+        if(regulator.getSpeed() > 40)
+            mc.setSpeed(30);
+        else
+            mc.setSpeed(regulator.getSpeed());
+
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

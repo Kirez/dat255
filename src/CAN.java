@@ -16,7 +16,7 @@ public final class CAN {
 
   private static CAN instance;
 
-  private static String CAN_INTERFACE = "vcan0";
+  private static String CAN_INTERFACE = "can0";
   private static String DUMP_COMMAND = "candump";
   private static String SEND_COMMAND = "cansend";
 
@@ -26,7 +26,7 @@ public final class CAN {
   private static byte motorValue = 0;
   private static byte steerValue = 0;
 
-  private static long VCU_COOL_DOWN = 1000; //TODO find out how fast one can switch command
+  private static long VCU_COOL_DOWN = 100; //TODO find out how fast one can switch command
 
   private Thread outputWorkerThread;
   private Thread inputWorkerThread;

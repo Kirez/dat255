@@ -43,19 +43,24 @@ class Regulator {
     //Last error
     private double lastEr;
 
+    //K = 0.48
+    //T0 = 9.3
+    //I = 4.65
+    //D = 1.16
+
     //Ticks
     //private int s;
 
     public Regulator() {
 
         v1 = 0;
-        dDes = 40;
+        dDes = 20;
         //a0 = 0.40;
-        k = 0.1;
+        k = 0.2;
         //s = 0;
-        i = 0;
+        i = 0.01;
         i_acc = 0;
-        d = 0;
+        d = 0.4;
         lastEr = 0;
 
         /*deltaDist = 0.40;
@@ -70,11 +75,10 @@ class Regulator {
      * @param distance Sensor reading in meter.
      * @return New speed to work towards (regulated/desired speed).
      */
-    public int initNewCalc(double distance){
+    public void initNewCalc(double distance){
         System.out.println("Distance: " + distance);
         calcNewSpeed(distance);
         System.out.println("New Speed: " + v1);
-        return (int)v1;
     }
 
     /**
@@ -101,13 +105,24 @@ class Regulator {
      * @param sensorValue Sensor reading in meter.
      */
     private void calcNewSpeed(double sensorValue) {
-        double error = 0;
-        error = sensorValue - dDes;
+        double error = sensorValue - dDes;
+            i_acc += error * i;
 
-        i_acc += error * i;
+            i_acc = i_acc > 2 ? 2 : i_acc;
+            i_acc = i_acc < -4 ? -4 : i_acc;
 
-        v1 += error * k; //+ i_acc + (-error + lastEr) * d;
+            v1 = error * k + i_acc + (error - lastEr) * d;
 
-        lastEr = error;
+            if (v1 > 0)
+                v1 += 8;
+
+            if (v1 < 11)
+                v1 = 0;
+
+            lastEr = error;
+    }
+
+    public int getSpeed() {
+        return (int)v1;
     }
 }

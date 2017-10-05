@@ -23,10 +23,9 @@ public final class Platooning implements Runnable {
   @Override
   public void run() {
     try {
-      can.sendMotorAndSteerValue((byte) 0, (byte) 0);
+      can.sendSteerValue((byte) -15);
     } catch (InterruptedException e) {
       e.printStackTrace();
-      return;
     }
 
     System.out.println("Starting ACC thread");
@@ -58,10 +57,17 @@ public final class Platooning implements Runnable {
       System.out.println("ALC thread stopped");
       accThread.join();
       System.out.println("ACC thread stopped");
+
     } catch (InterruptedException e) {
       e.printStackTrace();
       alcThread.interrupt();
       accThread.interrupt();
+    }
+
+    try {
+      can.sendMotorValue((byte)0);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
   }
 
