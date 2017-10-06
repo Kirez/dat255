@@ -12,10 +12,10 @@ public class ALC implements Runnable {
 
     private int offsetError;
 
-    public ALC(CAN can) {
+    public ALC(ServoControl servo) {
 
         k = 1;
-        servo = new ServoControl(can);
+        this.servo = servo;
 
         offsetError = 0;
     }
@@ -40,9 +40,11 @@ public class ALC implements Runnable {
                 //send......
 
 
-                //receive...
+                //receive offsetError.....
 
                 //calcSteering(offsetError);
+
+
                 throw new InterruptedException("error");
 
             } catch (InterruptedException e) {
