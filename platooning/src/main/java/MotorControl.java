@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 
-public class MotorControl implements Moveable{
+public class MotorControl implements IMovable {
 
 	private int i = 0;
 	private int lastSpeed = 0;
@@ -16,6 +16,7 @@ public class MotorControl implements Moveable{
 			e.printStackTrace();
 		}
 	}
+
 
 	public void setSpeed(int speed){
 		if(speed > 127) {

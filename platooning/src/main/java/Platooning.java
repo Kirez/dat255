@@ -73,7 +73,8 @@ public final class Platooning implements Runnable {
 
   public static void main(String args[]) throws IOException, InterruptedException {
     CAN can = CAN.getInstance();
-    ALC alc = new ALC(); //TODO update when constructor of ALC is done
+    ServoControl sc = new ServoControl(can);
+    ALC alc = new ALC(sc); //TODO update when constructor of ALC is done
     MotorControl mc = new MotorControl(can);
     UltraSonicSensor sensor = new UltraSonicSensor(can);
     ACC acc = new ACC(mc, sensor);
