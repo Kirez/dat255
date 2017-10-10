@@ -30,24 +30,24 @@ public class ImageProcessing {
 
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
-        try {
-            ProcessedImage a = i.getProcessedImage("images/opencv-dots.jpg");
-            System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ProcessedImage a = i.getProcessedImage("images/opencv-dots.jpg");
+        System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
     }
 
     /**
      * Returns a ProcessedImage containing the circle data
      *
      * @param path the path to the image file
-     * @throws IOException if path is null or file not found
+     * @return the processed image, null if the file couldn't be found
      */
-    public ProcessedImage getProcessedImage(String path) throws IOException {
+    public ProcessedImage getProcessedImage(String path) {
         float startTime = System.nanoTime();
 
         Mat frame = pathToMat(path);
+
+        if (frame == null) {
+            return null;
+        }
         //imwrite("images/original.png", frame);
 
         Mat blurredImage = new Mat();
@@ -209,11 +209,15 @@ public class ImageProcessing {
      *
      * @param in path to image
      * @return a matrix made from the image
-     * @throws IOException if input is null
      */
-    private Mat pathToMat(String in) throws IOException {
+    private Mat pathToMat(String in) {
         BufferedImage imgBuffer;
-        imgBuffer = ImageIO.read(new File(in));
+        try {
+            imgBuffer = ImageIO.read(new File(in));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
 
         int curCVtype = CvType.CV_8UC4;
         boolean supportedType = true;
