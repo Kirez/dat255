@@ -9,64 +9,46 @@ import com.sun.javafx.geom.Line2D;
 import com.sun.javafx.geom.Point2D;
 import nu.pattern.OpenCV;
 import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.MatOfPoint;
 
 import static org.opencv.core.Core.*;
-import static org.opencv.imgcodecs.Imgcodecs.imread;
-import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 import static org.opencv.imgproc.Imgproc.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Johannes Edenholm
+ * @author Rikard Teodorsson
+ */
 public class ImageProcessing {
-    private String PATH;
+
+    static {
+        OpenCV.loadShared();
+    }
 
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
         try {
             ProcessedImage a = i.getProcessedImage("images/opencv-dots.jpg");
             System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
-        } catch (IOException e) {e.printStackTrace();
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-        //long start = System.currentTimeMillis();
-
-        //i.findCirclesAndDraw("images/opencv-dots.jpg", "images/opencv-dots2.jpg");
-
-        /*ProcessedImage circle = i.run();
-
-        if (circle == null) {
-            System.out.println("NULL");
-        } else {
-            System.out.println("x, y: " + (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
-        }
-
-        long time = System.currentTimeMillis() - start;
-
-        System.out.println("Time taken: " + time + "ms\n");*/
-
-    }
-
-    static {
-        OpenCV.loadShared();
     }
 
     /**
-     * @throws IOException
-     * @param s
+     * Returns a ProcessedImage containing the circle data
+     *
+     * @param path the path to the image file
+     * @throws IOException if path is null or file not found
      */
-    public ProcessedImage getProcessedImage(String s) throws IOException {
-        this.PATH = s;
+    public ProcessedImage getProcessedImage(String path) throws IOException {
         float startTime = System.nanoTime();
 
-        //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        Mat frame = pathToMat(PATH);
-        Imgcodecs.imwrite("Original.png", frame);
+        Mat frame = pathToMat(path);
+        //imwrite("images/original.png", frame);
 
         Mat blurredImage = new Mat();
         Mat hsvImage = new Mat();
@@ -81,24 +63,25 @@ public class ImageProcessing {
         Core.inRange(hsvImage, new Scalar(160, 100, 100), new Scalar(179, 255, 255), upperRed);
 
         Mat red_hue_image = new Mat();
+        // Combines the two matrices
         addWeighted(lowerRed, 1.0, upperRed, 1.0, 0.0, red_hue_image);
 
         float endTime = System.nanoTime();
         float duration = (endTime - startTime);
         System.out.println("Duration for processing: " + duration / 1000000000 + "s");
 
-        return contour(red_hue_image, frame);
+        //imwrite("images/frame.png", frame);
+        //imwrite("images/lowerRed.png", lowerRed);
+        //imwrite("images/lowerRed.png", lowerRed);
 
-        //Imgcodecs.imwrite("frame.png", frame);
-        //Imgcodecs.imwrite("lowerRed.png", lowerRed);
-        //Imgcodecs.imwrite("lowerRed.png", lowerRed);
+        return contour(red_hue_image, frame);
     }
 
     /**
-     * draws black around the found red
+     * Draws black around the found red and returns the center circle
      *
-     * @param mask
-     * @param frame
+     * @param mask  the red in the image
+     * @param frame the source matrix
      */
     private ProcessedImage contour(Mat mask, Mat frame) {
         List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
@@ -221,16 +204,15 @@ public class ImageProcessing {
         return distanceFromCircleToLine <= circleRadius;
     }
 
-
     /**
-     * convertion method from image to mat
+     * conversion method from image to mat
      *
-     * @param in
-     * @return
-     * @throws IOException
+     * @param in path to image
+     * @return a matrix made from the image
+     * @throws IOException if input is null
      */
-    public Mat pathToMat(String in) throws IOException {
-        BufferedImage imgBuffer = null;
+    private Mat pathToMat(String in) throws IOException {
+        BufferedImage imgBuffer;
         imgBuffer = ImageIO.read(new File(in));
 
         int curCVtype = CvType.CV_8UC4;
