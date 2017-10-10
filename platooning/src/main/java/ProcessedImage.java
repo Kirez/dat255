@@ -1,7 +1,7 @@
 public class ProcessedImage {
-    private final double centerX, centerY, xOffset, height;
+    private final double centerX, centerY, xOffset, height, width;
 
-    ProcessedImage(double centerX, double centerY, double xOffset, double height) {
+    ProcessedImage(double centerX, double centerY, double xOffset, double height, double width) {
         this.centerX = centerX;
         this.centerY = centerY;
         if (xOffset > 100) {
@@ -11,6 +11,7 @@ public class ProcessedImage {
         }
         this.xOffset = xOffset;
         this.height = height;
+        this.width = width;
     }
 
     /**
@@ -49,4 +50,12 @@ public class ProcessedImage {
         return height;
     }
 
+    /**
+     * The width of the circle
+     *
+     * @return the width
+     */
+    public double getWidth() {
+        return width;
+    }
 }

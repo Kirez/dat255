@@ -1,177 +1,114 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import com.sun.javafx.geom.Line2D;
 import com.sun.javafx.geom.Point2D;
 import nu.pattern.OpenCV;
 import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.core.MatOfPoint;
 import org.opencv.videoio.VideoCapture;
+
+import static org.opencv.core.Core.*;
+import static org.opencv.imgproc.Imgproc.*;
+import static org.opencv.videoio.Videoio.CAP_FFMPEG;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.opencv.core.Core.*;
-import static org.opencv.imgcodecs.Imgcodecs.imread;
-import static org.opencv.imgcodecs.Imgcodecs.imwrite;
-import static org.opencv.imgproc.Imgproc.*;
-import static org.opencv.videoio.Videoio.CAP_FFMPEG;
-
+/**
+ * @author Johannes Edenholm
+ * @author Rikard Teodorsson
+ */
 public class ImageProcessing {
 
     static {
         OpenCV.loadShared();
     }
 
-    /**
-     * Example, delete later
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
-
-        long start = System.currentTimeMillis();
-
-        //i.findCirclesAndDraw("images/opencv-dots.jpg", "images/opencv-dots2.jpg");
-
-
-        String argv = "nc -l 2222";
         VideoCapture stream = new VideoCapture();
-
-        stream.open("tcp://192.168.43.230:2222");
+        stream.open("????");
         Mat frame = new Mat();
 
-        while (true) {
+        if (stream.isOpened()) {
 
-            if (stream.read(frame)) {
-                System.out.println("hejhejehejeh");
+            while (true) {
 
-                ProcessedImage circle = i.findCircles(frame, "images/opencv-dots2.jpg", false);
+                if (stream.read(frame)) {
 
-                if (circle == null) {
-                    System.out.println("NULL");
-                } else {
-                    System.out.println("x, y: " + (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
+                    ProcessedImage a = i.getProcessedImage(frame);
+
+
+                    System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
                 }
-
-                long time = System.currentTimeMillis() - start;
-
-                System.out.println("Time taken: " + time + "ms\n");
 
             }
 
+
         }
+
     }
 
     /**
-     * Finds the center circle of the three
+     * Returns a ProcessedImage containing the circle data
      *
-     * @param image      the image to check
-     * @param pathToOutput     where the image will be saved
-     * @param drawCenterCircle if an image with the result should be saved
-     * @return the center circle
+     * @param frame the path to the image file
+     * @return the processed image, null if the file couldn't be found
      */
-    public ProcessedImage findCircles(Mat image, String pathToOutput, boolean drawCenterCircle) {
-        // Read the image file
+    public ProcessedImage getProcessedImage(Mat frame) {
+        float startTime = System.nanoTime();
 
-        List<MatOfPoint> circles = findAllCircles(image);
 
-        if (circles.size() == 0) {
+        if (frame == null) {
             return null;
         }
+        //imwrite("images/original.png", frame);
 
-        ProcessedImage centerCircle = matrixToList(circles, image);
+        Mat blurredImage = new Mat();
+        Mat hsvImage = new Mat();
+        Imgproc.blur(frame, blurredImage, new Size(7, 7));
+        Imgproc.cvtColor(blurredImage, hsvImage, Imgproc.COLOR_BGR2HSV);
 
-        if (centerCircle == null) {
-            return null;
-        }
+        Mat lowerRed = new Mat();
+        Mat upperRed = new Mat();
 
-        if (drawCenterCircle) {
-            for (final MatOfPoint circle : circles) {
-                if (circle.toArray().length < 5) { // Crashes when trying to create an ellipse with less than 5 points
-                    continue;
-                }
-
-                // Create an ellipse and draw it
-                RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
-
-                if (centerCircle.getCenterX() != ellipse.center.x) {
-                    continue;
-                }
-
-                ellipse(image, ellipse, new Scalar(255, 0, 0), 4);
-
-                // draw circle center
-                circle(image, ellipse.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
-            }
-
-            imwrite(pathToOutput, image);
-        }
-
-        return centerCircle;
-    }
-
-    /**
-     * Finds all the red circles in an image and draws the center point and the circle outline and saves it as an image file
-     *
-     * @param pathToImage  the image to check
-     * @param pathToOutput the output image (include .jpg/.png etc)
-     */
-    public void findCirclesAndDraw(String pathToImage, String pathToOutput) {
-        // Read the image file
-        Mat src = imread(pathToImage);
-
-        List<MatOfPoint> circles = findAllCircles(src);
-        int counter = 0;
-
-        for (final MatOfPoint circle : circles) {
-            // Create an ellipse and draw it
-            RotatedRect ellipse = fitEllipse(new MatOfPoint2f(circle.toArray()));
-
-            if ((ellipse.angle >= 80 && ellipse.angle <= 110) || ellipse.size.area() <= 5) {
-                continue;
-            }
-
-            ellipse(src, ellipse, new Scalar(255, 0, 0), 4);
-
-            // draw circle center
-            circle(src, ellipse.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
-            counter++;
-        }
-
-        System.out.println("Number of circles & ellipses found: " + counter);
-
-        imwrite(pathToOutput, src);
-
-        System.out.println("\nThe output image was created at " + pathToOutput);
-    }
-
-    /**
-     * Finds all the red circles & ellipses
-     *
-     * @param src the source image
-     * @return a matrix of the found circles
-     */
-    private List<MatOfPoint> findAllCircles(Mat src) {
-        // Blur to reduce noise
-        medianBlur(src, src, 3);
-
-        Mat hsv_image = new Mat();
-        cvtColor(src, hsv_image, COLOR_BGR2HSV);
-
-        Mat lower_red_hue_range = new Mat();
-        Mat upper_red_hue_range = new Mat();
-        inRange(hsv_image, new Scalar(0, 100, 100), new Scalar(10, 255, 255), lower_red_hue_range);// new Scalar(blue, green, red)
-        inRange(hsv_image, new Scalar(160, 100, 100), new Scalar(179, 255, 255), upper_red_hue_range);
+        //specifies for color red search
+        Core.inRange(hsvImage, new Scalar(0, 100, 100), new Scalar(5, 255, 255), lowerRed);
+        Core.inRange(hsvImage, new Scalar(160, 100, 100), new Scalar(179, 255, 255), upperRed);
 
         Mat red_hue_image = new Mat();
-        // Combine the two matrices
-        addWeighted(lower_red_hue_range, 1.0, upper_red_hue_range, 1.0, 0.0, red_hue_image);
+        // Combines the two matrices
+        addWeighted(lowerRed, 1.0, upperRed, 1.0, 0.0, red_hue_image);
 
-        GaussianBlur(red_hue_image, red_hue_image, new Size(3, 3), 2, 2);
+        float endTime = System.nanoTime();
+        float duration = (endTime - startTime);
+        System.out.println("Duration for processing: " + duration / 1000000000 + "s");
 
-        List<MatOfPoint> circles = new ArrayList<MatOfPoint>();
-        findContours(red_hue_image, circles, new Mat(), RETR_CCOMP, CHAIN_APPROX_SIMPLE, new Point(0, 0));
+        //imwrite("images/frame.png", frame);
+        //imwrite("images/lowerRed.png", lowerRed);
+        //imwrite("images/lowerRed.png", lowerRed);
 
-        return circles;
+        return contour(red_hue_image, frame);
+    }
+
+    /**
+     * Draws black around the found red and returns the center circle
+     *
+     * @param mask  the red in the image
+     * @param frame the source matrix
+     */
+    private ProcessedImage contour(Mat mask, Mat frame) {
+        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+        Mat hierarchy = new Mat();
+        Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_CCOMP, Imgproc.CHAIN_APPROX_SIMPLE);
+
+        return matrixToList(contours, frame);
     }
 
     /**
@@ -201,14 +138,16 @@ public class ImageProcessing {
             double offset = (center.x / imageWidth) * 200.0 - 100;
             RotatedRect copy = new RotatedRect(ellipse.center, ellipse.size, 0);
 
-            double height;
+            double height, width;
             if (copy.size.height >= copy.size.width) {
                 height = copy.size.height;
+                width = copy.size.width;
             } else {
                 height = copy.size.width;
+                width = copy.size.height;
             }
 
-            circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset, height));
+            circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset, height, width));
         }
 
         System.out.println("Number of circles & ellipses found: " + circleList.size());
@@ -235,13 +174,29 @@ public class ImageProcessing {
                     ProcessedImage c2 = circleList.get(j);
                     ProcessedImage c3 = circleList.get(k);
 
-                    if (lineIntersectsCircle(c1, c2, c3)) {
+                    if (lineIntersectsCircle(c1, c2, c3) && checkDistance(c1, c3)) {
                         return c2;
                     }
                 }
             }
         }
         return null;
+    }
+
+    /**
+     * Checks that the distance from the first to last circle is not too long
+     *
+     * @param c1 the first circle
+     * @param c3 the last circle
+     * @return true if the distance is correct
+     */
+    private boolean checkDistance(ProcessedImage c1, ProcessedImage c3) {
+        Point2D p1 = new Point2D((float) c1.getCenterX(), (float) c1.getCenterY());
+        Point2D p2 = new Point2D((float) c3.getCenterX(), (float) c3.getCenterY());
+
+        float distance = p1.distance(p2);
+
+        return distance <= c1.getWidth() * 4;
     }
 
     /**
@@ -253,6 +208,12 @@ public class ImageProcessing {
      * @return true if the center circle is intersecting the line between c1 and c3
      */
     private boolean lineIntersectsCircle(ProcessedImage c1, ProcessedImage center, ProcessedImage c3) {
+        double xOffset = center.getxOffset();
+
+        if ((xOffset > c1.getxOffset() && xOffset > c3.getxOffset()) || (xOffset < c1.getxOffset() && xOffset < c3.getxOffset())) {
+            return false;
+        }
+
         final double circleRadius = center.getHeight() / 2;
 
         Line2D line = new Line2D((float) c1.getCenterX(), (float) c1.getCenterY(), (float) c3.getCenterX(), (float) c3.getCenterY());
@@ -263,4 +224,56 @@ public class ImageProcessing {
         return distanceFromCircleToLine <= circleRadius;
     }
 
+    /**
+     * conversion method from image to mat
+     *
+     * @param in path to image
+     * @return a matrix made from the image
+     */
+    private Mat pathToMat(String in) {
+        BufferedImage imgBuffer;
+        try {
+            imgBuffer = ImageIO.read(new File(in));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        int curCVtype = CvType.CV_8UC4;
+        boolean supportedType = true;
+
+        switch (imgBuffer.getType()) {
+            case BufferedImage.TYPE_3BYTE_BGR:
+                curCVtype = CvType.CV_8UC3;
+                break;
+            case BufferedImage.TYPE_BYTE_GRAY:
+            case BufferedImage.TYPE_BYTE_BINARY:
+                curCVtype = CvType.CV_8UC1;
+                break;
+            case BufferedImage.TYPE_INT_BGR:
+            case BufferedImage.TYPE_INT_RGB:
+                curCVtype = CvType.CV_32SC3;
+                break;
+            case BufferedImage.TYPE_INT_ARGB:
+            case BufferedImage.TYPE_INT_ARGB_PRE:
+                curCVtype = CvType.CV_32SC4;
+                break;
+            case BufferedImage.TYPE_USHORT_GRAY:
+                curCVtype = CvType.CV_16UC1;
+                break;
+            case BufferedImage.TYPE_4BYTE_ABGR:
+            case BufferedImage.TYPE_4BYTE_ABGR_PRE:
+                curCVtype = CvType.CV_8UC4;
+                break;
+            default:
+                supportedType = false;
+        }
+
+        Mat img = new Mat(imgBuffer.getHeight(), imgBuffer.getWidth(), curCVtype);
+        if (supportedType) {
+            byte[] pixels = ((DataBufferByte) imgBuffer.getRaster().getDataBuffer()).getData();
+            img.put(0, 0, pixels);
+        }
+        return img;
+    }
 }
