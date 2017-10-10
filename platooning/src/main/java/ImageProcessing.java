@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 
 import com.sun.javafx.geom.Line2D;
 import com.sun.javafx.geom.Point2D;
-import nu.pattern.OpenCV;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.MatOfPoint;
@@ -26,26 +25,28 @@ import java.util.List;
  */
 public class ImageProcessing {
 
-    static {
-        OpenCV.loadShared();
-    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+    	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         ImageProcessing i = new ImageProcessing();
+        //String argv = "nc 192.168.43.230 2222";
+        //Process receive = Runtime.getRuntime().exec(argv);
         VideoCapture stream = new VideoCapture();
-        stream.open("????");
+       
+        stream.open("tcp://192.168.43.230:2222"); // a mjpeg , ipcam stream
         Mat frame = new Mat();
 
         if (stream.isOpened()) {
-
+        	
+        	System.out.println("hhh");
             while (true) {
 
                 if (stream.read(frame)) {
 
                     ProcessedImage a = i.getProcessedImage(frame);
-
-
-                    System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
+                    
+                    if(a != null)
+                    	System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
                 }
 
             }
@@ -88,7 +89,7 @@ public class ImageProcessing {
 
         float endTime = System.nanoTime();
         float duration = (endTime - startTime);
-        System.out.println("Duration for processing: " + duration / 1000000000 + "s");
+     //   System.out.println("Duration for processing: " + duration / 1000000000 + "s");
 
         //imwrite("images/frame.png", frame);
         //imwrite("images/lowerRed.png", lowerRed);
@@ -150,7 +151,7 @@ public class ImageProcessing {
             circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset, height, width));
         }
 
-        System.out.println("Number of circles & ellipses found: " + circleList.size());
+       // System.out.println("Number of circles & ellipses found: " + circleList.size());
 
         return findCorrectCircle(circleList);
     }

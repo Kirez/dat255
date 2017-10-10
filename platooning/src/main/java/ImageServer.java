@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ImageServer {
 
-  /*  private ImageProcessing p = new ImageProcessing();
+   private ImageProcessing p = new ImageProcessing();
 
 
 
@@ -19,13 +19,15 @@ public class ImageServer {
 
 
         String argv = "nc -l 2222";
-      //  Process receive = Runtime.getRuntime().exec(argv);
+        Process receive = Runtime.getRuntime().exec(argv);
         VideoCapture stream = new VideoCapture(argv);
+        stream.open("(192.168.43.230?stream=mpeg"); // a mjpeg , ipcam stream
         Mat frame = new Mat();
 
         while (true) {
 
             if (stream.read(frame)) {
+            	
 
 
             }
@@ -51,7 +53,7 @@ public class ImageServer {
         //SEND DATA
 
 
-    }*/
+    }
 
 
 }
