@@ -11,9 +11,11 @@ import nu.pattern.OpenCV;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.MatOfPoint;
+import org.opencv.videoio.VideoCapture;
 
 import static org.opencv.core.Core.*;
 import static org.opencv.imgproc.Imgproc.*;
+import static org.opencv.videoio.Videoio.CAP_FFMPEG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,20 +32,38 @@ public class ImageProcessing {
 
     public static void main(String[] args) {
         ImageProcessing i = new ImageProcessing();
-        ProcessedImage a = i.getProcessedImage("images/opencv-dots.jpg");
-        System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
+        VideoCapture stream = new VideoCapture();
+        stream.open("????");
+        Mat frame = new Mat();
+
+        if (stream.isOpened()) {
+
+            while (true) {
+
+                if (stream.read(frame)) {
+
+                    ProcessedImage a = i.getProcessedImage(frame);
+
+
+                    System.out.println(a.getCenterX() + ", " + a.getCenterY() + ", " + a.getxOffset());
+                }
+
+            }
+
+
+        }
+
     }
 
     /**
      * Returns a ProcessedImage containing the circle data
      *
-     * @param path the path to the image file
+     * @param frame the path to the image file
      * @return the processed image, null if the file couldn't be found
      */
-    public ProcessedImage getProcessedImage(String path) {
+    public ProcessedImage getProcessedImage(Mat frame) {
         float startTime = System.nanoTime();
 
-        Mat frame = pathToMat(path);
 
         if (frame == null) {
             return null;
