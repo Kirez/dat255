@@ -5,59 +5,59 @@ import static java.lang.Thread.sleep;
  * Created by Macken on 2017-09-25.
  */
 class Regulator {
-    //Speed given by regulator calculations
+    /* Speed given by regulator calculations */
     private double v1;
 
-    //Last speed given to MOPED
+    /* Last speed given to MOPED */
     private double lastSpeed;
 
-    //Desired speed
+    /* Desired speed */
     private double vDes;
 
-    //Desired distance
+    /* Desired distance */
     private double dDes;
 
-    //Acceleration
+    /* Acceleration */
     private double accFactor;
 
-    //??
-    //private double a0;
+    /* ?? */
+    /* private double a0; */
 
-    //Multiplier
+    /* Multiplier */
     private double k;
 
-    //Integrating factor
+    /* Integrating factor */
     private double i;
 
-    //Acceleration
+    /* Acceleration */
     private double i_acc;
 
-    //dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2
-    //private double dist1;
-    //private double dist2;
-    //private double deltaDist;
+    /* dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2 */
+    /* private double dist1; */
+    /* private double dist2; */
+    /* private double deltaDist; */
 
-    //Derivating factor
+    /* Derivating factor */
     private double d;
 
-    //Last error
+    /* Last error */
     private double lastEr;
 
-    //K = 0.48
-    //T0 = 9.3
-    //I = 4.65
-    //D = 1.16
+    /* K = 0.48 */
+    /* T0 = 9.3 */
+    /* I = 4.65 */
+    /* D = 1.16 */
 
-    //Ticks
-    //private int s;
+    /* Ticks */
+    /* private int s; */
 
     public Regulator() {
 
         v1 = 0;
         dDes = 20;
-        //a0 = 0.40;
+        /* a0 = 0.40; */
         k = 0.2;
-        //s = 0;
+        /* s = 0; */
         i = 0.01;
         i_acc = 0;
         d = 0.4;

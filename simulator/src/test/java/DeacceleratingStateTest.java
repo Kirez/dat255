@@ -29,15 +29,15 @@ public class DeacceleratingStateTest {
         assertEquals(car.getSpeed(), 5, 0.1);
         assertEquals(car.getMovingState(), car.getAcceleratingState());
 
-        //now deaccelerate
+        /* now deaccelerate */
         double newWantedSpeed = 3;
         car.setSpeed(newWantedSpeed);
         assertEquals(car.getMovingState(), car.getDeacceleratingState());
         deacceleratingState.move(car, newWantedSpeed);
-        //speed = 5.06 - 0.9*0.1 = 4.97
+        /* speed = 5.06 - 0.9*0.1 = 4.97 */
         assertEquals(car.getSpeed(), 4.97, 0.01);
         deacceleratingState.move(car, newWantedSpeed);
-        //speed = 4.97 - 0.9*0.1 = 4.88
+        /* speed = 4.97 - 0.9*0.1 = 4.88 */
         assertEquals(car.getSpeed(), 4.88, 0.01);
     }
 

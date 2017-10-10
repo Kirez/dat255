@@ -14,22 +14,22 @@ import static java.lang.Thread.sleep;
 public class SteeringSim implements Observer{
 
 
-   //Lateral Field of View of the Camera
+   /* Lateral Field of View of the Camera */
    int carFov = 49;
 
-   //Course of the following car
+   /* Course of the following car */
    double course;
-   //Course of the leading car
+   /* Course of the leading car */
    double frontCourse;
-   //Error in camera units
+   /* Error in camera units */
    double error;
-   //Error in degrees
+   /* Error in degrees */
    double degError;
-   //Amplification
+   /* Amplification */
    double k;
-   //Number of invocations
+   /* Number of invocations */
    int s;
-   //SteeringSim
+   /* SteeringSim */
    double steer;
 
    /*

@@ -26,7 +26,7 @@ public final class CAN {
   private static byte motorValue = 0;
   private static byte steerValue = 0;
 
-  private static long VCU_COOL_DOWN = 100; //TODO find out how fast one can switch command
+  private static long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
 
   private Thread outputWorkerThread;
   private Thread inputWorkerThread;
@@ -34,8 +34,8 @@ public final class CAN {
   private OutputWorker outputWorker;
   private InputWorker inputWorker;
 
-  private ArrayList<Short> UltraSonicSensorData = new ArrayList<Short>(); //TODO
-  private ArrayList<Short> OrdometerData = new ArrayList<Short>(); //TODO
+  private ArrayList<Short> UltraSonicSensorData = new ArrayList<Short>(); /* TODO */
+  private ArrayList<Short> OrdometerData = new ArrayList<Short>(); /* TODO */
 
   /**
    * CAN singleton constructor starts CAN input and output worker threads
@@ -248,19 +248,19 @@ public final class CAN {
       BufferedReader reader = new BufferedReader(new InputStreamReader(canDumpStandardOutput));
       String canDataString = reader.readLine().trim();
 
-      //For example canDataString = "(003.602137)  vcan0  535   [8]  04 14 C7 30 3C 96 C5 4B"
+      /* For example canDataString = "(003.602137)  vcan0  535   [8]  04 14 C7 30 3C 96 C5 4B" */
 
       canDataString = canDataString.replace("   ", " ");
 
-      //now canDataString = "(003.602137)  vcan0  535 [8]  04 14 C7 30 3C 96 C5 4B"
+      /* now canDataString = "(003.602137)  vcan0  535 [8]  04 14 C7 30 3C 96 C5 4B" */
 
       canDataString = canDataString.replace("  ", " ");
 
-      //now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B"
+      /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
 
       String[] tokens = canDataString.split(" ");
 
-      //now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"}
+      /* now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"} */
 
       String canTimeString = tokens[0].replace("(", "").replace(")", "");
       String canInterfaceString = tokens[1];
@@ -284,7 +284,7 @@ public final class CAN {
     }
 
     /**
-     * Super-hacky oh-so-ugly DistPub data line re-constructor //TODO comment code
+     * Super-hacky oh-so-ugly DistPub data line re-constructor /* TODO comment code */
      *
      * @return DistPub data line if available else null
      * @throws InterruptedException if interrupted when waiting for usSensorQueueLock
@@ -296,7 +296,7 @@ public final class CAN {
       CANFrame frame;
       ArrayList<CANFrame> readFrames = new ArrayList<>();
 
-      //Fast forward to start of next DistPub message
+      /* Fast forward to start of next DistPub message */
       while (!usSensorQueue.isEmpty()) {
         frame = usSensorQueue.poll();
         if (frame.data[0] == 0x10) {

@@ -7,7 +7,7 @@ public class DeacceleratingState implements MovingState {
     private double timeStep = 0.1;
 
     public DeacceleratingState() {
-        //empty constructor
+        /* empty constructor */
     }
 
     public DeacceleratingState(double deacceleratingFactor, double timeStep) {

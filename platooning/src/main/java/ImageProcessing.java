@@ -29,11 +29,11 @@ public class ImageProcessing {
     public static void main(String[] args) throws IOException {
     	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         ImageProcessing i = new ImageProcessing();
-        //String argv = "nc 192.168.43.230 2222";
-        //Process receive = Runtime.getRuntime().exec(argv);
+        /* String argv = "nc 192.168.43.230 2222"; */
+        /* Process receive = Runtime.getRuntime().exec(argv); */
         VideoCapture stream = new VideoCapture();
        
-        stream.open("tcp://192.168.43.230:2222"); // a mjpeg , ipcam stream
+        stream.open("tcp://192.168.43.230:2222"); /* a mjpeg , ipcam stream */
         Mat frame = new Mat();
 
         if (stream.isOpened()) {
@@ -69,7 +69,7 @@ public class ImageProcessing {
         if (frame == null) {
             return null;
         }
-        //imwrite("images/original.png", frame);
+        /* imwrite("images/original.png", frame); */
 
         Mat blurredImage = new Mat();
         Mat hsvImage = new Mat();
@@ -79,21 +79,21 @@ public class ImageProcessing {
         Mat lowerRed = new Mat();
         Mat upperRed = new Mat();
 
-        //specifies for color red search
+        /* specifies for color red search */
         Core.inRange(hsvImage, new Scalar(0, 100, 100), new Scalar(5, 255, 255), lowerRed);
         Core.inRange(hsvImage, new Scalar(160, 100, 100), new Scalar(179, 255, 255), upperRed);
 
         Mat red_hue_image = new Mat();
-        // Combines the two matrices
+        /*  Combines the two matrices */
         addWeighted(lowerRed, 1.0, upperRed, 1.0, 0.0, red_hue_image);
 
         float endTime = System.nanoTime();
         float duration = (endTime - startTime);
-     //   System.out.println("Duration for processing: " + duration / 1000000000 + "s");
+     /*    System.out.println("Duration for processing: " + duration / 1000000000 + "s"); */
 
-        //imwrite("images/frame.png", frame);
-        //imwrite("images/lowerRed.png", lowerRed);
-        //imwrite("images/lowerRed.png", lowerRed);
+        /* imwrite("images/frame.png", frame); */
+        /* imwrite("images/lowerRed.png", lowerRed); */
+        /* imwrite("images/lowerRed.png", lowerRed); */
 
         return contour(red_hue_image, frame);
     }
@@ -135,7 +135,7 @@ public class ImageProcessing {
             }
 
             double imageWidth = src.cols();
-            // Calculate the center offset of each circle
+            /*  Calculate the center offset of each circle */
             double offset = (center.x / imageWidth) * 200.0 - 100;
             RotatedRect copy = new RotatedRect(ellipse.center, ellipse.size, 0);
 
@@ -151,7 +151,7 @@ public class ImageProcessing {
             circleList.add(new ProcessedImage(ellipse.center.x, ellipse.center.y, offset, height, width));
         }
 
-       // System.out.println("Number of circles & ellipses found: " + circleList.size());
+       /*  System.out.println("Number of circles & ellipses found: " + circleList.size()); */
 
         return findCorrectCircle(circleList);
     }

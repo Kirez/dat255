@@ -22,9 +22,9 @@ class Regulator {
     Regulator() {
 
         v1 = 0;
-//        k = 236;
+/*         k = 236; */
         k = 0.32;
-//        k = 0.5;
+/*         k = 0.5; */
         s = 0;
         i = 0.000;
         i_acc = 0;
@@ -36,7 +36,7 @@ class Regulator {
         double error = -40 + distance;
         i_acc += error * i;
 
-        //vDes = error * k;
+        /* vDes = error * k; */
         vDes = error * k + i_acc + (-error + lastEr) * d;
         v1 += 0.1 * (vDes - v1);
 

@@ -10,7 +10,7 @@ public final class Platooning implements Runnable {
   private Thread accThread;
   private Thread alcThread;
 
-  //private Simulator simulator; //TODO make interchangeable with CAN
+  /* private Simulator simulator; //TODO make interchangeable with CAN */
 
   private Platooning(CAN can, ACC acc, ALC alc) {
     this.can = can;
@@ -33,7 +33,7 @@ public final class Platooning implements Runnable {
     System.out.println("Starting ALC thread");
     alcThread.start();
 
-    //TODO Watch for stop condition
+    /* TODO Watch for stop condition */
 
     System.out.println("Platooning: waiting for ACC and ALC threads to exit");
     try {
@@ -74,7 +74,7 @@ public final class Platooning implements Runnable {
   public static void main(String args[]) throws IOException, InterruptedException {
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
-    ALC alc = new ALC(sc); //TODO update when constructor of ALC is done
+    ALC alc = new ALC(sc); /* TODO update when constructor of ALC is done */
     MotorControl mc = new MotorControl(can);
     UltraSonicSensor sensor = new UltraSonicSensor(can);
     ACC acc = new ACC(mc, sensor);
@@ -108,7 +108,7 @@ public final class Platooning implements Runnable {
     }
 
 
-    //TODO exit
+    /* TODO exit */
     try {
       platoonThread.interrupt();
       platoonThread.join();

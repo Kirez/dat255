@@ -7,7 +7,7 @@ public class AcceleratingState implements MovingState {
     private double timeStep = 0.1;
 
     public AcceleratingState() {
-        //empty constructor
+        /* empty constructor */
     }
 
     public AcceleratingState(double acceleratingFactor, double timeStep) {
@@ -21,7 +21,7 @@ public class AcceleratingState implements MovingState {
         } else {
             c.moveX(c.getSpeed());
         }
-//        System.out.println(c.getSpeed() + acceleratingFactor * timeStep);
+/*         System.out.println(c.getSpeed() + acceleratingFactor * timeStep); */
     }
 
     public double getFactor() {

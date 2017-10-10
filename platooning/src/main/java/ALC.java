@@ -23,11 +23,11 @@ public class ALC implements Runnable {
     @Override
     public void run() {
 
-   //     String argv = "raspivid -l -o  - --framerate 10 -w 1920 -h 432 -t 1000000 | nc 2222";
+   /*      String argv = "raspivid -l -o  - --framerate 10 -w 1920 -h 432 -t 1000000 | nc 2222"; */
        String argv = "raspivid -l -o  tcp://0.0.0.0:2222 --framerate 10 -w 1920 -h 432 -t 1000000";
         try {
             cameraProcess = Runtime.getRuntime().exec(argv);
-     //       cameraStream = cameraProcess.getInputStream();
+     /*        cameraStream = cameraProcess.getInputStream(); */
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -37,12 +37,12 @@ public class ALC implements Runnable {
 
             try {
 
-                //send......
+                /* send...... */
 
 
-                //receive offsetError.....
+                /* receive offsetError..... */
 
-                //calcSteering(offsetError);
+                /* calcSteering(offsetError); */
 
 
                 throw new InterruptedException("error");
