@@ -23,11 +23,11 @@ public class ALC implements Runnable {
     @Override
     public void run() {
 
-        String argv = "raspistill -o - --raw --timeout 1 --roi 0.00,0.4,1.00,0.2";
-
+   //     String argv = "raspivid -l -o  - --framerate 10 -w 1920 -h 432 -t 1000000 | nc 2222";
+       String argv = "raspivid -l -o  tcp://0.0.0.0:2222 --framerate 10 -w 1920 -h 432 -t 1000000";
         try {
             cameraProcess = Runtime.getRuntime().exec(argv);
-            cameraStream = cameraProcess.getInputStream();
+     //       cameraStream = cameraProcess.getInputStream();
         }
         catch (IOException e) {
             e.printStackTrace();

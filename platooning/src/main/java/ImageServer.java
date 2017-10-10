@@ -1,16 +1,36 @@
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+
+import static org.opencv.core.Core.*;
+import java.io.IOException;
+
 /**
  * Created by Macken on 2017-10-06.
  */
+
+
 public class ImageServer {
 
-    private ImageProcessing p = new ImageProcessing();
+  /*  private ImageProcessing p = new ImageProcessing();
 
 
 
-    public static void main () {
+    public static void main () throws IOException {
 
 
+        String argv = "nc -l 2222";
+      //  Process receive = Runtime.getRuntime().exec(argv);
+        VideoCapture stream = new VideoCapture(argv);
+        Mat frame = new Mat();
 
+        while (true) {
+
+            if (stream.read(frame)) {
+
+
+            }
+
+        }
 
 
     }
@@ -31,7 +51,7 @@ public class ImageServer {
         //SEND DATA
 
 
-    }
+    }*/
 
 
 }

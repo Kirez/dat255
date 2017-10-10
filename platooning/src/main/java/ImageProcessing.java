@@ -3,6 +3,7 @@ import com.sun.javafx.geom.Line2D;
 import com.sun.javafx.geom.Point2D;
 import nu.pattern.OpenCV;
 import org.opencv.core.*;
+import org.opencv.videoio.VideoCapture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import static org.opencv.core.Core.*;
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 import static org.opencv.imgproc.Imgproc.*;
+import static org.opencv.videoio.Videoio.CAP_FFMPEG;
 
 public class ImageProcessing {
 
@@ -30,39 +32,53 @@ public class ImageProcessing {
 
         //i.findCirclesAndDraw("images/opencv-dots.jpg", "images/opencv-dots2.jpg");
 
-        ProcessedImage circle = i.findCircles("images/opencv-dots.jpg", "images/opencv-dots2.jpg", true);
 
-        if (circle == null) {
-            System.out.println("NULL");
-        } else {
-            System.out.println("x, y: " + (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
+        String argv = "nc -l 2222";
+        VideoCapture stream = new VideoCapture();
+
+        stream.open("tcp://192.168.43.230:2222");
+        Mat frame = new Mat();
+
+        while (true) {
+
+            if (stream.read(frame)) {
+                System.out.println("hejhejehejeh");
+
+                ProcessedImage circle = i.findCircles(frame, "images/opencv-dots2.jpg", false);
+
+                if (circle == null) {
+                    System.out.println("NULL");
+                } else {
+                    System.out.println("x, y: " + (int) circle.getCenterX() + ", " + (int) circle.getCenterY() + ", x offset: " + (int) circle.getxOffset());
+                }
+
+                long time = System.currentTimeMillis() - start;
+
+                System.out.println("Time taken: " + time + "ms\n");
+
+            }
+
         }
-
-        long time = System.currentTimeMillis() - start;
-
-        System.out.println("Time taken: " + time + "ms\n");
-
     }
 
     /**
      * Finds the center circle of the three
      *
-     * @param pathToImage      the image to check
+     * @param image      the image to check
      * @param pathToOutput     where the image will be saved
      * @param drawCenterCircle if an image with the result should be saved
      * @return the center circle
      */
-    public ProcessedImage findCircles(String pathToImage, String pathToOutput, boolean drawCenterCircle) {
+    public ProcessedImage findCircles(Mat image, String pathToOutput, boolean drawCenterCircle) {
         // Read the image file
-        Mat src = imread(pathToImage);
 
-        List<MatOfPoint> circles = findAllCircles(src);
+        List<MatOfPoint> circles = findAllCircles(image);
 
         if (circles.size() == 0) {
             return null;
         }
 
-        ProcessedImage centerCircle = matrixToList(circles, src);
+        ProcessedImage centerCircle = matrixToList(circles, image);
 
         if (centerCircle == null) {
             return null;
@@ -81,13 +97,13 @@ public class ImageProcessing {
                     continue;
                 }
 
-                ellipse(src, ellipse, new Scalar(255, 0, 0), 4);
+                ellipse(image, ellipse, new Scalar(255, 0, 0), 4);
 
                 // draw circle center
-                circle(src, ellipse.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
+                circle(image, ellipse.center, 3, new Scalar(0, 255, 0), -1, 8, 0);
             }
 
-            imwrite(pathToOutput, src);
+            imwrite(pathToOutput, image);
         }
 
         return centerCircle;
