@@ -284,7 +284,7 @@ public final class CAN {
     }
 
     /**
-     * Super-hacky oh-so-ugly DistPub data line re-constructor /* TODO comment code */
+     * Super-hacky oh-so-ugly DistPub data line re-constructor TODO comment code
      *
      * @return DistPub data line if available else null
      * @throws InterruptedException if interrupted when waiting for usSensorQueueLock
