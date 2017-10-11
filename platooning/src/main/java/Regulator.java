@@ -5,6 +5,7 @@ import static java.lang.Thread.sleep;
  * Created by Macken on 2017-09-25.
  */
 class Regulator {
+
     //Speed given by regulator calculations
     private double v1;
 
@@ -17,11 +18,9 @@ class Regulator {
     //Desired distance
     private double dDes;
 
-    //Acceleration
-    private double accFactor;
-
-    //??
-    //private double a0;
+    //Limitations to regulator
+    private double maxSpeed;
+    private double minSpeed;
 
     //Multiplier
     private double k;
@@ -32,10 +31,7 @@ class Regulator {
     //Acceleration
     private double i_acc;
 
-    //dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2
-    //private double dist1;
-    //private double dist2;
-    //private double deltaDist;
+
 
     //Derivating factor
     private double d;
@@ -43,11 +39,11 @@ class Regulator {
     //Last error
     private double lastEr;
 
-    //K = 0.48
-    //T0 = 9.3
-    //I = 4.65
-    //D = 1.16
-
+    //Following variables were used in the simulator and the simulator only.
+    //dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2
+    //private double dist1;
+    //private double dist2;
+    //private double deltaDist;
     //Ticks
     //private int s;
 
@@ -55,25 +51,20 @@ class Regulator {
 
         v1 = 0;
         dDes = 20;
-        //a0 = 0.40;
         k = 0.2;
-        //s = 0;
         i = 0.01;
         i_acc = 0;
         d = 0.4;
         lastEr = 0;
 
-        /*deltaDist = 0.40;
-        dist1 = a0;
-        dist2 = 0;*/
-
+        maxSpeed = 40;
+        minSpeed = 11;
     }
 
     /**
      * Made a public help method to ease the transition from Simulator to MOPED version.
      * Change calcNewSpeed() to public means we can use that method directly.
-     * @param distance Sensor reading in meter.
-     * @return New speed to work towards (regulated/desired speed).
+     * @param distance Sensor reading in cm.
      */
     public void initNewCalc(double distance){
         System.out.println("Distance: " + distance);
@@ -88,7 +79,7 @@ class Regulator {
      * NOT NEEDED for the regulator used by MOPED, we get the result from the CAN bus on the car using
      * UltraSonicSensor class.
      * @param speed2 Speed of the car.
-     * @return  Distance between the cars.
+     * @return double Distance between the cars.
      */
     /*private double readSensor(double speed2) {
         dist1 += (speed2 / (3.6 * 40));
@@ -98,11 +89,10 @@ class Regulator {
     }*/
 
     /**
-     * The simulator version, some changes needed to use in with the MOPED data.
+     * The calculations to get new speed for car.
+     * Uses predetermined K, I and D factors implementing a PID regulator.
      *
-     * Parameter used in Simulator is speed2 = speed of the car in front.
-     *
-     * @param sensorValue Sensor reading in meter.
+     * @param sensorValue Sensor reading in cm.
      */
     private void calcNewSpeed(double sensorValue) {
         double error = sensorValue - dDes;
@@ -116,12 +106,18 @@ class Regulator {
             if (v1 > 0)
                 v1 += 8;
 
-            if (v1 < 11)
+            if (v1 < minSpeed)
                 v1 = 0;
+            else if(v1 > maxSpeed)
+                v1 = maxSpeed;
 
             lastEr = error;
     }
 
+    /**
+     * Simple return method.
+     * @return int Current speed.
+     */
     public int getSpeed() {
         return (int)v1;
     }

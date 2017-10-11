@@ -23,11 +23,9 @@ public class ACC implements Runnable {
             distance = sensor.getDistance();
             Thread.sleep(10);
         }
+
         regulator.initNewCalc(distance);
-        if(regulator.getSpeed() > 40)
-            mc.setSpeed(30);
-        else
-            mc.setSpeed(regulator.getSpeed());
+        mc.setSpeed(regulator.getSpeed());
 
       } catch (InterruptedException e) {
         e.printStackTrace();

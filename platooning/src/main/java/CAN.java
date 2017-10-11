@@ -166,40 +166,32 @@ public final class CAN {
     }
   }
 
-  public void testSensor() throws InterruptedException {
-    for (short data : readSensor()) {
-      System.out.println(String.format("Sensor data: %d", data));
-    }
-  }
-
   /**
    * Disgusting DistPub-line to sensor reading short-array
    *
    * @return sensor readings
    */
-  public short[] readSensor() throws InterruptedException {
+  public Short readSensor() throws InterruptedException {
     String sensorLine = inputWorker.readSensorLine();
     if (sensorLine == null) {
-      return new short[0];
+      return null;
     } else {
       try {
-        sensorLine = sensorLine.split("\\)")[1];
+        sensorLine = sensorLine.split("\\[")[1];
       } catch (ArrayIndexOutOfBoundsException e) {
-        return new short[0];
+        return null;
       }
       sensorLine = sensorLine.trim();
-      String[] tokens = sensorLine.split(" ");
-      short[] out = new short[tokens.length];
+      sensorLine = sensorLine.split("]")[0];
 
-      for (int i = 0; i < tokens.length; i++) {
+
         try {
-          out[i] = Short.parseShort(tokens[i]);
+          return Short.parseShort(sensorLine);
         } catch (NumberFormatException e) {
-          System.out.println("Bad sensor data: " + tokens[i]);
-          out[i] = -1;
+          System.out.println("Bad sensor data");
         }
-      }
-      return out;
+
+      return null;
     }
   }
 

@@ -26,9 +26,7 @@ public class MotorControl implements IMovable {
 			speed = -127;
 		}
 
-
 		/* send CAN */
-
 		try
 		{
 			if(lastWasForward) {
@@ -48,19 +46,10 @@ public class MotorControl implements IMovable {
 		{
 			e.printStackTrace();
 		}
-
 	}
-
 
  	public double getSpeed(){
 		return lastSpeed;
-		/* Read ordometer */
-		/*i++;
-		double[] dummy = {2.1, 2.5, 2.3, 2.9, 3.5, 1.9, 3.1};
-		Convert to cm/s
-		if(i == 6)
-			i = 0;
-		return dummy[i];*/
 	}
 
 }
