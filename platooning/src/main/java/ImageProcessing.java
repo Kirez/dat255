@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+
+import nu.pattern.OpenCV;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -28,8 +30,11 @@ import org.opencv.videoio.VideoCapture;
  */
 public class ImageProcessing {
 
+    static {
+        OpenCV.loadShared();
+    }
+
   public static void main(String[] args) throws IOException {
-    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     ImageProcessing i = new ImageProcessing(); /* String argv = "nc 192.168.43.230 2222"; */ /* Process receive = Runtime.getRuntime().exec(argv); */
     VideoCapture stream = new VideoCapture();
     stream.open("tcp://192.168.43.230:2222"); /* a mjpeg , ipcam stream */
