@@ -17,8 +17,9 @@ public class ImageServer implements Runnable {
 
 
   public ImageServer(ALCRegulator ALCreg) throws IOException {
+    System.out.println("hej");
     this.ALCreg = ALCreg;
-    String argv = "raspivid -l -o tcp://0.0.0.0:2222 --framerate 10 -w 1920 -h 432 -t 0";
+    String argv = "raspivid -l -o tcp://0.0.0.0:2222 --framerate 10 -w 1270 -h 292 -t 0 --mode 5";
     cameraProcess = Runtime.getRuntime().exec(argv);
     System.out.println("hej");
     welcomeSocket = new ServerSocket(2223);

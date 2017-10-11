@@ -22,7 +22,7 @@ public final class Platooning implements Runnable {
   public void run() {
 
     System.out.println("Starting ACC thread");
-    accThread.start();
+  //  accThread.start();
     System.out.println("Starting ALC thread");
     alcThread.start();
 
@@ -63,7 +63,7 @@ public final class Platooning implements Runnable {
   }
 
   public static void main(String args[]) throws IOException, InterruptedException {
-    System.out.println("Det här är en ny version HEJHEJ");
+    System.out.println("Det här är en nyARE VERSION BITCH!!");
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
     ALC alc = new ALC(sc); //TODO update when constructor of ALC is done

@@ -26,11 +26,14 @@ public class ImageClient implements Runnable {
     private Socket clientSocket;
 
 
-    private 
+    public static void main(String [] args) throws IOException {
+        new Thread(new ImageClient()).start();
+
+    }
 
     public ImageClient() throws IOException {
         System.out.println("Connecting...");
-        clientSocket = new Socket("localhost", 2223);
+        clientSocket = new Socket("192.168.43.230", 2223);
         System.out.println("Connected");
         imgPr = new ImageProcessing();
         stream = new VideoCapture();

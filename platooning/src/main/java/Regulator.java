@@ -38,9 +38,9 @@ class Regulator { /* Speed given by regulator calculations */
    * @param distance Sensor reading in meter.
    */
   public void initNewCalc(double distance) {
-    System.out.println("Distance: " + distance);
+    //System.out.println("Distance: " + distance);
     calcNewSpeed(distance);
-    System.out.println("New Speed: " + v1);
+    //System.out.println("New Speed: " + v1);
   }
 
   /**
