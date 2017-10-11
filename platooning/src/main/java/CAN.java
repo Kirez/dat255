@@ -228,8 +228,8 @@ public final class CAN {
       BufferedReader reader = new BufferedReader(
           new InputStreamReader(canDumpStandardOutput));
       String canDataString = reader.readLine().trim(); /* For example canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
-      canDataString = canDataString.replace(" ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
-      canDataString = canDataString.replace(" ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+      canDataString = canDataString.replace("   ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+      canDataString = canDataString.replace("  ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
       String[] tokens = canDataString.split(" "); /* now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"} */
       String canTimeString = tokens[0].replace("(", "").replace(")", "");
       String canInterfaceString = tokens[1];
