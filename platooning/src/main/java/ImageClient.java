@@ -26,6 +26,7 @@ public class ImageClient implements Runnable {
     private Socket clientSocket;
 
 
+    private 
 
     public ImageClient() throws IOException {
         System.out.println("Connecting...");

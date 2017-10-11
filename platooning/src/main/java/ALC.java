@@ -18,20 +18,10 @@ public class ALC implements Runnable {
 
   @Override
   public void run() {
-    String argv = "raspivid -l -o tcp://0.0.0.0:2222 --framerate 10 -w 1920 -h 432 -t 1000000";
     try {
-      cameraProcess = Runtime.getRuntime().exec(argv);
+      new Thread(new ImageServer(new ALCRegulator(servo))).start();
     } catch (IOException e) {
       e.printStackTrace();
-    }
-    while (!stopFlagged) {
-      try {
-        /* TODO Calculate offset from center, run calcSteering(), then send it */
-        throw new InterruptedException("error");
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-        return;
-      }
     }
   }
 
