@@ -22,7 +22,7 @@ public final class Platooning implements Runnable {
   public void run() {
 
     System.out.println("Starting ACC thread");
-  //  accThread.start();
+    accThread.start();
     System.out.println("Starting ALC thread");
     alcThread.start();
 
