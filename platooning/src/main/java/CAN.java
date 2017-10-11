@@ -127,45 +127,8 @@ public final class CAN {
     sendMotorAndSteerValue(motorValue, steer);
   }
 
-  public void testSensor() throws InterruptedException {
-    for (short data : readSensor()) {
-      System.out.println(String.format("Sensor data: %d", data));
-    }
-  }
-
   /**
-   * Disgusting DistPub-line to sensor reading short-array
-   *
-   * @return sensor readings
-   */
-  public short[] readSensor() throws InterruptedException {
-    String sensorLine = inputWorker.readSensorLine();
-    if (sensorLine == null) {
-      return new short[0];
-    } else {
-      try {
-        sensorLine = sensorLine.split("\\)")[1];
-      } catch (ArrayIndexOutOfBoundsException e) {
-        return new short[0];
-      }
-      sensorLine = sensorLine.trim();
-      String[] tokens = sensorLine.split(" ");
-      short[] out = new short[tokens.length];
-      for (int i = 0; i < tokens.length; i++) {
-        try {
-          out[i] = Short.parseShort(tokens[i]);
-        } catch (NumberFormatException e) {
-          System.out.println("Bad sensor data: " + tokens[i]);
-          out[i] = -1;
-        }
-      }
-      return out;
-    }
-  }
-
-  /**
-   * Basically a container class (think C structure) for CAN frames received and
-   * sent
+   * Basically a container class (think C structure) for CAN frames received and sent
    */
   private class CANFrame {
 
@@ -197,11 +160,39 @@ public final class CAN {
   }
 
   /**
-   * Runnable, launched by parent (CAN), that reads CAN packets into can frames
-   * by launching candump  and continuously parsing it's standard output into
-   * sensor frames that are put into queues  accessible by parent (CAN) object.
-   * Uses semaphores for mutex because the java keyword  synchronized is
-   * confusing
+   * Disgusting DistPub-line to sensor reading short-array
+   *
+   * @return sensor readings
+   */
+  public Short readSensor() throws InterruptedException {
+    String sensorLine = inputWorker.readSensorLine();
+    if (sensorLine == null) {
+      return null;
+    } else {
+      try {
+        sensorLine = sensorLine.split("\\[")[1];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return null;
+      }
+      sensorLine = sensorLine.trim();
+      sensorLine = sensorLine.split("]")[0];
+
+
+        try {
+          return Short.parseShort(sensorLine);
+        } catch (NumberFormatException e) {
+          System.out.println("Bad sensor data");
+        }
+
+      return null;
+    }
+  }
+
+  /**
+   * Runnable, launched by parent (CAN), that reads CAN packets into can frames by launching candump
+   * and continuously parsing it's standard output into sensor frames that are put into queues
+   * accessible by parent (CAN) object. Uses semaphores for mutex because the java keyword
+   * synchronized is confusing
    */
   private class InputWorker implements Runnable {
 

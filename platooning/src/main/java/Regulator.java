@@ -13,16 +13,22 @@ class Regulator { /* Speed given by regulator calculations */
   private double i_acc; /* dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2 */ /* private double dist1; */ /* private double dist2; */ /* private double deltaDist; */ /* Derivating factor */
   private double d; /* Last error */
   private double lastEr; /* K = 0.48 */ /* T0 = 9.3 */ /* I = 4.65 */ /* D = 1.16 */ /* Ticks */ /* private int s; */
+  private double maxSpeed; /* Limitations to regulator */
+  private double minSpeed;
 
-  public Regulator() {
-    v1 = 0;
-    dDes = 20; /* a0 = 0.40; */
-    k = 0.2; /* s = 0; */
-    i = 0.01;
-    i_acc = 0;
-    d = 0.4;
-    lastEr = 0; /*deltaDist = 0.40; dist1 = a0; dist2 = 0;*/
-  }
+    public Regulator() {
+
+        v1 = 0;
+        dDes = 20;
+        k = 0.3;
+        i = 0.04;
+        i_acc = 0;
+        d = 0.8;
+        lastEr = 0;
+
+        maxSpeed = 80;
+        minSpeed = -80;
+    }
 
   /**
    * Made a public help method to ease the transition from Simulator to MOPED
@@ -30,7 +36,6 @@ class Regulator { /* Speed given by regulator calculations */
    * directly.
    *
    * @param distance Sensor reading in meter.
-   * @return New speed to work towards (regulated/desired speed).
    */
   public void initNewCalc(double distance) {
     System.out.println("Distance: " + distance);
@@ -57,28 +62,42 @@ class Regulator { /* Speed given by regulator calculations */
   }
   */
 
-  /**
-   * The simulator version, some changes needed to use in with the MOPED data.
-   * Parameter used in Simulator is speed2 = speed of the car in front.
-   *
-   * @param sensorValue Sensor reading in meter.
-   */
-  private void calcNewSpeed(double sensorValue) {
-    double error = sensorValue - dDes;
-    i_acc += error * i;
-    i_acc = i_acc > 2 ? 2 : i_acc;
-    i_acc = i_acc < -4 ? -4 : i_acc;
-    v1 = error * k + i_acc + (error - lastEr) * d;
-    if (v1 > 0) {
-      v1 += 8;
-    }
-    if (v1 < 11) {
-      v1 = 0;
-    }
-    lastEr = error;
-  }
+    /**
+     * The calculations to get new speed for car.
+     * Uses predetermined K, I and D factors implementing a PID regulator.
+     *
+     * @param sensorValue Sensor reading in cm.
+     */
+    private void calcNewSpeed(double sensorValue) {
+        double error = sensorValue - dDes;
 
-  public int getSpeed() {
-    return (int) v1;
-  }
+            if(Math.abs(error) < 100)
+            {
+                i_acc += error * i;
+            }
+
+            i_acc = i_acc > 10 ? 10 : i_acc;
+            i_acc = i_acc < -4 ? -4 : i_acc;
+
+            v1 = error * k + i_acc + (error - lastEr) * d;
+
+            if (v1 < minSpeed)
+            {
+                v1 = minSpeed;
+            }
+            else if(v1 > maxSpeed)
+            {
+                v1 = maxSpeed;
+            }
+
+            lastEr = error;
+    }
+
+    /**
+     * Simple return method.
+     * @return int Current speed.
+     */
+    public int getSpeed() {
+        return (int)v1;
+    }
 }

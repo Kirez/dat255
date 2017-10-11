@@ -23,11 +23,8 @@ public class ACC implements Runnable {
           Thread.sleep(10);
         }
         regulator.initNewCalc(distance);
-        if (regulator.getSpeed() > 40) {
-          mc.setSpeed(30);
-        } else {
-          mc.setSpeed(regulator.getSpeed());
-        }
+        mc.setSpeed(regulator.getSpeed());
+
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -35,6 +32,7 @@ public class ACC implements Runnable {
   }
 
   public void stop() {
+    mc.setSpeed(0);
     stopFlagged = true;
   }
 }
