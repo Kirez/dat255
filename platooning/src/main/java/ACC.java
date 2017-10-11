@@ -34,6 +34,7 @@ public class ACC implements Runnable {
   }
 
   public void stop() {
+    mc.setSpeed(0);
     stopFlagged = true;
   }
 

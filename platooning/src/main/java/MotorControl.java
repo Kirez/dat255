@@ -6,12 +6,12 @@ public class MotorControl implements IMovable {
 	private int i = 0;
 	private int lastSpeed = 0;
 	boolean lastWasForward = true;
-
+	private byte steerValue = -8;
 	private CAN can;
 	public MotorControl(CAN can){
 		this.can = can;
 		try {
-			can.sendMotorAndSteerValue((byte) 0, (byte) 0);
+			can.sendMotorAndSteerValue((byte) 0, steerValue);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -29,16 +29,15 @@ public class MotorControl implements IMovable {
 		/* send CAN */
 		try
 		{
-			if(lastWasForward) {
-				if (speed < 0)
-				{
-					can.sendMotorValue((byte) 0);
-					lastWasForward = false;
-				}
+			if(speed == 0)
+			{
+				speed = -1;
 			}
 
-			if(speed > 0)
-				lastWasForward = true;
+			if (lastSpeed < 0 && speed > 0)
+			{
+				can.sendMotorValue((byte) 0);
+			}
 			can.sendMotorValue((byte) speed);
 			lastSpeed = speed;
 		}

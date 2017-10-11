@@ -51,14 +51,14 @@ class Regulator {
 
         v1 = 0;
         dDes = 20;
-        k = 0.2;
-        i = 0.01;
+        k = 0.3;
+        i = 0.04;
         i_acc = 0;
-        d = 0.4;
+        d = 0.8;
         lastEr = 0;
 
-        maxSpeed = 40;
-        minSpeed = 11;
+        maxSpeed = 80;
+        minSpeed = -80;
     }
 
     /**
@@ -96,20 +96,25 @@ class Regulator {
      */
     private void calcNewSpeed(double sensorValue) {
         double error = sensorValue - dDes;
-            i_acc += error * i;
 
-            i_acc = i_acc > 2 ? 2 : i_acc;
+            if(Math.abs(error) < 100)
+            {
+                i_acc += error * i;
+            }
+
+            i_acc = i_acc > 10 ? 10 : i_acc;
             i_acc = i_acc < -4 ? -4 : i_acc;
 
             v1 = error * k + i_acc + (error - lastEr) * d;
 
-            if (v1 > 0)
-                v1 += 8;
-
             if (v1 < minSpeed)
-                v1 = 0;
+            {
+                v1 = minSpeed;
+            }
             else if(v1 > maxSpeed)
+            {
                 v1 = maxSpeed;
+            }
 
             lastEr = error;
     }

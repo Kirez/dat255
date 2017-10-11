@@ -22,16 +22,11 @@ public final class Platooning implements Runnable {
 
   @Override
   public void run() {
-    try {
-      can.sendSteerValue((byte) -15);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
 
     System.out.println("Starting ACC thread");
     accThread.start();
     System.out.println("Starting ALC thread");
-    alcThread.start();
+    //alcThread.start();
 
     //TODO Watch for stop condition
 
@@ -72,6 +67,7 @@ public final class Platooning implements Runnable {
   }
 
   public static void main(String args[]) throws IOException, InterruptedException {
+    System.out.println("Det här är en ny version HEJHEJ");
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
     ALC alc = new ALC(sc); //TODO update when constructor of ALC is done
