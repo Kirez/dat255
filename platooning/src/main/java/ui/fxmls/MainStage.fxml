@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MainController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="415.0">
+         <children>
+            <ScrollPane prefHeight="400.0" prefWidth="415.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="413.0">
+                     <children>
+                        <TextArea prefHeight="400.0" prefWidth="415.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="415.0" prefHeight="400.0" prefWidth="185.0">
+         <children>
+            <Button fx:id="connectButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#connectButtonActionPerformed" text="Connect to MOPED" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
