@@ -2,13 +2,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public final class Platooning implements Runnable {
+public final class Platooning {
 
   private CAN can;
   private ACC acc;
   private ALC alc;
   private Thread accThread;
-  private Thread alcThread; /* private Simulator simulator; //TODO make interchangeable with CAN */
+  private Thread alcThread;
+  private boolean active;
 
   private Platooning(CAN can, ACC acc, ALC alc) {
     this.can = can;
@@ -16,78 +17,95 @@ public final class Platooning implements Runnable {
     this.alc = alc;
     accThread = new Thread(acc);
     alcThread = new Thread(alc);
+    active = false;
   }
 
-  @Override
-  public void run() {
-
-    System.out.println("Starting ACC thread");
-    accThread.start();
-    System.out.println("Starting ALC thread");
-    alcThread.start();
-
-    //TODO Watch for stop condition
-
-    System.out.println("Platooning: waiting for ACC and ALC threads to exit");
-    try {
-      accThread.join();
-      alcThread.join();
-      System.out.println("Platooning: ACC and ALC exited");
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-      accThread.interrupt();
-      alcThread.interrupt();
+  public void start() {
+    if (!active) {
+      System.out.println("Starting CAN");
+      try {
+        can.start();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+        System.err.println("Failed to start CAN I/O");
+        System.exit(-1);
+      }
+      System.out.println("Starting ACC thread");
+      accThread.start();
+      System.out.println("Starting ALC thread");
+      alcThread.start();
     }
+    active = true;
   }
 
   private void stop() {
-    System.out.println("Stopping ACC thread");
-    acc.stop();
-    System.out.println("Stopping ALC thread");
-    alc.stop();
-    try {
-      alcThread.join();
-      System.out.println("ALC thread stopped");
-      accThread.join();
-      System.out.println("ACC thread stopped");
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-      alcThread.interrupt();
-      accThread.interrupt();
+    if (active) {
+      System.out.println("Stopping ACC thread");
+      acc.stop();
+      System.out.println("Stopping ALC thread");
+      alc.stop();
+      try {
+        alcThread.join(1000);
+        accThread.join(1000);
+        if (!alcThread.isAlive()) {
+          System.out.println("ALC thread stopped");
+        } else {
+          System.out.println("ALC failed to exit gracefully");
+        }
+        if (!accThread.isAlive()) {
+          System.out.println("ACC thread stopped");
+        } else {
+          System.out.println("ACC failed to exit gracefully");
+        }
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      finally {
+        alcThread.interrupt();
+        accThread.interrupt();
+      }
+      try {
+        can.sendMotorValue((byte) 0);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      System.out.println("Stopping CAN");
+      try {
+        can.stop();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+        System.err.println("Failed to stop CAN");
+        System.exit(-1);
+      }
     }
-    try {
-      can.sendMotorValue((byte) 0);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    active = false;
   }
 
   public static void main(String args[]) throws IOException, InterruptedException {
-    System.out.println("Det här är en nyARE VERSION BITCH!!");
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
-    ALC alc = new ALC(sc); //TODO update when constructor of ALC is done
+    ALC alc = new ALC(sc);
     MotorControl mc = new MotorControl(can);
     UltraSonicSensor sensor = new UltraSonicSensor(can);
     ACC acc = new ACC(mc, sensor);
 
     Platooning platooning = new Platooning(can, acc, alc);
-    Thread platoonThread = new Thread(platooning);
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 
     try {
+      System.out.print("Platooning>");
       String line = inputReader.readLine();
       while (line != null) {
+        System.out.print("Platooning>");
         String[] tokens = line.split(" ");
         if (tokens.length > 0) {
           if (tokens[0].equals("start")) {
-            System.out.println("Starting platooning thread");
-            platoonThread.start();
+            System.out.println("Starting platooning");
+            platooning.start();
           } else if (tokens[0].equals("stop")) {
-            System.out.println("Stopping platooning thread");
+            System.out.println("Stopping platooning");
             platooning.stop();
-            platoonThread.join();
-            System.out.println("Stopped");
+            System.out.println("Platooning stopped");
             System.exit(0);
           } else {
             System.out.println("Unknown command " + tokens[0]);
@@ -96,15 +114,6 @@ public final class Platooning implements Runnable {
         line = inputReader.readLine();
       }
     } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-
-    //TODO exit
-    try {
-      platoonThread.interrupt();
-      platoonThread.join();
-    } catch (InterruptedException e) {
       e.printStackTrace();
     }
   }

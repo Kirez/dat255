@@ -6,6 +6,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Erik Källberg (kalerik@student.chalmers.se)
@@ -30,22 +31,17 @@ public final class CAN {
   private Thread inputWorkerThread;
   private OutputWorker outputWorker;
   private InputWorker inputWorker;
-  private ArrayList<Short> UltraSonicSensorData = new ArrayList<Short>(); /* TODO */
-  private ArrayList<Short> OrdometerData = new ArrayList<Short>(); /* TODO */
+  private boolean active;
 
   /**
    * CAN singleton constructor starts CAN input and output worker threads
-   *
-   * @throws IOException when raised by either input or output worker
-   * constructors
    */
-  private CAN() throws IOException {
-    outputWorker = new OutputWorker(VCU_COOL_DOWN);
+  private CAN() {
+    outputWorker = new OutputWorker();
     outputWorkerThread = new Thread(outputWorker);
     inputWorker = new InputWorker();
     inputWorkerThread = new Thread(inputWorker);
-    inputWorkerThread.start();
-    outputWorkerThread.start();
+    active = false;
   }
 
   /**
@@ -59,6 +55,34 @@ public final class CAN {
       instance = new CAN();
     }
     return instance;
+  }
+
+  public void start() throws InterruptedException {
+    if (active) {
+      stop();
+      inputWorker = new InputWorker();
+      outputWorker = new OutputWorker();
+      inputWorkerThread = new Thread(inputWorker);
+      outputWorkerThread = new Thread(outputWorker);
+    }
+    inputWorkerThread.start();
+    outputWorkerThread.start();
+    active = true;
+  }
+
+  public void stop() throws InterruptedException {
+    inputWorker.stopFlag.set(true);
+    outputWorker.stopFlag.set(true);
+
+    /*Give each thread 1000ms to neatly exit */
+    inputWorkerThread.join(1000);
+    outputWorkerThread.join(1000);
+
+    /*Send interrupt signal to ensure exit*/
+    inputWorkerThread.interrupt();
+    outputWorkerThread.interrupt();
+
+    active = false;
   }
 
   /**
@@ -128,7 +152,8 @@ public final class CAN {
   }
 
   /**
-   * Basically a container class (think C structure) for CAN frames received and sent
+   * Basically a container class (think C structure) for CAN frames received and
+   * sent
    */
   private class CANFrame {
 
@@ -177,22 +202,22 @@ public final class CAN {
       sensorLine = sensorLine.trim();
       sensorLine = sensorLine.split("]")[0];
 
-
-        try {
-          return Short.parseShort(sensorLine);
-        } catch (NumberFormatException e) {
-          System.out.println("Bad sensor data");
-        }
+      try {
+        return Short.parseShort(sensorLine);
+      } catch (NumberFormatException e) {
+        System.out.println("Bad sensor data");
+      }
 
       return null;
     }
   }
 
   /**
-   * Runnable, launched by parent (CAN), that reads CAN packets into can frames by launching candump
-   * and continuously parsing it's standard output into sensor frames that are put into queues
-   * accessible by parent (CAN) object. Uses semaphores for mutex because the java keyword
-   * synchronized is confusing
+   * Runnable, launched by parent (CAN), that reads CAN packets into can frames
+   * by launching candump and continuously parsing it's standard output into
+   * sensor frames that are put into queues accessible by parent (CAN) object.
+   * Uses semaphores for mutex because the java keyword synchronized is
+   * confusing
    */
   private class InputWorker implements Runnable {
 
@@ -202,19 +227,14 @@ public final class CAN {
     private Queue<CANFrame> usSensorQueue;
     private Process canDumpProcess;
     private InputStream canDumpStandardOutput;
+    public AtomicBoolean stopFlag;
 
-    public InputWorker() throws IOException {
+    public InputWorker() {
       odometerQueueLock = new Semaphore(1);
       odometerQueue = new ArrayDeque<>();
       usSensorQueueLock = new Semaphore(1);
       usSensorQueue = new ArrayDeque<>();
-      String[] argv = new String[4];
-      argv[0] = CAN.DUMP_COMMAND;
-      argv[1] = "-t";
-      argv[2] = "z";
-      argv[3] = CAN.CAN_INTERFACE;
-      canDumpProcess = Runtime.getRuntime().exec(argv);
-      canDumpStandardOutput = canDumpProcess.getInputStream();
+      stopFlag = new AtomicBoolean(false);
     }
 
     /**
@@ -295,7 +315,27 @@ public final class CAN {
 
     @Override
     public void run() {
-      while (true) {
+      String[] argv = new String[4];
+      argv[0] = CAN.DUMP_COMMAND;
+      argv[1] = "-t";
+      argv[2] = "z";
+      argv[3] = CAN.CAN_INTERFACE;
+
+      try {
+        canDumpProcess = Runtime.getRuntime().exec(argv);
+      } catch (IOException e) {
+        e.printStackTrace();
+        System.err.println("Failed to exec: " + String.join(" ", argv));
+        return;
+      }
+
+      canDumpStandardOutput = canDumpProcess.getInputStream();
+      while (!stopFlag.get()) {
+        if (!canDumpProcess.isAlive()) {
+          System.err.println(
+              "candump stopped with code: " + canDumpProcess.exitValue());
+          return;
+        }
         try {
           CANFrame frame = readFrame();
           if (frame.identity.equals(CAN.VCU_ODOMETER_CAN_ID)) {
@@ -317,6 +357,8 @@ public final class CAN {
           break;
         }
       }
+
+      canDumpProcess.destroy();
     }
   }
 
@@ -330,12 +372,12 @@ public final class CAN {
 
     private Semaphore queueLock;
     private Queue<CANFrame> frameOutputQueue;
-    private long recoveryTime;
+    public AtomicBoolean stopFlag;
 
-    public OutputWorker(long recoveryTime) {
+    public OutputWorker() {
       queueLock = new Semaphore(1);
-      this.recoveryTime = recoveryTime;
       frameOutputQueue = new ArrayDeque<>();
+      stopFlag = new AtomicBoolean(false);
     }
 
     public void queueFrame(CANFrame frame) throws InterruptedException {
@@ -357,14 +399,14 @@ public final class CAN {
 
     @Override
     public void run() {
-      while (true) {
+      while (!stopFlag.get()) {
         try {
           queueLock.acquire();
           if (!frameOutputQueue.isEmpty()) {
             sendFrame(frameOutputQueue.poll());
           }
           queueLock.release();
-          Thread.sleep(recoveryTime);
+          Thread.sleep(CAN.VCU_COOL_DOWN);
         } catch (InterruptedException | IOException e) {
           e.printStackTrace();
         }
