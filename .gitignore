@@ -347,3 +347,4 @@ $RECYCLE.BIN/
 src/META-INF
 platooning/target
 simulator/target
+target/
