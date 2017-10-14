@@ -10,6 +10,16 @@ public class Main {
     MotorControl mc = new MotorControl(can);
     UltraSonicSensor sensor = new UltraSonicSensor(can);
     ACC acc = new ACC(mc, sensor);
+    UICom com;
+    System.out.println("Connecting to UI");
+    try {
+      com = new UICom();
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.err.println("Failed to connect to UI");
+      return;
+    }
+    System.out.println("Connected to UI");
 
     Platooning platooning = new Platooning(can, acc, alc);
     BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
