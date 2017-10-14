@@ -48,9 +48,8 @@ public final class CAN {
    * Initiates an instance if one does not exist
    *
    * @return the one and only instance
-   * @throws IOException when raised by constructor
    */
-  public static CAN getInstance() throws IOException {
+  public static CAN getInstance() {
     if (instance == null) {
       instance = new CAN();
     }

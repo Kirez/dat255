@@ -11,7 +11,7 @@ public final class Platooning {
   private Thread alcThread;
   private boolean active;
 
-  private Platooning(CAN can, ACC acc, ALC alc) {
+  public Platooning(CAN can, ACC acc, ALC alc) {
     this.can = can;
     this.acc = acc;
     this.alc = alc;
@@ -38,7 +38,7 @@ public final class Platooning {
     active = true;
   }
 
-  private void stop() {
+  public void stop() {
     if (active) {
       System.out.println("Stopping ACC thread");
       acc.stop();
@@ -81,42 +81,6 @@ public final class Platooning {
     active = false;
   }
 
-  public static void main(String args[]) throws IOException, InterruptedException {
-    CAN can = CAN.getInstance();
-    ServoControl sc = new ServoControl(can);
-    ALC alc = new ALC(sc);
-    MotorControl mc = new MotorControl(can);
-    UltraSonicSensor sensor = new UltraSonicSensor(can);
-    ACC acc = new ACC(mc, sensor);
-
-    Platooning platooning = new Platooning(can, acc, alc);
-    BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-
-    try {
-      System.out.print("Platooning>");
-      String line = inputReader.readLine();
-      while (line != null) {
-        System.out.print("Platooning>");
-        String[] tokens = line.split(" ");
-        if (tokens.length > 0) {
-          if (tokens[0].equals("start")) {
-            System.out.println("Starting platooning");
-            platooning.start();
-          } else if (tokens[0].equals("stop")) {
-            System.out.println("Stopping platooning");
-            platooning.stop();
-            System.out.println("Platooning stopped");
-            System.exit(0);
-          } else {
-            System.out.println("Unknown command " + tokens[0]);
-          }
-        }
-        line = inputReader.readLine();
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 
 
 }
