@@ -30,7 +30,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>Main</mainClass>
+              <mainClass>ui.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
