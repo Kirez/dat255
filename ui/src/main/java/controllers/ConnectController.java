@@ -40,11 +40,8 @@ public class ConnectController {
     if (useDefault.isSelected()) {
       host.setText(DEFAULT_HOST);
       port.setText(DEFAULT_PORT);
-      host.setEditable(false);
-      port.setEditable(false);
-    } else {
-      host.setEditable(true);
-      port.setEditable(true);
     }
+    host.disableProperty().setValue(useDefault.isSelected());
+    port.disableProperty().setValue(useDefault.isSelected());
   }
 }
