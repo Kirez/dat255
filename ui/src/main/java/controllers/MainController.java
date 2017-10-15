@@ -95,10 +95,28 @@ public class MainController implements Initializable {
 
     acc.selectedProperty().addListener(a -> {
       updateDisabledControls();
+      if (connection.isSelected()) {
+        Main.mopedConnection.setAccOn(acc.isSelected());
+      }
     });
 
     alc.selectedProperty().addListener(a -> {
       updateDisabledControls();
+      if (connection.isSelected()) {
+        Main.mopedConnection.setAlcOn(alc.isSelected());
+      }
+    });
+
+    speed.valueProperty().addListener(s -> {
+      if (!acc.isSelected()) {
+        Main.mopedConnection.setSpeed((byte) speed.getValue());
+      }
+    });
+
+    steer.valueProperty().addListener(s -> {
+      if (!alc.isSelected()) {
+        Main.mopedConnection.setSpeed((byte) steer.getValue());
+      }
     });
   }
 
