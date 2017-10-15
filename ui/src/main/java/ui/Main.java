@@ -20,10 +20,8 @@ public class Main extends Application {
   public enum COMMAND {
     ENABLE_ACC,
     ENABLE_ALC,
-    ENABLE_PLATOONING,
     DISABLE_ACC,
     DISABLE_ALC,
-    DISABLE_PLATOONING,
     SET_SPEED,
     SET_STEER,
   }
@@ -104,13 +102,6 @@ public class Main extends Application {
       sendData(payload);
     }
 
-    public void setPlatooningOn(boolean on) {
-      byte[] payload = new byte[1];
-      COMMAND command =
-          on ? COMMAND.ENABLE_PLATOONING : COMMAND.DISABLE_PLATOONING;
-      payload[0] = (byte) command.ordinal();
-      sendData(payload);
-    }
 
     public boolean isConnected() {
       return connected;

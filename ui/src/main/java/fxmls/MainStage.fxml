@@ -10,15 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-
 <Pane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
       <HBox>
          <children>
-            <Slider fx:id="speed" orientation="VERTICAL" showTickMarks="true" value="50.0" />
+            <Slider fx:id="speed" majorTickUnit="20.0" min="-100.0" minorTickCount="1" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
             <VBox>
                <children>
-                  <Slider fx:id="steer" showTickMarks="true" value="50.0" />
+                  <Slider fx:id="steer" majorTickUnit="20.0" min="-100.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
                   <GridPane prefHeight="300.0" prefWidth="300.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
