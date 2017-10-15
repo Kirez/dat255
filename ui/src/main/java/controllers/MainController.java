@@ -74,12 +74,12 @@ public class MainController implements Initializable {
           e.printStackTrace();
         }
 
-        boolean connected = Main.broadcaster.isConnected();
+        boolean connected = Main.mopedConnection.isConnected();
 
         connection.selectedProperty().setValue(connected);
 
       } else {
-        Main.broadcaster.disconnect();
+        Main.mopedConnection.disconnect();
         platooning.setSelected(false);
         acc.setSelected(false);
         alc.setSelected(false);

@@ -1,6 +1,6 @@
 package ui;
 
-import controllers.MainController;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -14,8 +14,19 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-  public static ActionBroadcaster broadcaster;
+  public static MopedConnection mopedConnection;
   public static Stage mainStage;
+
+  public enum COMMAND {
+    ENABLE_ACC,
+    ENABLE_ALC,
+    ENABLE_PLATOONING,
+    DISABLE_ACC,
+    DISABLE_ALC,
+    DISABLE_PLATOONING,
+    SET_SPEED,
+    SET_STEER,
+  }
 
   @Override
   public void start(Stage mainStage) throws Exception {
@@ -25,7 +36,7 @@ public class Main extends Application {
     mainStage.setScene(new Scene(root));
     mainStage.show();
 
-    Main.broadcaster = new ActionBroadcaster();
+    Main.mopedConnection = new MopedConnection();
     Main.mainStage = mainStage;
   }
 
@@ -33,12 +44,12 @@ public class Main extends Application {
     launch(args);
   }
 
-  public class ActionBroadcaster {
+  public class MopedConnection {
 
     private Socket socket;
     private boolean connected;
 
-    public ActionBroadcaster() {
+    public MopedConnection() {
       connected = false;
     }
 
@@ -51,6 +62,54 @@ public class Main extends Application {
         e.printStackTrace();
       }
       return connected;
+    }
+
+    public void sendData(byte[] data) {
+      try {
+        DataOutputStream writer = new DataOutputStream(
+            socket.getOutputStream());
+        writer.write(data);
+      } catch (IOException e) {
+        e.printStackTrace();
+        connected = false;
+      }
+    }
+
+    public void setSpeed(byte speed) {
+      byte[] payload = new byte[2];
+      payload[0] = (byte) COMMAND.SET_SPEED.ordinal();
+      payload[1] = speed;
+      sendData(payload);
+    }
+
+    public void setSteer(byte steer) {
+      byte[] payload = new byte[2];
+      payload[0] = (byte) COMMAND.SET_STEER.ordinal();
+      payload[1] = steer;
+      sendData(payload);
+    }
+
+    public void setAccOn(boolean on) {
+      byte[] payload = new byte[1];
+      COMMAND command = on ? COMMAND.ENABLE_ACC : COMMAND.DISABLE_ACC;
+      payload[0] = (byte) command.ordinal();
+      sendData(payload);
+    }
+
+    public void setAlcOn(boolean on) {
+
+      byte[] payload = new byte[1];
+      COMMAND command = on ? COMMAND.ENABLE_ALC : COMMAND.DISABLE_ALC;
+      payload[0] = (byte) command.ordinal();
+      sendData(payload);
+    }
+
+    public void setPlatooningOn(boolean on) {
+      byte[] payload = new byte[1];
+      COMMAND command =
+          on ? COMMAND.ENABLE_PLATOONING : COMMAND.DISABLE_PLATOONING;
+      payload[0] = (byte) command.ordinal();
+      sendData(payload);
     }
 
     public boolean isConnected() {
