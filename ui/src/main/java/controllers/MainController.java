@@ -1,9 +1,14 @@
 package controllers;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,7 +56,19 @@ public class MainController implements Initializable {
   @FXML
   private ToggleSwitch connection;
 
+  public enum COMMAND {
+    ENABLE_ACC,
+    ENABLE_ALC,
+    DISABLE_ACC,
+    DISABLE_ALC,
+    SET_SPEED,
+    SET_STEER,
+  }
+
+  public static MopedConnection mopedConnection;
+
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    mopedConnection = new MopedConnection();
     updateDisabledControls();
 
     connection.selectedProperty().addListener(c -> {
@@ -74,12 +91,12 @@ public class MainController implements Initializable {
           e.printStackTrace();
         }
 
-        boolean connected = Main.mopedConnection.isConnected();
+        boolean connected = mopedConnection.isConnected();
 
         connection.selectedProperty().setValue(connected);
 
       } else {
-        Main.mopedConnection.disconnect();
+        mopedConnection.disconnect();
         platooning.setSelected(false);
         acc.setSelected(false);
         alc.setSelected(false);
@@ -96,26 +113,26 @@ public class MainController implements Initializable {
     acc.selectedProperty().addListener(a -> {
       updateDisabledControls();
       if (connection.isSelected()) {
-        Main.mopedConnection.setAccOn(acc.isSelected());
+        mopedConnection.setAccOn(acc.isSelected());
       }
     });
 
     alc.selectedProperty().addListener(a -> {
       updateDisabledControls();
       if (connection.isSelected()) {
-        Main.mopedConnection.setAlcOn(alc.isSelected());
+        mopedConnection.setAlcOn(alc.isSelected());
       }
     });
 
     speed.valueProperty().addListener(s -> {
       if (!acc.isSelected()) {
-        Main.mopedConnection.setSpeed((byte) speed.getValue());
+        mopedConnection.setSpeed((byte) speed.getValue());
       }
     });
 
     steer.valueProperty().addListener(s -> {
       if (!alc.isSelected()) {
-        Main.mopedConnection.setSpeed((byte) steer.getValue());
+        mopedConnection.setSteer((byte) steer.getValue());
       }
     });
   }
@@ -157,5 +174,115 @@ public class MainController implements Initializable {
     left.disableProperty().setValue(value);
     right.disableProperty().setValue(value);
     steer.disableProperty().setValue(value);
+  }
+
+  public class MopedConnection {
+
+    private Socket socket;
+    private boolean connected;
+    private UIUpdateReceiver updateReceiver;
+    private Thread updateReceiverThread;
+
+    public MopedConnection() {
+      connected = false;
+    }
+
+    public boolean connect(String host, int port) {
+      connected = false;
+      try {
+        socket = new Socket(InetAddress.getByName(host), port);
+        connected = true;
+        updateReceiver = new UIUpdateReceiver();
+        if (updateReceiverThread != null && updateReceiverThread.isAlive()) {
+          updateReceiverThread.interrupt();
+        }
+        updateReceiverThread = new Thread(updateReceiver);
+        updateReceiverThread.start();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return connected;
+    }
+
+    public void sendData(byte[] data) {
+      try {
+        DataOutputStream writer = new DataOutputStream(
+            socket.getOutputStream());
+        writer.write(data);
+      } catch (IOException e) {
+        e.printStackTrace();
+        connected = false;
+      }
+    }
+
+    public void setSpeed(byte speed) {
+      byte[] payload = new byte[2];
+      payload[0] = (byte) COMMAND.SET_SPEED.ordinal();
+      payload[1] = speed;
+      sendData(payload);
+    }
+
+    public void setSteer(byte steer) {
+      byte[] payload = new byte[2];
+      payload[0] = (byte) COMMAND.SET_STEER.ordinal();
+      payload[1] = steer;
+      sendData(payload);
+    }
+
+    public void setAccOn(boolean on) {
+      byte[] payload = new byte[1];
+      COMMAND command = on ? COMMAND.ENABLE_ACC : COMMAND.DISABLE_ACC;
+      payload[0] = (byte) command.ordinal();
+      sendData(payload);
+    }
+
+    public void setAlcOn(boolean on) {
+
+      byte[] payload = new byte[1];
+      COMMAND command = on ? COMMAND.ENABLE_ALC : COMMAND.DISABLE_ALC;
+      payload[0] = (byte) command.ordinal();
+      sendData(payload);
+    }
+
+    public boolean isConnected() {
+      return connected;
+    }
+
+    public void disconnect() {
+      connected = false;
+      try {
+        if (updateReceiverThread != null && updateReceiverThread.isAlive()) {
+          updateReceiverThread.interrupt();
+        }
+        socket.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    private class UIUpdateReceiver implements Runnable {
+
+      public AtomicBoolean stopFlagged;
+
+      public UIUpdateReceiver() {
+        stopFlagged = new AtomicBoolean(false);
+      }
+
+      @Override
+      public void run() {
+        try {
+          DataInputStream inputStream = new DataInputStream(
+              socket.getInputStream());
+          while (!stopFlagged.get()) {
+            byte motorValue = inputStream.readByte();
+            byte steerValue = inputStream.readByte();
+            speed.setValue(motorValue);
+            steer.setValue(steerValue);
+          }
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 }

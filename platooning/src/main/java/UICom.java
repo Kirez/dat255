@@ -1,8 +1,9 @@
 import java.io.DataInputStream;
-import java.io.EOFException;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UICom implements Runnable {
 
@@ -14,8 +15,10 @@ public class UICom implements Runnable {
   private MotorControl motorControl;
   private ServoControl servoControl;
   private UltraSonicSensor sensor;
+  private UIUpdateSender updateSender;
   private Thread accThread;
   private Thread alcThread;
+  private Thread uiUpdateThread;
 
   public enum COMMAND {
     ENABLE_ACC,
@@ -38,6 +41,9 @@ public class UICom implements Runnable {
     acc = new ACC(motorControl, sensor);
     accThread = new Thread(acc);
     alcThread = new Thread(alc);
+
+    updateSender = new UIUpdateSender(10);
+    uiUpdateThread = new Thread(updateSender);
   }
 
   @Override
@@ -46,6 +52,8 @@ public class UICom implements Runnable {
       can.start();
       DataInputStream dataInputStream = new DataInputStream(
           uiSocket.getInputStream());
+      uiUpdateThread.start();
+
       while (uiSocket.isConnected()) {
         byte comByte = dataInputStream.readByte();
         COMMAND command = COMMAND.values()[comByte];
@@ -83,18 +91,52 @@ public class UICom implements Runnable {
             break;
           case SET_SPEED:
             byte speed = dataInputStream.readByte();
-            System.out.println("Speed: " + speed);
+            motorControl.setSpeed(speed);
             break;
           case SET_STEER:
             byte steer = dataInputStream.readByte();
-            System.out.println("Steer: " + steer);
+            servoControl.steer(steer);
             break;
         }
       }
+      updateSender.stopFlagged.set(true);
+      uiUpdateThread.join(1000);
+      uiUpdateThread.interrupt();
       can.stop();
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
+  }
 
+  public class UIUpdateSender implements Runnable {
+
+    public AtomicBoolean stopFlagged;
+    private int updateFrequency;
+
+    public UIUpdateSender(int updateFrequency) {
+      stopFlagged = new AtomicBoolean(false);
+      this.updateFrequency = updateFrequency;
+    }
+
+    @Override
+    public void run() {
+      try {
+        while (!stopFlagged.get()) {
+          byte speed = can.getMotorValue();
+          byte steer = can.getSteerValue();
+          byte[] payload = new byte[2];
+          payload[0] = speed;
+          payload[1] = steer;
+
+          DataOutputStream outputStream = new DataOutputStream(
+              uiSocket.getOutputStream());
+
+          outputStream.write(payload);
+          Thread.sleep(1000 / updateFrequency);
+        }
+      } catch (InterruptedException | IOException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }

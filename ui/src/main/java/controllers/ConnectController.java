@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import ui.Main;
 
 public class ConnectController {
 
@@ -26,7 +25,7 @@ public class ConnectController {
   void connectOnAction(ActionEvent event) {
     String hostStr = host.getText();
     int portInt = Integer.parseInt(port.getText());
-    if (Main.mopedConnection.connect(hostStr, portInt)) {
+    if (MainController.mopedConnection.connect(hostStr, portInt)) {
       System.out.println("Connected");
     } else {
       System.out.println("Connection failed");

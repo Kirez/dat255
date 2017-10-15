@@ -56,6 +56,10 @@ public final class CAN {
     return instance;
   }
 
+  public byte getMotorValue() {
+    return motorValue;
+  }
+
   public void start() throws InterruptedException {
     if (active) {
       stop();
@@ -148,6 +152,10 @@ public final class CAN {
    */
   public void sendSteerValue(byte steer) throws InterruptedException {
     sendMotorAndSteerValue(motorValue, steer);
+  }
+
+  public byte getSteerValue() {
+    return steerValue;
   }
 
   /**
