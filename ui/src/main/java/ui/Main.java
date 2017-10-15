@@ -9,12 +9,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
   public static ActionBroadcaster broadcaster;
+  public static Stage mainStage;
 
   @Override
   public void start(Stage mainStage) throws Exception {
@@ -24,19 +24,8 @@ public class Main extends Application {
     mainStage.setScene(new Scene(root));
     mainStage.show();
 
-    broadcaster = new ActionBroadcaster();
-
-    while (!broadcaster.connected) {
-      Stage connectStage = new Stage();
-      connectStage.initOwner(mainStage);
-      connectStage.initModality(Modality.APPLICATION_MODAL);
-
-      url = new File("ui/src/main/java/fxmls/Connect.fxml").toURI().toURL();
-      root = FXMLLoader.load(url);
-
-      connectStage.setScene(new Scene(root));
-      connectStage.showAndWait();
-    }
+    Main.broadcaster = new ActionBroadcaster();
+    Main.mainStage = mainStage;
   }
 
   public static void main(String[] args) {
@@ -61,6 +50,19 @@ public class Main extends Application {
         e.printStackTrace();
       }
       return connected;
+    }
+
+    public boolean isConnected() {
+      return connected;
+    }
+
+    public void disconnect() {
+      connected = false;
+      try {
+        socket.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 }

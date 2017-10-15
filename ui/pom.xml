@@ -43,5 +43,12 @@
     <testSourceDirectory>src/test/java</testSourceDirectory>
   </build>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.controlsfx</groupId>
+      <artifactId>controlsfx</artifactId>
+      <version>8.40.12</version>
+    </dependency>
+  </dependencies>
 
 </project>
