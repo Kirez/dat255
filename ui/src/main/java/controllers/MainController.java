@@ -52,15 +52,13 @@ public class MainController implements Initializable {
   private ToggleSwitch connection;
 
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    setConnectedControlsDisabled(true);
+    updateDisabledControls();
 
     connection.selectedProperty().addListener(c -> {
       if (connection.isSelected()) {
 
         Parent root;
         URL fxml;
-
-        boolean connected = false;
 
         try {
           fxml = new File("ui/src/main/java/fxmls/Connect.fxml").toURI()
@@ -76,28 +74,70 @@ public class MainController implements Initializable {
           e.printStackTrace();
         }
 
-        connected = Main.broadcaster.isConnected();
+        boolean connected = Main.broadcaster.isConnected();
 
         connection.selectedProperty().setValue(connected);
 
-        setConnectedControlsDisabled(!connected);
       } else {
         Main.broadcaster.disconnect();
+        platooning.setSelected(false);
+        acc.setSelected(false);
+        alc.setSelected(false);
       }
+      updateDisabledControls();
     });
 
+    platooning.selectedProperty().addListener(p -> {
+      acc.setSelected(platooning.isSelected());
+      alc.setSelected(platooning.isSelected());
+      updateDisabledControls();
+    });
+
+    acc.selectedProperty().addListener(a -> {
+      updateDisabledControls();
+    });
+
+    alc.selectedProperty().addListener(a -> {
+      updateDisabledControls();
+    });
+  }
+
+  private void updateDisabledControls() {
+    if (!connection.isSelected()) {
+      setConnectedControlsDisabled(true);
+    } else {
+      setConnectedControlsDisabled(false);
+      if (platooning.isSelected()) {
+        acc.disableProperty().setValue(true);
+        alc.disableProperty().setValue(true);
+        setAlcControlsDisabled(true);
+        setAccControlsDisabled(true);
+      } else {
+        acc.disableProperty().setValue(false);
+        alc.disableProperty().setValue(false);
+        setAccControlsDisabled(acc.isSelected());
+        setAlcControlsDisabled(alc.isSelected());
+      }
+    }
   }
 
   private void setConnectedControlsDisabled(boolean value) {
-    speed.disableProperty().setValue(value);
-    steer.disableProperty().setValue(value);
-    accelerate.disableProperty().setValue(value);
-    brake.disableProperty().setValue(value);
-    left.disableProperty().setValue(value);
-    right.disableProperty().setValue(value);
     platooning.disableProperty().setValue(value);
     acc.disableProperty().setValue(value);
     alc.disableProperty().setValue(value);
+    setAccControlsDisabled(value);
+    setAlcControlsDisabled(value);
   }
 
+  public void setAccControlsDisabled(boolean value) {
+    accelerate.disableProperty().setValue(value);
+    brake.disableProperty().setValue(value);
+    speed.disableProperty().setValue(value);
+  }
+
+  public void setAlcControlsDisabled(boolean value) {
+    left.disableProperty().setValue(value);
+    right.disableProperty().setValue(value);
+    steer.disableProperty().setValue(value);
+  }
 }

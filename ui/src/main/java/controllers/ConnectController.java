@@ -19,6 +19,9 @@ public class ConnectController {
   @FXML
   private CheckBox useDefault;
 
+  private static String DEFAULT_HOST = "localhost";
+  private static String DEFAULT_PORT = "2221";
+
   @FXML
   void connectOnAction(ActionEvent event) {
     String hostStr = host.getText();
@@ -35,8 +38,8 @@ public class ConnectController {
   @FXML
   void useDefaultOnAction(ActionEvent event) {
     if (useDefault.isSelected()) {
-      host.setText("192.168.43.230");
-      port.setText("2221");
+      host.setText(DEFAULT_HOST);
+      port.setText(DEFAULT_PORT);
       host.setEditable(false);
       port.setEditable(false);
     } else {
