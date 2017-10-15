@@ -26,7 +26,7 @@ public class ConnectController {
   void connectOnAction(ActionEvent event) {
     String hostStr = host.getText();
     int portInt = Integer.parseInt(port.getText());
-    if (Main.broadcaster.connect(hostStr, portInt)) {
+    if (Main.mopedConnection.connect(hostStr, portInt)) {
       System.out.println("Connected");
     } else {
       System.out.println("Connection failed");

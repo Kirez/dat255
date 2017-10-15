@@ -20,6 +20,10 @@ public class Main {
       System.err.println("Failed to connect to UI");
       return;
     }
+
+    Thread comThread = new Thread(com);
+    comThread.start();
+
     System.out.println("Connected to UI");
 
     Platooning platooning = new Platooning(can, acc, alc);
