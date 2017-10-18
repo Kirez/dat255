@@ -443,14 +443,13 @@ public final class CAN {
     public void run() {
       while (!stopFlag.get()) {
         try {
+          CANFrame combined = getCombinedFrame();
+          if (combined != null) {
+            queueFrame(combined);
+          }
           queueLock.acquire();
           if (!frameOutputQueue.isEmpty()) {
             sendFrame(frameOutputQueue.poll());
-          } else {
-            CANFrame combined = getCombinedFrame();
-            if (combined != null) {
-              sendFrame(combined);
-            }
           }
           queueLock.release();
           Thread.sleep(CAN.VCU_COOL_DOWN);
