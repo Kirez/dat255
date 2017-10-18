@@ -3,17 +3,13 @@ import static org.opencv.imgproc.Imgproc.fitEllipse;
 
 import com.sun.javafx.geom.Line2D;
 import com.sun.javafx.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 
 import nu.pattern.OpenCV;
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
@@ -28,7 +24,7 @@ import org.opencv.videoio.VideoCapture;
  * @author Johannes Edenholm
  * @author Rikard Teodorsson
  */
-public class ImageProcessing {
+class ImageProcessing {
 
     static {
         OpenCV.loadShared();
@@ -60,7 +56,7 @@ public class ImageProcessing {
    * @return the processed image, null if the file couldn't be found
    */
   public ProcessedImage getProcessedImage(Mat frame) {
-    float startTime = System.nanoTime();
+    //float startTime = System.nanoTime();
     if (frame == null) {
       return null;
     } /* imwrite("images/original.png", frame); */
@@ -76,8 +72,8 @@ public class ImageProcessing {
         upperRed);
     Mat red_hue_image = new Mat(); /* Combines the two matrices */
     addWeighted(lowerRed, 1.0, upperRed, 1.0, 0.0, red_hue_image);
-    float endTime = System.nanoTime();
-    float duration = (endTime - startTime); /* System.out.println("Duration for processing: " + duration / 1000000000 + "s"); */ /* imwrite("images/frame.png", frame); */ /* imwrite("images/lowerRed.png", lowerRed); */ /* imwrite("images/lowerRed.png", lowerRed); */
+    //float endTime = System.nanoTime();
+    //float duration = (endTime - startTime); /* System.out.println("Duration for processing: " + duration / 1000000000 + "s"); */ /* imwrite("images/frame.png", frame); */ /* imwrite("images/lowerRed.png", lowerRed); */ /* imwrite("images/lowerRed.png", lowerRed); */
     return contour(red_hue_image, frame);
   }
 
@@ -88,7 +84,7 @@ public class ImageProcessing {
    * @param frame the source matrix
    */
   private ProcessedImage contour(Mat mask, Mat frame) {
-    List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+    List<MatOfPoint> contours = new ArrayList<>();
     Mat hierarchy = new Mat();
     Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_CCOMP,
         Imgproc.CHAIN_APPROX_SIMPLE);
@@ -102,7 +98,7 @@ public class ImageProcessing {
    * @return an arraylist with the circles
    */
   private ProcessedImage matrixToList(List<MatOfPoint> circles, Mat src) {
-    ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
+    ArrayList<ProcessedImage> circleList = new ArrayList<>();
     for (final MatOfPoint circle : circles) {
       Point center = new Point(circle.get(0, 0));
       if (circle.toArray().length < 5) {
@@ -196,13 +192,13 @@ public class ImageProcessing {
     return distanceFromCircleToLine <= circleRadius;
   }
 
-  /**
+  /*/**
    * conversion method from image to mat
    *
    * @param in path to image
    * @return a matrix made from the image
    */
-  private Mat pathToMat(String in) {
+  /*private Mat pathToMat(String in) {
     BufferedImage imgBuffer;
     try {
       imgBuffer = ImageIO.read(new File(in));
@@ -245,5 +241,5 @@ public class ImageProcessing {
       img.put(0, 0, pixels);
     }
     return img;
-  }
+  }*/
 }

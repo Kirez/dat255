@@ -1,7 +1,7 @@
-public class ALCRegulator {
+class ALCRegulator {
 
-    private ServoControl servo;
-    private int k;
+    private final ServoControl servo;
+    private final int k;
 
     public ALCRegulator(ServoControl servo){
         this.servo = servo;

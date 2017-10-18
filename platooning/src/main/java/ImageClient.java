@@ -1,13 +1,8 @@
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
-import static org.opencv.core.Core.*;
-
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.*;
 
 /**
@@ -15,14 +10,13 @@ import java.net.*;
  */
 
 
-public class ImageClient implements Runnable {
+class ImageClient implements Runnable {
     @SuppressWarnings("unused")
-    private double xOfset, xCenter,yCenter;
+    private double xOffset/*, xCenter,yCenter*/;
     private ImageProcessing imgPr;
-    private ProcessedImage proImg;
     private VideoCapture stream;
-    private byte[] sendData;
-    private InetAddress IPAddress;
+    //private byte[] sendData;
+    //private InetAddress IPAddress;
     private Socket clientSocket;
 
 
@@ -31,7 +25,7 @@ public class ImageClient implements Runnable {
 
     }
 
-    public ImageClient() throws IOException {
+    private ImageClient() throws IOException {
         System.out.println("Connecting...");
         clientSocket = new Socket("192.168.43.230", 2223);
         System.out.println("Connected");
@@ -40,7 +34,7 @@ public class ImageClient implements Runnable {
         receive();
     }
 
-    public void receive() {
+    private void receive() {
         stream.open("tcp://192.168.43.230:2222");
         System.out.println("Started");
 
@@ -48,12 +42,12 @@ public class ImageClient implements Runnable {
         if (stream.isOpened()) {
             while (true) {
                 if (stream.read(frame)) {
-                    proImg = imgPr.getProcessedImage(frame);
+                    ProcessedImage proImg = imgPr.getProcessedImage(frame);
                     if (proImg != null) {
-                        xOfset = proImg.getxOffset();
-                        xCenter = proImg.getCenterX();
-                        yCenter = proImg.getCenterY();
-                        System.out.println(xOfset);
+                        xOffset = proImg.getxOffset();
+                        //xCenter = proImg.getCenterX();
+                        //yCenter = proImg.getCenterY();
+                        System.out.println(xOffset);
                         send();
                     }
 
@@ -62,10 +56,10 @@ public class ImageClient implements Runnable {
         }
     }
 
-    public void send() {
+    private void send() {
         try {
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-            outToServer.writeBytes(""+xOfset);
+            outToServer.writeBytes(""+ xOffset);
         } catch (IOException e) {
             e.printStackTrace();
         }

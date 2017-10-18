@@ -4,17 +4,17 @@
 class Regulator { /* Speed given by regulator calculations */
 
   private double v1; /* Last speed given to MOPED */
-  private double lastSpeed; /* Desired speed */
-  private double vDes; /* Desired distance */
-  private double dDes; /* Acceleration */
-  private double accFactor; /* ?? */ /* private double a0; */ /* Multiplier */
-  private double k; /* Integrating factor */
-  private double i; /* Acceleration */
+  //private double lastSpeed; /* Desired speed */
+  //private double vDes; /* Desired distance */
+  private final double dDes; /* Acceleration */
+  //private double accFactor; /* ?? */ /* private double a0; */ /* Multiplier */
+  private final double k; /* Integrating factor */
+  private final double i; /* Acceleration */
   private double i_acc; /* dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2 */ /* private double dist1; */ /* private double dist2; */ /* private double deltaDist; */ /* Derivating factor */
-  private double d; /* Last error */
+  private final double d; /* Last error */
   private double lastEr; /* K = 0.48 */ /* T0 = 9.3 */ /* I = 4.65 */ /* D = 1.16 */ /* Ticks */ /* private int s; */
-  private double maxSpeed; /* Limitations to regulator */
-  private double minSpeed;
+  private final double maxSpeed; /* Limitations to regulator */
+  private final double minSpeed;
 
     public Regulator() {
 
@@ -43,7 +43,7 @@ class Regulator { /* Speed given by regulator calculations */
     //System.out.println("New Speed: " + v1);
   }
 
-  /**
+  /*/**
    * Used to calculate distance travelled for both Cars. The differential
    * between the distances is the distance between the cars, which is used in
    * the simulator to mimick the result given from the Sensor on the MOPED.

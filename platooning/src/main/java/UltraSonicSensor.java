@@ -1,11 +1,9 @@
-import java.util.Arrays;
-
 /**
  * Created by hugfro on 2017-09-29.
  */
 public class UltraSonicSensor implements IDistance {
 
-    private CAN can;
+    private final CAN can;
     private short lastDist;
     private boolean doubleErrorCheck;
 

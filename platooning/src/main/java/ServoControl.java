@@ -3,7 +3,7 @@
  */
 public class ServoControl implements Steering {
 
-  private CAN can;
+  private final CAN can;
 
   public ServoControl(CAN can) {
     this.can = can;
