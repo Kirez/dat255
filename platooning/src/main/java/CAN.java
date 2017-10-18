@@ -49,7 +49,7 @@ public final class CAN {
    *
    * @return the one and only instance
    */
-  public static CAN getInstance() {
+  public static synchronized CAN getInstance() {
     if (instance == null) {
       instance = new CAN();
     }
@@ -122,8 +122,16 @@ public final class CAN {
     motorAndSteerBytes[1] = steer;
     CANFrame frame = new CANFrame(VCU_COMMAND_CAN_ID, motorAndSteerBytes);
     sendCANFrame(frame);
-    motorValue = motor;
-    steerValue = steer;
+    setMotorValue(motor);
+    setSteerValue(steer);
+  }
+
+  private static void setMotorValue(byte motorValue) {
+    CAN.motorValue = motorValue;
+  }
+
+  private static void setSteerValue(byte steerValue) {
+    CAN.steerValue = steerValue;
   }
 
   /**
@@ -154,7 +162,7 @@ public final class CAN {
    * Basically a container class (think C structure) for CAN frames received and
    * sent
    */
-  private class CANFrame {
+  private static class CANFrame {
 
     private String identity;
     private double time;
@@ -218,7 +226,7 @@ public final class CAN {
    * Uses semaphores for mutex because the java keyword synchronized is
    * confusing
    */
-  private class InputWorker implements Runnable {
+  private static class InputWorker implements Runnable {
 
     private Semaphore odometerQueueLock;
     private Queue<CANFrame> odometerQueue;
@@ -246,12 +254,16 @@ public final class CAN {
       int DATA_OFFSET = 4;
       BufferedReader reader = new BufferedReader(
           new InputStreamReader(canDumpStandardOutput));
-      String canDataString = reader.readLine().trim(); /* For example canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+      String canDataString = reader.readLine(); /* For example canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+      if (canDataString == null) {
+        return null;
+      }
+      canDataString = canDataString.trim();
       canDataString = canDataString.replace("   ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
       canDataString = canDataString.replace("  ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
       String[] tokens = canDataString.split(" "); /* now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"} */
       String canTimeString = tokens[0].replace("(", "").replace(")", "");
-      String canInterfaceString = tokens[1];
+      //String canInterfaceString = tokens[1];
       String canIdString = tokens[2];
       String dataLengthString = tokens[3].replace("[", "").replace("]", "");
       double time = Double.parseDouble(canTimeString);
@@ -367,7 +379,7 @@ public final class CAN {
    * ignores commands if they are sent too  quickly. Uses semaphores for shared
    * queues for the same reason as described above InputWorker.
    */
-  private class OutputWorker implements Runnable {
+  private static class OutputWorker implements Runnable {
 
     private Semaphore queueLock;
     private Queue<CANFrame> frameOutputQueue;

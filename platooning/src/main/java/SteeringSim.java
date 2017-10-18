@@ -25,14 +25,16 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
     s = 0;
     course = 0;
     k = 1.1;
-    FrontCar fc = new FrontCar(this);
-    new Thread(fc).start();
   } /* * On update, receives the course on which the leading car is traveling, calculates the error and sets the steering * accordingly. */
+
+  public void startThread(FrontCar fc) {
+    new Thread(fc).start();
+  }
 
   @Override
   public void update(Observable o, Object arg) {
     s++;
-    frontCourse = new Double(arg.toString());
+    frontCourse = Double.valueOf(arg.toString());
     degError = frontCourse - course;
     error = degError / carFov;
     if (s % 5 == 0) {
@@ -49,16 +51,16 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
     }
   }
 
-  public class FrontCar extends Observable implements Runnable {
+  public static class FrontCar extends Observable implements Runnable {
 
     double course;
-    Random r;
+    //Random r;
     int s;
 
     public FrontCar(SteeringSim st) {
       this.addObserver(st);
       course = 0;
-      r = new Random();
+      //r = new Random();
       s = 0;
     }
 

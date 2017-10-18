@@ -58,6 +58,11 @@ public class Car implements IMovable {
     return speed;
   }
 
+  @Override
+  public void setSpeed(int speed) {
+    setSpeed(speed + 0.0);
+  }
+
   /**
    * Sets the correct MovingState according to the current speed, sets the
    * wantedSpeed

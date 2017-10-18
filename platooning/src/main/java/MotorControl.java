@@ -1,8 +1,8 @@
 public class MotorControl implements IMovable {
 
-	private int i = 0;
+	//private int i = 0;
 	private int lastSpeed = 0;
-	boolean lastWasForward = true;
+	//boolean lastWasForward = true;
 	private byte steerValue = -8;
 	private CAN can;
 	public MotorControl(CAN can){

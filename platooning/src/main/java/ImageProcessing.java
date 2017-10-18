@@ -60,7 +60,7 @@ public class ImageProcessing {
    * @return the processed image, null if the file couldn't be found
    */
   public ProcessedImage getProcessedImage(Mat frame) {
-    float startTime = System.nanoTime();
+    //float startTime = System.nanoTime();
     if (frame == null) {
       return null;
     } /* imwrite("images/original.png", frame); */
@@ -76,8 +76,8 @@ public class ImageProcessing {
         upperRed);
     Mat red_hue_image = new Mat(); /* Combines the two matrices */
     addWeighted(lowerRed, 1.0, upperRed, 1.0, 0.0, red_hue_image);
-    float endTime = System.nanoTime();
-    float duration = (endTime - startTime); /* System.out.println("Duration for processing: " + duration / 1000000000 + "s"); */ /* imwrite("images/frame.png", frame); */ /* imwrite("images/lowerRed.png", lowerRed); */ /* imwrite("images/lowerRed.png", lowerRed); */
+    //float endTime = System.nanoTime();
+    //float duration = (endTime - startTime); /* System.out.println("Duration for processing: " + duration / 1000000000 + "s"); */ /* imwrite("images/frame.png", frame); */ /* imwrite("images/lowerRed.png", lowerRed); */ /* imwrite("images/lowerRed.png", lowerRed); */
     return contour(red_hue_image, frame);
   }
 
@@ -196,13 +196,13 @@ public class ImageProcessing {
     return distanceFromCircleToLine <= circleRadius;
   }
 
-  /**
+  /*/**
    * conversion method from image to mat
    *
    * @param in path to image
    * @return a matrix made from the image
    */
-  private Mat pathToMat(String in) {
+  /*private Mat pathToMat(String in) {
     BufferedImage imgBuffer;
     try {
       imgBuffer = ImageIO.read(new File(in));
@@ -245,5 +245,5 @@ public class ImageProcessing {
       img.put(0, 0, pixels);
     }
     return img;
-  }
+  }*/
 }

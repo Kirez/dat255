@@ -25,9 +25,11 @@ public class AcceleratingStateTest {
 
   @Test
   public void move() {
-    acceleratingState.move(car, 5); /* speed = 0 + 2*0.1 = 0,2 */
-    assertEquals(car.getSpeed(), 0.2, 0);
-    acceleratingState.move(car, 5); /* speed = 0.2 + 2*0.1 = 0.4 */
-    assertEquals(car.getSpeed(), 0.4, 0);
+    if (car != null && acceleratingState != null) {
+      acceleratingState.move(car, 5); /* speed = 0 + 2*0.1 = 0,2 */
+      assertEquals(car.getSpeed(), 0.2, 0);
+      acceleratingState.move(car, 5); /* speed = 0.2 + 2*0.1 = 0.4 */
+      assertEquals(car.getSpeed(), 0.4, 0);
+    }
   }
 }

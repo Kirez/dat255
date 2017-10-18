@@ -1,13 +1,8 @@
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
-import static org.opencv.core.Core.*;
-
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.*;
 
 /**
@@ -17,12 +12,11 @@ import java.net.*;
 
 public class ImageClient implements Runnable {
     @SuppressWarnings("unused")
-    private double xOfset, xCenter,yCenter;
+    private double xOffset/*, xCenter,yCenter*/;
     private ImageProcessing imgPr;
-    private ProcessedImage proImg;
     private VideoCapture stream;
-    private byte[] sendData;
-    private InetAddress IPAddress;
+    //private byte[] sendData;
+    //private InetAddress IPAddress;
     private Socket clientSocket;
 
 
@@ -48,12 +42,12 @@ public class ImageClient implements Runnable {
         if (stream.isOpened()) {
             while (true) {
                 if (stream.read(frame)) {
-                    proImg = imgPr.getProcessedImage(frame);
+                    ProcessedImage proImg = imgPr.getProcessedImage(frame);
                     if (proImg != null) {
-                        xOfset = proImg.getxOffset();
-                        xCenter = proImg.getCenterX();
-                        yCenter = proImg.getCenterY();
-                        System.out.println(xOfset);
+                        xOffset = proImg.getxOffset();
+                        //xCenter = proImg.getCenterX();
+                        //yCenter = proImg.getCenterY();
+                        System.out.println(xOffset);
                         send();
                     }
 
@@ -65,7 +59,7 @@ public class ImageClient implements Runnable {
     public void send() {
         try {
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-            outToServer.writeBytes(""+xOfset);
+            outToServer.writeBytes(""+ xOffset);
         } catch (IOException e) {
             e.printStackTrace();
         }

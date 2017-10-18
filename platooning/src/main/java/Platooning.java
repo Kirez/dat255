@@ -27,8 +27,9 @@ public final class Platooning {
         can.start();
       } catch (InterruptedException e) {
         e.printStackTrace();
-        System.err.println("Failed to start CAN I/O");
-        System.exit(-1);
+        //System.err.println("Failed to start CAN I/O");
+        //System.exit(-1);
+        throw new RuntimeException("Failed to start CAN I/O");
       }
       System.out.println("Starting ACC thread");
       accThread.start();
@@ -74,8 +75,9 @@ public final class Platooning {
         can.stop();
       } catch (InterruptedException e) {
         e.printStackTrace();
-        System.err.println("Failed to stop CAN");
-        System.exit(-1);
+        //System.err.println("Failed to stop CAN");
+        //System.exit(-1);
+        throw new RuntimeException("Failed to stop CAN");
       }
     }
     active = false;
