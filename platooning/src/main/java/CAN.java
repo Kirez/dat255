@@ -99,16 +99,6 @@ public final class CAN {
   }
 
   /**
-   * Schedules a frame to be sent by output worker thread
-   *
-   * @param frame to be sent
-   * @throws InterruptedException from OutputWorker::queueFrame
-   */
-  public void sendCANFrame(CANFrame frame) throws InterruptedException {
-    outputWorker.queueFrame(frame);
-  }
-
-  /**
    * Automates sending of motor and steer packets to VCU
    *
    * @param motor value to be sent to VCU
@@ -117,13 +107,8 @@ public final class CAN {
    */
   public void sendMotorAndSteerValue(byte motor, byte steer)
       throws InterruptedException {
-    byte[] motorAndSteerBytes = new byte[2];
-    motorAndSteerBytes[0] = motor;
-    motorAndSteerBytes[1] = steer;
-    CANFrame frame = new CANFrame(VCU_COMMAND_CAN_ID, motorAndSteerBytes);
-    sendCANFrame(frame);
-    motorValue = motor;
-    steerValue = steer;
+    sendMotorValue(motor);
+    sendSteerValue(steer);
   }
 
   /**
@@ -135,7 +120,8 @@ public final class CAN {
    * @throws InterruptedException from sendMotorAndSteerValue
    */
   public void sendMotorValue(byte motor) throws InterruptedException {
-    sendMotorAndSteerValue(motor, steerValue);
+    outputWorker.queueMotorValue(motor);
+    motorValue = motor;
   }
 
   /**
@@ -147,7 +133,8 @@ public final class CAN {
    * @throws InterruptedException from sendMotorAndSteerValue
    */
   public void sendSteerValue(byte steer) throws InterruptedException {
-    sendMotorAndSteerValue(motorValue, steer);
+    outputWorker.queueSteerValue(steer);
+    steerValue = steer;
   }
 
   /**
@@ -372,10 +359,18 @@ public final class CAN {
     private Semaphore queueLock;
     private Queue<CANFrame> frameOutputQueue;
     public AtomicBoolean stopFlag;
+    private Semaphore motorQueueLock;
+    private Semaphore steerQueueLock;
+    private Queue<Byte> motorValueQueue;
+    private Queue<Byte> steerValueQueue;
 
     public OutputWorker() {
       queueLock = new Semaphore(1);
+      motorQueueLock = new Semaphore(1);
+      steerQueueLock = new Semaphore(1);
       frameOutputQueue = new ArrayDeque<>();
+      motorValueQueue = new ArrayDeque<>();
+      steerValueQueue = new ArrayDeque<>();
       stopFlag = new AtomicBoolean(false);
     }
 
@@ -383,6 +378,54 @@ public final class CAN {
       queueLock.acquire();
       frameOutputQueue.add(frame);
       queueLock.release();
+    }
+
+    private CANFrame getCombinedFrame() throws InterruptedException {
+      byte motor, steer;
+
+      motorQueueLock.acquire();
+
+      if (!motorValueQueue.isEmpty()) {
+        motor = motorValueQueue.poll();
+      } else {
+        motor = motorValue;
+      }
+
+      motorQueueLock.release();
+      steerQueueLock.acquire();
+
+      if (!steerValueQueue.isEmpty()) {
+        steer = steerValueQueue.poll();
+      } else {
+        steer = steerValue;
+      }
+
+      steerQueueLock.release();
+
+      if (motor == motorValue && steer == steerValue) {
+        return null;
+      }
+
+      byte[] motorAndSteerBytes = new byte[2];
+      motorAndSteerBytes[0] = motor;
+      motorAndSteerBytes[1] = steer;
+      return new CANFrame(VCU_COMMAND_CAN_ID, motorAndSteerBytes);
+    }
+
+    public void queueMotorValue(byte value) throws InterruptedException {
+      motorQueueLock.acquire();
+
+      motorValueQueue.add(value);
+
+      motorQueueLock.release();
+    }
+
+    public void queueSteerValue(byte value) throws InterruptedException {
+      steerQueueLock.acquire();
+
+      steerValueQueue.add(value);
+
+      steerQueueLock.release();
     }
 
     private void sendFrame(CANFrame frame)
@@ -403,6 +446,11 @@ public final class CAN {
           queueLock.acquire();
           if (!frameOutputQueue.isEmpty()) {
             sendFrame(frameOutputQueue.poll());
+          } else {
+            CANFrame combined = getCombinedFrame();
+            if (combined != null) {
+              sendFrame(combined);
+            }
           }
           queueLock.release();
           Thread.sleep(CAN.VCU_COOL_DOWN);
