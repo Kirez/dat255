@@ -3,7 +3,6 @@ import static java.lang.Thread.sleep;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
 /**
  * Test Sim for steering
@@ -12,14 +11,14 @@ import java.util.Random;
  */
 public class SteeringSim implements Observer { /* Lateral Field of View of the Camera */
 
-  int carFov = 49; /* Course of the following car */
-  double course; /* Course of the leading car */
-  double frontCourse; /* Error in camera units */
-  double error; /* Error in degrees */
-  double degError; /* Amplification */
-  double k; /* Number of invocations */
-  int s; /* SteeringSim */
-  double steer; /* *Starts the thread running the leading car */
+  private final int carFov = 49; /* Course of the following car */
+  private double course; /* Course of the leading car */
+  private double frontCourse; /* Error in camera units */
+  private double error; /* Error in degrees */
+  private double degError; /* Amplification */
+  private final double k; /* Number of invocations */
+  private int s; /* SteeringSim */
+  private double steer; /* *Starts the thread running the leading car */
 
   public SteeringSim() {
     s = 0;
@@ -51,7 +50,7 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
     }
   }
 
-  public static class FrontCar extends Observable implements Runnable {
+  static class FrontCar extends Observable implements Runnable {
 
     double course;
     //Random r;

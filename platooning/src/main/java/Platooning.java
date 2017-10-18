@@ -1,14 +1,10 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+final class Platooning {
 
-public final class Platooning {
-
-  private CAN can;
-  private ACC acc;
-  private ALC alc;
-  private Thread accThread;
-  private Thread alcThread;
+  private final CAN can;
+  private final ACC acc;
+  private final ALC alc;
+  private final Thread accThread;
+  private final Thread alcThread;
   private boolean active;
 
   public Platooning(CAN can, ACC acc, ALC alc) {

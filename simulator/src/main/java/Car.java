@@ -3,12 +3,12 @@ public class Car implements IMovable {
   private double speed;
   private double wantedSpeed;
   private double newSpeed;
-  private boolean isLeadingCar;
+  private final boolean isLeadingCar;
   private Regulator regulator;
   private Sensor sensor;
   private MovingState currentState;
-  private MovingState acceleratingState;
-  private MovingState deacceleratingState;
+  private final MovingState acceleratingState;
+  private final MovingState deacceleratingState;
   private double x, y;
 
   public Car(boolean isLeadingCar) {
@@ -74,7 +74,7 @@ public class Car implements IMovable {
     wantedSpeed = speed;
   }
 
-  public void updateCurrentSpeed(double speed) {
+  private void updateCurrentSpeed(double speed) {
     this.speed = speed;
   }
 

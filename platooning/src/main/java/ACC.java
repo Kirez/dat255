@@ -1,9 +1,9 @@
-public class ACC implements Runnable {
+class ACC implements Runnable {
 
   private boolean stopFlagged = false;
-  private MotorControl mc;
-  private UltraSonicSensor sensor;
-  private Regulator regulator;
+  private final MotorControl mc;
+  private final UltraSonicSensor sensor;
+  private final Regulator regulator;
   private double distance;
 
   public ACC(MotorControl mc, UltraSonicSensor sensor) {

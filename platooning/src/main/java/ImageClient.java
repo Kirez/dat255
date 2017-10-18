@@ -10,7 +10,7 @@ import java.net.*;
  */
 
 
-public class ImageClient implements Runnable {
+class ImageClient implements Runnable {
     @SuppressWarnings("unused")
     private double xOffset/*, xCenter,yCenter*/;
     private ImageProcessing imgPr;
@@ -25,7 +25,7 @@ public class ImageClient implements Runnable {
 
     }
 
-    public ImageClient() throws IOException {
+    private ImageClient() throws IOException {
         System.out.println("Connecting...");
         clientSocket = new Socket("192.168.43.230", 2223);
         System.out.println("Connected");
@@ -34,7 +34,7 @@ public class ImageClient implements Runnable {
         receive();
     }
 
-    public void receive() {
+    private void receive() {
         stream.open("tcp://192.168.43.230:2222");
         System.out.println("Started");
 
@@ -56,7 +56,7 @@ public class ImageClient implements Runnable {
         }
     }
 
-    public void send() {
+    private void send() {
         try {
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             outToServer.writeBytes(""+ xOffset);

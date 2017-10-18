@@ -1,10 +1,10 @@
 import static java.lang.Thread.interrupted;
 import static java.lang.Thread.sleep;
 
-public class Simulator implements Runnable {
+class Simulator implements Runnable {
 
-  private Car followingCar;
-  private Car leadingCar;
+  private final Car followingCar;
+  private final Car leadingCar;
 
   public Simulator(Car followingCar, Car leadingCar) {
     this.followingCar = followingCar;

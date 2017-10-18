@@ -3,17 +3,13 @@ import static org.opencv.imgproc.Imgproc.fitEllipse;
 
 import com.sun.javafx.geom.Line2D;
 import com.sun.javafx.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
 
 import nu.pattern.OpenCV;
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
@@ -28,7 +24,7 @@ import org.opencv.videoio.VideoCapture;
  * @author Johannes Edenholm
  * @author Rikard Teodorsson
  */
-public class ImageProcessing {
+class ImageProcessing {
 
     static {
         OpenCV.loadShared();
@@ -88,7 +84,7 @@ public class ImageProcessing {
    * @param frame the source matrix
    */
   private ProcessedImage contour(Mat mask, Mat frame) {
-    List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+    List<MatOfPoint> contours = new ArrayList<>();
     Mat hierarchy = new Mat();
     Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_CCOMP,
         Imgproc.CHAIN_APPROX_SIMPLE);
@@ -102,7 +98,7 @@ public class ImageProcessing {
    * @return an arraylist with the circles
    */
   private ProcessedImage matrixToList(List<MatOfPoint> circles, Mat src) {
-    ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
+    ArrayList<ProcessedImage> circleList = new ArrayList<>();
     for (final MatOfPoint circle : circles) {
       Point center = new Point(circle.get(0, 0));
       if (circle.toArray().length < 5) {

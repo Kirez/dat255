@@ -4,7 +4,7 @@
  *
  * @author Hugo Frost
  */
-public interface Steering {
+interface Steering {
 
   /**
    * Write an int to the MOPEDs servo in order to steer.

@@ -18,15 +18,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class CAN {
 
   private static CAN instance;
-  private static String CAN_INTERFACE = "can0";
-  private static String DUMP_COMMAND = "candump";
-  private static String SEND_COMMAND = "cansend";
-  private static String VCU_COMMAND_CAN_ID = "101";
-  private static String VCU_ODOMETER_CAN_ID = "Not known at this time";
-  private static String SCU_ULTRASONIC_CAN_ID = "46C";
+  private static final String CAN_INTERFACE = "can0";
+  private static final String DUMP_COMMAND = "candump";
+  private static final String SEND_COMMAND = "cansend";
+  private static final String VCU_COMMAND_CAN_ID = "101";
+  private static final String VCU_ODOMETER_CAN_ID = "Not known at this time";
+  private static final String SCU_ULTRASONIC_CAN_ID = "46C";
   private static byte motorValue = 0;
   private static byte steerValue = 0;
-  private static long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
+  private static final long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
   private Thread outputWorkerThread;
   private Thread inputWorkerThread;
   private OutputWorker outputWorker;
@@ -104,7 +104,7 @@ public final class CAN {
    * @param frame to be sent
    * @throws InterruptedException from OutputWorker::queueFrame
    */
-  public void sendCANFrame(CANFrame frame) throws InterruptedException {
+  private void sendCANFrame(CANFrame frame) throws InterruptedException {
     outputWorker.queueFrame(frame);
   }
 
@@ -164,17 +164,17 @@ public final class CAN {
    */
   private static class CANFrame {
 
-    private String identity;
-    private double time;
-    private byte[] data;
+    private final String identity;
+    private final double time;
+    private final byte[] data;
 
-    public CANFrame(String identity, double time, byte[] data) {
+    CANFrame(String identity, double time, byte[] data) {
       this.identity = identity;
       this.time = time;
       this.data = data;
     }
 
-    public CANFrame(String identity, byte[] data) {
+    CANFrame(String identity, byte[] data) {
       this(identity, -1, data);
     }
 
@@ -228,15 +228,15 @@ public final class CAN {
    */
   private static class InputWorker implements Runnable {
 
-    private Semaphore odometerQueueLock;
-    private Queue<CANFrame> odometerQueue;
-    private Semaphore usSensorQueueLock;
-    private Queue<CANFrame> usSensorQueue;
+    private final Semaphore odometerQueueLock;
+    private final Queue<CANFrame> odometerQueue;
+    private final Semaphore usSensorQueueLock;
+    private final Queue<CANFrame> usSensorQueue;
     private Process canDumpProcess;
     private InputStream canDumpStandardOutput;
-    public AtomicBoolean stopFlag;
+    final AtomicBoolean stopFlag;
 
-    public InputWorker() {
+    InputWorker() {
       odometerQueueLock = new Semaphore(1);
       odometerQueue = new ArrayDeque<>();
       usSensorQueueLock = new Semaphore(1);
@@ -381,17 +381,17 @@ public final class CAN {
    */
   private static class OutputWorker implements Runnable {
 
-    private Semaphore queueLock;
-    private Queue<CANFrame> frameOutputQueue;
-    public AtomicBoolean stopFlag;
+    private final Semaphore queueLock;
+    private final Queue<CANFrame> frameOutputQueue;
+    final AtomicBoolean stopFlag;
 
-    public OutputWorker() {
+    OutputWorker() {
       queueLock = new Semaphore(1);
       frameOutputQueue = new ArrayDeque<>();
       stopFlag = new AtomicBoolean(false);
     }
 
-    public void queueFrame(CANFrame frame) throws InterruptedException {
+    void queueFrame(CANFrame frame) throws InterruptedException {
       queueLock.acquire();
       frameOutputQueue.add(frame);
       queueLock.release();

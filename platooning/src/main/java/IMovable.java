@@ -6,7 +6,7 @@
  * @author Timmy Truong
  * @author Arvid Wiklund
  */
-public interface IMovable {
+interface IMovable {
 
   /**
    * Read data from the odometer to get the current speed of the MOPED.

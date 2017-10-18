@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+class Main {
   public static void main(String args[]) throws InterruptedException {
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
@@ -21,16 +21,19 @@ public class Main {
         System.out.print("Platooning>");
         String[] tokens = line.split(" ");
         if (tokens.length > 0) {
-          if (tokens[0].equals("start")) {
-            System.out.println("Starting platooning");
-            platooning.start();
-          } else if (tokens[0].equals("stop")) {
-            System.out.println("Stopping platooning");
-            platooning.stop();
-            System.out.println("Platooning stopped");
-            System.exit(0);
-          } else {
-            System.out.println("Unknown command " + tokens[0]);
+          switch (tokens[0]) {
+            case "start":
+              System.out.println("Starting platooning");
+              platooning.start();
+              break;
+            case "stop":
+              System.out.println("Stopping platooning");
+              platooning.stop();
+              System.out.println("Platooning stopped");
+              System.exit(0);
+            default:
+              System.out.println("Unknown command " + tokens[0]);
+              break;
           }
         }
         line = inputReader.readLine();

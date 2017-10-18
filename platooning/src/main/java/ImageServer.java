@@ -1,18 +1,14 @@
-import org.opencv.core.Mat;
-import org.opencv.videoio.VideoCapture;
 import java.io.*;
 import java.net.*;
-
-import java.io.IOException;
 
 /**
  * Created by Macken on 2017-10-06.
  */
-public class ImageServer implements Runnable {
+class ImageServer implements Runnable {
   private ServerSocket welcomeSocket;
   //private Process cameraProcess;
   //private boolean stopFlagged;
-  private ALCRegulator ALCreg;
+  private final ALCRegulator ALCreg;
   private Socket connectionSocket;
 
 
@@ -26,7 +22,7 @@ public class ImageServer implements Runnable {
     System.out.println("hej");
   }
 
-  public void receive() throws IOException {
+  private void receive() throws IOException {
     if (connectionSocket != null) {
       BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
       String offset = inFromClient.readLine();

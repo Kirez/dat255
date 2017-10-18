@@ -1,13 +1,12 @@
 import java.io.IOException;
-import java.io.InputStream;
 
-public class ALC implements Runnable {
+class ALC implements Runnable {
 
   private boolean stopFlagged;
   /*private Process cameraProcess;
   private InputStream cameraStream;
   private int k;*/
-  private ServoControl servo;
+  private final ServoControl servo;
   //private int offsetError;
 
   public ALC(ServoControl servo) {

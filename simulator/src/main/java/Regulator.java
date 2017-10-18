@@ -6,12 +6,12 @@ class Regulator {
   private double v1;
   private double vDes;
   private double accFactor;
-  private double k;
-  private double i;
+  private final double k;
+  private final double i;
   private double i_acc;
-  private double d;
+  private final double d;
   private double lastEr;
-  private int s;
+  private final int s;
 
   Regulator() {
     v1 = 0; /* k = 236; */

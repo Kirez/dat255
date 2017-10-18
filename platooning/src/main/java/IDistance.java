@@ -3,7 +3,7 @@
  * @author Timmy Truong
  * @author Arvid Wiklund
  */
-public interface IDistance {
+interface IDistance {
 
   /**
    * This method reads from sensor and returns data in form of a double
