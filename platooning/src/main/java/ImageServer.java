@@ -36,7 +36,15 @@ public class ImageServer implements Runnable {
     	byte[] send = new byte[300];
     	byte[] receive = new byte[300];
     	
+    	long startTime;
+    	long endTime;
+    	long waitTime;
+    	int hertz = 10;
+    	
     	while(true){
+    		
+    		startTime = System.currentTimeMillis();
+    		
     		DatagramPacket receivePack = new DatagramPacket(receive, receive.length);
     		serverSocket.receive(receivePack);
     		byte[] message = receivePack.getData();
@@ -45,7 +53,7 @@ public class ImageServer implements Runnable {
     		int x = java.nio.ByteBuffer.wrap(message).getInt();
     		System.out.println("Sending to ALC : " + x);
     		
-    		 ALCreg.calcSteering(x);
+    		ALCreg.calcSteering(x);
     		
     		InetAddress IP = receivePack.getAddress();
     		int port = receivePack.getPort();
@@ -53,6 +61,16 @@ public class ImageServer implements Runnable {
     		send = "OK".getBytes();
     		DatagramPacket sendPack = new DatagramPacket(send, send.length, IP, port);
     		serverSocket.send(sendPack);
+    		
+    		//endTime = System.currentTimeMillis();
+    		//if(endTime>1000)
+    		//	endTime = 1000;
+    		//waitTime = 1000 - (endTime - startTime);
+    		
+    		//waitTime /= hertz;
+    		
+    		
+    		//Thread.sleep(waitTime);
     	}
       
  
