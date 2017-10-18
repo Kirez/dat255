@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.1" sequence="9" timestamp="1508318083230" analysisTimestamp="1508318085698" release="">
+  <Project projectName="">
+    <Jar>D:\Dokument\Chalmers\Ar2\DAT255\projekt\dat255</Jar>
+    <SrcDir>D:\Dokument\Chalmers\Ar2\DAT255\projekt\dat255</SrcDir>
+    <SuppressionFilter>
+      <LastVersion value="-1" relOp="NEQ"/>
+    </SuppressionFilter>
+  </Project>
+  <BugInstance type="UPM_UNCALLED_PRIVATE_METHOD" priority="3" rank="20" abbrev="UPM" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ALC">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Class>
+    <Method classname="ALC" name="calcSteering" signature="(I)V" isStatic="false">
+      <SourceLine classname="ALC" start="33" end="35" startBytecode="0" endBytecode="85" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ALC">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Class>
+    <Field classname="ALC" name="offsetError" signature="I" isStatic="false">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Field>
+    <SourceLine classname="ALC" start="16" end="16" startBytecode="16" endBytecode="16" sourcefile="ALC.java" sourcepath="ALC.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ALC">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Class>
+    <Field classname="ALC" name="stopFlagged" signature="Z" isStatic="false">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Field>
+    <SourceLine classname="ALC" start="29" end="29" startBytecode="2" endBytecode="2" sourcefile="ALC.java" sourcepath="ALC.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ALC">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Class>
+    <Field classname="ALC" name="cameraProcess" signature="Ljava/lang/Process;" isStatic="false">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ALC">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Class>
+    <Field classname="ALC" name="cameraStream" signature="Ljava/io/InputStream;" isStatic="false">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="UwF" category="STYLE" last="3" removedByChange="true">
+    <Class classname="AcceleratingStateTest">
+      <SourceLine classname="AcceleratingStateTest" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+    </Class>
+    <Field classname="AcceleratingStateTest" name="acceleratingState" signature="LAcceleratingState;" isStatic="false">
+      <SourceLine classname="AcceleratingStateTest" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+    </Field>
+    <Method classname="AcceleratingStateTest" name="move" signature="()V" isStatic="false">
+      <SourceLine classname="AcceleratingStateTest" start="28" end="32" startBytecode="0" endBytecode="114" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+    </Method>
+    <SourceLine classname="AcceleratingStateTest" start="28" end="28" startBytecode="11" endBytecode="11" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="UwF" category="STYLE" last="3" removedByChange="true">
+    <Class classname="AcceleratingStateTest">
+      <SourceLine classname="AcceleratingStateTest" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+    </Class>
+    <Field classname="AcceleratingStateTest" name="car" signature="LCar;" isStatic="false">
+      <SourceLine classname="AcceleratingStateTest" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+    </Field>
+    <Method classname="AcceleratingStateTest" name="move" signature="()V" isStatic="false">
+      <SourceLine classname="AcceleratingStateTest" start="28" end="32" startBytecode="0" endBytecode="114" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+    </Method>
+    <SourceLine classname="AcceleratingStateTest" start="29" end="29" startBytecode="18" endBytecode="18" sourcefile="AcceleratingStateTest.java" sourcepath="AcceleratingStateTest.java"/>
+  </BugInstance>
+  <BugInstance type="LI_LAZY_INIT_STATIC" priority="2" rank="14" abbrev="LI" category="MT_CORRECTNESS" last="4" removedByChange="true">
+    <Class classname="CAN">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+    <Method classname="CAN" name="getInstance" signature="()LCAN;" isStatic="true">
+      <SourceLine classname="CAN" start="53" end="56" startBytecode="0" endBytecode="7" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Method>
+    <Field classname="CAN" name="instance" signature="LCAN;" isStatic="true" role="FIELD_ON">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Field>
+    <SourceLine classname="CAN" start="53" end="54" startBytecode="0" endBytecode="13" sourcefile="CAN.java" sourcepath="CAN.java"/>
+  </BugInstance>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="1" rank="15" abbrev="ST" category="STYLE" last="2" removedByChange="true">
+    <Class classname="CAN">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+    <Method classname="CAN" name="sendMotorAndSteerValue" signature="(BB)V" isStatic="false">
+      <SourceLine classname="CAN" start="120" end="127" startBytecode="0" endBytecode="149" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Method>
+    <Field classname="CAN" name="motorValue" signature="B" isStatic="true">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Field>
+    <SourceLine classname="CAN" start="125" end="125" startBytecode="32" endBytecode="32" sourcefile="CAN.java" sourcepath="CAN.java"/>
+  </BugInstance>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="1" rank="15" abbrev="ST" category="STYLE" last="2" removedByChange="true">
+    <Class classname="CAN">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+    <Method classname="CAN" name="sendMotorAndSteerValue" signature="(BB)V" isStatic="false">
+      <SourceLine classname="CAN" start="120" end="127" startBytecode="0" endBytecode="149" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Method>
+    <Field classname="CAN" name="steerValue" signature="B" isStatic="true">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Field>
+    <SourceLine classname="CAN" start="126" end="126" startBytecode="36" endBytecode="36" sourcefile="CAN.java" sourcepath="CAN.java"/>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE" last="1" removedByChange="true">
+    <Class classname="CAN$CANFrame">
+      <SourceLine classname="CAN$CANFrame" start="157" end="182" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" last="2" removedByChange="true">
+    <Class classname="CAN$InputWorker">
+      <SourceLine classname="CAN$InputWorker" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+    <Method classname="CAN$InputWorker" name="readFrame" signature="()LCAN$CANFrame;" isStatic="false">
+      <SourceLine classname="CAN$InputWorker" start="246" end="267" startBytecode="0" endBytecode="115" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Method>
+    <LocalVariable name="canInterfaceString" register="6" pc="81" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="CAN$InputWorker" start="254" end="254" startBytecode="79" endBytecode="79" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="canInterfaceString"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N">
+    <Class classname="CAN$InputWorker">
+      <SourceLine classname="CAN$InputWorker" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+    <Method classname="CAN$InputWorker" name="readFrame" signature="()LCAN$CANFrame;" isStatic="false">
+      <SourceLine classname="CAN$InputWorker" start="254" end="279" startBytecode="0" endBytecode="523" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader"/>
+    </Method>
+    <SourceLine classname="CAN$InputWorker" start="255" end="255" startBytecode="14" endBytecode="14" sourcefile="CAN.java" sourcepath="CAN.java"/>
+  </BugInstance>
+  <BugInstance type="NP_IMMEDIATE_DEREFERENCE_OF_READLINE" priority="2" rank="15" abbrev="NP" category="STYLE" last="3" removedByChange="true">
+    <Class classname="CAN$InputWorker">
+      <SourceLine classname="CAN$InputWorker" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+    <Method classname="CAN$InputWorker" name="readFrame" signature="()LCAN$CANFrame;" isStatic="false">
+      <SourceLine classname="CAN$InputWorker" start="254" end="275" startBytecode="0" endBytecode="493" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Method>
+    <SourceLine classname="CAN$InputWorker" start="257" end="257" startBytecode="25" endBytecode="25" sourcefile="CAN.java" sourcepath="CAN.java"/>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE" first="2" last="2" removedByChange="true">
+    <Class classname="CAN$InputWorker">
+      <SourceLine classname="CAN$InputWorker" start="221" end="361" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE" last="1" removedByChange="true">
+    <Class classname="CAN$OutputWorker">
+      <SourceLine classname="CAN$OutputWorker" start="376" end="413" sourcefile="CAN.java" sourcepath="CAN.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ImageClient">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Class>
+    <Field classname="ImageClient" name="xCenter" signature="D" isStatic="false">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Field>
+    <SourceLine classname="ImageClient" start="54" end="54" startBytecode="85" endBytecode="85" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ImageClient">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Class>
+    <Field classname="ImageClient" name="yCenter" signature="D" isStatic="false">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Field>
+    <SourceLine classname="ImageClient" start="55" end="55" startBytecode="96" endBytecode="96" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ImageClient">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Class>
+    <Field classname="ImageClient" name="IPAddress" signature="Ljava/net/InetAddress;" isStatic="false">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="6" removedByChange="true">
+    <Class classname="ImageClient">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Class>
+    <Field classname="ImageClient" name="sendData" signature="[B" isStatic="false">
+      <SourceLine classname="ImageClient" sourcefile="ImageClient.java" sourcepath="ImageClient.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" last="2" removedByChange="true">
+    <Class classname="ImageProcessing">
+      <SourceLine classname="ImageProcessing" sourcefile="ImageProcessing.java" sourcepath="ImageProcessing.java"/>
+    </Class>
+    <Method classname="ImageProcessing" name="getProcessedImage" signature="(Lorg/opencv/core/Mat;)LProcessedImage;" isStatic="false">
+      <SourceLine classname="ImageProcessing" start="63" end="81" startBytecode="0" endBytecode="87" sourcefile="ImageProcessing.java" sourcepath="ImageProcessing.java"/>
+    </Method>
+    <LocalVariable name="duration" register="9" pc="181" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="ImageProcessing" start="80" end="80" startBytecode="179" endBytecode="179" sourcefile="ImageProcessing.java" sourcepath="ImageProcessing.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="duration"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="UPM_UNCALLED_PRIVATE_METHOD" priority="3" rank="20" abbrev="UPM" category="PERFORMANCE" last="1" removedByChange="true">
+    <Class classname="ImageProcessing">
+      <SourceLine classname="ImageProcessing" sourcefile="ImageProcessing.java" sourcepath="ImageProcessing.java"/>
+    </Class>
+    <Method classname="ImageProcessing" name="pathToMat" signature="(Ljava/lang/String;)Lorg/opencv/core/Mat;" isStatic="false">
+      <SourceLine classname="ImageProcessing" start="208" end="247" startBytecode="0" endBytecode="461" sourcefile="ImageProcessing.java" sourcepath="ImageProcessing.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N">
+    <Class classname="ImageServer">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Class>
+    <Method classname="ImageServer" name="receive" signature="()V" isStatic="false">
+      <SourceLine classname="ImageServer" start="30" end="39" startBytecode="0" endBytecode="185" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader"/>
+    </Method>
+    <SourceLine classname="ImageServer" start="31" end="31" startBytecode="22" endBytecode="22" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+  </BugInstance>
+  <BugInstance type="NP_DEREFERENCE_OF_READLINE_VALUE" priority="2" rank="15" abbrev="NP" category="STYLE" last="3" removedByChange="true">
+    <Class classname="ImageServer">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Class>
+    <Method classname="ImageServer" name="receive" signature="()V" isStatic="false">
+      <SourceLine classname="ImageServer" start="32" end="37" startBytecode="0" endBytecode="141" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Method>
+    <LocalVariable name="offset" register="2" pc="56" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <SourceLine classname="ImageServer" start="35" end="35" startBytecode="57" endBytecode="57" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="7" removedByChange="true">
+    <Class classname="ImageServer">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Class>
+    <Field classname="ImageServer" name="cameraProcess" signature="Ljava/lang/Process;" isStatic="false">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Field>
+    <SourceLine classname="ImageServer" start="23" end="23" startBytecode="28" endBytecode="28" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="7" removedByChange="true">
+    <Class classname="ImageServer">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Class>
+    <Field classname="ImageServer" name="stopFlagged" signature="Z" isStatic="false">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="UwF" category="STYLE" first="8" last="8" removedByChange="true">
+    <Class classname="ImageServer">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Class>
+    <Field classname="ImageServer" name="connectionSocket" signature="Ljava/net/Socket;" isStatic="false">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Field>
+    <Method classname="ImageServer" name="receive" signature="()V" isStatic="false">
+      <SourceLine classname="ImageServer" start="32" end="40" startBytecode="0" endBytecode="171" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+    </Method>
+    <SourceLine classname="ImageServer" start="32" end="32" startBytecode="12" endBytecode="12" sourcefile="ImageServer.java" sourcepath="ImageServer.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N">
+    <Class classname="Main">
+      <SourceLine classname="Main" sourcefile="Main.java" sourcepath="Main.java"/>
+    </Class>
+    <Method classname="Main" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="Main" start="7" end="41" startBytecode="0" endBytecode="579" sourcefile="Main.java" sourcepath="Main.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader"/>
+    </Method>
+    <SourceLine classname="Main" start="15" end="15" startBytecode="79" endBytecode="79" sourcefile="Main.java" sourcepath="Main.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="MotorControl">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java"/>
+    </Class>
+    <Field classname="MotorControl" name="i" signature="I" isStatic="false">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java"/>
+    </Field>
+    <SourceLine classname="MotorControl" start="3" end="3" startBytecode="6" endBytecode="6" sourcefile="MotorControl.java" sourcepath="MotorControl.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="MotorControl">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java"/>
+    </Class>
+    <Field classname="MotorControl" name="lastWasForward" signature="Z" isStatic="false">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java"/>
+    </Field>
+    <SourceLine classname="MotorControl" start="5" end="5" startBytecode="16" endBytecode="16" sourcefile="MotorControl.java" sourcepath="MotorControl.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" last="0" removedByChange="true">
+    <Class classname="Platooning">
+      <SourceLine classname="Platooning" sourcefile="Platooning.java" sourcepath="Platooning.java"/>
+    </Class>
+    <Method classname="Platooning" name="start" signature="()V" isStatic="false">
+      <SourceLine classname="Platooning" start="24" end="39" startBytecode="0" endBytecode="203" sourcefile="Platooning.java" sourcepath="Platooning.java"/>
+    </Method>
+    <SourceLine classname="Platooning" start="31" end="31" startBytecode="39" endBytecode="39" sourcefile="Platooning.java" sourcepath="Platooning.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" last="0" removedByChange="true">
+    <Class classname="Platooning">
+      <SourceLine classname="Platooning" sourcefile="Platooning.java" sourcepath="Platooning.java"/>
+    </Class>
+    <Method classname="Platooning" name="stop" signature="()V" isStatic="false">
+      <SourceLine classname="Platooning" start="42" end="82" startBytecode="0" endBytecode="512" sourcefile="Platooning.java" sourcepath="Platooning.java"/>
+    </Method>
+    <SourceLine classname="Platooning" start="78" end="78" startBytecode="219" endBytecode="219" sourcefile="Platooning.java" sourcepath="Platooning.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="Regulator">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java"/>
+    </Class>
+    <Field classname="Regulator" name="accFactor" signature="D" isStatic="false">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="Regulator">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java"/>
+    </Class>
+    <Field classname="Regulator" name="lastSpeed" signature="D" isStatic="false">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="Regulator">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java"/>
+    </Class>
+    <Field classname="Regulator" name="vDes" signature="D" isStatic="false">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="DM_FP_NUMBER_CTOR" priority="3" rank="20" abbrev="Bx" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="SteeringSim">
+      <SourceLine classname="SteeringSim" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Class>
+    <Method classname="SteeringSim" name="update" signature="(Ljava/util/Observable;Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="SteeringSim" start="34" end="50" startBytecode="0" endBytecode="325" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Method>
+    <Method classname="java.lang.Double" name="&lt;init&gt;" signature="(Ljava/lang/String;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.Double"/>
+    </Method>
+    <Method classname="java.lang.Double" name="valueOf" signature="(Ljava/lang/String;)Ljava/lang/Double;" isStatic="true" role="SHOULD_CALL">
+      <SourceLine classname="java.lang.Double"/>
+    </Method>
+    <SourceLine classname="SteeringSim" start="35" end="35" startBytecode="19" endBytecode="19" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+  </BugInstance>
+  <BugInstance type="SC_START_IN_CTOR" priority="3" rank="17" abbrev="SC" category="MT_CORRECTNESS" last="5" removedByChange="true">
+    <Class classname="SteeringSim">
+      <SourceLine classname="SteeringSim" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Class>
+    <Method classname="SteeringSim" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="SteeringSim" start="24" end="30" startBytecode="0" endBytecode="127" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Method>
+    <Method classname="java.lang.Thread" name="start" signature="()V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.Thread"/>
+    </Method>
+    <SourceLine classname="SteeringSim" start="29" end="29" startBytecode="44" endBytecode="44" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE" last="1" removedByChange="true">
+    <Class classname="SteeringSim$FrontCar">
+      <SourceLine classname="SteeringSim$FrontCar" start="58" end="87" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" last="2" removedByChange="true">
+    <Class classname="SteeringSim$FrontCar">
+      <SourceLine classname="SteeringSim$FrontCar" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Class>
+    <Field classname="SteeringSim$FrontCar" name="r" signature="Ljava/util/Random;" isStatic="false">
+      <SourceLine classname="SteeringSim$FrontCar" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+    </Field>
+    <SourceLine classname="SteeringSim$FrontCar" start="61" end="61" startBytecode="22" endBytecode="22" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="12">
+    <MissingClass>nu.pattern.OpenCV</MissingClass>
+    <MissingClass>org.junit.Assert</MissingClass>
+    <MissingClass>org.opencv.core.Core</MissingClass>
+    <MissingClass>org.opencv.core.Mat</MissingClass>
+    <MissingClass>org.opencv.core.MatOfPoint</MissingClass>
+    <MissingClass>org.opencv.core.MatOfPoint2f</MissingClass>
+    <MissingClass>org.opencv.core.Point</MissingClass>
+    <MissingClass>org.opencv.core.RotatedRect</MissingClass>
+    <MissingClass>org.opencv.core.Scalar</MissingClass>
+    <MissingClass>org.opencv.core.Size</MissingClass>
+    <MissingClass>org.opencv.imgproc.Imgproc</MissingClass>
+    <MissingClass>org.opencv.videoio.VideoCapture</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Wed, 18 Oct 2017 11:14:43 +0200" total_classes="31" referenced_classes="81" total_bugs="3" total_size="1095" num_packages="1" java_version="1.8.0_144" vm_version="25.144-b01" cpu_seconds="5.11" clock_seconds="113.64" peak_mbytes="588.08" alloc_mbytes="1804.50" gc_seconds="0.00" priority_1="3">
+    <PackageStats package="" total_bugs="3" total_types="31" total_size="1095" priority_1="3">
+      <ClassStats class="ACC" sourceFile="ACC.java" interface="false" size="30" bugs="0"/>
+      <ClassStats class="ALC" sourceFile="ALC.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="ALCRegulator" sourceFile="ALCRegulator.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="AcceleratingState" sourceFile="AcceleratingState.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="AcceleratingStateTest" sourceFile="AcceleratingStateTest.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="CAN" sourceFile="CAN.java" interface="false" size="110" bugs="0"/>
+      <ClassStats class="CAN$CANFrame" sourceFile="CAN.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="CAN$InputWorker" sourceFile="CAN.java" interface="false" size="104" bugs="1" priority_1="1"/>
+      <ClassStats class="CAN$OutputWorker" sourceFile="CAN.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="Car" sourceFile="Car.java" interface="false" size="93" bugs="0"/>
+      <ClassStats class="CarTest" sourceFile="CarTest.java" interface="false" size="65" bugs="0"/>
+      <ClassStats class="DeacceleratingState" sourceFile="DeacceleratingState.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="DeacceleratingStateTest" sourceFile="DeacceleratingStateTest.java" interface="false" size="40" bugs="0"/>
+      <ClassStats class="IDistance" sourceFile="IDistance.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="IMovable" sourceFile="IMovable.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="ImageClient" sourceFile="ImageClient.java" interface="false" size="40" bugs="0"/>
+      <ClassStats class="ImageProcessing" sourceFile="ImageProcessing.java" interface="false" size="89" bugs="0"/>
+      <ClassStats class="ImageServer" sourceFile="ImageServer.java" interface="false" size="35" bugs="1" priority_1="1"/>
+      <ClassStats class="Main" sourceFile="Main.java" interface="false" size="33" bugs="1" priority_1="1"/>
+      <ClassStats class="MotorControl" sourceFile="MotorControl.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="MovingState" sourceFile="MovingState.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="Platooning" sourceFile="Platooning.java" interface="false" size="61" bugs="0"/>
+      <ClassStats class="ProcessedImage" sourceFile="ProcessedImage.java" interface="false" size="28" bugs="0"/>
+      <ClassStats class="Regulator" sourceFile="Regulator.java" interface="false" size="40" bugs="0"/>
+      <ClassStats class="Sensor" sourceFile="Sensor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="ServoControl" sourceFile="ServoControl.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="Simulator" sourceFile="Simulator.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="Steering" sourceFile="Steering.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="SteeringSim" sourceFile="SteeringSim.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="SteeringSim$FrontCar" sourceFile="SteeringSim.java" interface="false" size="27" bugs="0"/>
+      <ClassStats class="UltraSonicSensor" sourceFile="UltraSonicSensor.java" interface="false" size="27" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="302" invocations="503" avgMicrosecondsPerInvocation="601" maxMicrosecondsPerInvocation="1899" standardDeviationMircosecondsPerInvocation="258"/>
+      <ClassProfile name="edu.umd.cs.findbugs.FindBugs2" totalMilliseconds="185" invocations="2" avgMicrosecondsPerInvocation="92794" maxMicrosecondsPerInvocation="156041" standardDeviationMircosecondsPerInvocation="63247"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="102" invocations="500" avgMicrosecondsPerInvocation="205" maxMicrosecondsPerInvocation="4213" standardDeviationMircosecondsPerInvocation="371"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="38" invocations="149" avgMicrosecondsPerInvocation="258" maxMicrosecondsPerInvocation="4557" standardDeviationMircosecondsPerInvocation="546"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="33" invocations="160" avgMicrosecondsPerInvocation="207" maxMicrosecondsPerInvocation="2414" standardDeviationMircosecondsPerInvocation="359"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="31" invocations="81" avgMicrosecondsPerInvocation="394" maxMicrosecondsPerInvocation="5080" standardDeviationMircosecondsPerInvocation="737"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="28" invocations="149" avgMicrosecondsPerInvocation="189" maxMicrosecondsPerInvocation="1906" standardDeviationMircosecondsPerInvocation="296"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="25" invocations="160" avgMicrosecondsPerInvocation="160" maxMicrosecondsPerInvocation="1978" standardDeviationMircosecondsPerInvocation="291"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="24" invocations="81" avgMicrosecondsPerInvocation="299" maxMicrosecondsPerInvocation="2783" standardDeviationMircosecondsPerInvocation="437"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="24" invocations="277" avgMicrosecondsPerInvocation="87" maxMicrosecondsPerInvocation="772" standardDeviationMircosecondsPerInvocation="108"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="23" invocations="149" avgMicrosecondsPerInvocation="157" maxMicrosecondsPerInvocation="3443" standardDeviationMircosecondsPerInvocation="360"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="22" invocations="149" avgMicrosecondsPerInvocation="151" maxMicrosecondsPerInvocation="1100" standardDeviationMircosecondsPerInvocation="163"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="16" invocations="450" avgMicrosecondsPerInvocation="36" maxMicrosecondsPerInvocation="589" standardDeviationMircosecondsPerInvocation="52"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="16" invocations="109" avgMicrosecondsPerInvocation="148" maxMicrosecondsPerInvocation="1248" standardDeviationMircosecondsPerInvocation="212"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1508316393899" release="" codeSize="1145" numClasses="31"/>
+    <AppVersion sequence="1" timestamp="1508316601551" release="" codeSize="1143" numClasses="31"/>
+    <AppVersion sequence="2" timestamp="1508316784484" release="" codeSize="1112" numClasses="31"/>
+    <AppVersion sequence="3" timestamp="1508317059864" release="" codeSize="1104" numClasses="31"/>
+    <AppVersion sequence="4" timestamp="1508317254092" release="" codeSize="1110" numClasses="31"/>
+    <AppVersion sequence="5" timestamp="1508317438075" release="" codeSize="1110" numClasses="31"/>
+    <AppVersion sequence="6" timestamp="1508317595541" release="" codeSize="1111" numClasses="31"/>
+    <AppVersion sequence="7" timestamp="1508317890388" release="" codeSize="1096" numClasses="31"/>
+    <AppVersion sequence="8" timestamp="1508317958095" release="" codeSize="1094" numClasses="31"/>
+  </History>
+</BugCollection>
