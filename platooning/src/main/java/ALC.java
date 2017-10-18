@@ -11,7 +11,7 @@ public class ALC implements Runnable {
   private int offsetError;
 
   public ALC(ServoControl servo) {
-    k = 1;
+    k = 10;
     this.servo = servo;
     offsetError = 0;
   }
@@ -30,6 +30,12 @@ public class ALC implements Runnable {
   }
 
   private void calcSteering(int offset) {
+	System.out.println(offset);
+	if (offset > 100) {
+		offset = 100;
+	} else if (offset < -100) {
+		offset = -100;
+	}
     int angle = k * offset;
     servo.steer(angle);
   }
