@@ -383,10 +383,14 @@ public final class CAN {
     private CANFrame getCombinedFrame() throws InterruptedException {
       byte motor, steer;
 
+      boolean motorSet = false;
+      boolean steerSet = false;
+
       motorQueueLock.acquire();
 
       if (!motorValueQueue.isEmpty()) {
         motor = motorValueQueue.poll();
+        motorSet = true;
       } else {
         motor = motorValue;
       }
@@ -396,13 +400,14 @@ public final class CAN {
 
       if (!steerValueQueue.isEmpty()) {
         steer = steerValueQueue.poll();
+        steerSet = true;
       } else {
         steer = steerValue;
       }
 
       steerQueueLock.release();
 
-      if (motor == motorValue && steer == steerValue) {
+      if (!motorSet && !steerSet) {
         return null;
       }
 
