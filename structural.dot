@@ -1,0 +1,59 @@
+graph overview {
+  compound=true;
+   
+  subgraph cluster0 {
+    label="MOPED";
+    CANBUS [shape=box, label="CAN Bus"];    
+
+    subgraph cluster1 {
+      label="TCU"
+      Camera [shape=box];
+    
+     subgraph cluster2 {
+        label="Software";
+        UICom -- ACC;
+        UICom -- ALC;
+        UICom -- CAN
+    
+        ACC -- CAN;
+        ALC -- CAN;
+      }
+    }
+
+    subgraph cluster3 {
+      label="VCU";
+      Motor [shape=box];
+      Steering [shape=box];  
+      Odometer [shape=box];
+    }
+  
+    subgraph cluster4 {
+      label="SCU";
+      Sensor [shape=box];
+    }
+  }
+  
+
+  subgraph cluster6 {
+    label="Client"
+    subgraph cluster5 {
+      label="Software";
+      UI;
+      OpenCV;
+    }  
+  }
+  
+
+  Access [shape=box, label="Local Area Network"]
+ 
+  UI -- Access
+  UICom -- Access;
+  ALC -- Camera;
+  ALC -- Access;
+  OpenCV -- Access;
+  
+  CAN -- CANBUS;
+  CANBUS -- Motor;
+  CANBUS -- Steering;
+  CANBUS -- Sensor;
+}
