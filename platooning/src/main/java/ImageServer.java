@@ -1,9 +1,7 @@
-import org.opencv.core.Mat;
-import org.opencv.videoio.VideoCapture;
-import java.io.*;
-import java.net.*;
-
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 /**
  * Created by Macken on 2017-10-06.
