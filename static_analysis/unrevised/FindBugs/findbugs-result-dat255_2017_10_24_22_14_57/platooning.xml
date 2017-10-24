@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://findbugs.sourceforge.net/xsl/default.xsl"?>
+
+<BugCollection version="3.0.1" sequence="0" timestamp="1508875853736" analysisTimestamp="1508875852753" release="">
+  <Project projectName="dat255[platooning]">
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/ALCRegulator.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/Steering.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/SteeringSim$FrontCar.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN$InputWorker.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/ImageServer.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/imageClient/ProcessedImage.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/imageClient/ImageClient.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/imageClient/ImageProcessing.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN$CANFrame.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/Platooning.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/UltraSonicSensor.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/ACC.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/Regulator.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/Main.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/ALC.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN$OutputWorker.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/ServoControl.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/SteeringSim.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/MotorControl.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/IDistance.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/platooning/target/classes/IMovable.class</Jar>
+    <AuxClasspathEntry>/home/linus/Documents/DAT255/dat255/platooning/target/classes</AuxClasspathEntry>
+    <SrcDir>/home/linus/Documents/DAT255/dat255/platooning/src/main/java</SrcDir>
+  </Project>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="38357032251948d3dd413ab147226c57" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: ALC.offsetError</LongMessage>
+    <Class classname="ALC" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>In class ALC</Message>
+    </Class>
+    <Field classname="ALC" name="offsetError" signature="I" isStatic="false" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>Field ALC.offsetError</Message>
+    </Field>
+    <SourceLine classname="ALC" primary="true" start="16" end="16" startBytecode="17" endBytecode="17" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+      <Message>At ALC.java:[line 16]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="e5f8202a3ffef78e3b0fc67e5aa656d8" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: ALC.stopFlagged</LongMessage>
+    <Class classname="ALC" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>In class ALC</Message>
+    </Class>
+    <Field classname="ALC" name="stopFlagged" signature="Z" isStatic="false" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>Field ALC.stopFlagged</Message>
+    </Field>
+    <SourceLine classname="ALC" primary="true" start="29" end="29" startBytecode="2" endBytecode="2" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+      <Message>At ALC.java:[line 29]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="ab15d616f4e169dea94d5742e887ce6b" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: ALC.cameraProcess</LongMessage>
+    <Class classname="ALC" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>In class ALC</Message>
+    </Class>
+    <Field classname="ALC" name="cameraProcess" signature="Ljava/lang/Process;" isStatic="false" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>Field ALC.cameraProcess</Message>
+    </Field>
+    <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java" synthetic="true">
+      <Message>In ALC.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="a8f2c5b7c9bf8f6c021f2434c2af0b5b" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: ALC.cameraStream</LongMessage>
+    <Class classname="ALC" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>In class ALC</Message>
+    </Class>
+    <Field classname="ALC" name="cameraStream" signature="Ljava/io/InputStream;" isStatic="false" primary="true">
+      <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java">
+        <Message>In ALC.java</Message>
+      </SourceLine>
+      <Message>Field ALC.cameraStream</Message>
+    </Field>
+    <SourceLine classname="ALC" sourcefile="ALC.java" sourcepath="ALC.java" relSourcepath="ALC.java" synthetic="true">
+      <Message>In ALC.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="1" rank="15" abbrev="ST" category="STYLE" instanceHash="1b4d4a4c5845755de19ab2d919d22864" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Write to static field from instance method</ShortMessage>
+    <LongMessage>Write to static field CAN.motorValue from instance method CAN.sendMotorValue(byte)</LongMessage>
+    <Class classname="CAN" primary="true">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>In class CAN</Message>
+    </Class>
+    <Method classname="CAN" name="sendMotorValue" signature="(B)V" isStatic="false" primary="true">
+      <SourceLine classname="CAN" start="123" end="125" startBytecode="0" endBytecode="72" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java"/>
+      <Message>In method CAN.sendMotorValue(byte)</Message>
+    </Method>
+    <Field classname="CAN" name="motorValue" signature="B" isStatic="true" primary="true">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>Field CAN.motorValue</Message>
+    </Field>
+    <SourceLine classname="CAN" primary="true" start="124" end="124" startBytecode="9" endBytecode="9" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 124]</Message>
+    </SourceLine>
+    <SourceLine classname="CAN" primary="true" start="124" end="124" startBytecode="9" endBytecode="9" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 124]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="1" rank="15" abbrev="ST" category="STYLE" instanceHash="84a9579b7bb1b1618c010627b3a4f485" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Write to static field from instance method</ShortMessage>
+    <LongMessage>Write to static field CAN.steerValue from instance method CAN.sendSteerValue(byte)</LongMessage>
+    <Class classname="CAN" primary="true">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>In class CAN</Message>
+    </Class>
+    <Method classname="CAN" name="sendSteerValue" signature="(B)V" isStatic="false" primary="true">
+      <SourceLine classname="CAN" start="136" end="138" startBytecode="0" endBytecode="72" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java"/>
+      <Message>In method CAN.sendSteerValue(byte)</Message>
+    </Method>
+    <Field classname="CAN" name="steerValue" signature="B" isStatic="true" primary="true">
+      <SourceLine classname="CAN" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>Field CAN.steerValue</Message>
+    </Field>
+    <SourceLine classname="CAN" primary="true" start="137" end="137" startBytecode="9" endBytecode="9" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 137]</Message>
+    </SourceLine>
+    <SourceLine classname="CAN" primary="true" start="137" end="137" startBytecode="9" endBytecode="9" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 137]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE" instanceHash="9bea0ec07bb890ca7bd8dad75499e924" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Should be a static inner class</ShortMessage>
+    <LongMessage>Should CAN$CANFrame be a _static_ inner class?</LongMessage>
+    <Class classname="CAN$CANFrame" primary="true">
+      <SourceLine classname="CAN$CANFrame" start="144" end="169" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>At CAN.java:[lines 144-169]</Message>
+      </SourceLine>
+      <Message>In class CAN$CANFrame</Message>
+    </Class>
+    <SourceLine classname="CAN$CANFrame" start="144" end="169" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java" synthetic="true">
+      <Message>At CAN.java:[lines 144-169]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" instanceHash="887a4ab8122ca5797e8b64b84cc5d354" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="563">
+    <ShortMessage>Dead store to local variable</ShortMessage>
+    <LongMessage>Dead store to canInterfaceString in CAN$InputWorker.readFrame()</LongMessage>
+    <Class classname="CAN$InputWorker" primary="true">
+      <SourceLine classname="CAN$InputWorker" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>In class CAN$InputWorker</Message>
+    </Class>
+    <Method classname="CAN$InputWorker" name="readFrame" signature="()LCAN$CANFrame;" isStatic="false" primary="true">
+      <SourceLine classname="CAN$InputWorker" start="233" end="254" startBytecode="0" endBytecode="117" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java"/>
+      <Message>In method CAN$InputWorker.readFrame()</Message>
+    </Method>
+    <LocalVariable name="canInterfaceString" register="6" pc="81" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named canInterfaceString</Message>
+    </LocalVariable>
+    <SourceLine classname="CAN$InputWorker" primary="true" start="241" end="241" startBytecode="79" endBytecode="79" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 241]</Message>
+    </SourceLine>
+    <SourceLine classname="CAN$InputWorker" primary="true" start="241" end="241" startBytecode="79" endBytecode="79" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 241]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="canInterfaceString"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" instanceHash="cc8fec477d6ac564f7343f7f313f0726" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Reliance on default encoding</ShortMessage>
+    <LongMessage>Found reliance on default encoding in CAN$InputWorker.readFrame(): new java.io.InputStreamReader(InputStream)</LongMessage>
+    <Class classname="CAN$InputWorker" primary="true">
+      <SourceLine classname="CAN$InputWorker" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>In class CAN$InputWorker</Message>
+    </Class>
+    <Method classname="CAN$InputWorker" name="readFrame" signature="()LCAN$CANFrame;" isStatic="false" primary="true">
+      <SourceLine classname="CAN$InputWorker" start="233" end="254" startBytecode="0" endBytecode="520" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java"/>
+      <Message>In method CAN$InputWorker.readFrame()</Message>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+      <Message>Called method new java.io.InputStreamReader(InputStream)</Message>
+    </Method>
+    <SourceLine classname="CAN$InputWorker" primary="true" start="234" end="234" startBytecode="14" endBytecode="14" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 234]</Message>
+    </SourceLine>
+    <SourceLine classname="CAN$InputWorker" primary="true" start="234" end="234" startBytecode="14" endBytecode="14" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 234]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="NP_IMMEDIATE_DEREFERENCE_OF_READLINE" priority="2" rank="15" abbrev="NP" category="STYLE" instanceHash="95f272c6a7704a9bf4537615c720d212" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="476">
+    <ShortMessage>Immediate dereference of the result of readLine()</ShortMessage>
+    <LongMessage>Immediate dereference of the result of readLine() in CAN$InputWorker.readFrame()</LongMessage>
+    <Class classname="CAN$InputWorker" primary="true">
+      <SourceLine classname="CAN$InputWorker" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+        <Message>In CAN.java</Message>
+      </SourceLine>
+      <Message>In class CAN$InputWorker</Message>
+    </Class>
+    <Method classname="CAN$InputWorker" name="readFrame" signature="()LCAN$CANFrame;" isStatic="false" primary="true">
+      <SourceLine classname="CAN$InputWorker" start="233" end="254" startBytecode="0" endBytecode="520" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java"/>
+      <Message>In method CAN$InputWorker.readFrame()</Message>
+    </Method>
+    <SourceLine classname="CAN$InputWorker" primary="true" start="236" end="236" startBytecode="25" endBytecode="25" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 236]</Message>
+    </SourceLine>
+    <SourceLine classname="CAN$InputWorker" primary="true" start="236" end="236" startBytecode="25" endBytecode="25" sourcefile="CAN.java" sourcepath="CAN.java" relSourcepath="CAN.java">
+      <Message>At CAN.java:[line 236]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" instanceHash="f610673a61be31a31f62898b70dc4ff9" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="563">
+    <ShortMessage>Dead store to local variable</ShortMessage>
+    <LongMessage>Dead store to send in ImageServer.run()</LongMessage>
+    <Class classname="ImageServer" primary="true">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+        <Message>In ImageServer.java</Message>
+      </SourceLine>
+      <Message>In class ImageServer</Message>
+    </Class>
+    <Method classname="ImageServer" name="run" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="ImageServer" start="34" end="84" startBytecode="0" endBytecode="74" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java"/>
+      <Message>In method ImageServer.run()</Message>
+    </Method>
+    <LocalVariable name="send" register="2" pc="25" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named send</Message>
+    </LocalVariable>
+    <SourceLine classname="ImageServer" primary="true" start="36" end="36" startBytecode="24" endBytecode="24" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+      <Message>At ImageServer.java:[line 36]</Message>
+    </SourceLine>
+    <SourceLine classname="ImageServer" primary="true" start="36" end="36" startBytecode="24" endBytecode="24" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+      <Message>At ImageServer.java:[line 36]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.DEAD_OBJECT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.KILLED_BY_SUBSEQUENT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="send"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" instanceHash="24f98ed698eba7a1350ee075ab1b0d3" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Reliance on default encoding</ShortMessage>
+    <LongMessage>Found reliance on default encoding in ImageServer.run(): String.getBytes()</LongMessage>
+    <Class classname="ImageServer" primary="true">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+        <Message>In ImageServer.java</Message>
+      </SourceLine>
+      <Message>In class ImageServer</Message>
+    </Class>
+    <Method classname="ImageServer" name="run" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="ImageServer" start="34" end="84" startBytecode="0" endBytecode="457" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java"/>
+      <Message>In method ImageServer.run()</Message>
+    </Method>
+    <Method classname="java.lang.String" name="getBytes" signature="()[B" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String" start="958" end="958" startBytecode="0" endBytecode="37" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+      <Message>Called method String.getBytes()</Message>
+    </Method>
+    <SourceLine classname="ImageServer" primary="true" start="61" end="61" startBytecode="126" endBytecode="126" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+      <Message>At ImageServer.java:[line 61]</Message>
+    </SourceLine>
+    <SourceLine classname="ImageServer" primary="true" start="61" end="61" startBytecode="126" endBytecode="126" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+      <Message>At ImageServer.java:[line 61]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="bc00326f5a492b3a7e7806f90bee018c" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: ImageServer.cameraProcess</LongMessage>
+    <Class classname="ImageServer" primary="true">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+        <Message>In ImageServer.java</Message>
+      </SourceLine>
+      <Message>In class ImageServer</Message>
+    </Class>
+    <Field classname="ImageServer" name="cameraProcess" signature="Ljava/lang/Process;" isStatic="false" primary="true">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+        <Message>In ImageServer.java</Message>
+      </SourceLine>
+      <Message>Field ImageServer.cameraProcess</Message>
+    </Field>
+    <SourceLine classname="ImageServer" primary="true" start="23" end="23" startBytecode="28" endBytecode="28" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+      <Message>At ImageServer.java:[line 23]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="a008931f09acf7e9685046396812885b" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: ImageServer.stopFlagged</LongMessage>
+    <Class classname="ImageServer" primary="true">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+        <Message>In ImageServer.java</Message>
+      </SourceLine>
+      <Message>In class ImageServer</Message>
+    </Class>
+    <Field classname="ImageServer" name="stopFlagged" signature="Z" isStatic="false" primary="true">
+      <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java">
+        <Message>In ImageServer.java</Message>
+      </SourceLine>
+      <Message>Field ImageServer.stopFlagged</Message>
+    </Field>
+    <SourceLine classname="ImageServer" sourcefile="ImageServer.java" sourcepath="ImageServer.java" relSourcepath="ImageServer.java" synthetic="true">
+      <Message>In ImageServer.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" instanceHash="b34f5194d3686f7950e7b90da9b19df" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Reliance on default encoding</ShortMessage>
+    <LongMessage>Found reliance on default encoding in Main.main(String[]): new java.io.InputStreamReader(InputStream)</LongMessage>
+    <Class classname="Main" primary="true">
+      <SourceLine classname="Main" sourcefile="Main.java" sourcepath="Main.java" relSourcepath="Main.java">
+        <Message>In Main.java</Message>
+      </SourceLine>
+      <Message>In class Main</Message>
+    </Class>
+    <Method classname="Main" name="main" signature="([Ljava/lang/String;)V" isStatic="true" primary="true">
+      <SourceLine classname="Main" start="7" end="41" startBytecode="0" endBytecode="579" sourcefile="Main.java" sourcepath="Main.java" relSourcepath="Main.java"/>
+      <Message>In method Main.main(String[])</Message>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+      <Message>Called method new java.io.InputStreamReader(InputStream)</Message>
+    </Method>
+    <SourceLine classname="Main" primary="true" start="15" end="15" startBytecode="79" endBytecode="79" sourcefile="Main.java" sourcepath="Main.java" relSourcepath="Main.java">
+      <Message>At Main.java:[line 15]</Message>
+    </SourceLine>
+    <SourceLine classname="Main" primary="true" start="15" end="15" startBytecode="79" endBytecode="79" sourcefile="Main.java" sourcepath="Main.java" relSourcepath="Main.java">
+      <Message>At Main.java:[line 15]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="bf1cd8370c48f58dcf9d4507af9bba13" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: MotorControl.i</LongMessage>
+    <Class classname="MotorControl" primary="true">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java" relSourcepath="MotorControl.java">
+        <Message>In MotorControl.java</Message>
+      </SourceLine>
+      <Message>In class MotorControl</Message>
+    </Class>
+    <Field classname="MotorControl" name="i" signature="I" isStatic="false" primary="true">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java" relSourcepath="MotorControl.java">
+        <Message>In MotorControl.java</Message>
+      </SourceLine>
+      <Message>Field MotorControl.i</Message>
+    </Field>
+    <SourceLine classname="MotorControl" primary="true" start="3" end="3" startBytecode="6" endBytecode="6" sourcefile="MotorControl.java" sourcepath="MotorControl.java" relSourcepath="MotorControl.java">
+      <Message>At MotorControl.java:[line 3]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="764d0a92bcd7527705f96dc083fda11f" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: MotorControl.lastWasForward</LongMessage>
+    <Class classname="MotorControl" primary="true">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java" relSourcepath="MotorControl.java">
+        <Message>In MotorControl.java</Message>
+      </SourceLine>
+      <Message>In class MotorControl</Message>
+    </Class>
+    <Field classname="MotorControl" name="lastWasForward" signature="Z" isStatic="false" primary="true">
+      <SourceLine classname="MotorControl" sourcefile="MotorControl.java" sourcepath="MotorControl.java" relSourcepath="MotorControl.java">
+        <Message>In MotorControl.java</Message>
+      </SourceLine>
+      <Message>Field MotorControl.lastWasForward</Message>
+    </Field>
+    <SourceLine classname="MotorControl" primary="true" start="5" end="5" startBytecode="16" endBytecode="16" sourcefile="MotorControl.java" sourcepath="MotorControl.java" relSourcepath="MotorControl.java">
+      <Message>At MotorControl.java:[line 5]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" instanceHash="89abbc679c447359f7e67246bd51364b" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="382">
+    <ShortMessage>Method invokes System.exit(...)</ShortMessage>
+    <LongMessage>Platooning.start() invokes System.exit(...), which shuts down the entire virtual machine</LongMessage>
+    <Class classname="Platooning" primary="true">
+      <SourceLine classname="Platooning" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java">
+        <Message>In Platooning.java</Message>
+      </SourceLine>
+      <Message>In class Platooning</Message>
+    </Class>
+    <Method classname="Platooning" name="start" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="Platooning" start="24" end="39" startBytecode="0" endBytecode="203" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java"/>
+      <Message>In method Platooning.start()</Message>
+    </Method>
+    <SourceLine classname="Platooning" primary="true" start="31" end="31" startBytecode="39" endBytecode="39" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java">
+      <Message>At Platooning.java:[line 31]</Message>
+    </SourceLine>
+    <SourceLine classname="Platooning" primary="true" start="31" end="31" startBytecode="39" endBytecode="39" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java">
+      <Message>At Platooning.java:[line 31]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" instanceHash="af352d301ee58c0bae01341b0c26946e" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="382">
+    <ShortMessage>Method invokes System.exit(...)</ShortMessage>
+    <LongMessage>Platooning.stop() invokes System.exit(...), which shuts down the entire virtual machine</LongMessage>
+    <Class classname="Platooning" primary="true">
+      <SourceLine classname="Platooning" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java">
+        <Message>In Platooning.java</Message>
+      </SourceLine>
+      <Message>In class Platooning</Message>
+    </Class>
+    <Method classname="Platooning" name="stop" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="Platooning" start="42" end="82" startBytecode="0" endBytecode="512" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java"/>
+      <Message>In method Platooning.stop()</Message>
+    </Method>
+    <SourceLine classname="Platooning" primary="true" start="78" end="78" startBytecode="219" endBytecode="219" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java">
+      <Message>At Platooning.java:[line 78]</Message>
+    </SourceLine>
+    <SourceLine classname="Platooning" primary="true" start="78" end="78" startBytecode="219" endBytecode="219" sourcefile="Platooning.java" sourcepath="Platooning.java" relSourcepath="Platooning.java">
+      <Message>At Platooning.java:[line 78]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="5e92b92808b2ca07906cafc646e4c583" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: Regulator.accFactor</LongMessage>
+    <Class classname="Regulator" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>In class Regulator</Message>
+    </Class>
+    <Field classname="Regulator" name="accFactor" signature="D" isStatic="false" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>Field Regulator.accFactor</Message>
+    </Field>
+    <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java" synthetic="true">
+      <Message>In Regulator.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="c8613b3fff93c6736f1f6f56e84e822c" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: Regulator.lastSpeed</LongMessage>
+    <Class classname="Regulator" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>In class Regulator</Message>
+    </Class>
+    <Field classname="Regulator" name="lastSpeed" signature="D" isStatic="false" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>Field Regulator.lastSpeed</Message>
+    </Field>
+    <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java" synthetic="true">
+      <Message>In Regulator.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="aaf72c7c77384facafd277a6f9543125" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: Regulator.vDes</LongMessage>
+    <Class classname="Regulator" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>In class Regulator</Message>
+    </Class>
+    <Field classname="Regulator" name="vDes" signature="D" isStatic="false" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>Field Regulator.vDes</Message>
+    </Field>
+    <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="Regulator.java" synthetic="true">
+      <Message>In Regulator.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE" instanceHash="f4e765bd9ec9f88ea690668ff1c9ca9c" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Should be a static inner class</ShortMessage>
+    <LongMessage>Should SteeringSim$FrontCar be a _static_ inner class?</LongMessage>
+    <Class classname="SteeringSim$FrontCar" primary="true">
+      <SourceLine classname="SteeringSim$FrontCar" start="58" end="87" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java" relSourcepath="SteeringSim.java">
+        <Message>At SteeringSim.java:[lines 58-87]</Message>
+      </SourceLine>
+      <Message>In class SteeringSim$FrontCar</Message>
+    </Class>
+    <SourceLine classname="SteeringSim$FrontCar" start="58" end="87" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java" relSourcepath="SteeringSim.java" synthetic="true">
+      <Message>At SteeringSim.java:[lines 58-87]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="cd8398c9000ad089970fab37064b01c4" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: SteeringSim$FrontCar.r</LongMessage>
+    <Class classname="SteeringSim$FrontCar" primary="true">
+      <SourceLine classname="SteeringSim$FrontCar" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java" relSourcepath="SteeringSim.java">
+        <Message>In SteeringSim.java</Message>
+      </SourceLine>
+      <Message>In class SteeringSim$FrontCar</Message>
+    </Class>
+    <Field classname="SteeringSim$FrontCar" name="r" signature="Ljava/util/Random;" isStatic="false" primary="true">
+      <SourceLine classname="SteeringSim$FrontCar" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java" relSourcepath="SteeringSim.java">
+        <Message>In SteeringSim.java</Message>
+      </SourceLine>
+      <Message>Field SteeringSim$FrontCar.r</Message>
+    </Field>
+    <SourceLine classname="SteeringSim$FrontCar" primary="true" start="61" end="61" startBytecode="27" endBytecode="27" sourcefile="SteeringSim.java" sourcepath="SteeringSim.java" relSourcepath="SteeringSim.java">
+      <Message>At SteeringSim.java:[line 61]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" instanceHash="95f6daffece9cdbc1719d0adeaefafd3" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="563">
+    <ShortMessage>Dead store to local variable</ShortMessage>
+    <LongMessage>Dead store to sendD in imageClient.ImageClient.send()</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Method classname="imageClient.ImageClient" name="send" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" start="78" end="103" startBytecode="0" endBytecode="58" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java"/>
+      <Message>In method imageClient.ImageClient.send()</Message>
+    </Method>
+    <LocalVariable name="sendD" register="1" pc="6" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named sendD</Message>
+    </LocalVariable>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="78" end="78" startBytecode="5" endBytecode="5" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 78]</Message>
+    </SourceLine>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="78" end="78" startBytecode="5" endBytecode="5" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 78]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.DEAD_OBJECT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.KILLED_BY_SUBSEQUENT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="sendD"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" instanceHash="34e165b90ebe631a0347bbca98af1e9f" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="563">
+    <ShortMessage>Dead store to local variable</ShortMessage>
+    <LongMessage>Dead store to x in imageClient.ImageClient.send()</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Method classname="imageClient.ImageClient" name="send" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" start="78" end="103" startBytecode="0" endBytecode="58" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java"/>
+      <Message>In method imageClient.ImageClient.send()</Message>
+    </Method>
+    <LocalVariable name="x" register="5" pc="57" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named x</Message>
+    </LocalVariable>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="86" end="86" startBytecode="55" endBytecode="55" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 86]</Message>
+    </SourceLine>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="86" end="86" startBytecode="55" endBytecode="55" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 86]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="x"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" instanceHash="fe5ec52124680fdf53d7da2cbee13dca" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Reliance on default encoding</ShortMessage>
+    <LongMessage>Found reliance on default encoding in imageClient.ImageClient.send(): new String(byte[])</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Method classname="imageClient.ImageClient" name="send" signature="()V" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" start="78" end="103" startBytecode="0" endBytecode="322" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java"/>
+      <Message>In method imageClient.ImageClient.send()</Message>
+    </Method>
+    <Method classname="java.lang.String" name="&lt;init&gt;" signature="([B)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String" start="566" end="567" startBytecode="0" endBytecode="36" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+      <Message>Called method new String(byte[])</Message>
+    </Method>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="95" end="95" startBytecode="108" endBytecode="108" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 95]</Message>
+    </SourceLine>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="95" end="95" startBytecode="108" endBytecode="108" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 95]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="9c510b5ce6ac3204abefafe7658a93e2" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: imageClient.ImageClient.xCenter</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Field classname="imageClient.ImageClient" name="xCenter" signature="I" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>Field imageClient.ImageClient.xCenter</Message>
+    </Field>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="61" end="61" startBytecode="103" endBytecode="103" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 61]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="e7a41532e3e6d869c2e6d5960ed7da2c" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: imageClient.ImageClient.yCenter</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Field classname="imageClient.ImageClient" name="yCenter" signature="I" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>Field imageClient.ImageClient.yCenter</Message>
+    </Field>
+    <SourceLine classname="imageClient.ImageClient" primary="true" start="62" end="62" startBytecode="115" endBytecode="115" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+      <Message>At ImageClient.java:[line 62]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="25ca99f12b97c6edbc939d3ae77361ed" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: imageClient.ImageClient.IPAddress</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Field classname="imageClient.ImageClient" name="IPAddress" signature="Ljava/net/InetAddress;" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>Field imageClient.ImageClient.IPAddress</Message>
+    </Field>
+    <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java" synthetic="true">
+      <Message>In ImageClient.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="3941de626b549ebfbd484e470a80d1b1" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: imageClient.ImageClient.clientSocket</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Field classname="imageClient.ImageClient" name="clientSocket" signature="Ljava/net/Socket;" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>Field imageClient.ImageClient.clientSocket</Message>
+    </Field>
+    <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java" synthetic="true">
+      <Message>In ImageClient.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="bf5ed4ed06bd1a844b6c6e1941954e46" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: imageClient.ImageClient.dos</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Field classname="imageClient.ImageClient" name="dos" signature="Ljava/io/DataOutputStream;" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>Field imageClient.ImageClient.dos</Message>
+    </Field>
+    <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java" synthetic="true">
+      <Message>In ImageClient.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="7bbbceba5253a2be760f06b79d3e6ef9" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: imageClient.ImageClient.ostream</LongMessage>
+    <Class classname="imageClient.ImageClient" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageClient</Message>
+    </Class>
+    <Field classname="imageClient.ImageClient" name="ostream" signature="Ljava/io/OutputStream;" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java">
+        <Message>In ImageClient.java</Message>
+      </SourceLine>
+      <Message>Field imageClient.ImageClient.ostream</Message>
+    </Field>
+    <SourceLine classname="imageClient.ImageClient" sourcefile="ImageClient.java" sourcepath="imageClient/ImageClient.java" relSourcepath="imageClient/ImageClient.java" synthetic="true">
+      <Message>In ImageClient.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" instanceHash="e16fa8019d57e7d5f3c3ece485ae937a" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="563">
+    <ShortMessage>Dead store to local variable</ShortMessage>
+    <LongMessage>Dead store to duration in imageClient.ImageProcessing.getProcessedImage(Mat)</LongMessage>
+    <Class classname="imageClient.ImageProcessing" primary="true">
+      <SourceLine classname="imageClient.ImageProcessing" sourcefile="ImageProcessing.java" sourcepath="imageClient/ImageProcessing.java" relSourcepath="imageClient/ImageProcessing.java">
+        <Message>In ImageProcessing.java</Message>
+      </SourceLine>
+      <Message>In class imageClient.ImageProcessing</Message>
+    </Class>
+    <Method classname="imageClient.ImageProcessing" name="getProcessedImage" signature="(Lorg/opencv/core/Mat;)LimageClient/ProcessedImage;" isStatic="false" primary="true">
+      <SourceLine classname="imageClient.ImageProcessing" start="66" end="84" startBytecode="0" endBytecode="87" sourcefile="ImageProcessing.java" sourcepath="imageClient/ImageProcessing.java" relSourcepath="imageClient/ImageProcessing.java"/>
+      <Message>In method imageClient.ImageProcessing.getProcessedImage(Mat)</Message>
+    </Method>
+    <LocalVariable name="duration" register="9" pc="181" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named duration</Message>
+    </LocalVariable>
+    <SourceLine classname="imageClient.ImageProcessing" primary="true" start="83" end="83" startBytecode="179" endBytecode="179" sourcefile="ImageProcessing.java" sourcepath="imageClient/ImageProcessing.java" relSourcepath="imageClient/ImageProcessing.java">
+      <Message>At ImageProcessing.java:[line 83]</Message>
+    </SourceLine>
+    <SourceLine classname="imageClient.ImageProcessing" primary="true" start="83" end="83" startBytecode="179" endBytecode="179" sourcefile="ImageProcessing.java" sourcepath="imageClient/ImageProcessing.java" relSourcepath="imageClient/ImageProcessing.java">
+      <Message>At ImageProcessing.java:[line 83]</Message>
+    </SourceLine>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="duration"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugCategory category="BAD_PRACTICE">
+    <Description>Bad practice</Description>
+  </BugCategory>
+  <BugCategory category="PERFORMANCE">
+    <Description>Performance</Description>
+  </BugCategory>
+  <BugCategory category="STYLE">
+    <Description>Dodgy code</Description>
+  </BugCategory>
+  <BugCategory category="I18N">
+    <Description>Internationalization</Description>
+  </BugCategory>
+  <BugPattern type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" abbrev="ST" category="STYLE">
+    <ShortDescription>Write to static field from instance method</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This instance method writes to a static field. This is tricky to get
+correct if multiple instances are being manipulated,
+and generally bad practice.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="DLS_DEAD_LOCAL_STORE" abbrev="DLS" category="STYLE">
+    <ShortDescription>Dead store to local variable</ShortDescription>
+    <Details><![CDATA[
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables.  Because FindBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="UUF_UNUSED_FIELD" abbrev="UuF" category="PERFORMANCE">
+    <ShortDescription>Unused field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never used.&nbsp; Consider removing it from the class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="SIC_INNER_SHOULD_BE_STATIC" abbrev="SIC" category="PERFORMANCE">
+    <ShortDescription>Should be a static inner class</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This class is an inner class, but does not use its embedded reference
+  to the object which created it.&nbsp; This reference makes the instances
+  of the class larger, and may keep the reference to the creator object
+  alive longer than necessary.&nbsp; If possible, the class should be
+   made static.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="NP_IMMEDIATE_DEREFERENCE_OF_READLINE" abbrev="NP" category="STYLE">
+    <ShortDescription>Immediate dereference of the result of readLine()</ShortDescription>
+    <Details><![CDATA[
+
+  <p> The result of invoking readLine() is immediately dereferenced. If there are no more lines of text
+to read, readLine() will return null and dereferencing that will generate a null pointer exception.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="URF_UNREAD_FIELD" abbrev="UrF" category="PERFORMANCE">
+    <ShortDescription>Unread field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="DM_DEFAULT_ENCODING" abbrev="Dm" category="I18N">
+    <ShortDescription>Reliance on default encoding</ShortDescription>
+    <Details><![CDATA[
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      ]]></Details>
+  </BugPattern>
+  <BugPattern type="DM_EXIT" abbrev="Dm" category="BAD_PRACTICE" cweid="382">
+    <ShortDescription>Method invokes System.exit(...)</ShortDescription>
+    <Details><![CDATA[
+
+  <p> Invoking System.exit shuts down the entire Java virtual machine. This
+   should only been done when it is appropriate. Such calls make it
+   hard or impossible for your code to be invoked by other code.
+   Consider throwing a RuntimeException instead.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="ST">
+    <Description>Misuse of static fields</Description>
+  </BugCode>
+  <BugCode abbrev="NP" cweid="476">
+    <Description>Null pointer dereference</Description>
+  </BugCode>
+  <BugCode abbrev="UuF">
+    <Description>Unused field</Description>
+  </BugCode>
+  <BugCode abbrev="UrF">
+    <Description>Unread field</Description>
+  </BugCode>
+  <BugCode abbrev="Dm">
+    <Description>Dubious method used</Description>
+  </BugCode>
+  <BugCode abbrev="DLS" cweid="563">
+    <Description>Dead local store</Description>
+  </BugCode>
+  <BugCode abbrev="SIC">
+    <Description>Inner class could be made static</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 24 Oct 2017 22:10:52 +0200" total_classes="22" referenced_classes="78" total_bugs="34" total_size="902" num_packages="2" java_version="1.8.0_144" vm_version="25.144-b01" cpu_seconds="46.37" clock_seconds="244.40" peak_mbytes="534.54" alloc_mbytes="725.00" gc_seconds="0.36" priority_2="28" priority_1="6">
+    <FileStats path="ACC.java" bugCount="0" size="30"/>
+    <FileStats path="ALC.java" bugCount="4" size="31" bugHash="25ce19b6be8e2a24652c04db80626453"/>
+    <FileStats path="ALCRegulator.java" bugCount="0" size="12"/>
+    <FileStats path="CAN.java" bugCount="6" size="304" bugHash="2238dba9c7443e1f91014ca1d08ce532"/>
+    <FileStats path="IDistance.java" bugCount="0" size="2"/>
+    <FileStats path="IMovable.java" bugCount="0" size="3"/>
+    <FileStats path="ImageServer.java" bugCount="4" size="33" bugHash="5f73a2ae274167aa90e6dda111cc875d"/>
+    <FileStats path="Main.java" bugCount="1" size="33" bugHash="fa48999a9331b9e6e9c2ad8e96214c97"/>
+    <FileStats path="MotorControl.java" bugCount="2" size="35" bugHash="7c29a3cd18551f6dac394e13c84f860c"/>
+    <FileStats path="Platooning.java" bugCount="2" size="63" bugHash="0a2cafbc506eea87cd3db5e9693ba44b"/>
+    <FileStats path="Regulator.java" bugCount="3" size="43" bugHash="9407c13e60845ba8e5b658387d9a3b5f"/>
+    <FileStats path="ServoControl.java" bugCount="0" size="16"/>
+    <FileStats path="Steering.java" bugCount="0" size="2"/>
+    <FileStats path="SteeringSim.java" bugCount="2" size="62" bugHash="e59d23a176b8ad4ca892bc525b481990"/>
+    <FileStats path="UltraSonicSensor.java" bugCount="0" size="27"/>
+    <FileStats path="imageClient/ImageClient.java" bugCount="9" size="58" bugHash="0b525942db5d305d11d27e419142e831"/>
+    <FileStats path="imageClient/ImageProcessing.java" bugCount="1" size="120" bugHash="a4b1779c328dac78293307b6c6289313"/>
+    <FileStats path="imageClient/ProcessedImage.java" bugCount="0" size="28"/>
+    <PackageStats package="" total_bugs="24" total_types="19" total_size="696" priority_2="19" priority_1="5">
+      <ClassStats class="ACC" sourceFile="ACC.java" interface="false" size="30" bugs="0"/>
+      <ClassStats class="ALC" sourceFile="ALC.java" interface="false" size="31" bugs="4" priority_2="4"/>
+      <ClassStats class="ALCRegulator" sourceFile="ALCRegulator.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="CAN" sourceFile="CAN.java" interface="false" size="100" bugs="2" priority_1="2"/>
+      <ClassStats class="CAN$CANFrame" sourceFile="CAN.java" interface="false" size="23" bugs="1" priority_2="1"/>
+      <ClassStats class="CAN$InputWorker" sourceFile="CAN.java" interface="false" size="103" bugs="3" priority_2="2" priority_1="1"/>
+      <ClassStats class="CAN$OutputWorker" sourceFile="CAN.java" interface="false" size="78" bugs="0"/>
+      <ClassStats class="IDistance" sourceFile="IDistance.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="IMovable" sourceFile="IMovable.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="ImageServer" sourceFile="ImageServer.java" interface="false" size="33" bugs="4" priority_2="3" priority_1="1"/>
+      <ClassStats class="Main" sourceFile="Main.java" interface="false" size="33" bugs="1" priority_1="1"/>
+      <ClassStats class="MotorControl" sourceFile="MotorControl.java" interface="false" size="35" bugs="2" priority_2="2"/>
+      <ClassStats class="Platooning" sourceFile="Platooning.java" interface="false" size="63" bugs="2" priority_2="2"/>
+      <ClassStats class="Regulator" sourceFile="Regulator.java" interface="false" size="43" bugs="3" priority_2="3"/>
+      <ClassStats class="ServoControl" sourceFile="ServoControl.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="Steering" sourceFile="Steering.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="SteeringSim" sourceFile="SteeringSim.java" interface="false" size="32" bugs="0"/>
+      <ClassStats class="SteeringSim$FrontCar" sourceFile="SteeringSim.java" interface="false" size="30" bugs="2" priority_2="2"/>
+      <ClassStats class="UltraSonicSensor" sourceFile="UltraSonicSensor.java" interface="false" size="27" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="imageClient" total_bugs="10" total_types="3" total_size="206" priority_2="9" priority_1="1">
+      <ClassStats class="imageClient.ImageClient" sourceFile="ImageClient.java" interface="false" size="58" bugs="9" priority_2="8" priority_1="1"/>
+      <ClassStats class="imageClient.ImageProcessing" sourceFile="ImageProcessing.java" interface="false" size="120" bugs="1" priority_2="1"/>
+      <ClassStats class="imageClient.ProcessedImage" sourceFile="ProcessedImage.java" interface="false" size="28" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="162" invocations="604" avgMicrosecondsPerInvocation="268" maxMicrosecondsPerInvocation="16427" standardDeviationMircosecondsPerInvocation="1051"/>
+      <ClassProfile name="edu.umd.cs.findbugs.FindBugs2" totalMilliseconds="140" invocations="2" avgMicrosecondsPerInvocation="70449" maxMicrosecondsPerInvocation="75984" standardDeviationMircosecondsPerInvocation="5535"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="49" invocations="90" avgMicrosecondsPerInvocation="552" maxMicrosecondsPerInvocation="26238" standardDeviationMircosecondsPerInvocation="2760"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="47" invocations="101" avgMicrosecondsPerInvocation="467" maxMicrosecondsPerInvocation="15000" standardDeviationMircosecondsPerInvocation="1571"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="41" invocations="554" avgMicrosecondsPerInvocation="75" maxMicrosecondsPerInvocation="27670" standardDeviationMircosecondsPerInvocation="1174"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="40" invocations="78" avgMicrosecondsPerInvocation="518" maxMicrosecondsPerInvocation="3102" standardDeviationMircosecondsPerInvocation="679"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="33" invocations="78" avgMicrosecondsPerInvocation="423" maxMicrosecondsPerInvocation="2905" standardDeviationMircosecondsPerInvocation="595"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="30" invocations="254" avgMicrosecondsPerInvocation="120" maxMicrosecondsPerInvocation="1356" standardDeviationMircosecondsPerInvocation="164"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="23" invocations="78" avgMicrosecondsPerInvocation="305" maxMicrosecondsPerInvocation="16065" standardDeviationMircosecondsPerInvocation="1809"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="23" invocations="101" avgMicrosecondsPerInvocation="234" maxMicrosecondsPerInvocation="1648" standardDeviationMircosecondsPerInvocation="322"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="22" invocations="90" avgMicrosecondsPerInvocation="247" maxMicrosecondsPerInvocation="1740" standardDeviationMircosecondsPerInvocation="336"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="21" invocations="606" avgMicrosecondsPerInvocation="35" maxMicrosecondsPerInvocation="1372" standardDeviationMircosecondsPerInvocation="59"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="18" invocations="90" avgMicrosecondsPerInvocation="210" maxMicrosecondsPerInvocation="2220" standardDeviationMircosecondsPerInvocation="364"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="17" invocations="126" avgMicrosecondsPerInvocation="136" maxMicrosecondsPerInvocation="7276" standardDeviationMircosecondsPerInvocation="646"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="16" invocations="90" avgMicrosecondsPerInvocation="187" maxMicrosecondsPerInvocation="1087" standardDeviationMircosecondsPerInvocation="204"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="13" invocations="67" avgMicrosecondsPerInvocation="198" maxMicrosecondsPerInvocation="1145" standardDeviationMircosecondsPerInvocation="253"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="11" invocations="78" avgMicrosecondsPerInvocation="152" maxMicrosecondsPerInvocation="854" standardDeviationMircosecondsPerInvocation="173"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

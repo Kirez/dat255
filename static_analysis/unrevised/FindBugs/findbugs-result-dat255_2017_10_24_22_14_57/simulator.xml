@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://findbugs.sourceforge.net/xsl/default.xsl"?>
+
+<BugCollection version="3.0.1" sequence="0" timestamp="1508875852751" analysisTimestamp="1508875852323" release="">
+  <Project projectName="dat255[simulator]">
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/Sensor.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/Simulator.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/Car.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/AcceleratingState.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/Regulator.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/MovingState.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/Main.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/classes/DeacceleratingState.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/test-classes/CarTest.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/test-classes/DeacceleratingStateTest.class</Jar>
+    <Jar>/home/linus/Documents/DAT255/dat255/simulator/target/test-classes/AcceleratingStateTest.class</Jar>
+    <AuxClasspathEntry>/home/linus/Documents/DAT255/dat255/simulator/target/classes</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/linus/Documents/DAT255/dat255/simulator/target/test-classes</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/linus/Documents/DAT255/dat255/platooning/target/classes</AuxClasspathEntry>
+    <SrcDir>/home/linus/Documents/DAT255/dat255/simulator/src/main/java</SrcDir>
+    <SrcDir>/home/linus/Documents/DAT255/dat255/simulator/src/test/java</SrcDir>
+  </Project>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" instanceHash="d8fcb7841e036c82f0e5acf6490acc5e" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field</ShortMessage>
+    <LongMessage>Unread field: Regulator.s</LongMessage>
+    <Class classname="Regulator" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="main/java/Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>In class Regulator</Message>
+    </Class>
+    <Field classname="Regulator" name="s" signature="I" isStatic="false" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="main/java/Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>Field Regulator.s</Message>
+    </Field>
+    <SourceLine classname="Regulator" primary="true" start="19" end="19" startBytecode="18" endBytecode="18" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="main/java/Regulator.java">
+      <Message>At Regulator.java:[line 19]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" instanceHash="5e92b92808b2ca07906cafc646e4c583" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Unused field</ShortMessage>
+    <LongMessage>Unused field: Regulator.accFactor</LongMessage>
+    <Class classname="Regulator" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="main/java/Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>In class Regulator</Message>
+    </Class>
+    <Field classname="Regulator" name="accFactor" signature="D" isStatic="false" primary="true">
+      <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="main/java/Regulator.java">
+        <Message>In Regulator.java</Message>
+      </SourceLine>
+      <Message>Field Regulator.accFactor</Message>
+    </Field>
+    <SourceLine classname="Regulator" sourcefile="Regulator.java" sourcepath="Regulator.java" relSourcepath="main/java/Regulator.java" synthetic="true">
+      <Message>In Regulator.java</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugCategory category="PERFORMANCE">
+    <Description>Performance</Description>
+  </BugCategory>
+  <BugPattern type="UUF_UNUSED_FIELD" abbrev="UuF" category="PERFORMANCE">
+    <ShortDescription>Unused field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never used.&nbsp; Consider removing it from the class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="URF_UNREAD_FIELD" abbrev="UrF" category="PERFORMANCE">
+    <ShortDescription>Unread field</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="UuF">
+    <Description>Unused field</Description>
+  </BugCode>
+  <BugCode abbrev="UrF">
+    <Description>Unread field</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 24 Oct 2017 22:07:05 +0200" total_classes="11" referenced_classes="27" total_bugs="2" total_size="332" num_packages="1" java_version="1.8.0_144" vm_version="25.144-b01" cpu_seconds="49.32" clock_seconds="245.09" peak_mbytes="538.77" alloc_mbytes="725.00" gc_seconds="0.44" priority_2="2">
+    <FileStats path="AcceleratingState.java" bugCount="0" size="22"/>
+    <FileStats path="AcceleratingStateTest.java" bugCount="0" size="19"/>
+    <FileStats path="Car.java" bugCount="0" size="90"/>
+    <FileStats path="CarTest.java" bugCount="0" size="65"/>
+    <FileStats path="DeacceleratingState.java" bugCount="0" size="22"/>
+    <FileStats path="DeacceleratingStateTest.java" bugCount="0" size="40"/>
+    <FileStats path="Main.java" bugCount="0" size="11"/>
+    <FileStats path="MovingState.java" bugCount="0" size="4"/>
+    <FileStats path="Regulator.java" bugCount="2" size="27" bugHash="cdafb716fab7bdcc5e0c88833f0ab4f7"/>
+    <FileStats path="Sensor.java" bugCount="0" size="8"/>
+    <FileStats path="Simulator.java" bugCount="0" size="24"/>
+    <PackageStats package="" total_bugs="2" total_types="11" total_size="332" priority_2="2">
+      <ClassStats class="AcceleratingState" sourceFile="AcceleratingState.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="AcceleratingStateTest" sourceFile="AcceleratingStateTest.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="Car" sourceFile="Car.java" interface="false" size="90" bugs="0"/>
+      <ClassStats class="CarTest" sourceFile="CarTest.java" interface="false" size="65" bugs="0"/>
+      <ClassStats class="DeacceleratingState" sourceFile="DeacceleratingState.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="DeacceleratingStateTest" sourceFile="DeacceleratingStateTest.java" interface="false" size="40" bugs="0"/>
+      <ClassStats class="Main" sourceFile="Main.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="MovingState" sourceFile="MovingState.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="Regulator" sourceFile="Regulator.java" interface="false" size="27" bugs="2" priority_2="2"/>
+      <ClassStats class="Sensor" sourceFile="Sensor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="Simulator" sourceFile="Simulator.java" interface="false" size="24" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="96" invocations="361" avgMicrosecondsPerInvocation="267" maxMicrosecondsPerInvocation="29059" standardDeviationMircosecondsPerInvocation="1584"/>
+      <ClassProfile name="edu.umd.cs.findbugs.FindBugs2" totalMilliseconds="66" invocations="2" avgMicrosecondsPerInvocation="33111" maxMicrosecondsPerInvocation="33547" standardDeviationMircosecondsPerInvocation="396"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="33" invocations="128" avgMicrosecondsPerInvocation="260" maxMicrosecondsPerInvocation="23806" standardDeviationMircosecondsPerInvocation="2092"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="15" invocations="63" avgMicrosecondsPerInvocation="242" maxMicrosecondsPerInvocation="8454" standardDeviationMircosecondsPerInvocation="1047"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CheckRelaxingNullnessAnnotation" totalMilliseconds="13" invocations="11" avgMicrosecondsPerInvocation="1207" maxMicrosecondsPerInvocation="12445" standardDeviationMircosecondsPerInvocation="3554"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="12" invocations="27" avgMicrosecondsPerInvocation="463" maxMicrosecondsPerInvocation="3281" standardDeviationMircosecondsPerInvocation="750"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

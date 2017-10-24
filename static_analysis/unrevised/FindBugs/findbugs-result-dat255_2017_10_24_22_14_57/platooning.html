@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+		</style>
+</head>
+<body>
+<h1>FindBugs Report</h1>
+<p>Produced using <a href="http://findbugs.sourceforge.net">FindBugs</a>3.0.1.</p>
+<p>Project: 
+			dat255[platooning]</p>
+<h2>Metrics</h2>
+<p>902 lines of code analyzed,
+	in 22 classes, 
+	in 2 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right">6</td>
+<td align="right">6.65</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">28</td>
+<td align="right">31.04</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>34</b>
+</td>
+<td align="right">
+<b>37.69</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Summary</h2>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_I18N">Internationalization Warnings</a>
+</td>
+<td align="right">4</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</td>
+<td align="right">20</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">8</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>34</b>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h1>Warnings</h1>
+<p>Click on each warning link to see a full description of the issue, and
+	    details of how to resolve it.</p>
+<h2>
+<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DM_EXIT">Method invokes System.exit(...)</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Platooning.start() invokes System.exit(...), which shuts down the entire virtual machine<br/>
+<br/>
+<br/>In file Platooning.java,
+					
+						line 31<br/>In class Platooning<br/>In method Platooning.start()<br/>At Platooning.java:[line 31]<br/>At Platooning.java:[line 31]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DM_EXIT">Method invokes System.exit(...)</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Platooning.stop() invokes System.exit(...), which shuts down the entire virtual machine<br/>
+<br/>
+<br/>In file Platooning.java,
+					
+						line 78<br/>In class Platooning<br/>In method Platooning.stop()<br/>At Platooning.java:[line 78]<br/>At Platooning.java:[line 78]</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="Warnings_I18N">Internationalization Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DM_DEFAULT_ENCODING">Reliance on default encoding</a>
+</td>
+<td width="10%" valign="top">High</td>
+<td width="70%">
+<p>Found reliance on default encoding in CAN$InputWorker.readFrame(): new java.io.InputStreamReader(InputStream)<br/>
+<br/>
+<br/>In file CAN.java,
+					
+						line 234<br/>In class CAN$InputWorker<br/>In method CAN$InputWorker.readFrame()<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At CAN.java:[line 234]<br/>At CAN.java:[line 234]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DM_DEFAULT_ENCODING">Reliance on default encoding</a>
+</td>
+<td width="10%" valign="top">High</td>
+<td width="70%">
+<p>Found reliance on default encoding in imageClient.ImageClient.send(): new String(byte[])<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						line 95<br/>In class imageClient.ImageClient<br/>In method imageClient.ImageClient.send()<br/>Called method new String(byte[])<br/>At ImageClient.java:[line 95]<br/>At ImageClient.java:[line 95]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DM_DEFAULT_ENCODING">Reliance on default encoding</a>
+</td>
+<td width="10%" valign="top">High</td>
+<td width="70%">
+<p>Found reliance on default encoding in ImageServer.run(): String.getBytes()<br/>
+<br/>
+<br/>In file ImageServer.java,
+					
+						line 61<br/>In class ImageServer<br/>In method ImageServer.run()<br/>Called method String.getBytes()<br/>At ImageServer.java:[line 61]<br/>At ImageServer.java:[line 61]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DM_DEFAULT_ENCODING">Reliance on default encoding</a>
+</td>
+<td width="10%" valign="top">High</td>
+<td width="70%">
+<p>Found reliance on default encoding in Main.main(String[]): new java.io.InputStreamReader(InputStream)<br/>
+<br/>
+<br/>In file Main.java,
+					
+						line 15<br/>In class Main<br/>In method Main.main(String[])<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At Main.java:[line 15]<br/>At Main.java:[line 15]</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="Warnings_PERFORMANCE">Performance Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#SIC_INNER_SHOULD_BE_STATIC">Should be a static inner class</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Should CAN$CANFrame be a _static_ inner class?<br/>
+<br/>
+<br/>In file CAN.java,
+					
+						lines 144
+						    to 169<br/>In class CAN$CANFrame<br/>At CAN.java:[lines 144-169]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#SIC_INNER_SHOULD_BE_STATIC">Should be a static inner class</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Should SteeringSim$FrontCar be a _static_ inner class?<br/>
+<br/>
+<br/>In file SteeringSim.java,
+					
+						lines 58
+						    to 87<br/>In class SteeringSim$FrontCar<br/>At SteeringSim.java:[lines 58-87]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: ALC.offsetError<br/>
+<br/>
+<br/>In file ALC.java,
+					
+						line 16<br/>In class ALC<br/>Field ALC.offsetError<br/>At ALC.java:[line 16]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: ALC.stopFlagged<br/>
+<br/>
+<br/>In file ALC.java,
+					
+						line 29<br/>In class ALC<br/>Field ALC.stopFlagged<br/>At ALC.java:[line 29]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: imageClient.ImageClient.xCenter<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						line 61<br/>In class imageClient.ImageClient<br/>Field imageClient.ImageClient.xCenter<br/>At ImageClient.java:[line 61]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: imageClient.ImageClient.yCenter<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						line 62<br/>In class imageClient.ImageClient<br/>Field imageClient.ImageClient.yCenter<br/>At ImageClient.java:[line 62]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: ImageServer.cameraProcess<br/>
+<br/>
+<br/>In file ImageServer.java,
+					
+						line 23<br/>In class ImageServer<br/>Field ImageServer.cameraProcess<br/>At ImageServer.java:[line 23]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: MotorControl.i<br/>
+<br/>
+<br/>In file MotorControl.java,
+					
+						line 3<br/>In class MotorControl<br/>Field MotorControl.i<br/>At MotorControl.java:[line 3]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: MotorControl.lastWasForward<br/>
+<br/>
+<br/>In file MotorControl.java,
+					
+						line 5<br/>In class MotorControl<br/>Field MotorControl.lastWasForward<br/>At MotorControl.java:[line 5]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#URF_UNREAD_FIELD">Unread field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unread field: SteeringSim$FrontCar.r<br/>
+<br/>
+<br/>In file SteeringSim.java,
+					
+						line 61<br/>In class SteeringSim$FrontCar<br/>Field SteeringSim$FrontCar.r<br/>At SteeringSim.java:[line 61]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: ALC.cameraProcess<br/>
+<br/>
+<br/>In file ALC.java,
+					
+						lines 
+						    to <br/>In class ALC<br/>Field ALC.cameraProcess<br/>In ALC.java</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: ALC.cameraStream<br/>
+<br/>
+<br/>In file ALC.java,
+					
+						lines 
+						    to <br/>In class ALC<br/>Field ALC.cameraStream<br/>In ALC.java</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: imageClient.ImageClient.IPAddress<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						lines 
+						    to <br/>In class imageClient.ImageClient<br/>Field imageClient.ImageClient.IPAddress<br/>In ImageClient.java</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: imageClient.ImageClient.clientSocket<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						lines 
+						    to <br/>In class imageClient.ImageClient<br/>Field imageClient.ImageClient.clientSocket<br/>In ImageClient.java</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: imageClient.ImageClient.dos<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						lines 
+						    to <br/>In class imageClient.ImageClient<br/>Field imageClient.ImageClient.dos<br/>In ImageClient.java</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: imageClient.ImageClient.ostream<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						lines 
+						    to <br/>In class imageClient.ImageClient<br/>Field imageClient.ImageClient.ostream<br/>In ImageClient.java</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: ImageServer.stopFlagged<br/>
+<br/>
+<br/>In file ImageServer.java,
+					
+						lines 
+						    to <br/>In class ImageServer<br/>Field ImageServer.stopFlagged<br/>In ImageServer.java</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: Regulator.accFactor<br/>
+<br/>
+<br/>In file Regulator.java,
+					
+						lines 
+						    to <br/>In class Regulator<br/>Field Regulator.accFactor<br/>In Regulator.java</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: Regulator.lastSpeed<br/>
+<br/>
+<br/>In file Regulator.java,
+					
+						lines 
+						    to <br/>In class Regulator<br/>Field Regulator.lastSpeed<br/>In Regulator.java</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#UUF_UNUSED_FIELD">Unused field</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Unused field: Regulator.vDes<br/>
+<br/>
+<br/>In file Regulator.java,
+					
+						lines 
+						    to <br/>In class Regulator<br/>Field Regulator.vDes<br/>In Regulator.java</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="2" cellpadding="5">
+<tr class="tableheader">
+<th align="left">Warning</th>
+<th align="left">Priority</th>
+<th align="left">Details</th>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">Write to static field from instance method</a>
+</td>
+<td width="10%" valign="top">High</td>
+<td width="70%">
+<p>Write to static field CAN.motorValue from instance method CAN.sendMotorValue(byte)<br/>
+<br/>
+<br/>In file CAN.java,
+					
+						line 124<br/>In class CAN<br/>In method CAN.sendMotorValue(byte)<br/>Field CAN.motorValue<br/>At CAN.java:[line 124]<br/>At CAN.java:[line 124]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">Write to static field from instance method</a>
+</td>
+<td width="10%" valign="top">High</td>
+<td width="70%">
+<p>Write to static field CAN.steerValue from instance method CAN.sendSteerValue(byte)<br/>
+<br/>
+<br/>In file CAN.java,
+					
+						line 137<br/>In class CAN<br/>In method CAN.sendSteerValue(byte)<br/>Field CAN.steerValue<br/>At CAN.java:[line 137]<br/>At CAN.java:[line 137]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to canInterfaceString in CAN$InputWorker.readFrame()<br/>
+<br/>
+<br/>In file CAN.java,
+					
+						line 241<br/>In class CAN$InputWorker<br/>In method CAN$InputWorker.readFrame()<br/>Local variable named canInterfaceString<br/>At CAN.java:[line 241]<br/>At CAN.java:[line 241]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to sendD in imageClient.ImageClient.send()<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						line 78<br/>In class imageClient.ImageClient<br/>In method imageClient.ImageClient.send()<br/>Local variable named sendD<br/>At ImageClient.java:[line 78]<br/>At ImageClient.java:[line 78]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to x in imageClient.ImageClient.send()<br/>
+<br/>
+<br/>In file ImageClient.java,
+					
+						line 86<br/>In class imageClient.ImageClient<br/>In method imageClient.ImageClient.send()<br/>Local variable named x<br/>At ImageClient.java:[line 86]<br/>At ImageClient.java:[line 86]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to duration in imageClient.ImageProcessing.getProcessedImage(Mat)<br/>
+<br/>
+<br/>In file ImageProcessing.java,
+					
+						line 83<br/>In class imageClient.ImageProcessing<br/>In method imageClient.ImageProcessing.getProcessedImage(Mat)<br/>Local variable named duration<br/>At ImageProcessing.java:[line 83]<br/>At ImageProcessing.java:[line 83]</p>
+</td>
+</tr>
+<tr class="tablerow1">
+<td width="20%" valign="top">
+<a href="#DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Dead store to send in ImageServer.run()<br/>
+<br/>
+<br/>In file ImageServer.java,
+					
+						line 36<br/>In class ImageServer<br/>In method ImageServer.run()<br/>Local variable named send<br/>At ImageServer.java:[line 36]<br/>At ImageServer.java:[line 36]</p>
+</td>
+</tr>
+<tr class="tablerow0">
+<td width="20%" valign="top">
+<a href="#NP_IMMEDIATE_DEREFERENCE_OF_READLINE">Immediate dereference of the result of readLine()</a>
+</td>
+<td width="10%" valign="top">Medium</td>
+<td width="70%">
+<p>Immediate dereference of the result of readLine() in CAN$InputWorker.readFrame()<br/>
+<br/>
+<br/>In file CAN.java,
+					
+						line 236<br/>In class CAN$InputWorker<br/>In method CAN$InputWorker.readFrame()<br/>At CAN.java:[line 236]<br/>At CAN.java:[line 236]</p>
+</td>
+</tr>
+</table>
+<p>
+<br/>
+<br/>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h1>
+<a name="Details">Warning Types</a>
+</h1>
+<h2>
+<a name="DLS_DEAD_LOCAL_STORE">Dead store to local variable</a>
+</h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables.  Because FindBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="DM_EXIT">Method invokes System.exit(...)</a>
+</h2>
+
+  <p> Invoking System.exit shuts down the entire Java virtual machine. This
+   should only been done when it is appropriate. Such calls make it
+   hard or impossible for your code to be invoked by other code.
+   Consider throwing a RuntimeException instead.</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="DM_DEFAULT_ENCODING">Reliance on default encoding</a>
+</h2>
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="NP_IMMEDIATE_DEREFERENCE_OF_READLINE">Immediate dereference of the result of readLine()</a>
+</h2>
+
+  <p> The result of invoking readLine() is immediately dereferenced. If there are no more lines of text
+to read, readLine() will return null and dereferencing that will generate a null pointer exception.
+</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="SIC_INNER_SHOULD_BE_STATIC">Should be a static inner class</a>
+</h2>
+
+  <p> This class is an inner class, but does not use its embedded reference
+  to the object which created it.&nbsp; This reference makes the instances
+  of the class larger, and may keep the reference to the creator object
+  alive longer than necessary.&nbsp; If possible, the class should be
+   made static.
+</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">Write to static field from instance method</a>
+</h2>
+
+  <p> This instance method writes to a static field. This is tricky to get
+correct if multiple instances are being manipulated,
+and generally bad practice.
+</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="URF_UNREAD_FIELD">Unread field</a>
+</h2>
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+<h2>
+<a name="UUF_UNUSED_FIELD">Unused field</a>
+</h2>
+
+  <p> This field is never used.&nbsp; Consider removing it from the class.</p>
+
+    
+<p>
+<br/>
+<br/>
+</p>
+</body>
+</html>
