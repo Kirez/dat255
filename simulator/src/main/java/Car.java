@@ -1,4 +1,4 @@
-public class Car implements IMovable {
+public class Car {
 
   private double speed;
   private double wantedSpeed;
