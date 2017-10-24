@@ -28,16 +28,16 @@ public class ImageClient implements Runnable {
   private OutputStream ostream;
   private DataOutputStream dos;
 
-  public static void main(String[] args) throws IOException {
-    new Thread(new ImageClient()).start();
-  }
-
   public ImageClient() throws IOException {
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     imgPr = new ImageProcessing();
     stream = new VideoCapture();
 
     receive();
+  }
+
+  public static void main(String[] args) throws IOException {
+    new Thread(new ImageClient()).start();
   }
 
   public void receive() throws IOException {

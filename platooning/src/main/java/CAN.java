@@ -56,6 +56,20 @@ public final class CAN {
     return instance;
   }
 
+  /**
+   * Converts each byte to hex code with zero padding
+   *
+   * @param data byte-string to convert to hex-string
+   * @return zero padded hex-string
+   */
+  private static String byteToHexString(byte[] data) {
+    StringBuilder sb = new StringBuilder();
+    for (byte b : data) {
+      sb.append(String.format("%02X", b));
+    }
+    return sb.toString();
+  }
+
   public void start() throws InterruptedException {
     if (active) {
       stop();
@@ -82,20 +96,6 @@ public final class CAN {
     outputWorkerThread.interrupt();
 
     active = false;
-  }
-
-  /**
-   * Converts each byte to hex code with zero padding
-   *
-   * @param data byte-string to convert to hex-string
-   * @return zero padded hex-string
-   */
-  private static String byteToHexString(byte[] data) {
-    StringBuilder sb = new StringBuilder();
-    for (byte b : data) {
-      sb.append(String.format("%02X", b));
-    }
-    return sb.toString();
   }
 
   /**
@@ -138,6 +138,34 @@ public final class CAN {
   }
 
   /**
+   * Disgusting DistPub-line to sensor reading short-array
+   *
+   * @return sensor readings
+   */
+  public Short readSensor() throws InterruptedException {
+    String sensorLine = inputWorker.readSensorLine();
+    if (sensorLine == null) {
+      return null;
+    } else {
+      try {
+        sensorLine = sensorLine.split("\\[")[1];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return null;
+      }
+      sensorLine = sensorLine.trim();
+      sensorLine = sensorLine.split("]")[0];
+
+      try {
+        return Short.parseShort(sensorLine);
+      } catch (NumberFormatException e) {
+        System.out.println("Bad sensor data");
+      }
+
+      return null;
+    }
+  }
+
+  /**
    * Basically a container class (think C structure) for CAN frames received and
    * sent
    */
@@ -171,34 +199,6 @@ public final class CAN {
   }
 
   /**
-   * Disgusting DistPub-line to sensor reading short-array
-   *
-   * @return sensor readings
-   */
-  public Short readSensor() throws InterruptedException {
-    String sensorLine = inputWorker.readSensorLine();
-    if (sensorLine == null) {
-      return null;
-    } else {
-      try {
-        sensorLine = sensorLine.split("\\[")[1];
-      } catch (ArrayIndexOutOfBoundsException e) {
-        return null;
-      }
-      sensorLine = sensorLine.trim();
-      sensorLine = sensorLine.split("]")[0];
-
-      try {
-        return Short.parseShort(sensorLine);
-      } catch (NumberFormatException e) {
-        System.out.println("Bad sensor data");
-      }
-
-      return null;
-    }
-  }
-
-  /**
    * Runnable, launched by parent (CAN), that reads CAN packets into can frames
    * by launching candump and continuously parsing it's standard output into
    * sensor frames that are put into queues accessible by parent (CAN) object.
@@ -207,13 +207,13 @@ public final class CAN {
    */
   private class InputWorker implements Runnable {
 
+    public AtomicBoolean stopFlag;
     private Semaphore odometerQueueLock;
     private Queue<CANFrame> odometerQueue;
     private Semaphore usSensorQueueLock;
     private Queue<CANFrame> usSensorQueue;
     private Process canDumpProcess;
     private InputStream canDumpStandardOutput;
-    public AtomicBoolean stopFlag;
 
     public InputWorker() {
       odometerQueueLock = new Semaphore(1);
@@ -356,9 +356,9 @@ public final class CAN {
    */
   private class OutputWorker implements Runnable {
 
+    public AtomicBoolean stopFlag;
     private Semaphore queueLock;
     private Queue<CANFrame> frameOutputQueue;
-    public AtomicBoolean stopFlag;
     private Semaphore motorQueueLock;
     private Semaphore steerQueueLock;
     private Queue<Byte> motorValueQueue;

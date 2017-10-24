@@ -1,8 +1,8 @@
 public class MotorControl implements IMovable {
 
+  boolean lastWasForward = true;
   private int i = 0;
   private int lastSpeed = 0;
-  boolean lastWasForward = true;
   private byte steerValue = -8;
   private CAN can;
 
@@ -13,6 +13,10 @@ public class MotorControl implements IMovable {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+  }
+
+  public double getSpeed() {
+    return lastSpeed;
   }
 
   public void setSpeed(int speed) {
@@ -36,9 +40,5 @@ public class MotorControl implements IMovable {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-  }
-
-  public double getSpeed() {
-    return lastSpeed;
   }
 }
