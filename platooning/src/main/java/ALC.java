@@ -30,12 +30,12 @@ public class ALC implements Runnable {
   }
 
   private void calcSteering(int offset) {
-	System.out.println(offset);
-	if (offset > 100) {
-		offset = 100;
-	} else if (offset < -100) {
-		offset = -100;
-	}
+    System.out.println(offset);
+    if (offset > 100) {
+      offset = 100;
+    } else if (offset < -100) {
+      offset = -100;
+    }
     int angle = k * offset;
     servo.steer(angle);
   }

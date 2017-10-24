@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
+
   public static void main(String args[]) throws InterruptedException {
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
@@ -39,5 +40,4 @@ public class Main {
       e.printStackTrace();
     }
   }
-
 }

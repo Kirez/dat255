@@ -1,4 +1,5 @@
 package imageClient;
+
 public class ProcessedImage {
 
   private final double centerX, centerY, xOffset, height, width;

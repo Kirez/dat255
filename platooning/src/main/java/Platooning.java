@@ -59,8 +59,7 @@ public final class Platooning {
         }
       } catch (InterruptedException e) {
         e.printStackTrace();
-      }
-      finally {
+      } finally {
         alcThread.interrupt();
         accThread.interrupt();
       }
@@ -80,7 +79,4 @@ public final class Platooning {
     }
     active = false;
   }
-
-
-
 }

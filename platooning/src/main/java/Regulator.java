@@ -16,19 +16,19 @@ class Regulator { /* Speed given by regulator calculations */
   private double maxSpeed; /* Limitations to regulator */
   private double minSpeed;
 
-    public Regulator() {
+  public Regulator() {
 
-        v1 = 0;
-        dDes = 20;
-        k = 0.3;
-        i = 0.04;
-        i_acc = 0;
-        d = 0.8;
-        lastEr = 0;
+    v1 = 0;
+    dDes = 20;
+    k = 0.3;
+    i = 0.04;
+    i_acc = 0;
+    d = 0.8;
+    lastEr = 0;
 
-        maxSpeed = 80;
-        minSpeed = -80;
-    }
+    maxSpeed = 80;
+    minSpeed = -80;
+  }
 
   /**
    * Made a public help method to ease the transition from Simulator to MOPED
@@ -62,42 +62,38 @@ class Regulator { /* Speed given by regulator calculations */
   }
   */
 
-    /**
-     * The calculations to get new speed for car.
-     * Uses predetermined K, I and D factors implementing a PID regulator.
-     *
-     * @param sensorValue Sensor reading in cm.
-     */
-    private void calcNewSpeed(double sensorValue) {
-        double error = sensorValue - dDes;
+  /**
+   * The calculations to get new speed for car.
+   * Uses predetermined K, I and D factors implementing a PID regulator.
+   *
+   * @param sensorValue Sensor reading in cm.
+   */
+  private void calcNewSpeed(double sensorValue) {
+    double error = sensorValue - dDes;
 
-            if(Math.abs(error) < 100)
-            {
-                i_acc += error * i;
-            }
-
-            i_acc = i_acc > 10 ? 10 : i_acc;
-            i_acc = i_acc < -4 ? -4 : i_acc;
-
-            v1 = error * k + i_acc + (error - lastEr) * d;
-
-            if (v1 < minSpeed)
-            {
-                v1 = minSpeed;
-            }
-            else if(v1 > maxSpeed)
-            {
-                v1 = maxSpeed;
-            }
-
-            lastEr = error;
+    if (Math.abs(error) < 100) {
+      i_acc += error * i;
     }
 
-    /**
-     * Simple return method.
-     * @return int Current speed.
-     */
-    public int getSpeed() {
-        return (int)v1;
+    i_acc = i_acc > 10 ? 10 : i_acc;
+    i_acc = i_acc < -4 ? -4 : i_acc;
+
+    v1 = error * k + i_acc + (error - lastEr) * d;
+
+    if (v1 < minSpeed) {
+      v1 = minSpeed;
+    } else if (v1 > maxSpeed) {
+      v1 = maxSpeed;
     }
+
+    lastEr = error;
+  }
+
+  /**
+   * Simple return method.
+   * @return int Current speed.
+   */
+  public int getSpeed() {
+    return (int) v1;
+  }
 }

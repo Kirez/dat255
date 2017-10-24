@@ -24,7 +24,6 @@ public class ACC implements Runnable {
         }
         regulator.initNewCalc(distance);
         mc.setSpeed(regulator.getSpeed());
-
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
