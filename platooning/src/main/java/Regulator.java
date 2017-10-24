@@ -4,10 +4,10 @@
 class Regulator { /* Speed given by regulator calculations */
 
   private double v1; /* Last speed given to MOPED */
-  private double lastSpeed; /* Desired speed */
-  private double vDes; /* Desired distance */
+  //private double lastSpeed; /* Desired speed */
+  //private double vDes; /* Desired distance */
   private double dDes; /* Acceleration */
-  private double accFactor; /* ?? */ /* private double a0; */ /* Multiplier */
+  //private double accFactor; /* ?? */ /* private double a0; */ /* Multiplier */
   private double k; /* Integrating factor */
   private double i; /* Acceleration */
   private double i_acc; /* dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2 */ /* private double dist1; */ /* private double dist2; */ /* private double deltaDist; */ /* Derivating factor */
