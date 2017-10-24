@@ -1,0 +1,24 @@
+digraph uicom {
+  compound=true;
+  subgraph cluster0 {
+    label="Receive";
+    
+    subgraph cluster3 {
+      label="2 byte command";
+      SET_SPEED -> ReadSpeed;
+      SET_STEER -> ReadSteer;
+    }
+    
+    Start -> Read; 
+    Read -> {SET_SPEED, SET_STEER} [lhead=cluster3];
+   
+    ec [shape=point,width=0.01,height=0.01];
+    ec -> Apply;
+    
+    {ReadSpeed, ReadSteer} -> ec [dir=none];
+    Apply -> End;
+    
+    Start [shape=Mdiamond];
+    End [shape=Msquare];
+  }
+}

@@ -1,0 +1,49 @@
+digraph uicom {
+  compound=true;
+  subgraph cluster0 {
+    label="Receive";
+    
+    subgraph cluster2 {
+      label="1 byte command";
+      ENABLE_ACC;
+      ENABLE_ALC;
+      DISABLE_ACC;
+      DISABLE_ALC;
+    }
+    /*
+    subgraph cluster3 {
+      label="2 byte command";
+      SET_SPEED -> ReadSpeed;
+      SET_STEER -> ReadSteer;
+    }
+    */
+    
+    Start -> Read; 
+    Read -> {ENABLE_ACC, ENABLE_ALC, DISABLE_ACC, DISABLE_ACC
+             DISABLE_ALC} [lhead=cluster2];
+    /*
+    Read -> ENABLE_ALC [lhead=cluster2];
+    Read -> DISABLE_ACC [lhead=cluster2];
+    Read -> DISABLE_ALC [lhead=cluster2]; 
+    Read -> SET_SPEED [lhead=cluster3]; 
+    */
+    //Read -> SET_STEER [lhead=cluster3];
+   
+    /*
+    ENABLE_ACC -> Apply [ltail=cluster2];
+    ENABLE_ALC -> Apply [ltail=cluster2];
+    DISABLE_ACC -> Apply [ltail=cluster2];
+    DISABLE_ALC -> Apply [ltail=cluster2];   
+    */
+    
+    ec [shape=point,width=0.01,height=0.01];
+    ec -> Apply;
+    
+    {ENABLE_ACC, ENABLE_ALC, DISABLE_ACC, DISABLE_ALC} -> ec [dir=none];
+    //{ReadSpeed, ReadSteer} -> ec [dir=none];
+    Apply -> End;
+    
+    Start [shape=Mdiamond];
+    End [shape=Msquare];
+  }
+}

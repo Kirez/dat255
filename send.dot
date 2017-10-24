@@ -1,0 +1,9 @@
+digraph uicomsend {
+  compound=true;
+  subgraph cluster1 {
+    label="Update";
+    Start -> SendUpdate -> Sleep  -> End; 
+    Start [shape=Mdiamond];
+    End [shape=Msquare];
+  }
+}
