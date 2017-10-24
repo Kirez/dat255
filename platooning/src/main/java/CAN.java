@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Queue;
@@ -18,15 +19,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class CAN {
 
   private static CAN instance;
-  private static String CAN_INTERFACE = "can0";
-  private static String DUMP_COMMAND = "candump";
-  private static String SEND_COMMAND = "cansend";
-  private static String VCU_COMMAND_CAN_ID = "101";
-  private static String VCU_ODOMETER_CAN_ID = "Not known at this time";
-  private static String SCU_ULTRASONIC_CAN_ID = "46C";
-  private static byte motorValue = 0;
-  private static byte steerValue = 0;
-  private static long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
+  private String CAN_INTERFACE = "can0";
+  private String DUMP_COMMAND = "candump";
+  private String SEND_COMMAND = "cansend";
+  private String VCU_COMMAND_CAN_ID = "101";
+  private String VCU_ODOMETER_CAN_ID = "Not known at this time";
+  private String SCU_ULTRASONIC_CAN_ID = "46C";
+  private byte motorValue = 0;
+  private byte steerValue = 0;
+  private long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
   private Thread outputWorkerThread;
   private Thread inputWorkerThread;
   private OutputWorker outputWorker;
@@ -49,7 +50,7 @@ public final class CAN {
    *
    * @return the one and only instance
    */
-  public static CAN getInstance() {
+  public synchronized static CAN getInstance() {
     if (instance == null) {
       instance = new CAN();
     }
@@ -169,7 +170,7 @@ public final class CAN {
    * Basically a container class (think C structure) for CAN frames received and
    * sent
    */
-  private class CANFrame {
+  private static class CANFrame {
 
     private String identity;
     private double time;
@@ -232,26 +233,31 @@ public final class CAN {
     private CANFrame readFrame() throws IOException {
       int DATA_OFFSET = 4;
       BufferedReader reader = new BufferedReader(
-          new InputStreamReader(canDumpStandardOutput));
-      String canDataString = reader.readLine().trim(); /* For example canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
-      canDataString = canDataString.replace("   ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
-      canDataString = canDataString.replace("  ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
-      String[] tokens = canDataString.split(" "); /* now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"} */
-      String canTimeString = tokens[0].replace("(", "").replace(")", "");
-      String canInterfaceString = tokens[1];
-      String canIdString = tokens[2];
-      String dataLengthString = tokens[3].replace("[", "").replace("]", "");
-      double time = Double.parseDouble(canTimeString);
-      int dataLength = Integer.parseInt(dataLengthString);
-      byte[] data = new byte[dataLength];
-      for (int i = 0; i < dataLength; i++) {
-        byte token = (byte) (16 * Character
-            .digit(tokens[i + DATA_OFFSET].charAt(0), 16));
-        data[i] = token;
-        token = (byte) Character.digit(tokens[i + DATA_OFFSET].charAt(1), 16);
-        data[i] += token;
+          new InputStreamReader(canDumpStandardOutput, StandardCharsets.UTF_8));
+      String canDataString = reader.readLine(); /* For example canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+      if (canDataString != null) {
+        canDataString = canDataString.trim();
+        canDataString = canDataString.replace("   ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+        canDataString = canDataString.replace("  ", " "); /* now canDataString = "(003.602137) vcan0 535 [8] 04 14 C7 30 3C 96 C5 4B" */
+        String[] tokens = canDataString.split(" "); /* now tokens = {"(003.602137)", "vcan0", "558", "[8]", "04", "14", ..., "4B"} */
+        String canTimeString = tokens[0].replace("(", "").replace(")", "");
+        //String canInterfaceString = tokens[1];
+        String canIdString = tokens[2];
+        String dataLengthString = tokens[3].replace("[", "").replace("]", "");
+        double time = Double.parseDouble(canTimeString);
+        int dataLength = Integer.parseInt(dataLengthString);
+        byte[] data = new byte[dataLength];
+        for (int i = 0; i < dataLength; i++) {
+          byte token = (byte) (16 * Character
+              .digit(tokens[i + DATA_OFFSET].charAt(0), 16));
+          data[i] = token;
+          token = (byte) Character.digit(tokens[i + DATA_OFFSET].charAt(1), 16);
+          data[i] += token;
+        }
+        return new CANFrame(canIdString, time, data);
+      } else {
+        return null;
       }
-      return new CANFrame(canIdString, time, data);
     }
 
     /**
@@ -302,10 +308,10 @@ public final class CAN {
     @Override
     public void run() {
       String[] argv = new String[4];
-      argv[0] = CAN.DUMP_COMMAND;
+      argv[0] = DUMP_COMMAND;
       argv[1] = "-t";
       argv[2] = "z";
-      argv[3] = CAN.CAN_INTERFACE;
+      argv[3] = CAN_INTERFACE;
 
       try {
         canDumpProcess = Runtime.getRuntime().exec(argv);
@@ -324,15 +330,15 @@ public final class CAN {
         }
         try {
           CANFrame frame = readFrame();
-          if (frame.identity.equals(CAN.VCU_ODOMETER_CAN_ID)) {
+          if (frame.identity.equals(VCU_ODOMETER_CAN_ID)) {
             odometerQueueLock.acquire();
             odometerQueue.add(frame);
             odometerQueueLock.release();
-          } else if (frame.identity.equals(CAN.SCU_ULTRASONIC_CAN_ID)) {
+          } else if (frame.identity.equals(SCU_ULTRASONIC_CAN_ID)) {
             usSensorQueueLock.acquire();
             usSensorQueue.add(frame);
             usSensorQueueLock.release();
-          } else if (frame.identity.equals(CAN.VCU_COMMAND_CAN_ID)) {
+          } else if (frame.identity.equals(VCU_COMMAND_CAN_ID)) {
           } else {
             System.out.println(String
                 .format("Unknown CAN frame: id=%s; data=%s", frame.identity,
@@ -457,7 +463,7 @@ public final class CAN {
             sendFrame(frameOutputQueue.poll());
           }
           queueLock.release();
-          Thread.sleep(CAN.VCU_COOL_DOWN);
+          Thread.sleep(VCU_COOL_DOWN);
         } catch (InterruptedException | IOException e) {
           e.printStackTrace();
         }
