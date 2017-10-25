@@ -3,15 +3,26 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class DeacceleratingStateTest.
+ *
  * @author Johan Svennungsson
  */
 public class DeacceleratingStateTest {
 
+  /** The accelerating state. */
   private AcceleratingState acceleratingState;
+  
+  /** The deaccelerating state. */
   private DeacceleratingState deacceleratingState;
+  
+  /** The car. */
   private Car car;
 
+  /**
+   * Sets the up.
+   */
   @Before
   public void setUp() {
     acceleratingState = new AcceleratingState();
@@ -19,6 +30,9 @@ public class DeacceleratingStateTest {
     car = new Car(0, 0, false);
   }
 
+  /**
+   * Move.
+   */
   @Test
   public void move() {
     double wantedSpeed = 5;
@@ -37,6 +51,9 @@ public class DeacceleratingStateTest {
     assertEquals(car.getSpeed(), 4.88, 0.01);
   }
 
+  /**
+   * Move and change state.
+   */
   @Test
   public void moveAndChangeState() {
     double wantedSpeed = 5;

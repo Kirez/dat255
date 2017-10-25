@@ -1,11 +1,31 @@
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Platooning.
+ */
 public final class Platooning {
 
+  /** The can. */
   private CAN can;
+  
+  /** The acc. */
   private ACC acc;
+  
+  /** The acc thread. */
   private Thread accThread;
+  
+  /** The alc thread. */
   private Thread alcThread;
+  
+  /** The active. */
   private boolean active;
 
+  /**
+   * Instantiates a new platooning.
+   *
+   * @param can the can
+   * @param acc the acc
+   * @param alc the alc
+   */
   public Platooning(CAN can, ACC acc, ALC alc) {
     this.can = can;
     this.acc = acc;
@@ -14,6 +34,9 @@ public final class Platooning {
     active = false;
   }
 
+  /**
+   * Start.
+   */
   public void start() {
     if (!active) {
       System.out.println("Starting CAN");
@@ -32,6 +55,9 @@ public final class Platooning {
     active = true;
   }
 
+  /**
+   * Stop.
+   */
   public void stop() {
     if (active) {
       System.out.println("Stopping ACC thread");

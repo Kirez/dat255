@@ -9,16 +9,27 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by calrless on 2017-10-06.
  */
 public class ImageClient implements Runnable {
 
+  /** The x offset. */
   @SuppressWarnings("unused")
   private int xOffset;
+  
+  /** The img pr. */
   private ImageProcessing imgPr;
+  
+  /** The stream. */
   private VideoCapture stream;
 
+  /**
+   * Instantiates a new image client.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public ImageClient() throws IOException {
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     imgPr = new ImageProcessing();
@@ -27,10 +38,21 @@ public class ImageClient implements Runnable {
     receive();
   }
 
+  /**
+   * The main method.
+   *
+   * @param args the arguments
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static void main(String[] args) throws IOException {
     new Thread(new ImageClient()).start();
   }
 
+  /**
+   * Receive.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public void receive() throws IOException {
 
     System.out.println("joining stream");
@@ -52,6 +74,9 @@ public class ImageClient implements Runnable {
     }
   }
 
+  /**
+   * Send.
+   */
   public void send() {
     try {
       byte[] sendD;
@@ -71,6 +96,9 @@ public class ImageClient implements Runnable {
     }
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Runnable#run()
+   */
   @Override
   public void run() {
     try {

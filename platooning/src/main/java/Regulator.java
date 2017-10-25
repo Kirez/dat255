@@ -1,21 +1,41 @@
+// TODO: Auto-generated Javadoc
 /**
  * Created by Macken on 2017-09-25.
  */
 class Regulator { /* Speed given by regulator calculations */
 
-  private double v1; /* Last speed given to MOPED */
+  /** The v 1. */
+ private double v1; /* Last speed given to MOPED */
   //private double lastSpeed; /* Desired speed */
+  /** The d des. */
   //private double vDes; /* Desired distance */
   private double dDes; /* Acceleration */
+  
+  /** The k. */
   //private double accFactor; /* ?? */ /* private double a0; */ /* Multiplier */
   private double k; /* Integrating factor */
+  
+  /** The i. */
   private double i; /* Acceleration */
+  
+  /** The i acc. */
   private double i_acc; /* dist1 and dist2 is used for simulator (I think), deltaDist is delta of dist1 and dist 2 */ /* private double dist1; */ /* private double dist2; */ /* private double deltaDist; */ /* Derivating factor */
+  
+  /** The d. */
   private double d; /* Last error */
+  
+  /** The last er. */
   private double lastEr; /* K = 0.48 */ /* T0 = 9.3 */ /* I = 4.65 */ /* D = 1.16 */ /* Ticks */ /* private int s; */
+  
+  /** The max speed. */
   private double maxSpeed; /* Limitations to regulator */
+  
+  /** The min speed. */
   private double minSpeed;
 
+  /**
+   * Instantiates a new regulator.
+   */
   public Regulator() {
 
     v1 = 0;
@@ -50,7 +70,7 @@ class Regulator { /* Speed given by regulator calculations */
    * NOT NEEDED for the regulator used by MOPED, we get the result from the CAN
    * bus on the car using UltraSonicSensor class.
    *
-   * @param speed2 Speed of the car.
+   * @param sensorValue the sensor value
    * @return Distance between the cars.
    */
   /*

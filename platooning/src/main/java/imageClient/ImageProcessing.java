@@ -24,12 +24,21 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class ImageProcessing.
+ *
  * @author Johannes Edenholm
  * @author Rikard Teodorsson
  */
 public class ImageProcessing {
 
+  /**
+   * The main method.
+   *
+   * @param args the arguments
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static void main(String[] args) throws IOException {
     System.out.println("loading lib");
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -54,7 +63,7 @@ public class ImageProcessing {
   }
 
   /**
-   * Returns a ProcessedImage containing the circle data
+   * Returns a ProcessedImage containing the circle data.
    *
    * @param frame the path to the image file
    * @return the processed image, null if the file couldn't be found
@@ -79,10 +88,11 @@ public class ImageProcessing {
   }
 
   /**
-   * Draws black around the found red and returns the center circle
+   * Draws black around the found red and returns the center circle.
    *
    * @param mask the red in the image
    * @param frame the source matrix
+   * @return the processed image
    */
   private ProcessedImage contour(Mat mask, Mat frame) {
     List<MatOfPoint> contours = new ArrayList<>();
@@ -93,9 +103,10 @@ public class ImageProcessing {
   }
 
   /**
-   * Converts a list of matrices to a list of circles
+   * Converts a list of matrices to a list of circles.
    *
    * @param circles the list of matrices to convert
+   * @param src the src
    * @return an arraylist with the circles
    */
   private ProcessedImage matrixToList(List<MatOfPoint> circles, Mat src) {
@@ -129,7 +140,7 @@ public class ImageProcessing {
   }
 
   /**
-   * Loops through all circles and checks if 3 of them are in a line
+   * Loops through all circles and checks if 3 of them are in a line.
    *
    * @param circleList the list of circles to check
    * @return the center circle
@@ -155,7 +166,7 @@ public class ImageProcessing {
   }
 
   /**
-   * Checks that the distance from the first to last circle is not too long
+   * Checks that the distance from the first to last circle is not too long.
    *
    * @param c1 the first circle
    * @param c3 the last circle
@@ -169,7 +180,7 @@ public class ImageProcessing {
   }
 
   /**
-   * Checks if the center circle intersects the line from c1 to c3
+   * Checks if the center circle intersects the line from c1 to c3.
    *
    * @param c1 the first circle
    * @param center the center circle
@@ -194,7 +205,7 @@ public class ImageProcessing {
   }
 
   /**
-   * conversion method from image to mat
+   * conversion method from image to mat.
    *
    * @param in path to image
    * @return a matrix made from the image

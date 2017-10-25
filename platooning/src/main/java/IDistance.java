@@ -1,4 +1,7 @@
+// TODO: Auto-generated Javadoc
 /**
+ * The Interface IDistance.
+ *
  * @author Hamza Kadric
  * @author Timmy Truong
  * @author Arvid Wiklund

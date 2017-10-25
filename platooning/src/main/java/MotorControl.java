@@ -1,8 +1,20 @@
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MotorControl.
+ */
 public class MotorControl implements IMovable {
 
+  /** The last speed. */
   private int lastSpeed = 0;
+  
+  /** The can. */
   private CAN can;
 
+  /**
+   * Instantiates a new motor control.
+   *
+   * @param can the can
+   */
   public MotorControl(CAN can) {
     this.can = can;
     try {
@@ -13,10 +25,16 @@ public class MotorControl implements IMovable {
     }
   }
 
+  /* (non-Javadoc)
+   * @see IMovable#getSpeed()
+   */
   public double getSpeed() {
     return lastSpeed;
   }
 
+  /* (non-Javadoc)
+   * @see IMovable#setSpeed(int)
+   */
   public void setSpeed(int speed) {
     if (speed > 127) {
       speed = 127;

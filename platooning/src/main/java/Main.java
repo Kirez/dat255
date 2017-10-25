@@ -3,8 +3,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main {
 
+  /**
+   * The main method.
+   *
+   * @param args the arguments
+   * @throws InterruptedException the interrupted exception
+   */
   public static void main(String args[]) throws InterruptedException {
     CAN can = CAN.getInstance();
     ServoControl sc = new ServoControl(can);
