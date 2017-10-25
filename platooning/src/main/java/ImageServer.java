@@ -17,6 +17,12 @@ public class ImageServer implements Runnable {
     this.ALCreg = ALCreg;
     String argv = "raspivid -l -o tcp://0.0.0.0:2222 --framerate 10 -w 1270 -h 292 -t 0 --mode 5";
     cameraProcess = Runtime.getRuntime().exec(argv);
+
+    if (cameraProcess.isAlive()) {
+      System.out.println("raspivid process active");
+    } else {
+      System.out.println("raspivid process not active");
+    }
   }
 
   @Override
