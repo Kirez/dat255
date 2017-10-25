@@ -2,7 +2,6 @@ public final class Platooning {
 
   private CAN can;
   private ACC acc;
-  private ALC alc;
   private Thread accThread;
   private Thread alcThread;
   private boolean active;
@@ -10,7 +9,6 @@ public final class Platooning {
   public Platooning(CAN can, ACC acc, ALC alc) {
     this.can = can;
     this.acc = acc;
-    this.alc = alc;
     accThread = new Thread(acc);
     alcThread = new Thread(alc);
     active = false;
@@ -38,8 +36,8 @@ public final class Platooning {
     if (active) {
       System.out.println("Stopping ACC thread");
       acc.stop();
-      System.out.println("Stopping ALC thread");
-      alc.stop();
+      //System.out.println("Stopping ALC thread");
+      //alc.stop();
       try {
         alcThread.join(1000);
         accThread.join(1000);
