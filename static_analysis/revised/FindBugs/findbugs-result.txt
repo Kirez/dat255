@@ -1,0 +1,67 @@
+
+FindBugs-IDEA: found 0 bugs in 33 classes
+using FindBugs-IDEA 1.0.1 with Findbugs version 3.0.1
+
+dat255[platooning]
+
+Compile Output Path (IDEA)
+/home/linus/Documents/DAT255/dat255/platooning/src/main/java
+
+Sources Dir List (1)
+/home/linus/Documents/DAT255/dat255/platooning/src/main/java
+
+Analyzed Classes List (22)
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/ALCRegulator.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/Steering.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/SteeringSim$FrontCar.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN$InputWorker.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/ImageServer.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/imageClient/ProcessedImage.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/imageClient/ImageClient.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/imageClient/ImageProcessing.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN$CANFrame.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/Platooning.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/UltraSonicSensor.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/ACC.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/Regulator.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/Main.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/ALC.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/CAN$OutputWorker.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/ServoControl.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/SteeringSim.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/MotorControl.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/IDistance.class
+/home/linus/Documents/DAT255/dat255/platooning/target/classes/IMovable.class
+
+Aux Classpath Entries (1)
+/home/linus/Documents/DAT255/dat255/platooning/target/classes
+
+dat255[simulator]
+
+Compile Output Path (IDEA)
+/home/linus/Documents/DAT255/dat255/simulator/src/main/java
+/home/linus/Documents/DAT255/dat255/simulator/src/test/java
+
+Sources Dir List (2)
+/home/linus/Documents/DAT255/dat255/simulator/src/main/java
+/home/linus/Documents/DAT255/dat255/simulator/src/test/java
+
+Analyzed Classes List (11)
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/Sensor.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/Simulator.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/Car.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/AcceleratingState.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/Regulator.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/MovingState.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/Main.class
+/home/linus/Documents/DAT255/dat255/simulator/target/classes/DeacceleratingState.class
+/home/linus/Documents/DAT255/dat255/simulator/target/test-classes/CarTest.class
+/home/linus/Documents/DAT255/dat255/simulator/target/test-classes/DeacceleratingStateTest.class
+/home/linus/Documents/DAT255/dat255/simulator/target/test-classes/AcceleratingStateTest.class
+
+Aux Classpath Entries (3)
+/home/linus/Documents/DAT255/dat255/platooning/target/classes
+/home/linus/Documents/DAT255/dat255/simulator/target/classes
+/home/linus/Documents/DAT255/dat255/simulator/target/test-classes
+
