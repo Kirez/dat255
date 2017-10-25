@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author Hugo Frost
  *
  * Singleton class CAN for interfacing with can-utils's candump and cansend,
- * mimicking MOPED python code
+ * mimicking MOPED python code.
  */
 public final class CAN {
 
@@ -34,7 +34,7 @@ public final class CAN {
   private boolean active;
 
   /**
-   * CAN singleton constructor starts CAN input and output worker threads
+   * CAN singleton constructor starts CAN input and output worker threads.
    */
   private CAN() {
     outputWorker = new OutputWorker();
@@ -45,9 +45,9 @@ public final class CAN {
   }
 
   /**
-   * Initiates an instance if one does not exist
+   * Initiates an instance if one does not exist.
    *
-   * @return the one and only instance
+   * @return the one and only instance.
    */
   public static CAN getInstance() {
     if (instance == null) {
@@ -57,10 +57,10 @@ public final class CAN {
   }
 
   /**
-   * Converts each byte to hex code with zero padding
+   * Converts each byte to hex code with zero padding.
    *
-   * @param data byte-string to convert to hex-string
-   * @return zero padded hex-string
+   * @param data byte-string to convert to hex-string.
+   * @return zero padded hex-string.
    */
   private static String byteToHexString(byte[] data) {
     StringBuilder sb = new StringBuilder();
@@ -70,6 +70,11 @@ public final class CAN {
     return sb.toString();
   }
 
+  /**
+   * Starts OutputWorker and InputWorker threads.
+   *
+   * @throws InterruptedException when interrupted whilst stopping old threads.
+   */
   public void start() throws InterruptedException {
     if (active) {
       stop();
@@ -83,6 +88,12 @@ public final class CAN {
     active = true;
   }
 
+  /**
+   * Stops OutputWorker and InputWorker threads.
+   *
+   * @throws InterruptedException if interrupted while waiting for threads to
+   * exit gracefully.
+   */
   public void stop() throws InterruptedException {
     inputWorker.stopFlag.set(true);
     outputWorker.stopFlag.set(true);
@@ -99,11 +110,10 @@ public final class CAN {
   }
 
   /**
-   * Automates sending of motor and steer packets to VCU
+   * Automates sending of motor and steer packets to VCU.
    *
-   * @param motor value to be sent to VCU
-   * @param steer value to be sent to VCU
-   * @throws InterruptedException fromSendCANFrame
+   * @param motor value to be sent to VCU.
+   * @param steer value to be sent to VCU.
    */
   public void sendMotorAndSteerValue(byte motor, byte steer)
       throws InterruptedException {
@@ -113,11 +123,9 @@ public final class CAN {
 
   /**
    * Motor and Steer value must be sent at the same time this method sends the
-   * old steer value along  with the new motor value
+   * old steer value along  with the new motor value.
    *
-   * @param motor value to be sent to VCU
-   * @throws IOException from sendMotorAndSteerValue
-   * @throws InterruptedException from sendMotorAndSteerValue
+   * @param motor value to be sent to VCU.
    */
   public void sendMotorValue(byte motor) throws InterruptedException {
     outputWorker.queueMotorValue(motor);
@@ -126,11 +134,11 @@ public final class CAN {
 
   /**
    * Motor and Steer value must be sent at the same time this method sends the
-   * old motor value along  with the new steer value
+   * old motor value along  with the new steer value.
    *
-   * @param steer value to be sent to VCU
-   * @throws IOException from sendMotorAndSteerValue
-   * @throws InterruptedException from sendMotorAndSteerValue
+   * @param steer value to be sent to VCU.
+   * @throws IOException from sendMotorAndSteerValue.
+   * @throws InterruptedException from sendMotorAndSteerValue.
    */
   public void sendSteerValue(byte steer) throws InterruptedException {
     outputWorker.queueSteerValue(steer);
@@ -138,9 +146,9 @@ public final class CAN {
   }
 
   /**
-   * Disgusting DistPub-line to sensor reading short-array
+   * Disgusting DistPub-line to sensor reading short-array.
    *
-   * @return sensor readings
+   * @return sensor readings.
    */
   public Short readSensor() throws InterruptedException {
     String sensorLine = inputWorker.readSensorLine();
@@ -167,7 +175,7 @@ public final class CAN {
 
   /**
    * Basically a container class (think C structure) for CAN frames received and
-   * sent
+   * sent.
    */
   private class CANFrame {
 
@@ -203,7 +211,7 @@ public final class CAN {
    * by launching candump and continuously parsing it's standard output into
    * sensor frames that are put into queues accessible by parent (CAN) object.
    * Uses semaphores for mutex because the java keyword synchronized is
-   * confusing
+   * confusing.
    */
   private class InputWorker implements Runnable {
 
@@ -225,9 +233,9 @@ public final class CAN {
 
     /**
      * Beware super lazy parsing. Hardcoded for candump run with flag '-t'
-     * option 'z'
+     * option 'z'.
      *
-     * @return can frame from parsed candump standard output
+     * @return can frame from parsed candump standard output.
      */
     private CANFrame readFrame() throws IOException {
       int DATA_OFFSET = 4;
@@ -255,12 +263,12 @@ public final class CAN {
     }
 
     /**
-     * Super-hacky oh-so-ugly DistPub data line re-constructor TODO comment code
-     * *
+     * Super-hacky oh-so-ugly DistPub data line re-constructor. TODO comment
+     * code *
      *
-     * @return DistPub data line if available else null
+     * @return DistPub data line if available else null.
      * @throws InterruptedException if interrupted when waiting for
-     * usSensorQueueLock
+     * usSensorQueueLock.
      */
     private String readSensorLine() throws InterruptedException {
       String line = null;
@@ -374,12 +382,27 @@ public final class CAN {
       stopFlag = new AtomicBoolean(false);
     }
 
+    /**
+     * Put a frame in output queue.
+     *
+     * @param frame to be entered into queue.
+     * @throws InterruptedException if interrupted whilst waiting for queue.
+     * lock.
+     */
     public void queueFrame(CANFrame frame) throws InterruptedException {
       queueLock.acquire();
       frameOutputQueue.add(frame);
       queueLock.release();
     }
 
+    /**
+     * Polls motor and steer value, if any, from their queues and combines them
+     * into a VCU command frame.
+     *
+     * @return VCU frame containing combined value.
+     * @throws InterruptedException if interrupted whilst waiting for queue
+     * lock.
+     */
     private CANFrame getCombinedFrame() throws InterruptedException {
       byte motor, steer;
 
@@ -417,6 +440,13 @@ public final class CAN {
       return new CANFrame(VCU_COMMAND_CAN_ID, motorAndSteerBytes);
     }
 
+    /**
+     * Queue motor value to be sent to VCU.
+     *
+     * @param value to be sent.
+     * @throws InterruptedException if interrupted whilst waiting for queue
+     * lock.
+     */
     public void queueMotorValue(byte value) throws InterruptedException {
       motorQueueLock.acquire();
 
@@ -425,6 +455,13 @@ public final class CAN {
       motorQueueLock.release();
     }
 
+    /**
+     * Queue steer value to be sent to VCU.
+     *
+     * @param value to be sent.
+     * @throws InterruptedException if interrupted whilst waiting for queue
+     * lock.
+     */
     public void queueSteerValue(byte value) throws InterruptedException {
       steerQueueLock.acquire();
 
@@ -433,6 +470,13 @@ public final class CAN {
       steerQueueLock.release();
     }
 
+    /**
+     * Sends a can frame using external program cansend
+     *
+     * @param frame to be sent.
+     * @throws InterruptedException if interrupted before candsend exits.
+     * @throws IOException on any I/O exception related to starting cansend.
+     */
     private void sendFrame(CANFrame frame)
         throws InterruptedException, IOException {
       String[] argv = new String[3];
