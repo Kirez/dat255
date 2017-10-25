@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * @author Erik Källberg (kalerik@student.chalmers.se)
  * @author Hugo Frost
- *
+ * <p>
  * Singleton class CAN for interfacing with can-utils's candump and cansend,
  * mimicking MOPED python code.
  */

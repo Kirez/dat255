@@ -91,6 +91,7 @@ class Regulator { /* Speed given by regulator calculations */
 
   /**
    * Simple return method.
+   *
    * @return int Current speed.
    */
   public int getSpeed() {

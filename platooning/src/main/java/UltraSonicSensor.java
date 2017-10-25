@@ -27,16 +27,20 @@ public class UltraSonicSensor implements IDistance {
 
   /**
    * Some check on sensor value:
-   *  NOTE: Error distance we react on can/should be changed. (not tested)
-   *        Currently expects just a short/int and not an array from can.readSensor(), if we decide to
-   *        send one sensor value at the time.
+   * NOTE: Error distance we react on can/should be changed (not tested).
+   * Currently expects just a short/int and not an array from can.readSensor(),
+   * if we decide to send one sensor value at the time.
+   * <p>
+   * If: Difference is smaller we update lastDist and return new sensor value
+   * (accepted value)
+   * <p>
+   * If else: Difference is larger than 500 then return lastDist (this sensor
+   * value was invalid)
+   * <p>
+   * Else: We had error difference larger than 500 twice, which means we have to
+   * assume the sensor is looking at a new object.
    *
-   *  If: Difference is smaller we update lastDist and return new sensor value (accepted value)
-   *  If else: Difference is larger than 500 then return lastDist (this sensor value was invalid)
-   *  Else: We had error difference larger than 500 twice, which means we have to assume the sensor is looking at a
-   *        new object.
-   * @author Arvid
-   * @return a New sensor value
+   * @return a new sensor value
    */
   public int getDistance() {
     try {
