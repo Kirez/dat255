@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class CAN {
 
   private static CAN instance;
-  private static String CAN_INTERFACE = "can0";
+  private static String CAN_INTERFACE = "vcan0";
   private static String DUMP_COMMAND = "candump";
   private static String SEND_COMMAND = "cansend";
   private static String VCU_COMMAND_CAN_ID = "101";
@@ -68,6 +68,14 @@ public final class CAN {
       sb.append(String.format("%02X", b));
     }
     return sb.toString();
+  }
+
+  public byte getSteerValue() {
+    return steerValue;
+  }
+
+  public byte getMotorValue() {
+    return motorValue;
   }
 
   public void start() throws InterruptedException {
