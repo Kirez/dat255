@@ -35,7 +35,8 @@ public class ImageServer implements Runnable {
 
       while (true) {
 
-        DatagramPacket receivePack = new DatagramPacket(receive, receive.length);
+        DatagramPacket receivePack = new DatagramPacket(receive,
+            receive.length);
         serverSocket.receive(receivePack);
         byte[] message = receivePack.getData();
 
@@ -48,7 +49,8 @@ public class ImageServer implements Runnable {
         int port = receivePack.getPort();
 
         send = "OK".getBytes(StandardCharsets.UTF_8);
-        DatagramPacket sendPack = new DatagramPacket(send, send.length, IP, port);
+        DatagramPacket sendPack = new DatagramPacket(send, send.length, IP,
+            port);
         serverSocket.send(sendPack);
       }
     } catch (IOException e) {

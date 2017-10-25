@@ -14,8 +14,9 @@ public class Main {
     ACC acc = new ACC(mc, sensor);
 
     Platooning platooning = new Platooning(can, acc, alc);
-    BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in,
-        StandardCharsets.UTF_8));
+    BufferedReader inputReader = new BufferedReader(
+        new InputStreamReader(System.in,
+            StandardCharsets.UTF_8));
 
     try {
       System.out.print("Platooning>");

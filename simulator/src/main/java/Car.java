@@ -72,16 +72,16 @@ public class Car {
     return currentState;
   }
 
-  public void setMovingState(MovingState movingState) {
-    currentState = movingState;
-  }
-
   public void setMovingState(double speed) {
     if (isCarAccelerating(speed)) {
       setMovingState(acceleratingState);
     } else {
       setMovingState(deacceleratingState);
     }
+  }
+
+  public void setMovingState(MovingState movingState) {
+    currentState = movingState;
   }
 
   /**
