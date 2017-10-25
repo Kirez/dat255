@@ -3,7 +3,6 @@ import static java.lang.Thread.sleep;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
 /**
  * Test Sim for steering
@@ -12,14 +11,10 @@ import java.util.Random;
  */
 public class SteeringSim implements Observer { /* Lateral Field of View of the Camera */
 
-  int carFov = 49; /* Course of the following car */
-  double course; /* Course of the leading car */
-  double frontCourse; /* Error in camera units */
-  double error; /* Error in degrees */
-  double degError; /* Amplification */
-  double k; /* Number of invocations */
-  int s; /* SteeringSim */
-  double steer; /* *Starts the thread running the leading car */
+  private double course; /* Course of the leading car */
+  private double k; /* Number of invocations */
+  private int s; /* SteeringSim */
+  private double steer; /* *Starts the thread running the leading car */
 
   public SteeringSim() {
     s = 0;
@@ -32,9 +27,10 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
   @Override
   public void update(Observable o, Object arg) {
     s++;
-    frontCourse = new Double(arg.toString());
-    degError = frontCourse - course;
-    error = degError / carFov;
+    double frontCourse = new Double(arg.toString()); /* Error in camera units */
+    double degError = frontCourse - course; /* Amplification */
+    int carFov = 49; /* Course of the following car */
+    double error = degError / carFov; /* Error in degrees */
     if (s % 5 == 0) {
       steer += error * k;
       System.out.println("The front car's course is: " + frontCourse
@@ -49,16 +45,14 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
     }
   }
 
-  public class FrontCar extends Observable implements Runnable {
+  public static class FrontCar extends Observable implements Runnable {
 
     double course;
-    Random r;
     int s;
 
-    public FrontCar(SteeringSim st) {
+    FrontCar(SteeringSim st) {
       this.addObserver(st);
       course = 0;
-      r = new Random();
       s = 0;
     }
 
@@ -70,7 +64,7 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
             course = 40;
           } else if (s % 50 == 0) {
             course += 40;
-          }/* else { course += r.nextInt(4) - 2; }*/
+          }
           if (course > 180) {
             course -= 360;
           } else if (course < -179) {

@@ -1,12 +1,9 @@
 package imageClient;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -15,18 +12,12 @@ import org.opencv.videoio.VideoCapture;
 /**
  * Created by calrless on 2017-10-06.
  */
-
 public class ImageClient implements Runnable {
 
   @SuppressWarnings("unused")
-  private int xOfset, xCenter, yCenter;
+  private int xOffset;
   private ImageProcessing imgPr;
-  private ProcessedImage proImg;
   private VideoCapture stream;
-  private InetAddress IPAddress;
-  private Socket clientSocket;
-  private OutputStream ostream;
-  private DataOutputStream dos;
 
   public ImageClient() throws IOException {
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -50,13 +41,10 @@ public class ImageClient implements Runnable {
       System.out.println("connected to stream");
       while (true) {
         if (stream.read(frame)) {
-          proImg = imgPr.getProcessedImage(frame);
+          ProcessedImage proImg = imgPr.getProcessedImage(frame);
           if (proImg != null) {
 
-            xOfset = (int) proImg.getxOffset();
-            xCenter = (int) proImg.getCenterX();
-            yCenter = (int) proImg.getCenterY();
-
+            xOffset = (int) proImg.getxOffset();
             send();
           }
         }
@@ -66,21 +54,18 @@ public class ImageClient implements Runnable {
 
   public void send() {
     try {
-      byte[] sendD = new byte[300];
+      byte[] sendD;
       byte[] recD = new byte[300];
       InetAddress IP = InetAddress.getByName("192.168.43.230");
 
       DatagramSocket socket = new DatagramSocket();
-      sendD = ByteBuffer.allocate(4).putInt(xOfset).array();
+      sendD = ByteBuffer.allocate(4).putInt(xOffset).array();
 
-      int x = java.nio.ByteBuffer.wrap(sendD).order(java.nio.ByteOrder.LITTLE_ENDIAN).getInt();
       DatagramPacket sendP = new DatagramPacket(sendD, sendD.length, IP, 9876);
       socket.send(sendP);
-      //System.out.println("SENT: "+ xOfset);
 
       DatagramPacket recP = new DatagramPacket(recD, recD.length);
       socket.receive(recP);
-      String msg = new String(recP.getData());
     } catch (IOException e) {
       e.printStackTrace();
     }

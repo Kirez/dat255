@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
 
@@ -13,7 +14,8 @@ public class Main {
     ACC acc = new ACC(mc, sensor);
 
     Platooning platooning = new Platooning(can, acc, alc);
-    BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in,
+        StandardCharsets.UTF_8));
 
     try {
       System.out.print("Platooning>");

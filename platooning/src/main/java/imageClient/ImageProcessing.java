@@ -34,10 +34,10 @@ public class ImageProcessing {
     System.out.println("loading lib");
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     System.out.println("loaded");
-    ImageProcessing i = new ImageProcessing(); /* String argv = "nc 192.168.43.230 2222"; */ /* Process receive = Runtime.getRuntime().exec(argv); */
+    ImageProcessing i = new ImageProcessing();
 
     VideoCapture stream = new VideoCapture();
-    stream.open("tcp://192.168.43.230:2222"); /* a mjpeg , ipcam stream */
+    stream.open("tcp://192.168.43.230:2222");
     Mat frame = new Mat();
     if (stream.isOpened()) {
       System.out.println("hhh");
@@ -60,10 +60,9 @@ public class ImageProcessing {
    * @return the processed image, null if the file couldn't be found
    */
   public ProcessedImage getProcessedImage(Mat frame) {
-    float startTime = System.nanoTime();
     if (frame == null) {
       return null;
-    } /* imwrite("images/original.png", frame); */
+    }
     Mat blurredImage = new Mat();
     Mat hsvImage = new Mat();
     Imgproc.blur(frame, blurredImage, new Size(7, 7));
@@ -76,8 +75,6 @@ public class ImageProcessing {
         upperRed);
     Mat red_hue_image = new Mat(); /* Combines the two matrices */
     addWeighted(lowerRed, 1.0, upperRed, 1.0, 0.0, red_hue_image);
-    float endTime = System.nanoTime();
-    float duration = (endTime - startTime); /* System.out.println("Duration for processing: " + duration / 1000000000 + "s"); */ /* imwrite("images/frame.png", frame); */ /* imwrite("images/lowerRed.png", lowerRed); */ /* imwrite("images/lowerRed.png", lowerRed); */
     return contour(red_hue_image, frame);
   }
 
@@ -88,7 +85,7 @@ public class ImageProcessing {
    * @param frame the source matrix
    */
   private ProcessedImage contour(Mat mask, Mat frame) {
-    List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+    List<MatOfPoint> contours = new ArrayList<>();
     Mat hierarchy = new Mat();
     Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_CCOMP,
         Imgproc.CHAIN_APPROX_SIMPLE);
@@ -102,7 +99,7 @@ public class ImageProcessing {
    * @return an arraylist with the circles
    */
   private ProcessedImage matrixToList(List<MatOfPoint> circles, Mat src) {
-    ArrayList<ProcessedImage> circleList = new ArrayList<ProcessedImage>();
+    ArrayList<ProcessedImage> circleList = new ArrayList<>();
     for (final MatOfPoint circle : circles) {
       Point center = new Point(circle.get(0, 0));
       if (circle.toArray().length < 5) {
@@ -127,7 +124,7 @@ public class ImageProcessing {
       circleList.add(
           new ProcessedImage(ellipse.center.x, ellipse.center.y, offset, height,
               width));
-    } /* System.out.println("Number of circles & ellipses found: " + circleList.size()); */
+    }
     return findCorrectCircle(circleList);
   }
 
