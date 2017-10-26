@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Car.
@@ -6,31 +8,31 @@ public class Car {
 
   /** The speed. */
   private double speed;
-  
+
   /** The wanted speed. */
   private double wantedSpeed;
-  
+
   /** The new speed. */
   private double newSpeed;
-  
+
   /** The is leading car. */
   private boolean isLeadingCar;
-  
+
   /** The regulator. */
   private Regulator regulator;
-  
+
   /** The sensor. */
   private Sensor sensor;
-  
+
   /** The current state. */
   private MovingState currentState;
-  
+
   /** The accelerating state. */
   private MovingState acceleratingState;
-  
+
   /** The deaccelerating state. */
   private MovingState deacceleratingState;
-  
+
   /** The y. */
   private double x, y;
 

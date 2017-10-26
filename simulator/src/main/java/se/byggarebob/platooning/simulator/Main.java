@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Main.

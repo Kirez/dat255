@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 /**
  * This class regulates the speed based on the distance to an object in front of the car.
  *

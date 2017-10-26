@@ -2,6 +2,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import se.byggarebob.platooning.simulator.AcceleratingState;
+import se.byggarebob.platooning.simulator.Car;
+import se.byggarebob.platooning.simulator.DeacceleratingState;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 // TODO: Auto-generated Javadoc
 /**
  * Created by hugfro on 2017-10-03.

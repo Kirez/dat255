@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class MotorControl.
@@ -6,7 +8,7 @@ public class MotorControl implements IMovable {
 
   /** The last speed. */
   private int lastSpeed = 0;
-  
+
   /** The can. */
   private CAN can;
 

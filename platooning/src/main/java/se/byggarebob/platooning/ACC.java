@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ACC.
@@ -6,16 +8,16 @@ public class ACC implements Runnable {
 
   /** The stop flagged. */
   private boolean stopFlagged = false;
-  
+
   /** The mc. */
   private MotorControl mc;
-  
+
   /** The sensor. */
   private UltraSonicSensor sensor;
-  
+
   /** The regulator. */
   private Regulator regulator;
-  
+
   /** The distance. */
   private double distance;
 

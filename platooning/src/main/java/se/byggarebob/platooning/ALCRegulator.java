@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ALCRegulator.
@@ -6,7 +8,7 @@ public class ALCRegulator {
 
   /** The servo. */
   private ServoControl servo;
-  
+
   /** The k. */
   private int k;
 

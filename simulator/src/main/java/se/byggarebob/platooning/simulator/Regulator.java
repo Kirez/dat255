@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 // TODO: Auto-generated Javadoc
 /**
  * Created by Macken on 2017-09-25.
@@ -6,19 +8,19 @@ class Regulator {
 
   /** The v 1. */
   private double v1;
-  
+
   /** The k. */
   private double k;
-  
+
   /** The i. */
   private double i;
-  
+
   /** The i acc. */
   private double i_acc;
-  
+
   /** The d. */
   private double d;
-  
+
   /** The last er. */
   private double lastEr;
 

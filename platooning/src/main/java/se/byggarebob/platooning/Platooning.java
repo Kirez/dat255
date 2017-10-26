@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Platooning.
@@ -6,16 +8,16 @@ public final class Platooning {
 
   /** The can. */
   private CAN can;
-  
+
   /** The acc. */
   private ACC acc;
-  
+
   /** The acc thread. */
   private Thread accThread;
-  
+
   /** The alc thread. */
   private Thread alcThread;
-  
+
   /** The active. */
   private boolean active;
 

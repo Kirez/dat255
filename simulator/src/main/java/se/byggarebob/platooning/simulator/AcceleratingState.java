@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class AcceleratingState.
@@ -8,7 +10,7 @@ public class AcceleratingState implements MovingState {
 
   /** The accelerating factor. */
   private double acceleratingFactor = 1.1;
-  
+
   /** The time step. */
   private double timeStep = 0.1;
 

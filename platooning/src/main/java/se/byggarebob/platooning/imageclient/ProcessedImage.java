@@ -1,4 +1,4 @@
-package imageClient;
+package se.byggarebob.platooning.imageclient;
 
 // TODO: Auto-generated Javadoc
 /**

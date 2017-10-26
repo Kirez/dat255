@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class DeacceleratingState.
@@ -8,7 +10,7 @@ public class DeacceleratingState implements MovingState {
 
   /** The deaccelerating factor. */
   private double deacceleratingFactor = 0.9;
-  
+
   /** The time step. */
   private double timeStep = 0.1;
 

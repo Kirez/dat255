@@ -1,4 +1,4 @@
-package imageClient;
+package se.byggarebob.platooning.imageclient;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
