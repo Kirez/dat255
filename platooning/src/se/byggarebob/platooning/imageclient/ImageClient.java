@@ -9,9 +9,9 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
-// TODO: Auto-generated Javadoc
 /**
- * Created by calrless on 2017-10-06.
+ * This class receives a stream with images from the MOPED, processes the image and sends an x value back.
+ * @author Johannes Edenholm & Karl Ängermark
  */
 public class ImageClient implements Runnable {
 
@@ -48,15 +48,12 @@ public class ImageClient implements Runnable {
   }
 
   /**
-   * Receive.
+   * Receives a datastream of images and processes
    *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public void receive() throws IOException {
-
-    System.out.println("joining stream");
     stream.open("tcp://192.168.43.230:2222");
-    System.out.println("Started");
     Mat frame = new Mat();
     if (stream.isOpened()) {
       System.out.println("connected to stream");
@@ -64,7 +61,6 @@ public class ImageClient implements Runnable {
         if (stream.read(frame)) {
           ProcessedImage proImg = imgPr.getProcessedImage(frame);
           if (proImg != null) {
-
             xOffset = (int) proImg.getxOffset();
             send();
           }
@@ -74,7 +70,7 @@ public class ImageClient implements Runnable {
   }
 
   /**
-   * Send.
+   * Sends a UDP message with the xOfset
    */
   public void send() {
     try {
@@ -95,7 +91,7 @@ public class ImageClient implements Runnable {
     }
   }
 
-  /* (non-Javadoc)
+  /*
    * @see java.lang.Runnable#run()
    */
   @Override
@@ -103,7 +99,6 @@ public class ImageClient implements Runnable {
     try {
       receive();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }

@@ -6,9 +6,11 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * Created by Macken on 2017-10-06.
+ * @Author Johannes Edenholm & Karl Ängermark
+ * This class starts up the stream on the MOPED and accepts one connection.
+ * receives data from client and adjusts steering to the data.
  */
 public class ImageServer implements Runnable {
 
@@ -25,7 +27,6 @@ public class ImageServer implements Runnable {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public ImageServer(ALCRegulator ALCreg) throws IOException {
-    System.out.println("FRESH NEW SERVER");
     this.ALCreg = ALCreg;
     String argv = "raspivid -l -o tcp://0.0.0.0:2222 --framerate 10 -w 1270 -h 292 -t 0 --mode 5";
     cameraProcess = Runtime.getRuntime().exec(argv);
@@ -37,7 +38,7 @@ public class ImageServer implements Runnable {
     }
   }
 
-  /* (non-Javadoc)
+  /* 
    * @see java.lang.Runnable#run()
    */
   @Override
@@ -46,7 +47,7 @@ public class ImageServer implements Runnable {
       DatagramSocket serverSocket = new DatagramSocket(9876);
       System.out.println("listening on port 9876");
       byte[] send;
-      byte[] receive = new byte[300];
+      byte[] receive;
 
       while (true) {
 
