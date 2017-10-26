@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConnectController">
+<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.byggarebob.platooning.ui.controllers.ConnectController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Moped">
          <VBox.margin>

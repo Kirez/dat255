@@ -30,7 +30,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>ui.Main</mainClass>
+              <mainClass>se.byggarebob.platooning.ui.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -39,8 +39,7 @@
     <outputDirectory>target/classes</outputDirectory>
     <finalName>${artifactId}-${version}</finalName>
     <testOutputDirectory>target/test-classes</testOutputDirectory>
-    <sourceDirectory>src/main/java</sourceDirectory>
-    <testSourceDirectory>src/test/java</testSourceDirectory>
+    <sourceDirectory>src</sourceDirectory>
   </build>
 
   <dependencies>

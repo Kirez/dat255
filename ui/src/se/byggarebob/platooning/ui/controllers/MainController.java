@@ -1,4 +1,4 @@
-package controllers;
+package se.byggarebob.platooning.ui.controllers;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,7 +19,7 @@ import javafx.scene.control.Slider;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
-import ui.Main;
+import se.byggarebob.platooning.ui.Main;
 
 /**
  * Created by Johan on 2017-10-12.
@@ -78,7 +78,8 @@ public class MainController implements Initializable {
         URL fxml;
 
         try {
-          fxml = new File("ui/src/main/java/fxmls/Connect.fxml").toURI()
+          fxml = new File("ui/src/se/byggarebob/platooning/ui/fxmls/Connect.fxml")
+              .toURI()
               .toURL();
           root = FXMLLoader.load(fxml);
           Stage connectStage = new Stage();
