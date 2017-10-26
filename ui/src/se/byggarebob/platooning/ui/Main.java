@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
   /** The main stage. */
-  public static Stage mainStage;
+  public static volatile Stage mainStage = null;
 
   /* (non-Javadoc)
    * @see javafx.application.Application#start(javafx.stage.Stage)
@@ -30,7 +30,9 @@ public class Main extends Application {
     mainStage.setScene(new Scene(root));
     mainStage.show();
 
-    Main.mainStage = mainStage;
+    if (Main.mainStage == null) {
+      Main.mainStage = mainStage;
+    }
   }
 
   /**

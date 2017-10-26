@@ -92,13 +92,15 @@ public class MainController implements Initializable {
   }
 
   /** The moped connection. */
-  public static MopedConnection mopedConnection;
+  static MopedConnection mopedConnection = null;
 
   /* (non-Javadoc)
    * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
    */
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    mopedConnection = new MopedConnection();
+    if (mopedConnection == null) {
+      mopedConnection = new MopedConnection();
+    }
     updateDisabledControls();
 
     connection.selectedProperty().addListener(c -> {
