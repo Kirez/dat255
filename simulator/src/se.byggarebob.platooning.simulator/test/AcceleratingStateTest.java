@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator.test;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
