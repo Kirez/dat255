@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 import static java.lang.Thread.interrupted;
 import static java.lang.Thread.sleep;
 

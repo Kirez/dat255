@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 /**
  * This interface is supposed create basic methods to get data from the MOPED
  * using the CarAPI.

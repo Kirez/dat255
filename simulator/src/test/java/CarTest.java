@@ -3,6 +3,9 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import se.byggarebob.platooning.simulator.AcceleratingState;
+import se.byggarebob.platooning.simulator.Car;
+import se.byggarebob.platooning.simulator.DeacceleratingState;
 
 /**
  * @author Johan Svennungsson

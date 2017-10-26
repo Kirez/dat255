@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 /**
  * Created by hugfro on 2017-09-29.
  */

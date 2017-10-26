@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 public class MotorControl implements IMovable {
 
   private int lastSpeed = 0;

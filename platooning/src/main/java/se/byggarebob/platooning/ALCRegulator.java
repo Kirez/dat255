@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 public class ALCRegulator {
 
   private ServoControl servo;

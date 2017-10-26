@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 public class Car {
 
   private double speed;

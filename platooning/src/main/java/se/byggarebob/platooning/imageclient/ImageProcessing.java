@@ -1,4 +1,4 @@
-package imageClient;
+package se.byggarebob.platooning.imageclient;
 
 import static org.opencv.core.Core.addWeighted;
 import static org.opencv.imgproc.Imgproc.fitEllipse;

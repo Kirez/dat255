@@ -1,4 +1,4 @@
-package imageClient;
+package se.byggarebob.platooning.imageclient;
 
 public class ProcessedImage {
 

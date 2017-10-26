@@ -1,3 +1,5 @@
+package se.byggarebob.platooning.simulator;
+
 /**
  * @author Johan Svennungsson
  */

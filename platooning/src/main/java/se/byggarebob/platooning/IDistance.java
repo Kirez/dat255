@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 /**
  * @author Hamza Kadric
  * @author Timmy Truong

@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 public class ACC implements Runnable {
 
   private boolean stopFlagged = false;

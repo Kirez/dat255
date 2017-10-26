@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 public final class Platooning {
 
   private CAN can;

@@ -1,3 +1,5 @@
+package se.byggarebob.platooning;
+
 import java.io.IOException;
 
 public class ALC implements Runnable {
