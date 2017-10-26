@@ -3,7 +3,7 @@
  *
  * @author Arvid Wiklund
  * @author Hugo Frost
- * @author Kalle Ängmark
+ * @author Kalle Ängermark
  */
 class Regulator {
 
