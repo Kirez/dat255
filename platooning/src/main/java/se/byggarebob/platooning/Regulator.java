@@ -7,7 +7,7 @@ package se.byggarebob.platooning;
  * @author Hugo Frost
  * @author Kalle Ängermark
  */
-class Regulator {
+public class Regulator {
 
   /** Current speed given to MOPED */
   private double v1;
