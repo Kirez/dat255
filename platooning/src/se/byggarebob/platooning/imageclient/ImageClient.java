@@ -16,7 +16,6 @@ import org.opencv.videoio.VideoCapture;
 public class ImageClient implements Runnable {
 
   /** The x offset. */
-  @SuppressWarnings("unused")
   private int xOffset;
 
   /** The img pr. */

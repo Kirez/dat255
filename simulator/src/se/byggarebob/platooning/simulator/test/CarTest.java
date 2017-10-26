@@ -116,8 +116,6 @@ public class CarTest {
 
   /**
    * Gets the sensor.
-   *
-   * @return the sensor
    */
   @Test
   public void getSensor() {

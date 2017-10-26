@@ -32,8 +32,6 @@ public class AcceleratingStateTest {
 
   /**
    * Gets the accelerating state.
-   *
-   * @return the accelerating state
    */
   @Test
   public void getAcceleratingState() {
