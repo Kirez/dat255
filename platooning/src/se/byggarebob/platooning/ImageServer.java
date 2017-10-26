@@ -6,14 +6,24 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by Macken on 2017-10-06.
  */
 public class ImageServer implements Runnable {
 
+  /** The AL creg. */
   private ALCRegulator ALCreg;
+  
+  /** The camera process. */
   private Process cameraProcess;
 
+  /**
+   * Instantiates a new image server.
+   *
+   * @param ALCreg the AL creg
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public ImageServer(ALCRegulator ALCreg) throws IOException {
     System.out.println("FRESH NEW SERVER");
     this.ALCreg = ALCreg;
@@ -27,6 +37,9 @@ public class ImageServer implements Runnable {
     }
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Runnable#run()
+   */
   @Override
   public void run() {
     try {

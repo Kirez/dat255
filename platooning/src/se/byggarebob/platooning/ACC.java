@@ -1,13 +1,32 @@
 package se.byggarebob.platooning;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ACC.
+ */
 public class ACC implements Runnable {
 
+  /** The stop flagged. */
   private boolean stopFlagged = false;
+
+  /** The mc. */
   private MotorControl mc;
+
+  /** The sensor. */
   private UltraSonicSensor sensor;
+
+  /** The regulator. */
   private Regulator regulator;
+
+  /** The distance. */
   private double distance;
 
+  /**
+   * Instantiates a new acc.
+   *
+   * @param mc the mc
+   * @param sensor the sensor
+   */
   public ACC(MotorControl mc, UltraSonicSensor sensor) {
     this.sensor = sensor;
     this.mc = mc;
@@ -15,6 +34,9 @@ public class ACC implements Runnable {
     regulator = new Regulator();
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Runnable#run()
+   */
   @Override
   public void run() {
     while (!stopFlagged) {
@@ -32,6 +54,9 @@ public class ACC implements Runnable {
     }
   }
 
+  /**
+   * Stop.
+   */
   public void stop() {
     mc.setSpeed(0);
     stopFlagged = true;

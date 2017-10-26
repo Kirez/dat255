@@ -1,9 +1,23 @@
 package se.byggarebob.platooning.imageclient;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProcessedImage.
+ */
 public class ProcessedImage {
 
+  /** The width. */
   private final double centerX, centerY, xOffset, height, width;
 
+  /**
+   * Instantiates a new processed image.
+   *
+   * @param centerX the center X
+   * @param centerY the center Y
+   * @param xOffset the x offset
+   * @param height the height
+   * @param width the width
+   */
   ProcessedImage(double centerX, double centerY, double xOffset, double height,
       double width) {
     this.centerX = centerX;
@@ -19,7 +33,7 @@ public class ProcessedImage {
   }
 
   /**
-   * The x coordinate of the circle's center point
+   * The x coordinate of the circle's center point.
    *
    * @return x
    */
@@ -28,7 +42,7 @@ public class ProcessedImage {
   }
 
   /**
-   * The y coordinate of the circle's center point
+   * The y coordinate of the circle's center point.
    *
    * @return y
    */
@@ -37,7 +51,7 @@ public class ProcessedImage {
   }
 
   /**
-   * The offset of the circle's center point
+   * The offset of the circle's center point.
    *
    * @return a value between 0 and 100 if the circle's center point is to the
    * right of the image's center, and a value between -100 and 0 if it's to the
@@ -48,7 +62,7 @@ public class ProcessedImage {
   }
 
   /**
-   * The height of the circle
+   * The height of the circle.
    *
    * @return the height
    */
@@ -57,7 +71,7 @@ public class ProcessedImage {
   }
 
   /**
-   * The width of the circle
+   * The width of the circle.
    *
    * @return the width
    */

@@ -11,7 +11,10 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class CAN.
+ *
  * @author Erik Källberg (kalerik@student.chalmers.se)
  * @author Hugo Frost
  * <p>
@@ -20,20 +23,49 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class CAN {
 
+  /** The instance. */
   private static CAN instance;
+  
+  /** The can interface. */
   private String CAN_INTERFACE = "can0";
+  
+  /** The dump command. */
   private String DUMP_COMMAND = "candump";
+  
+  /** The send command. */
   private String SEND_COMMAND = "cansend";
+  
+  /** The vcu command can id. */
   private String VCU_COMMAND_CAN_ID = "101";
+  
+  /** The vcu odometer can id. */
   private String VCU_ODOMETER_CAN_ID = "Not known at this time";
+  
+  /** The scu ultrasonic can id. */
   private String SCU_ULTRASONIC_CAN_ID = "46C";
+  
+  /** The motor value. */
   private byte motorValue = 0;
+  
+  /** The steer value. */
   private byte steerValue = 0;
+  
+  /** The vcu cool down. */
   private long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
+  
+  /** The output worker thread. */
   private Thread outputWorkerThread;
+  
+  /** The input worker thread. */
   private Thread inputWorkerThread;
+  
+  /** The output worker. */
   private OutputWorker outputWorker;
+  
+  /** The input worker. */
   private InputWorker inputWorker;
+  
+  /** The active. */
   private boolean active;
 
   /**
@@ -125,6 +157,7 @@ public final class CAN {
    *
    * @param motor value to be sent to VCU.
    * @param steer value to be sent to VCU.
+   * @throws InterruptedException the interrupted exception
    */
   public void sendMotorAndSteerValue(byte motor, byte steer)
       throws InterruptedException {
@@ -137,6 +170,7 @@ public final class CAN {
    * old steer value along  with the new motor value.
    *
    * @param motor value to be sent to VCU.
+   * @throws InterruptedException the interrupted exception
    */
   public void sendMotorValue(byte motor) throws InterruptedException {
     outputWorker.queueMotorValue(motor);
@@ -148,7 +182,6 @@ public final class CAN {
    * old motor value along  with the new steer value.
    *
    * @param steer value to be sent to VCU.
-   * @throws IOException from sendMotorAndSteerValue.
    * @throws InterruptedException from sendMotorAndSteerValue.
    */
   public void sendSteerValue(byte steer) throws InterruptedException {
@@ -160,6 +193,7 @@ public final class CAN {
    * Disgusting DistPub-line to sensor reading short-array.
    *
    * @return sensor readings.
+   * @throws InterruptedException the interrupted exception
    */
   public Short readSensor() throws InterruptedException {
     String sensorLine = inputWorker.readSensorLine();
@@ -190,28 +224,61 @@ public final class CAN {
    */
   private static class CANFrame {
 
+    /** The identity. */
     private String identity;
+    
+    /** The time. */
     private double time;
+    
+    /** The data. */
     private byte[] data;
 
+    /**
+     * Instantiates a new CAN frame.
+     *
+     * @param identity the identity
+     * @param time the time
+     * @param data the data
+     */
     public CANFrame(String identity, double time, byte[] data) {
       this.identity = identity;
       this.time = time;
       this.data = data;
     }
 
+    /**
+     * Instantiates a new CAN frame.
+     *
+     * @param identity the identity
+     * @param data the data
+     */
     public CANFrame(String identity, byte[] data) {
       this(identity, -1, data);
     }
 
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
     public String getID() {
       return identity;
     }
 
+    /**
+     * Gets the data.
+     *
+     * @return the data
+     */
     public byte[] getData() {
       return data;
     }
 
+    /**
+     * Gets the time.
+     *
+     * @return the time
+     */
     public double getTime() {
       return time;
     }
@@ -226,14 +293,30 @@ public final class CAN {
    */
   private class InputWorker implements Runnable {
 
+    /** The stop flag. */
     public AtomicBoolean stopFlag;
+    
+    /** The odometer queue lock. */
     private Semaphore odometerQueueLock;
+    
+    /** The odometer queue. */
     private Queue<CANFrame> odometerQueue;
+    
+    /** The us sensor queue lock. */
     private Semaphore usSensorQueueLock;
+    
+    /** The us sensor queue. */
     private Queue<CANFrame> usSensorQueue;
+    
+    /** The can dump process. */
     private Process canDumpProcess;
+    
+    /** The can dump standard output. */
     private InputStream canDumpStandardOutput;
 
+    /**
+     * Instantiates a new input worker.
+     */
     public InputWorker() {
       odometerQueueLock = new Semaphore(1);
       odometerQueue = new ArrayDeque<>();
@@ -247,6 +330,7 @@ public final class CAN {
      * option 'z'.
      *
      * @return can frame from parsed candump standard output.
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     private CANFrame readFrame() throws IOException {
       int DATA_OFFSET = 4;
@@ -323,6 +407,9 @@ public final class CAN {
       return line;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Runnable#run()
+     */
     @Override
     public void run() {
       String[] argv = new String[4];
@@ -380,14 +467,30 @@ public final class CAN {
    */
   private class OutputWorker implements Runnable {
 
+    /** The stop flag. */
     public AtomicBoolean stopFlag;
+    
+    /** The queue lock. */
     private Semaphore queueLock;
+    
+    /** The frame output queue. */
     private Queue<CANFrame> frameOutputQueue;
+    
+    /** The motor queue lock. */
     private Semaphore motorQueueLock;
+    
+    /** The steer queue lock. */
     private Semaphore steerQueueLock;
+    
+    /** The motor value queue. */
     private Queue<Byte> motorValueQueue;
+    
+    /** The steer value queue. */
     private Queue<Byte> steerValueQueue;
 
+    /**
+     * Instantiates a new output worker.
+     */
     public OutputWorker() {
       queueLock = new Semaphore(1);
       motorQueueLock = new Semaphore(1);
@@ -487,7 +590,7 @@ public final class CAN {
     }
 
     /**
-     * Sends a can frame using external program cansend
+     * Sends a can frame using external program cansend.
      *
      * @param frame to be sent.
      * @throws InterruptedException if interrupted before candsend exits.
@@ -504,6 +607,9 @@ public final class CAN {
       csProcess.waitFor();
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Runnable#run()
+     */
     @Override
     public void run() {
       while (!stopFlag.get()) {

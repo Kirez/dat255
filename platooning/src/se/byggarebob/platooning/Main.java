@@ -2,6 +2,10 @@ package se.byggarebob.platooning;
 
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main {
 
   public static void main(String args[])

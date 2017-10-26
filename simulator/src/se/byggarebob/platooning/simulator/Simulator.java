@@ -3,16 +3,32 @@ package se.byggarebob.platooning.simulator;
 import static java.lang.Thread.interrupted;
 import static java.lang.Thread.sleep;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Simulator.
+ */
 public class Simulator implements Runnable {
 
+  /** The following car. */
   private Car followingCar;
+  
+  /** The leading car. */
   private Car leadingCar;
 
+  /**
+   * Instantiates a new simulator.
+   *
+   * @param followingCar the following car
+   * @param leadingCar the leading car
+   */
   public Simulator(Car followingCar, Car leadingCar) {
     this.followingCar = followingCar;
     this.leadingCar = leadingCar;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Runnable#run()
+   */
   @Override
   public void run() {
     while (!interrupted()) {

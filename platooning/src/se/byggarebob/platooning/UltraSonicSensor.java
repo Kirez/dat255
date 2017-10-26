@@ -1,14 +1,25 @@
 package se.byggarebob.platooning;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by hugfro on 2017-09-29.
  */
 public class UltraSonicSensor implements IDistance {
 
+  /** The can. */
   private CAN can;
+
+  /** The last dist. */
   private short lastDist;
+
+  /** The double error check. */
   private boolean doubleErrorCheck;
 
+  /**
+   * Instantiates a new ultra sonic sensor.
+   *
+   * @param can the can
+   */
   public UltraSonicSensor(CAN can) {
     this.can = can;
     lastDist = 0;

@@ -9,30 +9,46 @@ import se.byggarebob.platooning.simulator.AcceleratingState;
 import se.byggarebob.platooning.simulator.Car;
 import se.byggarebob.platooning.simulator.DeacceleratingState;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class CarTest.
+ *
  * @author Johan Svennungsson
  */
 public class CarTest {
 
+  /** The car. */
   private Car car;
 
+  /**
+   * Sets the up.
+   */
   @Before
   public void setUp() {
     car = new Car(0, 0, false);
   }
 
+  /**
+   * Sets the speed.
+   */
   @Test
   public void setSpeed() {
     car.setSpeed(5);
     assertEquals(car.getWantedSpeed(), 5, 0);
   }
 
+  /**
+   * Sets the moving state with speed.
+   */
   @Test
   public void setMovingStateWithSpeed() {
     assertEquals(car.getSpeed(), 0, 0);
     car.setMovingState(5);
   }
 
+  /**
+   * Sets the moving state with state.
+   */
   @Test
   public void setMovingStateWithState() {
     AcceleratingState accState = new AcceleratingState();
@@ -43,6 +59,9 @@ public class CarTest {
     assertEquals(car.getMovingState(), deaccState);
   }
 
+  /**
+   * Sets the accelerating state.
+   */
   @Test
   public void setAcceleratingState() {
     assertEquals(car.getSpeed(), 0, 0);
@@ -51,6 +70,9 @@ public class CarTest {
     assertEquals(car.getAcceleratingState(), car.getMovingState());
   }
 
+  /**
+   * Sets the deaccelerating state.
+   */
   @Test
   public void setDeacceleratingState() {
     car.setInstantSpeed(5);
@@ -60,6 +82,9 @@ public class CarTest {
     assertEquals(car.getMovingState(), car.getDeacceleratingState());
   }
 
+  /**
+   * Checks if is leading car.
+   */
   @Test
   public void isLeadingCar() {
     Car leadingCar = new Car(true);
@@ -68,6 +93,9 @@ public class CarTest {
     assertEquals(followingCar.isLeadingCar(), false);
   }
 
+  /**
+   * Checks if is leading car with coordinates.
+   */
   @Test
   public void isLeadingCarWithCoordinates() {
     Car leadingCar = new Car(50, 50, true);
@@ -76,6 +104,9 @@ public class CarTest {
     assertEquals(followingCar.isLeadingCar(), false);
   }
 
+  /**
+   * Checks if is car accelerating.
+   */
   @Test
   public void isCarAccelerating() {
     car.setInstantSpeed(5);
@@ -83,6 +114,9 @@ public class CarTest {
     assertEquals(car.isCarAccelerating(6), true);
   }
 
+  /**
+   * Gets the sensor.
+   */
   @Test
   public void getSensor() {
     Car leadingCar = new Car(true);
@@ -91,6 +125,9 @@ public class CarTest {
     assertNotEquals(followingCar.getSensor(), null);
   }
 
+  /**
+   * Checks if is car within range.
+   */
   @Test
   public void isCarWithinRange() {
     Car nearbyCar = new Car(0, 40, false);

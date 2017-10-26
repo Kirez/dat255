@@ -1,10 +1,16 @@
 package se.byggarebob.platooning.simulator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Sensor.
+ */
 public class Sensor {
 
   /**
-   * sqrt((x_1 - x_2)^2 + (y_1 - y_2)^2))
+   * sqrt((x_1 - x_2)^2 + (y_1 - y_2)^2)).
    *
+   * @param followingCar the following car
+   * @param leadingCar the leading car
    * @return distance in "cm"
    */
   public double getDistanceTo(Car followingCar, Car leadingCar) {
@@ -15,6 +21,8 @@ public class Sensor {
   /**
    * 1 pixel = 1 cm, we want to be within 40cm of the car in front.
    *
+   * @param followingCar the following car
+   * @param leadingCar the leading car
    * @return true if distance is less than 40cm
    */
   public boolean isCarWithinRangeOf(Car followingCar, Car leadingCar) {
