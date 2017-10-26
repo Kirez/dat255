@@ -1,0 +1,26 @@
+digraph ui {
+  compound=true;
+  rankdir=LR;
+  subgraph cluster0 {
+    label="Command";
+    ENABLE_ACC [label="ENABLE_ACC"];
+    ENABLE_ALC [label="ENABLE_ALC"];
+    DISABLE_ACC [label="DISABLE_ACC"];
+    DISABLE_ALC [label="DISABLE_ALC"];
+    SET_SPEED [label="SET_SPEED"];
+    SET_STEER [label="SET_STEER"];
+    SET_SPEED -> SPEED; 
+    SET_STEER -> STEER;
+    STEER [label="steer"];
+    SPEED [label="speed"];
+  }
+  
+  EVENT -> {ENABLE_ACC, ENABLE_ALC, DISABLE_ACC, DISABLE_ALC, SET_SPEED,
+            SET_STEER} [arrowhead=none];
+  
+  {ENABLE_ACC, ENABLE_ALC, DISABLE_ACC, DISABLE_ALC, SPEED, STEER} -> SEND_C
+  [ltail=cluster0, dir=none];
+
+  SEND_C [shape=point,width=0.01,height=0.01];
+  SEND_C -> SEND;
+}
