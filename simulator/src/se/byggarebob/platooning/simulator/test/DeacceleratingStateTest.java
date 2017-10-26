@@ -18,10 +18,10 @@ public class DeacceleratingStateTest {
 
   /** The accelerating state. */
   private AcceleratingState acceleratingState;
-  
+
   /** The deaccelerating state. */
   private DeacceleratingState deacceleratingState;
-  
+
   /** The car. */
   private Car car;
 

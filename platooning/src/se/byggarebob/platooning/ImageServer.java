@@ -14,7 +14,7 @@ public class ImageServer implements Runnable {
 
   /** The AL creg. */
   private ALCRegulator ALCreg;
-  
+
   /** The camera process. */
   private Process cameraProcess;
 

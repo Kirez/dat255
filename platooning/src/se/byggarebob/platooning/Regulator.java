@@ -1,7 +1,9 @@
 package se.byggarebob.platooning;
 
+// TODO: Auto-generated Javadoc
 /**
- * This class regulates the speed based on the distance to an object in front of the car.
+ * This class regulates the speed based on the distance to an object in front of
+ * the car.
  *
  * @author Arvid Wiklund
  * @author Hugo Frost
@@ -9,34 +11,37 @@ package se.byggarebob.platooning;
  */
 public class Regulator {
 
-  /** Current speed given to MOPED */
+  /** Current speed given to MOPED. */
   private double v1;
 
-  /** Desired distance */
+  /** Desired distance. */
   private double dDes;
 
-  /** Amplification factor */
+  /** Amplification factor. */
   private double k;
 
-  /** Integral factor */
+  /** Integral factor. */
   private double i;
 
-  /** Accumulated integral factor*/
+  /** Accumulated integral factor. */
   private double i_acc;
 
-  /** Deriving factor */
+  /** Deriving factor. */
   private double d;
 
-  /** Last error */
+  /** Last error. */
   private double lastEr;
 
-  /** Limitations to regulator */
+  /** Limitations to regulator. */
   private double maxSpeed;
+
+  /** The min speed. */
   private double minSpeed;
 
   /**
    * Instantiates all variables.
-   * Easy to change the different parameters, for example max speed or desired distance
+   * Easy to change the different parameters, for example max speed or desired
+   * distance
    * to object in front.
    */
   public Regulator() {
@@ -75,7 +80,7 @@ public class Regulator {
     double error = sensorValue - dDes;
 
     /**The sensor values are not always accurate and we don't want to over regulate on accumulated
-    error*/
+     error*/
     if (Math.abs(error) < 100) {
       i_acc += error * i;
     }

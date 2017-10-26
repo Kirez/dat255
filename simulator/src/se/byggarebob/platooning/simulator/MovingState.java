@@ -9,12 +9,12 @@ package se.byggarebob.platooning.simulator;
 public interface MovingState { /* void move(Car c); */
 
   /**
-  * Move.
-  *
-  * @param c the c
-  * @param wantedSpeed the wanted speed
-  */
- void move(Car c, double wantedSpeed);
+   * Move.
+   *
+   * @param c the c
+   * @param wantedSpeed the wanted speed
+   */
+  void move(Car c, double wantedSpeed);
 
   /**
    * Gets the factor.

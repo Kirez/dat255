@@ -25,46 +25,46 @@ public final class CAN {
 
   /** The instance. */
   private static CAN instance;
-  
+
   /** The can interface. */
   private String CAN_INTERFACE = "can0";
-  
+
   /** The dump command. */
   private String DUMP_COMMAND = "candump";
-  
+
   /** The send command. */
   private String SEND_COMMAND = "cansend";
-  
+
   /** The vcu command can id. */
   private String VCU_COMMAND_CAN_ID = "101";
-  
+
   /** The vcu odometer can id. */
   private String VCU_ODOMETER_CAN_ID = "Not known at this time";
-  
+
   /** The scu ultrasonic can id. */
   private String SCU_ULTRASONIC_CAN_ID = "46C";
-  
+
   /** The motor value. */
   private byte motorValue = 0;
-  
+
   /** The steer value. */
   private byte steerValue = 0;
-  
+
   /** The vcu cool down. */
   private long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
-  
+
   /** The output worker thread. */
   private Thread outputWorkerThread;
-  
+
   /** The input worker thread. */
   private Thread inputWorkerThread;
-  
+
   /** The output worker. */
   private OutputWorker outputWorker;
-  
+
   /** The input worker. */
   private InputWorker inputWorker;
-  
+
   /** The active. */
   private boolean active;
 
@@ -105,10 +105,20 @@ public final class CAN {
     return sb.toString();
   }
 
+  /**
+   * Gets the steer value.
+   *
+   * @return the steer value
+   */
   public byte getSteerValue() {
     return steerValue;
   }
 
+  /**
+   * Gets the motor value.
+   *
+   * @return the motor value
+   */
   public byte getMotorValue() {
     return motorValue;
   }
@@ -226,10 +236,10 @@ public final class CAN {
 
     /** The identity. */
     private String identity;
-    
+
     /** The time. */
     private double time;
-    
+
     /** The data. */
     private byte[] data;
 
@@ -295,22 +305,22 @@ public final class CAN {
 
     /** The stop flag. */
     public AtomicBoolean stopFlag;
-    
+
     /** The odometer queue lock. */
     private Semaphore odometerQueueLock;
-    
+
     /** The odometer queue. */
     private Queue<CANFrame> odometerQueue;
-    
+
     /** The us sensor queue lock. */
     private Semaphore usSensorQueueLock;
-    
+
     /** The us sensor queue. */
     private Queue<CANFrame> usSensorQueue;
-    
+
     /** The can dump process. */
     private Process canDumpProcess;
-    
+
     /** The can dump standard output. */
     private InputStream canDumpStandardOutput;
 
@@ -469,22 +479,22 @@ public final class CAN {
 
     /** The stop flag. */
     public AtomicBoolean stopFlag;
-    
+
     /** The queue lock. */
     private Semaphore queueLock;
-    
+
     /** The frame output queue. */
     private Queue<CANFrame> frameOutputQueue;
-    
+
     /** The motor queue lock. */
     private Semaphore motorQueueLock;
-    
+
     /** The steer queue lock. */
     private Semaphore steerQueueLock;
-    
+
     /** The motor value queue. */
     private Queue<Byte> motorValueQueue;
-    
+
     /** The steer value queue. */
     private Queue<Byte> steerValueQueue;
 

@@ -18,10 +18,10 @@ public class ImageClient implements Runnable {
   /** The x offset. */
   @SuppressWarnings("unused")
   private int xOffset;
-  
+
   /** The img pr. */
   private ImageProcessing imgPr;
-  
+
   /** The stream. */
   private VideoCapture stream;
 

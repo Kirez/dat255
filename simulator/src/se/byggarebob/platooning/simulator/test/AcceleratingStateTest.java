@@ -17,7 +17,7 @@ public class AcceleratingStateTest {
 
   /** The accelerating state. */
   private AcceleratingState acceleratingState;
-  
+
   /** The car. */
   private Car car;
 
@@ -32,6 +32,8 @@ public class AcceleratingStateTest {
 
   /**
    * Gets the accelerating state.
+   *
+   * @return the accelerating state
    */
   @Test
   public void getAcceleratingState() {

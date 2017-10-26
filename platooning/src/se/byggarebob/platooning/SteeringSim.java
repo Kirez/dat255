@@ -15,14 +15,14 @@ import java.util.Observer;
 public class SteeringSim implements Observer { /* Lateral Field of View of the Camera */
 
   /** The course. */
- private double course; /* Course of the leading car */
-  
+  private double course; /* Course of the leading car */
+
   /** The k. */
   private double k; /* Number of invocations */
-  
+
   /** The s. */
   private int s; /* SteeringSim */
-  
+
   /** The steer. */
   private double steer; /* *Starts the thread running the leading car */
 
@@ -68,7 +68,7 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
 
     /** The course. */
     double course;
-    
+
     /** The s. */
     int s;
 

@@ -11,7 +11,7 @@ public class Simulator implements Runnable {
 
   /** The following car. */
   private Car followingCar;
-  
+
   /** The leading car. */
   private Car leadingCar;
 
