@@ -57,6 +57,11 @@ Contains captured CAN sessions
 Contains dot graph files for generating graphs with graphviz/dot
 ### pdf/
 Contains all pdf documents
+
+SEP_D5 is the final reflection report
+
+SEP_prototype is an extended README
+
 ### platooning/
 The platooning module. This module contains java code that runs on the TCU
 ### simulator/
