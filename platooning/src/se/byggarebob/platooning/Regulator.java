@@ -6,7 +6,7 @@ package se.byggarebob.platooning;
  *
  * @author Arvid Wiklund
  * @author Hugo Frost
- * @author Kalle Ängermark
+ * @author Karl Ängermark
  */
 public class Regulator {
 

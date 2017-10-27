@@ -11,7 +11,9 @@ import org.opencv.videoio.VideoCapture;
 
 /**
  * This class receives a stream with images from the MOPED, processes the image and sends an x value back.
- * @author Johannes Edenholm & Karl Ängermark
+ *
+ * @author Johannes Edenholm
+ * @author Karl Ängermark
  */
 public class ImageClient implements Runnable {
 
