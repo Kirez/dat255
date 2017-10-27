@@ -1,0 +1,8 @@
+Author: Karl Ängermark
+
+Vi hade lite otur med bilar denna sprint då ALC-teamet saknade en på tisdagen och den som vi fick på onsdagen var trasig. Under någon av dessa dagar hade vi behövt testa koden. Det kunde ha undvikts om vi hade börjat arbeta tidigare och kanske lite under helgen då vi visste att vi skulle lämna bort vår fungerande bil på måndagen. Vi lyckades dock få det att fungera i slutändan.
+
+Det var också synd att bilen vi redovisade med drog så mycket åt höger, så att styrningen inte fungerade ordentligt. Men vi såg att vår prototyp iallafall i teorin fungerade och produktägaren var också nöjd.
+
+Vi är nöjda med hur projektet har gått för oss i helhet och med slutresultatet. Det är också lite av en fjäder i hatten att så många grupper har använt vår CAN-kod.
+

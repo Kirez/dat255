@@ -1,0 +1,150 @@
+Statistical information for the repository 'dat255' was gathered on 2017/10/27.
+The following historical commit information, by author, was found:
+
+Author                     Commits    Insertions      Deletions    % of changes
+Arvid Wiklund                   14           486            281            7.45
+Erik Källberg                   37          1749            681           23.60
+Hugo Frost                      18           228             87            3.06
+Johan Svennungsson              19           609            191            7.77
+Johannes Edenholm               10           599            477           10.45
+Karl Ängermark                   8           426            168            5.77
+Linus Berglund                  22          1685           1207           28.09
+Rikard Teodorsson               21          1003            305           12.70
+Tagonice                         4            70             13            0.81
+kadric94                         2            19             13            0.31
+
+Below are the number of rows from each author that have survived and are still
+intact in the current revision:
+
+Author                     Rows      Stability          Age       % in comments
+Arvid Wiklund               133           27.4          2.5               22.56
+Erik Källberg               985           56.3          2.0               10.96
+Hugo Frost                   93           40.8          3.5               27.96
+Johan Svennungsson          445           73.1          3.4               11.24
+Johannes Edenholm           137           22.9          1.5                8.76
+Karl Ängermark              103           24.2          3.3                4.85
+Linus Berglund             1201           71.3          0.4               74.44
+Rikard Teodorsson           263           26.2          3.0               20.53
+Tagonice                     19           27.1          1.7               31.58
+kadric94                      2           10.5          0.0              100.00
+
+The following history timeline has been gathered from the repository:
+
+Author                  2017W38    2017W39    2017W40    2017W41    2017W42 
+Arvid Wiklund                 +          +       -+++          .            
+Erik Källberg              ++++   -+++++++        +++          +          . 
+Hugo Frost                             -++          .                       
+Johan Svennungsson                     -++     -+++++                       
+Johannes Edenholm                                              +   ----++++ 
+Karl Ängermark                          ++      --+++          .            
+Linus Berglund                                          -----+++            
+Rikard Teodorsson                      -++   --++++++        +++            
+Tagonice               -+++++++                                           . 
+kadric94                    -++                                             
+Modified Rows:              163       1327       2378       2337        940 
+
+Author                  2017W43 
+Arvid Wiklund                 . 
+Erik Källberg            --++++ 
+Hugo Frost                    . 
+Johan Svennungsson            . 
+Johannes Edenholm             . 
+Linus Berglund         --++++++ 
+Modified Rows:             3152 
+
+The following files have an elevated cyclomatic complexity (in order of severity):
+platooning/src/se/byggarebob/platooning/CAN.java (85 in cyclomatic complexity)
+platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java (56 in cyclomatic complexity)
+
+The following responsibilities, by author, were found in the current revision of
+the repository (comments are excluded from the line count, if possible):
+
+Arvid Wiklund is mostly responsible for:
+    48 platooning/src/se/byggarebob/platooning/Regulator.java
+    22 platooning/src/se/byggarebob/platooning/UltraSonicSensor.java
+    14 platooning/src/se/byggarebob/platooning/MotorControl.java
+    10 platooning/src/se/byggarebob/platooning/CAN.java
+     9 platooning/src/se/byggarebob/platooning/ACC.java
+
+Erik Källberg is mostly responsible for:
+   324 platooning/src/se/byggarebob/platooning/CAN.java
+   260 ui/src/se/byggarebob/platooning/ui/controllers/MainController.java
+   142 platooning/src/se/byggarebob/platooning/UICom.java
+    43 ui/src/se/byggarebob/platooning/ui/controllers/ConnectController.java
+    20 platooning/src/se/byggarebob/platooning/ACC.java
+    16 ui/src/se/byggarebob/platooning/ui/Main.java
+    15 platooning/src/se/byggarebob/platooning/Main.java
+     5 ...c/se/byggarebob/platooning/simulator/test/DeacceleratingStateTest.java
+     5 simulator/src/se/byggarebob/platooning/simulator/test/CarTest.java
+     4 ...src/se/byggarebob/platooning/simulator/test/AcceleratingStateTest.java
+
+Hugo Frost is mostly responsible for:
+    18 platooning/src/se/byggarebob/platooning/ServoControl.java
+    18 platooning/src/se/byggarebob/platooning/MotorControl.java
+    12 platooning/src/se/byggarebob/platooning/UltraSonicSensor.java
+    11 platooning/src/se/byggarebob/platooning/CAN.java
+     4 platooning/src/se/byggarebob/platooning/Steering.java
+     2 platooning/src/se/byggarebob/platooning/ACC.java
+     1 platooning/src/se/byggarebob/platooning/IMovable.java
+     1 platooning/src/se/byggarebob/platooning/IDistance.java
+
+Johan Svennungsson is mostly responsible for:
+    94 simulator/src/se/byggarebob/platooning/simulator/Car.java
+    93 simulator/src/se/byggarebob/platooning/simulator/test/CarTest.java
+    51 ...c/se/byggarebob/platooning/simulator/test/DeacceleratingStateTest.java
+    28 ...src/se/byggarebob/platooning/simulator/test/AcceleratingStateTest.java
+    27 simulator/src/se/byggarebob/platooning/simulator/DeacceleratingState.java
+    26 simulator/src/se/byggarebob/platooning/simulator/AcceleratingState.java
+    21 ui/src/se/byggarebob/platooning/ui/controllers/MainController.java
+    13 simulator/src/se/byggarebob/platooning/simulator/Simulator.java
+    11 ui/src/se/byggarebob/platooning/ui/Main.java
+     7 simulator/src/se/byggarebob/platooning/simulator/Sensor.java
+
+Johannes Edenholm is mostly responsible for:
+    61 platooning/src/se/byggarebob/platooning/imageclient/ImageClient.java
+    31 platooning/src/se/byggarebob/platooning/ImageServer.java
+    15 platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java
+    15 platooning/src/se/byggarebob/platooning/ALCRegulator.java
+     2 platooning/src/se/byggarebob/platooning/imageclient/ProcessedImage.java
+     1 platooning/src/se/byggarebob/platooning/ALC.java
+
+Karl Ängermark is mostly responsible for:
+    54 platooning/src/se/byggarebob/platooning/SteeringSim.java
+    16 platooning/src/se/byggarebob/platooning/ALC.java
+    10 platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java
+     6 simulator/src/se/byggarebob/platooning/simulator/Simulator.java
+     6 simulator/src/se/byggarebob/platooning/simulator/Regulator.java
+     4 platooning/src/se/byggarebob/platooning/ImageServer.java
+     2 platooning/src/se/byggarebob/platooning/imageclient/ImageClient.java
+
+Linus Berglund is mostly responsible for:
+    72 platooning/src/se/byggarebob/platooning/CAN.java
+    44 platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java
+    22 platooning/src/se/byggarebob/platooning/SteeringSim.java
+    22 platooning/src/se/byggarebob/platooning/ImageServer.java
+    19 simulator/src/se/byggarebob/platooning/simulator/Car.java
+    18 platooning/src/se/byggarebob/platooning/UICom.java
+    16 ui/src/se/byggarebob/platooning/ui/controllers/MainController.java
+    14 platooning/src/se/byggarebob/platooning/Regulator.java
+    12 platooning/src/se/byggarebob/platooning/imageclient/ImageClient.java
+     9 platooning/src/se/byggarebob/platooning/MotorControl.java
+
+Rikard Teodorsson is mostly responsible for:
+   123 platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java
+    34 platooning/src/se/byggarebob/platooning/imageclient/ProcessedImage.java
+    23 simulator/src/se/byggarebob/platooning/simulator/Car.java
+     9 simulator/src/se/byggarebob/platooning/simulator/Regulator.java
+     8 simulator/src/se/byggarebob/platooning/simulator/Simulator.java
+     6 simulator/src/se/byggarebob/platooning/simulator/Main.java
+     2 simulator/src/se/byggarebob/platooning/simulator/Sensor.java
+     2 platooning/src/se/byggarebob/platooning/SteeringSim.java
+     1 platooning/src/se/byggarebob/platooning/MotorControl.java
+     1 platooning/src/se/byggarebob/platooning/IMovable.java
+
+Tagonice is mostly responsible for:
+     7 platooning/src/se/byggarebob/platooning/ACC.java
+     6 platooning/src/se/byggarebob/platooning/CAN.java
+
+The extensions below were found in the repository history (extensions used
+during statistical analysis are marked):
+* candump css dot fxml html [java] [js] md sh txt xml 

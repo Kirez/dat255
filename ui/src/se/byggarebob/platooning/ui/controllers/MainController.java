@@ -21,54 +21,88 @@ import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 import se.byggarebob.platooning.ui.Main;
 
+// TODO: Auto-generated Javadoc
 /**
- * Created by Johan on 2017-10-12.
+ * Initializable interfacing between UI and lower-level controllers.
+ *
+ * @author Johan Svennungsson
  */
 public class MainController implements Initializable {
 
+  /** The speed. */
   @FXML
   private Slider speed;
 
+  /** The steer. */
   @FXML
   private Slider steer;
 
+  /** The accelerate. */
   @FXML
   private Button accelerate;
 
+  /** The left. */
   @FXML
   private Button left;
 
+  /** The right. */
   @FXML
   private Button right;
 
+  /** The brake. */
   @FXML
   private Button brake;
 
+  /** The platooning. */
   @FXML
   private ToggleSwitch platooning;
 
+  /** The acc. */
   @FXML
   private ToggleSwitch acc;
 
+  /** The alc. */
   @FXML
   private ToggleSwitch alc;
 
+  /** The connection. */
   @FXML
   private ToggleSwitch connection;
 
+  /**
+   * The Enum COMMAND.
+   */
   public enum COMMAND {
+
+    /** The enable acc. */
     ENABLE_ACC,
+
+    /** The enable alc. */
     ENABLE_ALC,
+
+    /** The disable acc. */
     DISABLE_ACC,
+
+    /** The disable alc. */
     DISABLE_ALC,
+
+    /** The set speed. */
     SET_SPEED,
+
+    /** The set steer. */
     SET_STEER,
   }
 
-  public static MopedConnection mopedConnection;
+  /** The moped connection. */
+  static MopedConnection mopedConnection = null;
 
+  /* (non-Javadoc)
+   * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+   */
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    mopedConnection = new MopedConnection();
+    if (mopedConnection == null) {
+      mopedConnection = new MopedConnection();
+    }
     updateDisabledControls();
 
     connection.selectedProperty().addListener(c -> {
@@ -78,7 +112,8 @@ public class MainController implements Initializable {
         URL fxml;
 
         try {
-          fxml = new File("ui/src/se/byggarebob/platooning/ui/fxmls/Connect.fxml")
+          fxml = new File(
+              "ui/src/se/byggarebob/platooning/ui/fxmls/Connect.fxml")
               .toURI()
               .toURL();
           root = FXMLLoader.load(fxml);
@@ -95,7 +130,6 @@ public class MainController implements Initializable {
         boolean connected = mopedConnection.isConnected();
 
         connection.selectedProperty().setValue(connected);
-
       } else {
         mopedConnection.disconnect();
         platooning.setSelected(false);
@@ -138,6 +172,9 @@ public class MainController implements Initializable {
     });
   }
 
+  /**
+   * Update disabled controls.
+   */
   private void updateDisabledControls() {
     if (!connection.isSelected()) {
       setConnectedControlsDisabled(true);
@@ -157,6 +194,11 @@ public class MainController implements Initializable {
     }
   }
 
+  /**
+   * Sets the connected controls disabled.
+   *
+   * @param value the new connected controls disabled
+   */
   private void setConnectedControlsDisabled(boolean value) {
     platooning.disableProperty().setValue(value);
     acc.disableProperty().setValue(value);
@@ -165,29 +207,59 @@ public class MainController implements Initializable {
     setAlcControlsDisabled(value);
   }
 
+  /**
+   * Sets the acc controls disabled.
+   *
+   * @param value the new acc controls disabled
+   */
   public void setAccControlsDisabled(boolean value) {
     accelerate.disableProperty().setValue(value);
     brake.disableProperty().setValue(value);
     speed.disableProperty().setValue(value);
   }
 
+  /**
+   * Sets the alc controls disabled.
+   *
+   * @param value the new alc controls disabled
+   */
   public void setAlcControlsDisabled(boolean value) {
     left.disableProperty().setValue(value);
     right.disableProperty().setValue(value);
     steer.disableProperty().setValue(value);
   }
 
+  /**
+   * The Class MopedConnection.
+   */
   public class MopedConnection {
 
+    /** The socket. */
     private Socket socket;
+
+    /** The connected. */
     private boolean connected;
+
+    /** The update receiver. */
     private UIUpdateReceiver updateReceiver;
+
+    /** The update receiver thread. */
     private Thread updateReceiverThread;
 
+    /**
+     * Instantiates a new moped connection.
+     */
     public MopedConnection() {
       connected = false;
     }
 
+    /**
+     * Connect.
+     *
+     * @param host the host
+     * @param port the port
+     * @return true, if successful
+     */
     public boolean connect(String host, int port) {
       connected = false;
       try {
@@ -205,6 +277,11 @@ public class MainController implements Initializable {
       return connected;
     }
 
+    /**
+     * Send data.
+     *
+     * @param data the data
+     */
     public void sendData(byte[] data) {
       try {
         DataOutputStream writer = new DataOutputStream(
@@ -216,6 +293,11 @@ public class MainController implements Initializable {
       }
     }
 
+    /**
+     * Sets the speed.
+     *
+     * @param speed the new speed
+     */
     public void setSpeed(byte speed) {
       byte[] payload = new byte[2];
       payload[0] = (byte) COMMAND.SET_SPEED.ordinal();
@@ -223,6 +305,11 @@ public class MainController implements Initializable {
       sendData(payload);
     }
 
+    /**
+     * Sets the steer.
+     *
+     * @param steer the new steer
+     */
     public void setSteer(byte steer) {
       byte[] payload = new byte[2];
       payload[0] = (byte) COMMAND.SET_STEER.ordinal();
@@ -230,6 +317,11 @@ public class MainController implements Initializable {
       sendData(payload);
     }
 
+    /**
+     * Sets the acc on.
+     *
+     * @param on the new acc on
+     */
     public void setAccOn(boolean on) {
       byte[] payload = new byte[1];
       COMMAND command = on ? COMMAND.ENABLE_ACC : COMMAND.DISABLE_ACC;
@@ -237,6 +329,11 @@ public class MainController implements Initializable {
       sendData(payload);
     }
 
+    /**
+     * Sets the alc on.
+     *
+     * @param on the new alc on
+     */
     public void setAlcOn(boolean on) {
 
       byte[] payload = new byte[1];
@@ -245,10 +342,18 @@ public class MainController implements Initializable {
       sendData(payload);
     }
 
+    /**
+     * Checks if is connected.
+     *
+     * @return true, if is connected
+     */
     public boolean isConnected() {
       return connected;
     }
 
+    /**
+     * Disconnect.
+     */
     public void disconnect() {
       connected = false;
       try {
@@ -261,14 +366,24 @@ public class MainController implements Initializable {
       }
     }
 
+    /**
+     * The Class UIUpdateReceiver.
+     */
     private class UIUpdateReceiver implements Runnable {
 
+      /** The stop flagged. */
       public AtomicBoolean stopFlagged;
 
+      /**
+       * Instantiates a new UI update receiver.
+       */
       public UIUpdateReceiver() {
         stopFlagged = new AtomicBoolean(false);
       }
 
+      /* (non-Javadoc)
+       * @see java.lang.Runnable#run()
+       */
       @Override
       public void run() {
         try {

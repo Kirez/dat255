@@ -6,26 +6,29 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 
-// TODO: Auto-generated Javadoc
 /**
- * Created by Macken on 2017-10-06.
+ * Responsible for starting the stream on the TCU and accepting one connection.
+ * Also receives data from client and adjusts steering to the data.
+ *
+ * @author Johannes Edenholm
+ * @author Karl Ängermark
+ * @author Linus Berglund
  */
 public class ImageServer implements Runnable {
 
-  /** The AL creg. */
+  /** The ALC (lateral) regulator. */
   private ALCRegulator ALCreg;
-  
+
   /** The camera process. */
   private Process cameraProcess;
 
   /**
    * Instantiates a new image server.
    *
-   * @param ALCreg the AL creg
+   * @param ALCreg the lateral regulator.
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public ImageServer(ALCRegulator ALCreg) throws IOException {
-    System.out.println("FRESH NEW SERVER");
     this.ALCreg = ALCreg;
     String argv = "raspivid -l -o tcp://0.0.0.0:2222 --framerate 10 -w 1270 -h 292 -t 0 --mode 5";
     cameraProcess = Runtime.getRuntime().exec(argv);
@@ -37,7 +40,7 @@ public class ImageServer implements Runnable {
     }
   }
 
-  /* (non-Javadoc)
+  /*
    * @see java.lang.Runnable#run()
    */
   @Override

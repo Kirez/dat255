@@ -24,9 +24,8 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ImageProcessing.
+ * Perform image recognition through OpenCV.
  *
  * @author Johannes Edenholm
  * @author Rikard Teodorsson

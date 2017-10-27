@@ -1,27 +1,28 @@
 package se.byggarebob.platooning.simulator;
 
-// TODO: Auto-generated Javadoc
 /**
- * Created by Macken on 2017-09-25.
+ * A general control system used in the simulator.
+ *
+ * @author Karl Ängermark
  */
 class Regulator {
 
-  /** The v 1. */
+  /** The velocity of the car. */
   private double v1;
 
-  /** The k. */
+  /** The amplification of the control system. */
   private double k;
 
-  /** The i. */
+  /** The integrating factor of the control system. */
   private double i;
 
-  /** The i acc. */
+  /** The accumulated integration. */
   private double i_acc;
 
-  /** The d. */
+  /** The derivative factor of the control system. */
   private double d;
 
-  /** The last er. */
+  /** The previous received error. */
   private double lastEr;
 
   /**

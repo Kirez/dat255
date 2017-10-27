@@ -2,12 +2,18 @@ package se.byggarebob.platooning;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Main.
  */
 public class Main {
 
+  /**
+   * The main method.
+   *
+   * @param args the arguments
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws InterruptedException the interrupted exception
+   */
   public static void main(String args[])
       throws IOException, InterruptedException {
     System.out.println("Waiting for UI to connect...");

@@ -11,60 +11,57 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CAN.
+ * Singleton class CAN for interfacing with can-utils's candump and cansend,
+ * mimicking MOPED python code.
  *
  * @author Erik Källberg (kalerik@student.chalmers.se)
  * @author Hugo Frost
- * <p>
- * Singleton class CAN for interfacing with can-utils's candump and cansend,
- * mimicking MOPED python code.
  */
 public final class CAN {
 
   /** The instance. */
   private static CAN instance;
-  
+
   /** The can interface. */
   private String CAN_INTERFACE = "can0";
-  
+
   /** The dump command. */
   private String DUMP_COMMAND = "candump";
-  
+
   /** The send command. */
   private String SEND_COMMAND = "cansend";
-  
+
   /** The vcu command can id. */
   private String VCU_COMMAND_CAN_ID = "101";
-  
+
   /** The vcu odometer can id. */
   private String VCU_ODOMETER_CAN_ID = "Not known at this time";
-  
+
   /** The scu ultrasonic can id. */
   private String SCU_ULTRASONIC_CAN_ID = "46C";
-  
+
   /** The motor value. */
   private byte motorValue = 0;
-  
+
   /** The steer value. */
   private byte steerValue = 0;
-  
+
   /** The vcu cool down. */
-  private long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
-  
+  private long VCU_COOL_DOWN = 100;
+
   /** The output worker thread. */
   private Thread outputWorkerThread;
-  
+
   /** The input worker thread. */
   private Thread inputWorkerThread;
-  
+
   /** The output worker. */
   private OutputWorker outputWorker;
-  
+
   /** The input worker. */
   private InputWorker inputWorker;
-  
+
   /** The active. */
   private boolean active;
 
@@ -105,10 +102,20 @@ public final class CAN {
     return sb.toString();
   }
 
+  /**
+   * Gets the steer value.
+   *
+   * @return the steer value
+   */
   public byte getSteerValue() {
     return steerValue;
   }
 
+  /**
+   * Gets the motor value.
+   *
+   * @return the motor value
+   */
   public byte getMotorValue() {
     return motorValue;
   }
@@ -190,7 +197,7 @@ public final class CAN {
   }
 
   /**
-   * Disgusting DistPub-line to sensor reading short-array.
+   * DistPub-line to sensor reading short-array.
    *
    * @return sensor readings.
    * @throws InterruptedException the interrupted exception
@@ -226,10 +233,10 @@ public final class CAN {
 
     /** The identity. */
     private String identity;
-    
+
     /** The time. */
     private double time;
-    
+
     /** The data. */
     private byte[] data;
 
@@ -295,22 +302,22 @@ public final class CAN {
 
     /** The stop flag. */
     public AtomicBoolean stopFlag;
-    
+
     /** The odometer queue lock. */
     private Semaphore odometerQueueLock;
-    
+
     /** The odometer queue. */
     private Queue<CANFrame> odometerQueue;
-    
+
     /** The us sensor queue lock. */
     private Semaphore usSensorQueueLock;
-    
+
     /** The us sensor queue. */
     private Queue<CANFrame> usSensorQueue;
-    
+
     /** The can dump process. */
     private Process canDumpProcess;
-    
+
     /** The can dump standard output. */
     private InputStream canDumpStandardOutput;
 
@@ -363,10 +370,9 @@ public final class CAN {
     }
 
     /**
-     * Super-hacky oh-so-ugly DistPub data line re-constructor. TODO comment
-     * code *
+     * DistPub data line re-constructor.
      *
-     * @return DistPub data line if available else null.
+     * @return DistPub data line if available, else null.
      * @throws InterruptedException if interrupted when waiting for
      * usSensorQueueLock.
      */
@@ -461,36 +467,36 @@ public final class CAN {
 
   /**
    * Runnable, launched by parent (CAN), that schedules sending of CAN frames
-   * put in queue by parent  When experimenting with the VCU we've found that it
-   * ignores commands if they are sent too  quickly. Uses semaphores for shared
-   * queues for the same reason as described above InputWorker.
+   * put in queue by parent.
+   * <p>
+   * When experimenting with the VCU we've found that it ignores commands if
+   * they are sent too quickly. Uses semaphores for shared queues for the same
+   * reason as described above InputWorker.
    */
   private class OutputWorker implements Runnable {
 
     /** The stop flag. */
     public AtomicBoolean stopFlag;
-    
+
     /** The queue lock. */
     private Semaphore queueLock;
-    
+
     /** The frame output queue. */
     private Queue<CANFrame> frameOutputQueue;
-    
+
     /** The motor queue lock. */
     private Semaphore motorQueueLock;
-    
+
     /** The steer queue lock. */
     private Semaphore steerQueueLock;
-    
+
     /** The motor value queue. */
     private Queue<Byte> motorValueQueue;
-    
+
     /** The steer value queue. */
     private Queue<Byte> steerValueQueue;
 
-    /**
-     * Instantiates a new output worker.
-     */
+    /** Instantiates a new output worker. */
     public OutputWorker() {
       queueLock = new Semaphore(1);
       motorQueueLock = new Semaphore(1);

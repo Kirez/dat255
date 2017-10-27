@@ -1,15 +1,14 @@
 package se.byggarebob.platooning;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ALCRegulator.
+ * Regulator for lateral control.
  */
 public class ALCRegulator {
 
-  /** The servo. */
+  /** The servo inherited from the main thread. */
   private ServoControl servo;
 
-  /** The k. */
+  /** Amplification factor for the control system. */
   private int k;
 
   /**
@@ -23,7 +22,8 @@ public class ALCRegulator {
   }
 
   /**
-   * Calc steering.
+   * Calculate the desired steering using P regulation for the maximum possible
+   * minimization of steering error regarding the ALC protocol.
    *
    * @param offset the offset
    */

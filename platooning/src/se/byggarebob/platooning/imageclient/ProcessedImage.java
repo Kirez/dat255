@@ -1,8 +1,9 @@
 package se.byggarebob.platooning.imageclient;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProcessedImage.
+ *
+ * @author Rikard Teodorsson
  */
 public class ProcessedImage {
 

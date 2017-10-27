@@ -2,13 +2,15 @@ package se.byggarebob.platooning;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ALC.
+ * The main thread for the ALC.
+ *
+ * @author Erik Källberg
+ * @author Karl Ängermark
  */
 public class ALC implements Runnable {
 
-  /** The servo. */
+  /** The servo for steering. */
   private ServoControl servo;
 
   /**

@@ -17,7 +17,7 @@ public class AcceleratingStateTest {
 
   /** The accelerating state. */
   private AcceleratingState acceleratingState;
-  
+
   /** The car. */
   private Car car;
 

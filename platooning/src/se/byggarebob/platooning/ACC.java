@@ -1,31 +1,35 @@
 package se.byggarebob.platooning;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ACC.
+ * A handler for multiple classes working with the distance control.
+ *
+ * @author Arvid Wiklund
+ * @author Hugo Frost
  */
 public class ACC implements Runnable {
 
-  /** The stop flagged. */
+  /** Tells the program if it should terminate or not. */
   private boolean stopFlagged = false;
 
-  /** The mc. */
+  /** Instance of the class MotorControl. */
   private MotorControl mc;
 
-  /** The sensor. */
+  /** Instance of the class UltraSonicSensor. */
   private UltraSonicSensor sensor;
 
-  /** The regulator. */
+  /** Instance of the class Regulator, for ACC. */
   private Regulator regulator;
 
-  /** The distance. */
+  /** Is the sensor value from the MOPED, given by the class UltraSonicSensor. */
   private double distance;
 
   /**
    * Instantiates a new acc.
    *
-   * @param mc the mc
-   * @param sensor the sensor
+   * @param mc ACC have its own MotorControl to control the motor value in the
+   * moped
+   * @param sensor ACC have its own UltraSonicSensor to read the sensor values
+   * from the MOPED.
    */
   public ACC(MotorControl mc, UltraSonicSensor sensor) {
     this.sensor = sensor;
@@ -55,7 +59,10 @@ public class ACC implements Runnable {
   }
 
   /**
-   * Stop.
+   * Is called when the program should stop.
+   * <p>
+   * Sets the motor value to 0 to make sure the MOPED is not running and sets
+   * the boolean to true to exit the loop in run().
    */
   public void stop() {
     mc.setSpeed(0);

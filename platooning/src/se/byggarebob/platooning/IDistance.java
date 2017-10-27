@@ -1,6 +1,5 @@
 package se.byggarebob.platooning;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IDistance.
  *

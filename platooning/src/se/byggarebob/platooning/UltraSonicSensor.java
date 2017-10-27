@@ -1,24 +1,25 @@
 package se.byggarebob.platooning;
 
-// TODO: Auto-generated Javadoc
 /**
- * Created by hugfro on 2017-09-29.
+ * A software representation of the distance sensor on the TCU.
+ *
+ * @author Hugo Frost
  */
 public class UltraSonicSensor implements IDistance {
 
-  /** The can. */
+  /** Local instance of the CAN. */
   private CAN can;
 
-  /** The last dist. */
+  /** The last distance read. */
   private short lastDist;
 
-  /** The double error check. */
+  /** Redundancy error check. */
   private boolean doubleErrorCheck;
 
   /**
-   * Instantiates a new ultra sonic sensor.
+   * Instantiates a new ultrasonic sensor.
    *
-   * @param can the can
+   * @param can can bus from which values should be read
    */
   public UltraSonicSensor(CAN can) {
     this.can = can;
@@ -53,7 +54,7 @@ public class UltraSonicSensor implements IDistance {
    * Else: We had error difference larger than 500 twice, which means we have to
    * assume the sensor is looking at a new object.
    *
-   * @return a new sensor value
+   * @return a new sensor value, usually the distance from MOPED to object
    */
   public int getDistance() {
     try {

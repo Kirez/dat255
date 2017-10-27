@@ -1,0 +1,8 @@
+Author: Karl Ängermark
+
+We have successfully completed every user story that was assigned, which is good. However, comparing to the other groups we feel that we could have gotten more work done. Even though the product owner was pleased, the only "value" we shown was explaining what our next step will be.
+
+Our user stories only involved reading the documentation, setting up git and uploading code to the RPi ("Hello World"). We also had one user story left unassigned to do if someone had extra which didn't get done.
+
+Next week we plan to start working on the server and writing the plugins, making sure everyone has something to do.
+
