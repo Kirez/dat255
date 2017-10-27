@@ -23,7 +23,9 @@ import se.byggarebob.platooning.ui.Main;
 
 // TODO: Auto-generated Javadoc
 /**
- * Created by Johan on 2017-10-12.
+ * Initializable interfacing between UI and lower-level controllers.
+ *
+ * @author Johan Svennungsson
  */
 public class MainController implements Initializable {
 

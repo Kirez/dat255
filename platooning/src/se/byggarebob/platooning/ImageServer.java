@@ -8,13 +8,16 @@ import java.nio.charset.StandardCharsets;
 
 
 /**
- * @Author Johannes Edenholm & Karl Ängermark
- * This class starts up the stream on the MOPED and accepts one connection.
- * receives data from client and adjusts steering to the data.
+ * Responsible for starting the stream on the TCU and accepting one connection.
+ * Also receives data from client and adjusts steering to the data.
+ *
+ * @author Johannes Edenholm
+ * @author Karl Ängermark
+ * @author Linus Berglund
  */
 public class ImageServer implements Runnable {
 
-  /** The AL creg. */
+  /** The ALC (lateral) regulator. */
   private ALCRegulator ALCreg;
 
   /** The camera process. */
@@ -23,7 +26,7 @@ public class ImageServer implements Runnable {
   /**
    * Instantiates a new image server.
    *
-   * @param ALCreg the AL creg
+   * @param ALCreg the lateral regulator.
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public ImageServer(ALCRegulator ALCreg) throws IOException {
@@ -38,7 +41,7 @@ public class ImageServer implements Runnable {
     }
   }
 
-  /* 
+  /*
    * @see java.lang.Runnable#run()
    */
   @Override
@@ -47,7 +50,7 @@ public class ImageServer implements Runnable {
       DatagramSocket serverSocket = new DatagramSocket(9876);
       System.out.println("listening on port 9876");
       byte[] send;
-      byte[] receive;
+      byte[] receive = new byte[300];
 
       while (true) {
 

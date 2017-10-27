@@ -11,15 +11,12 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CAN.
+ * Singleton class CAN for interfacing with can-utils's candump and cansend,
+ * mimicking MOPED python code.
  *
  * @author Erik Källberg (kalerik@student.chalmers.se)
  * @author Hugo Frost
- * <p>
- * Singleton class CAN for interfacing with can-utils's candump and cansend,
- * mimicking MOPED python code.
  */
 public final class CAN {
 
@@ -373,10 +370,9 @@ public final class CAN {
     }
 
     /**
-     * Super-hacky oh-so-ugly DistPub data line re-constructor. TODO comment
-     * code *
+     * DistPub data line re-constructor.
      *
-     * @return DistPub data line if available else null.
+     * @return DistPub data line if available, else null.
      * @throws InterruptedException if interrupted when waiting for
      * usSensorQueueLock.
      */
@@ -471,9 +467,11 @@ public final class CAN {
 
   /**
    * Runnable, launched by parent (CAN), that schedules sending of CAN frames
-   * put in queue by parent  When experimenting with the VCU we've found that it
-   * ignores commands if they are sent too  quickly. Uses semaphores for shared
-   * queues for the same reason as described above InputWorker.
+   * put in queue by parent.
+   * <p>
+   * When experimenting with the VCU we've found that it ignores commands if
+   * they are sent too quickly. Uses semaphores for shared queues for the same
+   * reason as described above InputWorker.
    */
   private class OutputWorker implements Runnable {
 
@@ -498,9 +496,7 @@ public final class CAN {
     /** The steer value queue. */
     private Queue<Byte> steerValueQueue;
 
-    /**
-     * Instantiates a new output worker.
-     */
+    /** Instantiates a new output worker. */
     public OutputWorker() {
       queueLock = new Semaphore(1);
       motorQueueLock = new Semaphore(1);

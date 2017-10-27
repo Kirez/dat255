@@ -1,18 +1,19 @@
 package se.byggarebob.platooning;
 
-// TODO: Auto-generated Javadoc
 /**
- * Created by hugfro on 2017-10-03.
+ * Handles interfacing between the software layer and "bare metal".
+ *
+ * @author Hugo Frost
  */
 public class ServoControl implements Steering {
 
-  /** The can. */
+  /** Local instance of the CAN. */
   private CAN can;
 
   /**
    * Instantiates a new servo control.
    *
-   * @param can the can
+   * @param can can bus from which values should be read
    */
   public ServoControl(CAN can) {
     this.can = can;

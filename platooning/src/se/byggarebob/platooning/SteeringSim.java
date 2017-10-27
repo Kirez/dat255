@@ -6,47 +6,45 @@ import static java.lang.Thread.sleep;
 import java.util.Observable;
 import java.util.Observer;
 
-// TODO: Auto-generated Javadoc
 /**
- * Test Sim for steering
- * <p>
- * Created by Macken on 2017-10-02.
+ * Test Sim for steering.
+ *
+ * @author Karl Ängermark
  */
-public class SteeringSim implements Observer { /* Lateral Field of View of the Camera */
+public class SteeringSim implements Observer {
 
-  /** The course. */
-  private double course; /* Course of the leading car */
+  /** Course of the leading car. */
+  private double course;
 
-  /** The k. */
-  private double k; /* Number of invocations */
+  /** Amplification factor of the regulator. */
+  private double k;
 
-  /** The s. */
-  private int s; /* SteeringSim */
+  /** Number of invocations. */
+  private int s;
 
-  /** The steer. */
-  private double steer; /* *Starts the thread running the leading car */
+  /** The steering value to be sent. */
+  private double steer;
 
-  /**
-   * Instantiates a new steering sim.
-   */
+  /** Instantiates a new steering sim. */
   public SteeringSim() {
     s = 0;
     course = 0;
     k = 1.1;
     FrontCar fc = new FrontCar(this);
     new Thread(fc).start();
-  } /* * On update, receives the course on which the leading car is traveling, calculates the error and sets the steering * accordingly. */
+  }
 
-  /* (non-Javadoc)
-   * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+  /**
+   * On update, receives the course on which the leading car is traveling,
+   * calculates the error and sets the steering accordingly.
    */
   @Override
   public void update(Observable o, Object arg) {
     s++;
-    double frontCourse = new Double(arg.toString()); /* Error in camera units */
-    double degError = frontCourse - course; /* Amplification */
-    int carFov = 49; /* Course of the following car */
-    double error = degError / carFov; /* Error in degrees */
+    double frontCourse = new Double(arg.toString()); /* Course of the front car */
+    double degError = frontCourse - course; /* The error in the course in degrees */
+    int carFov = 49; /* Lateral Field of View of the Camera */
+    double error = degError / carFov; /* The error in general units  */
     if (s % 5 == 0) {
       steer += error * k;
       System.out.println("The front car's course is: " + frontCourse
@@ -62,20 +60,21 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
   }
 
   /**
-   * The Class FrontCar.
+   * An observable thread that updates its course to the
+   * <code>SteeringSim</code>.
    */
   public static class FrontCar extends Observable implements Runnable {
 
-    /** The course. */
+    /** The course of the preceding car. */
     double course;
 
-    /** The s. */
+    /** The number of invocations. */
     int s;
 
     /**
      * Instantiates a new front car.
      *
-     * @param st the st
+     * @param st Takes the steering sim as a parameter to make it the observer
      */
     FrontCar(SteeringSim st) {
       this.addObserver(st);
@@ -83,8 +82,9 @@ public class SteeringSim implements Observer { /* Lateral Field of View of the C
       s = 0;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Runnable#run()
+    /**
+     * Changes the course of the preceding car every 0.2 seconds and notifies
+     * the sim.
      */
     @Override
     public void run() {
