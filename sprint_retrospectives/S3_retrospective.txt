@@ -1,0 +1,12 @@
+Author: Linus Berglund
+
+- Vissa user stories var lite små denna vecka och det blev ojämnt fördelad tid mellan alla gruppmedlemmar.
+- Vi kunde ha börjat arbeta tidigare, de flesta kom inte igång förrän på tisdagen.
+- Vi borde ha varit mer proaktiva, särskilt när man stöter på problem.
+- Om man sitter fast så kan man kontakta resten av teamet, se om nån är ledig för ev. hjälp.
+
+Till Nästa sprint:
+- Fler standup meetings, bra för att stämma av.
+- Det är också bra att läsa commit announcements, och följa repot.
+- Allt måste fungera lokalt inom gruppen.
+

@@ -1,0 +1,4 @@
+Author: Karl Ängermark
+
+I sprint 2 så hade vi stora user stories med många assignees. Det fungerade bättre än sprint 1, tanken var att alla skulle jobba parallellt och sätta sig in i projektet. Tyvärr så fungerade inte servern så bra som vi tänkte oss och därför lyckades vi inte producera något nytt av värde till produktägaren som kommer att användas i slutprodukten.
+

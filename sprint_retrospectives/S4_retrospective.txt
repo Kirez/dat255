@@ -1,0 +1,7 @@
+Author: Karl Ängermark
+
+Reflektion Sprint 4
+-Hittils så var detta den bästa sprinten. Näst intill alla User Stories blev klara, då de var väl uppdelade.
+-Det som fortfarande kunde förbättras var kommunikationen i gruppen. Det skedde dubbelarbete på en front och så stötte vi på problem med OpenCV som kunde ha upptäckts tidigare. Vi får tänka på att vara mer proaktiva och testa saker snabbare.
+-Det som gick bra var att vi avsatte mycket tid för arbete med hårdvaran och hade konkreta uppgifter vilket bidrog till ett lyckat resultat.
+

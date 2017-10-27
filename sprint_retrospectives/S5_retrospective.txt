@@ -1,0 +1,22 @@
+Author: Arvid Wiklund
+
+It's a good thing to push your changes to the active git branch. We had some
+problem were uncommitted changes remained over night and another member had
+made changes to that branch resulting in a lot of merge error.
+
+Also make sure to inform team members when making changes so that they are aware
+and are given an opportunity to react accordingly.
+
+Other than that we have had a successful sprint. The only thing we were not able
+to complete this sprint was having a working ALC. However it is in the test
+phase which means all that is left is make sure it works properly with given
+circumstances. We have managed to "perfect" our ACC and started working on
+draft for the final Reflection Report. It feels like we are on good track
+to complete the task given to us.
+
+We were happy with the User Stories we created this week. The different
+programming on the moped doesn't require as many people and thus we have
+reallocated some people to work on the finishing report. We expect this to
+continue next sprint progressively until, after the demo, everyone is will
+collaborate on it.
+
