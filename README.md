@@ -49,3 +49,24 @@ like so:
 cangen vcan0 &
 candump vcan0
 ```
+
+## Repository overview
+### candump/
+Contains captured CAN sessions
+### dotgraph/
+Contains dot graph files for generating graphs with graphviz/dot
+### pdf/
+Contains all pdf documents
+### platooning/
+The platooning module. This module contains java code that runs on the TCU
+### simulator/
+The simulator module contains code used for testing regulators in platooning module
+### static_analysis/
+Contains output of static code analysis for CheckStyle, FindBugs and PMD.
+### ui/
+The user interface module that contains code that runs on a client computer. 
+This code communicates with platooning module over network.
+### DistPub.suite
+Modified SCU software. Increases the sensor output from < 5hz to about 40hz.
+
+
