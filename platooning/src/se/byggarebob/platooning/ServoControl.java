@@ -7,13 +7,14 @@ package se.byggarebob.platooning;
  */
 public class ServoControl implements Steering {
 
-  /** Local instance of the CAN. */
+
+  /** The shared instance of CAN. */
   private CAN can;
 
   /**
    * Instantiates a new servo control.
    *
-   * @param can can bus from which values should be read
+   * @param can the shared instance of CAN from which values should be read
    */
   public ServoControl(CAN can) {
     this.can = can;
