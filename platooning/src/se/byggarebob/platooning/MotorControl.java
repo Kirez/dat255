@@ -1,8 +1,8 @@
 package se.byggarebob.platooning;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MotorControl.
+ * Takes a new value from the ACC and sends that value to the CAN class
+ * to message it on the CAN-bus.
  *
  * @author Hugo Frost
  * @author Arvid Wiklund
@@ -10,15 +10,15 @@ package se.byggarebob.platooning;
  */
 public class MotorControl implements IMovable {
 
-  /** The last speed sent to the can */
+  /** The last speed sent to the can. */
   private int lastSpeed = 0;
 
-  /** The shared instance of CAN */
+  /** The shared instance of CAN. */
   private CAN can;
 
   /**
    * Instantiates a new motor control. And sets a constant steering value
-   * to negate eventual error in steering caused by hardware
+   * to negate eventual error in steering caused by hardware.
    *
    * @param can the shared instance of CAN, used to send can-frames
    */

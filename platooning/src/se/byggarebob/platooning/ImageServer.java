@@ -6,7 +6,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 
-
 /**
  * Responsible for starting the stream on the TCU and accepting one connection.
  * Also receives data from client and adjusts steering to the data.

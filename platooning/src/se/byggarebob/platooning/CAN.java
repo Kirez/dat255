@@ -48,7 +48,7 @@ public final class CAN {
   private byte steerValue = 0;
 
   /** The vcu cool down. */
-  private long VCU_COOL_DOWN = 100; /* TODO find out how fast one can switch command */
+  private long VCU_COOL_DOWN = 100;
 
   /** The output worker thread. */
   private Thread outputWorkerThread;
@@ -197,7 +197,7 @@ public final class CAN {
   }
 
   /**
-   * Disgusting DistPub-line to sensor reading short-array.
+   * DistPub-line to sensor reading short-array.
    *
    * @return sensor readings.
    * @throws InterruptedException the interrupted exception
