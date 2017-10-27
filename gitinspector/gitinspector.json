@@ -1,0 +1,648 @@
+{
+	"gitinspector": {
+		"version": "0.5.0dev",
+		"repository": "dat255",
+		"report_date": "2017/10/27",
+		"changes": {
+			"message": "The following historical commit information, by author, was found",
+			"authors": [
+			{
+				"name": "Arvid Wiklund",
+				"email": "arvidwi@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+				"commits": 14,
+				"insertions": 486,
+				"deletions": 281,
+				"percentage_of_changes": 7.45
+			},{
+				"name": "Erik Källberg",
+				"email": "kalerik@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+				"commits": 37,
+				"insertions": 1749,
+				"deletions": 681,
+				"percentage_of_changes": 23.60
+			},{
+				"name": "Hugo Frost",
+				"email": "Hugo.Frost@infotiv.se",
+				"gravatar": "https://www.gravatar.com/avatar/93b7b56a0a8dc6bca2fa25f89683fb4e?default=identicon",
+				"commits": 18,
+				"insertions": 228,
+				"deletions": 87,
+				"percentage_of_changes": 3.06
+			},{
+				"name": "Johan Svennungsson",
+				"email": "johsvenn@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/83b127f0245252250de0116248019781?default=identicon",
+				"commits": 19,
+				"insertions": 609,
+				"deletions": 191,
+				"percentage_of_changes": 7.77
+			},{
+				"name": "Johannes Edenholm",
+				"email": "edenholm@chalmers.student.se",
+				"gravatar": "https://www.gravatar.com/avatar/ab98a20e04f53d0931c7580aaae3ad98?default=identicon",
+				"commits": 10,
+				"insertions": 599,
+				"deletions": 477,
+				"percentage_of_changes": 10.45
+			},{
+				"name": "Karl Ängermark",
+				"email": "kalle@angermark.se",
+				"gravatar": "https://www.gravatar.com/avatar/cad8020150427b355ad1f415ad24e7a0?default=identicon",
+				"commits": 8,
+				"insertions": 426,
+				"deletions": 168,
+				"percentage_of_changes": 5.77
+			},{
+				"name": "Linus Berglund",
+				"email": "MrZombax@gmail.com",
+				"gravatar": "https://www.gravatar.com/avatar/5035efb9310063d8b51224c19ea2a6d4?default=identicon",
+				"commits": 22,
+				"insertions": 1685,
+				"deletions": 1207,
+				"percentage_of_changes": 28.09
+			},{
+				"name": "Rikard Teodorsson",
+				"email": "rikardt@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/e042f8d8d2792c6f78af04c804895fd1?default=identicon",
+				"commits": 21,
+				"insertions": 1003,
+				"deletions": 305,
+				"percentage_of_changes": 12.70
+			},{
+				"name": "Tagonice",
+				"email": "Tagon1228@gmail.com",
+				"gravatar": "https://www.gravatar.com/avatar/187994a3d3b4881271aeba790858c36f?default=identicon",
+				"commits": 4,
+				"insertions": 70,
+				"deletions": 13,
+				"percentage_of_changes": 0.81
+			},{
+				"name": "kadric94",
+				"email": "31804015+kadric94@users.noreply.github.com",
+				"gravatar": "https://www.gravatar.com/avatar/986bf1bf5f7f5c68e776b558d579fcf1?default=identicon",
+				"commits": 2,
+				"insertions": 19,
+				"deletions": 13,
+				"percentage_of_changes": 0.31
+			}]
+		},
+		"blame": {
+			"message": "Below are the number of rows from each author that have survived and are still intact in the current revision",
+			"authors": [
+			{
+				"name": "Arvid Wiklund",
+				"email": "arvidwi@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+				"rows": 133,
+				"stability": 27.4,
+				"age": 2.5,
+				"percentage_in_comments": 22.56
+			},{
+				"name": "Erik Källberg",
+				"email": "kalerik@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+				"rows": 985,
+				"stability": 56.3,
+				"age": 2.0,
+				"percentage_in_comments": 10.96
+			},{
+				"name": "Hugo Frost",
+				"email": "Hugo.Frost@infotiv.se",
+				"gravatar": "https://www.gravatar.com/avatar/93b7b56a0a8dc6bca2fa25f89683fb4e?default=identicon",
+				"rows": 93,
+				"stability": 40.8,
+				"age": 3.5,
+				"percentage_in_comments": 27.96
+			},{
+				"name": "Johan Svennungsson",
+				"email": "johsvenn@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/83b127f0245252250de0116248019781?default=identicon",
+				"rows": 445,
+				"stability": 73.1,
+				"age": 3.4,
+				"percentage_in_comments": 11.24
+			},{
+				"name": "Johannes Edenholm",
+				"email": "edenholm@chalmers.student.se",
+				"gravatar": "https://www.gravatar.com/avatar/ab98a20e04f53d0931c7580aaae3ad98?default=identicon",
+				"rows": 137,
+				"stability": 22.9,
+				"age": 1.5,
+				"percentage_in_comments": 8.76
+			},{
+				"name": "Karl Ängermark",
+				"email": "kalle@angermark.se",
+				"gravatar": "https://www.gravatar.com/avatar/cad8020150427b355ad1f415ad24e7a0?default=identicon",
+				"rows": 103,
+				"stability": 24.2,
+				"age": 3.3,
+				"percentage_in_comments": 4.85
+			},{
+				"name": "Linus Berglund",
+				"email": "MrZombax@gmail.com",
+				"gravatar": "https://www.gravatar.com/avatar/5035efb9310063d8b51224c19ea2a6d4?default=identicon",
+				"rows": 1201,
+				"stability": 71.3,
+				"age": 0.4,
+				"percentage_in_comments": 74.44
+			},{
+				"name": "Rikard Teodorsson",
+				"email": "rikardt@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/e042f8d8d2792c6f78af04c804895fd1?default=identicon",
+				"rows": 263,
+				"stability": 26.2,
+				"age": 3.0,
+				"percentage_in_comments": 20.53
+			},{
+				"name": "Tagonice",
+				"email": "Tagon1228@gmail.com",
+				"gravatar": "https://www.gravatar.com/avatar/187994a3d3b4881271aeba790858c36f?default=identicon",
+				"rows": 19,
+				"stability": 27.1,
+				"age": 1.7,
+				"percentage_in_comments": 31.58
+			},{
+				"name": "kadric94",
+				"email": "31804015+kadric94@users.noreply.github.com",
+				"gravatar": "https://www.gravatar.com/avatar/986bf1bf5f7f5c68e776b558d579fcf1?default=identicon",
+				"rows": 2,
+				"stability": 10.5,
+				"age": 0.0,
+				"percentage_in_comments": 100.00
+			}]
+		},
+		"timeline": {
+			"message": "The following history timeline has been gathered from the repository",
+			"period_length": "week",
+			"periods": [
+			{
+				"name": "2017W38",
+				"authors": [
+				{
+					"name": "Arvid Wiklund",
+					"email": "arvidwi@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+					"work": "-++++"
+				},{
+					"name": "Erik Källberg",
+					"email": "kalerik@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+					"work": "+++++++++++"
+				},{
+					"name": "Tagonice",
+					"email": "Tagon1228@gmail.com",
+					"gravatar": "https://www.gravatar.com/avatar/187994a3d3b4881271aeba790858c36f?default=identicon",
+					"work": "---++++++++++++++++++++"
+				},{
+					"name": "kadric94",
+					"email": "31804015+kadric94@users.noreply.github.com",
+					"gravatar": "https://www.gravatar.com/avatar/986bf1bf5f7f5c68e776b558d579fcf1?default=identicon",
+					"work": "----++++++"
+				}],
+				"modified_rows": 163
+			},{
+				"name": "2017W39",
+				"authors": [
+				{
+					"name": "Arvid Wiklund",
+					"email": "arvidwi@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+					"work": "+++"
+				},{
+					"name": "Erik Källberg",
+					"email": "kalerik@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+					"work": "-----++++++++++++++++++"
+				},{
+					"name": "Hugo Frost",
+					"email": "Hugo.Frost@infotiv.se",
+					"gravatar": "https://www.gravatar.com/avatar/93b7b56a0a8dc6bca2fa25f89683fb4e?default=identicon",
+					"work": "--+++++++"
+				},{
+					"name": "Johan Svennungsson",
+					"email": "johsvenn@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/83b127f0245252250de0116248019781?default=identicon",
+					"work": "---+++++"
+				},{
+					"name": "Karl Ängermark",
+					"email": "kalle@angermark.se",
+					"gravatar": "https://www.gravatar.com/avatar/cad8020150427b355ad1f415ad24e7a0?default=identicon",
+					"work": "+++++"
+				},{
+					"name": "Rikard Teodorsson",
+					"email": "rikardt@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e042f8d8d2792c6f78af04c804895fd1?default=identicon",
+					"work": "---++++++"
+				}],
+				"modified_rows": 1327
+			},{
+				"name": "2017W40",
+				"authors": [
+				{
+					"name": "Arvid Wiklund",
+					"email": "arvidwi@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+					"work": "-----+++++++++"
+				},{
+					"name": "Erik Källberg",
+					"email": "kalerik@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+					"work": "-++++++++"
+				},{
+					"name": "Hugo Frost",
+					"email": "Hugo.Frost@infotiv.se",
+					"gravatar": "https://www.gravatar.com/avatar/93b7b56a0a8dc6bca2fa25f89683fb4e?default=identicon",
+					"work": "++"
+				},{
+					"name": "Johan Svennungsson",
+					"email": "johsvenn@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/83b127f0245252250de0116248019781?default=identicon",
+					"work": "----+++++++++++++++"
+				},{
+					"name": "Karl Ängermark",
+					"email": "kalle@angermark.se",
+					"gravatar": "https://www.gravatar.com/avatar/cad8020150427b355ad1f415ad24e7a0?default=identicon",
+					"work": "-----+++++++++"
+				},{
+					"name": "Rikard Teodorsson",
+					"email": "rikardt@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e042f8d8d2792c6f78af04c804895fd1?default=identicon",
+					"work": "------+++++++++++++++++"
+				}],
+				"modified_rows": 2378
+			},{
+				"name": "2017W41",
+				"authors": [
+				{
+					"name": "Arvid Wiklund",
+					"email": "arvidwi@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+					"work": "-++"
+				},{
+					"name": "Erik Källberg",
+					"email": "kalerik@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+					"work": "--+++"
+				},{
+					"name": "Johannes Edenholm",
+					"email": "edenholm@chalmers.student.se",
+					"gravatar": "https://www.gravatar.com/avatar/ab98a20e04f53d0931c7580aaae3ad98?default=identicon",
+					"work": "-+++"
+				},{
+					"name": "Karl Ängermark",
+					"email": "kalle@angermark.se",
+					"gravatar": "https://www.gravatar.com/avatar/cad8020150427b355ad1f415ad24e7a0?default=identicon",
+					"work": "+"
+				},{
+					"name": "Linus Berglund",
+					"email": "MrZombax@gmail.com",
+					"gravatar": "https://www.gravatar.com/avatar/5035efb9310063d8b51224c19ea2a6d4?default=identicon",
+					"work": "---------------++++++++"
+				},{
+					"name": "Rikard Teodorsson",
+					"email": "rikardt@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e042f8d8d2792c6f78af04c804895fd1?default=identicon",
+					"work": "-+++++++"
+				}],
+				"modified_rows": 2337
+			},{
+				"name": "2017W42",
+				"authors": [
+				{
+					"name": "Erik Källberg",
+					"email": "kalerik@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+					"work": "++"
+				},{
+					"name": "Johannes Edenholm",
+					"email": "edenholm@chalmers.student.se",
+					"gravatar": "https://www.gravatar.com/avatar/ab98a20e04f53d0931c7580aaae3ad98?default=identicon",
+					"work": "------------++++++++++++"
+				},{
+					"name": "Tagonice",
+					"email": "Tagon1228@gmail.com",
+					"gravatar": "https://www.gravatar.com/avatar/187994a3d3b4881271aeba790858c36f?default=identicon",
+					"work": "."
+				}],
+				"modified_rows": 940
+			},{
+				"name": "2017W43",
+				"authors": [
+				{
+					"name": "Arvid Wiklund",
+					"email": "arvidwi@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+					"work": "."
+				},{
+					"name": "Erik Källberg",
+					"email": "kalerik@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+					"work": "-----+++++++++++"
+				},{
+					"name": "Hugo Frost",
+					"email": "Hugo.Frost@infotiv.se",
+					"gravatar": "https://www.gravatar.com/avatar/93b7b56a0a8dc6bca2fa25f89683fb4e?default=identicon",
+					"work": "."
+				},{
+					"name": "Johan Svennungsson",
+					"email": "johsvenn@student.chalmers.se",
+					"gravatar": "https://www.gravatar.com/avatar/83b127f0245252250de0116248019781?default=identicon",
+					"work": "."
+				},{
+					"name": "Johannes Edenholm",
+					"email": "edenholm@chalmers.student.se",
+					"gravatar": "https://www.gravatar.com/avatar/ab98a20e04f53d0931c7580aaae3ad98?default=identicon",
+					"work": "."
+				},{
+					"name": "Linus Berglund",
+					"email": "MrZombax@gmail.com",
+					"gravatar": "https://www.gravatar.com/avatar/5035efb9310063d8b51224c19ea2a6d4?default=identicon",
+					"work": "------+++++++++++++++++"
+				}],
+				"modified_rows": 3152
+			}]
+		},
+		"metrics": {
+			"violations": [
+			{
+				"type": "cyclomatic-complexity",
+				"file_name": "platooning/src/se/byggarebob/platooning/CAN.java",
+				"value": 85
+			},{
+				"type": "cyclomatic-complexity",
+				"file_name": "platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java",
+				"value": 56
+			}]
+		},
+		"responsibilities": {
+			"message": "The following responsibilities, by author, were found in the current revision of the repository (comments are excluded from the line count, if possible)",
+			"authors": [
+			{
+				"name": "Arvid Wiklund",
+				"email": "arvidwi@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/e8504fbcf5ce35b847314d9ef2d4cfc0?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/Regulator.java",
+					"rows": 48
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/UltraSonicSensor.java",
+					"rows": 22
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/MotorControl.java",
+					"rows": 14
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/CAN.java",
+					"rows": 10
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ACC.java",
+					"rows": 9
+				}]
+			},{
+				"name": "Erik Källberg",
+				"email": "kalerik@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/d65effc171e46cc928bcd515e28df056?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/CAN.java",
+					"rows": 324
+				},{
+					"name": "ui/src/se/byggarebob/platooning/ui/controllers/MainController.java",
+					"rows": 260
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/UICom.java",
+					"rows": 142
+				},{
+					"name": "ui/src/se/byggarebob/platooning/ui/controllers/ConnectController.java",
+					"rows": 43
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ACC.java",
+					"rows": 20
+				},{
+					"name": "ui/src/se/byggarebob/platooning/ui/Main.java",
+					"rows": 16
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/Main.java",
+					"rows": 15
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/test/DeacceleratingStateTest.java",
+					"rows": 5
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/test/CarTest.java",
+					"rows": 5
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/test/AcceleratingStateTest.java",
+					"rows": 4
+				}]
+			},{
+				"name": "Hugo Frost",
+				"email": "Hugo.Frost@infotiv.se",
+				"gravatar": "https://www.gravatar.com/avatar/93b7b56a0a8dc6bca2fa25f89683fb4e?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/ServoControl.java",
+					"rows": 18
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/MotorControl.java",
+					"rows": 18
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/UltraSonicSensor.java",
+					"rows": 12
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/CAN.java",
+					"rows": 11
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/Steering.java",
+					"rows": 4
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ACC.java",
+					"rows": 2
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/IMovable.java",
+					"rows": 1
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/IDistance.java",
+					"rows": 1
+				}]
+			},{
+				"name": "Johan Svennungsson",
+				"email": "johsvenn@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/83b127f0245252250de0116248019781?default=identicon",
+				"files": [
+				{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Car.java",
+					"rows": 94
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/test/CarTest.java",
+					"rows": 93
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/test/DeacceleratingStateTest.java",
+					"rows": 51
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/test/AcceleratingStateTest.java",
+					"rows": 28
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/DeacceleratingState.java",
+					"rows": 27
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/AcceleratingState.java",
+					"rows": 26
+				},{
+					"name": "ui/src/se/byggarebob/platooning/ui/controllers/MainController.java",
+					"rows": 21
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Simulator.java",
+					"rows": 13
+				},{
+					"name": "ui/src/se/byggarebob/platooning/ui/Main.java",
+					"rows": 11
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Sensor.java",
+					"rows": 7
+				}]
+			},{
+				"name": "Johannes Edenholm",
+				"email": "edenholm@chalmers.student.se",
+				"gravatar": "https://www.gravatar.com/avatar/ab98a20e04f53d0931c7580aaae3ad98?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageClient.java",
+					"rows": 61
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ImageServer.java",
+					"rows": 31
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java",
+					"rows": 15
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ALCRegulator.java",
+					"rows": 15
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ProcessedImage.java",
+					"rows": 2
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ALC.java",
+					"rows": 1
+				}]
+			},{
+				"name": "Karl Ängermark",
+				"email": "kalle@angermark.se",
+				"gravatar": "https://www.gravatar.com/avatar/cad8020150427b355ad1f415ad24e7a0?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/SteeringSim.java",
+					"rows": 54
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ALC.java",
+					"rows": 16
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java",
+					"rows": 10
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Simulator.java",
+					"rows": 6
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Regulator.java",
+					"rows": 6
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ImageServer.java",
+					"rows": 4
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageClient.java",
+					"rows": 2
+				}]
+			},{
+				"name": "Linus Berglund",
+				"email": "MrZombax@gmail.com",
+				"gravatar": "https://www.gravatar.com/avatar/5035efb9310063d8b51224c19ea2a6d4?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/CAN.java",
+					"rows": 72
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java",
+					"rows": 44
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/SteeringSim.java",
+					"rows": 22
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/ImageServer.java",
+					"rows": 22
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Car.java",
+					"rows": 19
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/UICom.java",
+					"rows": 18
+				},{
+					"name": "ui/src/se/byggarebob/platooning/ui/controllers/MainController.java",
+					"rows": 16
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/Regulator.java",
+					"rows": 14
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageClient.java",
+					"rows": 12
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/MotorControl.java",
+					"rows": 9
+				}]
+			},{
+				"name": "Rikard Teodorsson",
+				"email": "rikardt@student.chalmers.se",
+				"gravatar": "https://www.gravatar.com/avatar/e042f8d8d2792c6f78af04c804895fd1?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ImageProcessing.java",
+					"rows": 123
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/imageclient/ProcessedImage.java",
+					"rows": 34
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Car.java",
+					"rows": 23
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Regulator.java",
+					"rows": 9
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Simulator.java",
+					"rows": 8
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Main.java",
+					"rows": 6
+				},{
+					"name": "simulator/src/se/byggarebob/platooning/simulator/Sensor.java",
+					"rows": 2
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/SteeringSim.java",
+					"rows": 2
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/MotorControl.java",
+					"rows": 1
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/IMovable.java",
+					"rows": 1
+				}]
+			},{
+				"name": "Tagonice",
+				"email": "Tagon1228@gmail.com",
+				"gravatar": "https://www.gravatar.com/avatar/187994a3d3b4881271aeba790858c36f?default=identicon",
+				"files": [
+				{
+					"name": "platooning/src/se/byggarebob/platooning/ACC.java",
+					"rows": 7
+				},{
+					"name": "platooning/src/se/byggarebob/platooning/CAN.java",
+					"rows": 6
+				}]
+			}]
+		},
+		"extensions": {
+			"message": "The extensions below were found in the repository history",
+			"used": [ "java", "js" ],
+			"unused": [ "*", "candump", "css", "dot", "fxml", "html", "md", "sh", "txt", "xml" ]
+		}
+	}
+}
